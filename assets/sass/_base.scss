@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+$font-modern: "Montserrat", "Helvetica", "Arial", "sans-serif";
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+$washington: #2e9c4e;
+$adams: #FFFFFF;
+$jefferson: #1b5a2d;
+
+html, body{
+    height: 100%;
+    font-family: $font-modern;
+    background-color: $washington;
+    color: $adams;
+}
