@@ -1,0 +1,31 @@
+{
+  "name": "kluss",
+  "version": "1.0.0",
+  "description": "Klusjesdienst",
+  "main": "index.php",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alberttomasiak/kluss.git"
+  },
+  "author": "Albert Tomasiak, Thomas Van Malderen, Alexandra Pallayova, Samuel Sieben",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alberttomasiak/kluss/issues"
+  },
+  "homepage": "https://github.com/alberttomasiak/kluss#readme",
+  "devDependencies": {
+    "bourbon": "^4.2.7",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.13",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-imagemin": "^3.1.0",
+    "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^2.2.0",
+    "gulp-uglify": "^2.0.0",
+    "imagemin-pngquant": "^5.0.0",
+    "minimatch": "^3.0.3"
+  }
+}
