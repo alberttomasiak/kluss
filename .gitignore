@@ -1,3 +1,18 @@
 /node_modules
 node_modules/*
 node_modules/
+backup landing 1.0/*
+/backup landing 1.0
+backup landing 1.0/
+node backup/*
+node backup/
+/node backup
+vendor/*
+vendor/
+/vendor
+/Kluss vagrant backup/*
+/kluss vagrant backup
+Kluss vagrant backup/*
+storage/*
+/storage
+npm-debug.log.*
