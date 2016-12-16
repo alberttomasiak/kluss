@@ -1,52 +1,39 @@
 {
-  "name": "kluss",
-  "version": "1.0.0",
-  "description": "Klusjesdienst",
-  "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "gulp --production",
+    "dev": "gulp watch"
+  },
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "jquery": "^3.1.0",
+    "laravel-elixir": "^6.0.0-14",
+    "laravel-elixir-vue-2": "^0.2.0",
+    "laravel-elixir-webpack-official": "^1.0.2",
+    "lodash": "^4.16.2",
+    "vue": "^2.0.1",
+    "vue-resource": "^1.0.3"
+  },
+  "name": "kluss",
+  "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img width=\"150\"src=\"https://laravel.com/laravel.png\"></a></p>",
+  "version": "1.0.0",
+  "main": "home.blade.php",
+  "directories": {
+    "test": "tests"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/alberttomasiak/kluss.git"
   },
   "keywords": [
-    "kluss",
     "klusjesdienst",
-    "eindwerk"
+    "kluss"
   ],
-  "author": "Albert Tomasiak, Thomas Van Malderen, Samuel Sieben, Alexandra Pallayova",
+  "author": "Albert Tomasiak - Thomas Van Malderen - Samuel Joos Sieben - Alexandra Pallayova",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/alberttomasiak/kluss/issues"
   },
-  "homepage": "https://github.com/alberttomasiak/kluss#readme",
-  "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.15.2",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
-    "express": "^4.14.0",
-    "express-session": "^1.14.2",
-    "method-override": "^2.3.7",
-    "mongoose": "^4.7.2",
-    "morgan": "^1.7.0",
-    "passport": "^0.3.2",
-    "passport-facebook": "^2.1.1",
-    "passport-google-oauth": "^1.0.0",
-    "passport-local": "^1.0.0",
-    "pug": "^2.0.0-beta6",
-    "socket.io": "^1.7.1"
-  },
-  "devDependencies": {
-    "express": "^4.14.0",
-    "gulp": "^3.9.1",
-    "gulp-clean-css": "^2.2.0",
-    "gulp-concat-css": "^2.3.0",
-    "gulp-imagemin": "^3.1.1",
-    "gulp-sass": "^2.3.2",
-    "gulp-sourcemaps": "^1.9.1",
-    "gulp-uglify": "^2.0.0",
-    "imagemin-pngquant": "^5.0.0"
-  }
+  "homepage": "https://github.com/alberttomasiak/kluss#readme"
 }
