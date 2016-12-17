@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+// home routes
 Route::get('/home', 'HomeController@index');
 
-Auth::routes();
+// kluss routes
+Route::get('/kluss_toevoegen', 'KlussController@index');
 
-Route::get('/home', 'HomeController@index');
-
+// test routes
 Route::get('/send', 'EmailController@send');
