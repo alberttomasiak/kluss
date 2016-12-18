@@ -1,24 +1,28 @@
 var apiGeolocationSuccess = function(position) {
-    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+	//alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+    $('#kluss--lat').val(position.coords.latitude);
+    $('#kluss--lng').val(position.coords.longitude);
 };
 
 var tryAPIGeolocation = function() {
-	jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(success) {
+	jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDIUAq_cUlo5wamjqeI_nBEA4VUVREKLis", function(success) {
 		apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
   })
   .fail(function(err) {
-    alert("API Geolocation error! \n\n"+err);
+    //alert("API Geolocation error! \n\n"+err);
   });
 };
 
 var browserGeolocationSuccess = function(position) {
-	alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+	//alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+    $('#kluss--lat').val(position.coords.latitude);
+    $('#kluss--lng').val(position.coords.longitude);
 };
 
 var browserGeolocationFail = function(error) {
   switch (error.code) {
     case error.TIMEOUT:
-      alert("Browser geolocation error !\n\nTimeout.");
+      //alert("Browser geolocation error !\n\nTimeout.");
       break;
     case error.PERMISSION_DENIED:
       if(error.message.indexOf("Only secure origins are allowed") == 0) {
@@ -26,7 +30,7 @@ var browserGeolocationFail = function(error) {
       }
       break;
     case error.POSITION_UNAVAILABLE:
-      alert("Browser geolocation error !\n\nPosition unavailable.");
+      //alert("Browser geolocation error !\n\nPosition unavailable.");
       break;
   }
 };

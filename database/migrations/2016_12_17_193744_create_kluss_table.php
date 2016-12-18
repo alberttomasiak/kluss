@@ -18,11 +18,11 @@ class CreateKlussTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->text('description');
-            $table->string('kluss_image');
+            $table->string('kluss_image')->default("/img/klussjes/geen-image.png");
             $table->double('price');
             $table->dateTime('date');
-            $table->decimal('latitude');
-            $table->decimal('longitude');
+            $table->double('latitude', 15, 8);
+            $table->double('longitude', 15, 8);
             $table->engine = 'InnoDB';
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

@@ -31,3 +31,4 @@ node backup/*
 /.git
 .git/*
 npm-debug.log.*
+/public/img/klussjes/kluss-*
