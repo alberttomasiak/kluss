@@ -1,20 +1,43 @@
+var apiGeolocationSuccess = function(position) {
+    alert("API geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+};
 
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
+var tryAPIGeolocation = function() {
+	jQuery.post( "https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyDCa1LUe1vOczX1hO_iGYgyo8p_jYuGOPU", function(success) {
+		apiGeolocationSuccess({coords: {latitude: success.location.lat, longitude: success.location.lng}});
+  })
+  .fail(function(err) {
+    alert("API Geolocation error! \n\n"+err);
+  });
+};
 
-require('./bootstrap');
+var browserGeolocationSuccess = function(position) {
+	alert("Browser geolocation success!\n\nlat = " + position.coords.latitude + "\nlng = " + position.coords.longitude);
+};
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+var browserGeolocationFail = function(error) {
+  switch (error.code) {
+    case error.TIMEOUT:
+      alert("Browser geolocation error !\n\nTimeout.");
+      break;
+    case error.PERMISSION_DENIED:
+      if(error.message.indexOf("Only secure origins are allowed") == 0) {
+        tryAPIGeolocation();
+      }
+      break;
+    case error.POSITION_UNAVAILABLE:
+      alert("Browser geolocation error !\n\nPosition unavailable.");
+      break;
+  }
+};
 
-Vue.component('example', require('./components/Example.vue'));
+var tryGeolocation = function() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+    	browserGeolocationSuccess,
+      browserGeolocationFail,
+      {maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
+  }
+};
 
-const app = new Vue({
-    el: '#app'
-});
+tryGeolocation();
