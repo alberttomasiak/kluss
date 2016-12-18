@@ -24,7 +24,6 @@ class KlussController extends Controller
     }
 
     public function add(Request $request){
-        if(Input::hasFile('file')){
             $title = $request->title;
             $description = $request->description;
             $kluss_image = $request->file;
@@ -34,6 +33,7 @@ class KlussController extends Controller
             $longitude = $request->longitude;
             $user_id = \Auth::user()->id;
 
+            if(Input::hasFile('file')){
             $file = Input::file('file');
             if(substr($file->getMimeType(), 0, 5) == 'image'){
                 $extension = Input::file('file')->getClientOriginalExtension();
@@ -42,6 +42,10 @@ class KlussController extends Controller
                 $destinationPath = "img/klussjes/". $fileName;
                 $file->move('img/klussjes', $fileName);
 
+                if($description == ""){
+                    $description = "Geen beschrijving beschikbaar.";
+                }
+
                 $query = DB::table('kluss')->insert(
                     ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
                 );
@@ -49,6 +53,18 @@ class KlussController extends Controller
                 if($query){
                     return redirect('/home');
                 }
+            }
+        }else{
+            if($description == ""){
+                $description = "Geen beschrijving beschikbaar.";
+            }
+
+            $query = DB::table('kluss')->insert(
+                ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
+            );
+
+            if($query){
+                return redirect('/home');
             }
         }
     }
