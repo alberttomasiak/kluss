@@ -21,6 +21,7 @@ Route::get('/home', 'HomeController@index');
 
 // kluss routes
 Route::get('/kluss_toevoegen', 'KlussController@index');
+Route::post('/kluss/add', 'KlussController@add');
 
 // test routes
 Route::get('/send', 'EmailController@send');
