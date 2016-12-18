@@ -1400,7 +1400,6 @@ a {
 
 a:hover, a:focus {
   color: #216a94;
-  text-decoration: underline;
 }
 
 a:focus {
@@ -7694,6 +7693,7 @@ button.close {
   -webkit-box-flex: 0;
   flex: 0 0 auto;
   background-color: #2e9c4e;
+  margin-bottom: 30px;
   padding: 10px 0;
   font-size: 16px;
   color: #FFF;
@@ -7749,14 +7749,9 @@ button.close {
   display: -webkit-box;
   display: flex;
   margin-right: 15px;
-}
-
-.header .right-icons a:last-child {
-  margin-right: none;
-}
-
-.header .right-icons a:hover {
-  text-decoration: none;
+  width: 20px;
+  height: 20px;
+  color: white;
 }
 
 .kluss--add {
