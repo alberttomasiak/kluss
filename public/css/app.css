@@ -1400,6 +1400,7 @@ a {
 
 a:hover, a:focus {
   color: #216a94;
+  text-decoration: underline;
 }
 
 a:focus {
@@ -7756,7 +7757,7 @@ button.close {
 
 .kluss--add {
   display: block;
-  margin-top: 60px;
+  margin-top: 30px;
 }
 
 /*# sourceMappingURL=app.css.map */
