@@ -1,19 +1,13 @@
-<footer class="footer">
-    <div class="container">
-        <!--<div class="col-xs-1 col-sm-2">
-            <a href="#">Wat is KLUSS</a>
-        </div>
-        <div class="col-xs-1 col-sm-2">
-            <a href="#">Team</a>
-        </div>
-        <div class="col-xs-1 col-sm-2">
-            <a href="#">Partners</a>
-        </div>
-        <div class="col-xs-1 col-sm-2">
-            <a href="#">Privacy</a>
-        </div>
-        <div class="col-xs-1 col-sm-2">
-            <a href="#">Contact</a>
-        </div>-->
+<footer class="landing_footer">
+    <div class="footer_list">
+        <a href="www.google.com" class="landing_footer_link">Wat is KLUSS</a>
+        &#124;
+        <a href="www.facebook.com" class="landing_footer_link">Team</a>
+        &#124;
+        <a href="www.twitter.com" class="landing_footer_link">Partners</a>
+        &#124;
+        <a href="www.instagram.com" class="landing_footer_link">Privacy</a>
+        &#124;
+        <a href="www.weareimd.be" class="landing_footer_link">Contact</a>
     </div>
 </footer>

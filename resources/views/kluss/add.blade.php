@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
-    <div class="kluss--add container col-md-4 col-md-offset-4 center">
+    <div class="kluss--add container col-md-6 col-md-offset-3 center">
             <form class="row flex-row add-kluss" enctype="multipart/form-data" id="kluss--toevoegen" action="{{ URL('/kluss/add')}}" method="post">
                 <h1>Voeg een kluss toe:</h1>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
