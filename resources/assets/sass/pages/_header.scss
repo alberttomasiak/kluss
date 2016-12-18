@@ -12,6 +12,15 @@
     text-transform: uppercase;
     flex-direction: row;
     -webkit-flex-direction: row;
+    .kluss--logo{
+        display: block;
+        width: 75px;
+        height: 50px;
+        background-image: url('../img/logo-klusswit.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size:contain;
+    }
     .left-icons {
         display: flex;
         justify-content: flex-start;

@@ -7707,6 +7707,16 @@ button.close {
   -webkit-flex-direction: row;
 }
 
+.header .kluss--logo {
+  display: block;
+  width: 75px;
+  height: 50px;
+  background-image: url("../img/logo-klusswit.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
 .header .left-icons {
   display: -webkit-box;
   display: flex;
