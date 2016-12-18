@@ -21,6 +21,7 @@ class CreateKlussTable extends Migration
             $table->string('kluss_image')->default("/img/klussjes/geen-image.png");
             $table->double('price');
             $table->dateTime('date');
+            $table->string('address');
             $table->double('latitude', 15, 8);
             $table->double('longitude', 15, 8);
             $table->engine = 'InnoDB';
