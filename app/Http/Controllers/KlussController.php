@@ -32,6 +32,7 @@ class KlussController extends Controller
             $latitude = $request->latitude;
             $longitude = $request->longitude;
             $user_id = \Auth::user()->id;
+            $address = $request->address;
 
             if(Input::hasFile('file')){
             $file = Input::file('file');
@@ -47,7 +48,7 @@ class KlussController extends Controller
                 }
 
                 $query = DB::table('kluss')->insert(
-                    ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
+                    ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
                 );
 
                 if($query){
@@ -60,7 +61,7 @@ class KlussController extends Controller
             }
 
             $query = DB::table('kluss')->insert(
-                ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
+                ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
             );
 
             if($query){

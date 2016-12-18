@@ -1,3 +1,4 @@
+@if(\Auth::user())
 <div class="header">
 	<div class="left-icons">
 		<a class="kluss--logo" href="/home"></a>
@@ -9,3 +10,4 @@
 		<a href="/logout"><i class="glyphicon glyphicon-log-out"></i></a>
 	</div>
 </div>
+@endif

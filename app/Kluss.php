@@ -8,7 +8,7 @@ class Kluss extends Model
 {
     //
     protected $fillable = [
-            'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted'
+            'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted', 'address'
     ];
 
 }
