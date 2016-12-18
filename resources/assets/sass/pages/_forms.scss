@@ -1,0 +1,60 @@
+.logreg--heading h1{
+    display: block;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    font-size: .9em;
+}
+
+.logreg--form{
+    display: block;
+    border-top: 5px solid #2e9c4e;
+}
+
+.logreg--field{
+    display:block;
+    margin-top: 30px;
+    position: relative;
+}
+
+.logreg--logo{
+    width: 100%;
+    height: 100px;
+    display: block;
+    margin-top: 70px;
+    margin-bottom: 15px;
+    background-image: url('../img/logo-kluss.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.btn--form{
+    background-color: #2e9c4e;
+    color: white;
+}
+
+.btn--form:hover{
+    background-color: #1f6834;
+    color: white;
+}
+
+#email, #password, #password-confirm, #name{
+    padding-left: 30px;
+}
+
+#input_img_password, #input_img_user, .input_img {
+    position:absolute;
+    bottom:6px;
+    left:17px;
+    width:25px;
+    height:25px;
+}
+
+.input_img_email{
+    position: absolute;
+    bottom: 8px;
+    left: 20px;
+    width: 20px;
+    height: 20px;
+}

@@ -17,6 +17,14 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/login', function(){
+    return view('auth/login')->with('title', 'Log in');
+});
+
+Route::get('/register', function(){
+    return view('auth/register')->with('title', 'Registreer');
+});
+
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
