@@ -20,8 +20,8 @@
                 <br>
                 <p class="landing_intro_welcometxt">KLUSS laat je toe om alle overblijvende klusjes open te stellen aan klussers uit de buurt, of om zelf klusjes uit de buurt te vinden en op te knappen voor een beloning. Vanaf nu hoeven er nooit meer klusjes te blijven liggen tot later! Get KLUSS'ing!</p>
                 <div class="landing_intro_ctas">
-                    <a href="{{ url('/home') }}" class="btn btn-success landing_cta">REGISTEER</a>
-                    <a href="{{ url('/home') }}" class="btn btn-success landing_cta">LOG IN</a>
+                    <a href="{{ url('/register') }}" class="btn btn-success landing_cta">REGISTEER</a>
+                    <a href="{{ url('/login') }}" class="btn btn-success landing_cta">LOG IN</a>
                 </div>
             </div>
         </div>
