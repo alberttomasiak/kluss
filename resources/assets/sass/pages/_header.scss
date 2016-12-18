@@ -2,7 +2,8 @@
     display: flex;
     flex: 0 0 auto;
     background-color: #2e9c4e;
-    
+    margin-bottom: 30px;
+
     padding: 10px 0;
     font-size: 16px;
     color: #FFF;
@@ -36,12 +37,10 @@
         a {
             display: flex;
             margin-right: 15px;
-            &:last-child {
-                margin-right: none;
-            }
-            &:hover {
-                text-decoration: none;
-            }
+            width: 20px;
+            height: 20px;
+            color: white;
+
         }
     }
 }
