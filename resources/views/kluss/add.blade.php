@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Kluss toevoegen</title>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-        <link href="/css/app.css" rel="stylesheet">
-    </head>
-    <body>
-        <div class="kluss--add container col-md-4 col-md-offset-4 center">
+@extends('layouts.app')
+@section('content')
+    <div class="kluss--add container col-md-4 col-md-offset-4 center">
             <form class="row flex-row add-kluss" enctype="multipart/form-data" id="kluss--toevoegen" action="{{ URL('/kluss/add')}}" method="post">
                 <h1>Voeg een kluss toe:</h1>
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
@@ -44,5 +35,4 @@
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         <script type="text/javascript" src="/js/app.js"></script>
-    </body>
-</html>
+@endsection

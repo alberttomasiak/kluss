@@ -20,7 +20,7 @@ class KlussController extends Controller
     }
 
     public function index(){
-        return view('kluss/add');
+        return view('kluss/add')->with('title', 'Voeg een Kluss toe');
     }
 
     public function add(Request $request){
