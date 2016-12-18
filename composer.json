@@ -10,7 +10,7 @@
         "codecourse/notify": "^1.1",
         "fzaninotto/faker": "^1.6",
         "twbs/bootstrap": "^3.3",
-        "nesbot/carbon": "^1.21",
+        "nesbot/carbon": "^1.21"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",
