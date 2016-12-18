@@ -7770,4 +7770,105 @@ button.close {
   margin-top: 30px;
 }
 
+.landing_body {
+  width: 100%;
+  background-image: url("../img/wasserette.jpg");
+}
+
+.landing_intro {
+  width: 94%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+}
+
+.landing_intro_map {
+  margin-bottom: 4%;
+}
+
+.landing_intro_map img {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.landing_intro_text {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.landing_intro_text img {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+.landing_intro_welcometxt {
+  color: white;
+}
+
+.landing_intro_ctas {
+  text-align: center;
+}
+
+.landing_footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  font-size: 1.2em;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px;
+  background-color: #2e9c4e;
+}
+
+.landing_footer_link {
+  color: white;
+}
+
+.landing_footer_link:hover {
+  color: greenyellow;
+}
+
+@media only screen and (min-width: 650px) {
+  body {
+    background-color: yellow;
+  }
+  .landing_intro {
+    width: 84%;
+    margin-left: auto;
+    margin-right: auto;
+    display: -webkit-box;
+    display: flex;
+    padding-top: 7%;
+  }
+  .landing_intro_map {
+    width: 46%;
+    display: block;
+    margin-right: 2%;
+  }
+  .landing_intro_text {
+    width: 46%;
+    display: block;
+    margin-left: 2%;
+  }
+  .landing_intro_map img {
+    width: 100%;
+  }
+  .landing_intro_text img {
+    width: 70%;
+    margin-left: 0%;
+    margin-right: auto;
+  }
+  .landing_intro_ctas {
+    text-align: left;
+  }
+}
+
 /*# sourceMappingURL=app.css.map */
