@@ -69,4 +69,10 @@ class KlussController extends Controller
             }
         }
     }
+
+    public function SingleKluss($id){
+        $kluss = DB::table('kluss')->where('id', '=', $id)->get();
+        $title = DB::table('kluss')->where('id', '=', $id)->value('title');
+        return view('kluss/individual', compact('kluss'))->with('title', $title);
+    }
 }

@@ -35,6 +35,6 @@ Route::get('/home', 'HomeController@index');
 // kluss routes
 Route::get('/kluss_toevoegen', 'KlussController@index');
 Route::post('/kluss/add', 'KlussController@add');
-
+Route::get('/kluss/{id}', 'KlussController@singleKluss');
 // test routes
 Route::get('/send', 'EmailController@send');
