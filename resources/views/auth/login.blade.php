@@ -39,7 +39,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
+                        <!--<div class="form-group">
                             <div class="col-md-11 col-md-offset-1">
                                 <div class="checkbox">
                                     <label>
@@ -47,7 +47,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div>-->
 
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-1">
@@ -57,8 +57,8 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-4 col-md-offset-3">
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
+                            <div class="col-md-8 col-md-offset-3">
+                                <a class="btn--link" href="{{ url('/password/reset') }}">
                                     Wachtwoord vergeten?
                                 </a>
                             </div>

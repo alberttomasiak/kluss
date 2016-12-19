@@ -64,7 +64,7 @@
                         <div class="form-group">
                             <div class="col-md-10 col-md-offset-1">
                                 <button type="submit" class="btn btn--form col-md-12">
-                                    Register
+                                    Registreer
                                 </button>
                             </div>
                         </div>

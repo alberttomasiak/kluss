@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Location;
+use App\Kluss;
+use DB;
 
 class HomeController extends Controller
 {
@@ -24,6 +26,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $klussjes = DB::table('kluss')->where('accepted', '=', '0')->get();
+        return view('home', compact('klussjes'));
+
     }
 }
