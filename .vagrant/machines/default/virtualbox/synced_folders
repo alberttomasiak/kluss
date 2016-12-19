@@ -1,1 +1,1 @@
-{"virtualbox":{"/var/www":{"mount_options":["dmode=777","fmode=666"],"guestpath":"/var/www","hostpath":"/Users/thomasvanmalderen/Desktop/kluss","disabled":false,"__vagrantfile":true}}}
+{"virtualbox":{"/var/www":{"mount_options":["dmode=777","fmode=666"],"guestpath":"/var/www","hostpath":"D:/xampp/htdocs/kluss","disabled":false,"__vagrantfile":true}}}

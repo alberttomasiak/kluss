@@ -1,4 +1,4 @@
-<footer class="landing_footer">
+<!--<footer class="landing_footer">
     <div class="footer_list">
         <a href="www.google.com" class="landing_footer_link">Wat is KLUSS</a>
         &#124;
@@ -10,4 +10,4 @@
         &#124;
         <a href="www.weareimd.be" class="landing_footer_link">Contact</a>
     </div>
-</footer>
+</footer>-->
