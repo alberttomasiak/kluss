@@ -3,12 +3,13 @@
     <div class="container">
         <div class="row">
             @foreach($kluss as $kl)
+                @if($kl->user_id == \Auth::user()->id)
             <div class="col s12 m6 kluss--edit">
                 <div class="col-sm-7">
-                    <img src="../../{{$kl->kluss_image}}" class="col-sm-12" alt="{{$kl->title}}">
+                    <img src="../../{{$kl->kluss_image}}" class="individual--image" alt="{{$kl->title}}">
                 </div>
                 <div class="col-sm-5">
-                    <form class="kluss--add container col-md-12 right" action="{{URL('/kluss/'.$kl->id.'/bewerken')}}" method="post">
+                    <form class="kluss--add individual--image container right" action="{{URL('/kluss/'.$kl->id.'/bewerken')}}" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group title-group">
                             <label for="title">Titel</label>
@@ -45,6 +46,12 @@
                     </form>
                 </div>
             </div>
+            @else
+                <div class="col-sm-12">
+                    <h1>U hebt geen toegang tot deze pagina</h1>
+                    <a href="/home" class="btn btn--form">Terugkeren</a>
+                </div>
+            @endif
             @endforeach
         </div>
     </div>
