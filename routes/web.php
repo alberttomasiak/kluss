@@ -39,13 +39,11 @@ Route::get('/kluss/{id}', 'KlussController@singleKluss');
 // kluss solliciteren / bewerken routes
 Route::get('/kluss/{id}/bewerken', 'KlussController@update');
 Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
-<<<<<<< HEAD
+Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
 
 // profile routes
 Route::get('/profiel/{id}', 'ProfielController@index');
 
-=======
-Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
->>>>>>> refs/remotes/origin/development
+
 // test routes
 Route::get('/send', 'EmailController@send');
