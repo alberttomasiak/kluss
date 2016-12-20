@@ -4,6 +4,10 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
+    "hash": "8f0aaa5e714056ecb9d255667d9f90d8",
+=======
+>>>>>>> refs/remotes/origin/development
     "content-hash": "a71457f732bff5deace39cbb3fed68b0",
     "packages": [
         {
@@ -2657,7 +2661,11 @@
                 "testing",
                 "xunit"
             ],
+<<<<<<< HEAD
+            "time": "2016-12-20 15:22:42"
+=======
             "time": "2016-12-20T15:22:42+00:00"
+>>>>>>> refs/remotes/origin/development
         },
         {
             "name": "phpunit/php-file-iterator",
