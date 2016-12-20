@@ -102,4 +102,50 @@ class KlussController extends Controller
         //return redirect('/kluss/'.$kluss->id);
         //return redirect()->back(compact('kluss','kluss_applicant'))->with('title', $title);
     }
+
+    public function update($id){
+        $kluss = DB::table('kluss')->where('id', '=', $id)->get();
+        return view('kluss/bewerken', compact('kluss'))->with('title', 'Kluss bewerken');
+    }
+
+    public function edit(Request $request, $id){
+        $title = $request->title;
+        $description = $request->description;
+        $price = $request->price;
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+        $user_id = \Auth::user()->id;
+        $address = $request->address;
+
+        if($description == ""){
+            $description = "Geen beschrijving beschikbaar.";
+        }
+
+        $query = DB::table('kluss')->where('id', '=', $id)->update(
+            ['title' => $title,
+            'description' => $description,
+            'price' => $price,
+            'latitude' => $latitude,
+            'longitude' => $longitude,
+            'address' => $address]
+        );
+
+        if(Input::hasFile('kluss_image')){
+        $file = Input::file('kluss_image');
+        if(substr($file->getMimeType(), 0, 5) == 'image'){
+            $extension = Input::file('kluss_image')->getClientOriginalExtension();
+            $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
+
+            $destinationPath = "img/klussjes/". $fileName;
+            $file->move('img/klussjes', $fileName);
+
+            $queryImage = DB::table('kluss')->where('id', '=', $id)->update([
+                'kluss_image' => $destinationPath
+            ]);
+
+            }
+        }
+
+        return redirect()->back();
+    }
 }
