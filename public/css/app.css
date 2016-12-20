@@ -7776,6 +7776,11 @@ button.close {
   margin-top: 60px;
 }
 
+.individual--image {
+  width: 100%;
+  display: block;
+}
+
 .card--title-black {
   color: black;
 }
