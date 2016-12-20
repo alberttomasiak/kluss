@@ -18,6 +18,10 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('profile_pic')->default('/img/default_profilepic.png');
+            $table->string('bio')->default("Vul me in!");
+            $table->integer('user_rating')->default('0');
+            $table->string('account_type')->default('normal');
             $table->rememberToken();
             $table->timestamps();
         });

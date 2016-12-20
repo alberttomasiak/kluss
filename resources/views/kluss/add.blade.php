@@ -22,7 +22,7 @@
 
                 <div class="form-group">
                     <label for="kluss_image">Foto toevoegen</label>
-                    <input type="file" class="kluss--image" name="file" id="kluss--input">
+                    <input type="file" class="kluss--image" name="kluss_image" id="kluss--input">
                 </div>
 
                 <div class="form-group price-group">
