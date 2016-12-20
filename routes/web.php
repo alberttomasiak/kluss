@@ -40,5 +40,10 @@ Route::get('/kluss/{id}', 'KlussController@singleKluss');
 Route::get('/kluss/{id}/bewerken', 'KlussController@update');
 Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
 Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
+
+// profile routes
+Route::get('/profiel/{id}', 'ProfielController@index');
+
+
 // test routes
 Route::get('/send', 'EmailController@send');
