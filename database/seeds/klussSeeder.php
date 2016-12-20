@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use DB;
 
 class klussSeeder extends Seeder
 {
@@ -13,8 +12,10 @@ class klussSeeder extends Seeder
     public function run()
     {
         //
+        $faker = Faker\Factory::create();
+
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('kluss')->truncate();
+        //DB::table('kluss')->truncate();
 
         DB::table('kluss')->insert([
             'title' => 'Dweilen, kuisen, stofzuigen',
