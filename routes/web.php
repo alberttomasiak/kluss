@@ -37,13 +37,15 @@ Route::get('/kluss_toevoegen', 'KlussController@index');
 Route::post('/kluss/add', 'KlussController@add');
 Route::get('/kluss/{id}', 'KlussController@singleKluss');
 // kluss solliciteren / bewerken routes
-Route::get('/kluss/{id}/bewerken', function(){
-    return view('kluss/bewerken')->with('title', 'Kluss bewerken');
-});
+Route::get('/kluss/{id}/bewerken', 'KlussController@update');
 Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
+<<<<<<< HEAD
 
 // profile routes
 Route::get('/profiel/{id}', 'ProfielController@index');
 
+=======
+Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
+>>>>>>> refs/remotes/origin/development
 // test routes
 Route::get('/send', 'EmailController@send');

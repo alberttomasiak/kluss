@@ -75,7 +75,7 @@
             @foreach($kluss as $kl)
             <div class="col s12 m6">
                 <div class="col-md-6">
-                    <img class="col-md-12 individual--image" src="../{{$kl->kluss_image}}" alt="{{$kl->title}}">
+                    <img class="individual--image" src="../{{$kl->kluss_image}}" alt="{{$kl->title}}">
                 </div>
                 <div class="col-md-6">
                     <h1>{{$kl->title}}</h1>

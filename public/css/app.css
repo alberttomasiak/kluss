@@ -7771,6 +7771,16 @@ button.close {
   padding-bottom: 80px;
 }
 
+.kluss--edit {
+  display: block;
+  margin-top: 60px;
+}
+
+.individual--image {
+  width: 100%;
+  display: block;
+}
+
 .card--title-black {
   color: black;
 }
