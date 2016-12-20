@@ -42,5 +42,8 @@ Route::get('/kluss/{id}/bewerken', function(){
 });
 Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
 
+// profile routes
+Route::get('/profiel/{id}', 'ProfielController@index');
+
 // test routes
 Route::get('/send', 'EmailController@send');
