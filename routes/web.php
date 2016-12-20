@@ -36,5 +36,11 @@ Route::get('/home', 'HomeController@index');
 Route::get('/kluss_toevoegen', 'KlussController@index');
 Route::post('/kluss/add', 'KlussController@add');
 Route::get('/kluss/{id}', 'KlussController@singleKluss');
+// kluss solliciteren / bewerken routes
+Route::get('/kluss/{id}/bewerken', function(){
+    return view('kluss/bewerken')->with('title', 'Kluss bewerken');
+});
+Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
+
 // test routes
 Route::get('/send', 'EmailController@send');

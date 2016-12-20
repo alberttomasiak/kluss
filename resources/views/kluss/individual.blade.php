@@ -10,7 +10,7 @@
       function load() {
           map = new google.maps.Map(document.getElementById('map--individual'), {
               center: {lat: {!! json_encode($kl->latitude) !!}, lng: {!! json_encode($kl->longitude)!!}},
-              zoom: 14,
+              zoom: 15,
               scrollwheel: false,
               navigationControl: false,
               mapTypeControl: false,
@@ -82,10 +82,14 @@
                     <p>{{$kl->description}}</p></br></br>
                     <b>{{$kl->address}}</b></br>
                     <b>{{$kl->price}} Credits</b></br></br>
-                    @if(\Auth::user()->id == $kl->id)
-                        <a href="#">Bewerk deze Kluss</a>
+                    @if(\Auth::user()->id == $kl->user_id)
+                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">Bewerk deze Kluss</a>
                     @else
-                        <a href="#">Solliciteer voor deze kluss</a>
+                        @if($kluss_applicant->first())
+                            <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
+                        @else
+                            <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                        @endif
                     @endif
                 </div>
             </div>

@@ -11,8 +11,8 @@
 
       function load() {
           map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: 51.025196, lng: 4.484542},
-              zoom: 14,
+              center: {lat: 51.027575, lng: 4.481958},
+              zoom: 15,
               scrollwheel: false,
               navigationControl: false,
               mapTypeControl: false,
