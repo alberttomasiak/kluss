@@ -14,8 +14,9 @@
                             <!--<label for="email" class="col-md-4 control-label">E-Mail Adres</label>-->
 
                             <div class="col-md-10 col-md-offset-1 logreg--field">
+                                <label for="email">Email</label>
                                 <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
-                                <img src="/img/User-64.png" id="input_img_user" alt="">
+                                <!--<img src="/img/User-64.png" id="input_img_user" alt="">-->
 
                                 @if ($errors->has('email'))
                                     <span class="help-block">
@@ -29,8 +30,9 @@
                             <!--<label for="password" class="col-md-4 control-label">Wachtwoord</label>-->
 
                             <div class="col-md-10 col-md-offset-1">
+                                <label for="password">Wachtwoord</label>
                                 <input id="password" type="password" placeholder="Wachtwoord" class="form-control" name="password" required>
-                                <img src="/img/Password-64.png" id="input_img_password" alt="">
+                                <!--<img src="/img/Password-64.png" id="input_img_password" alt="">-->
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>

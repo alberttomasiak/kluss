@@ -14,8 +14,9 @@
                             <!--<label for="name" class="col-md-4 control-label">Name</label>-->
 
                             <div class="col-md-10 col-md-offset-1 logreg--field">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
-                                <img src="/img/User-64.png" class="input_img" alt="">
+                                <label for="name">Naam</label>
+                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required placeholder="Naam" autofocus>
+                                <!--<img src="/img/User-64.png" class="input_img" alt="">-->
                                 @if ($errors->has('name'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('name') }}</strong>
@@ -28,8 +29,9 @@
                             <!--<label for="email" class="col-md-4 control-label">E-Mail Address</label>-->
 
                             <div class="col-md-10 col-md-offset-1">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-                                <img src="/img/Message-50.png" class="input_img_email" alt="">
+                                <label for="email">Email</label>
+                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email" required>
+                                <!--<img src="/img/Message-50.png" class="input_img_email" alt="">-->
                                 @if ($errors->has('email'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -42,8 +44,9 @@
                             <!--<label for="password" class="col-md-4 control-label">Password</label>-->
 
                             <div class="col-md-10 col-md-offset-1">
-                                <input id="password" type="password" class="form-control" name="password" required>
-                                <img src="/img/Password-64.png"  class="input_img" alt="">
+                                <label for="password">Wachtwoord</label>
+                                <input id="password" type="password" class="form-control" name="password" placeholder="Wachtwoord" required>
+                                <!--<img src="/img/Password-64.png"  class="input_img" alt="">-->
                                 @if ($errors->has('password'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -56,8 +59,9 @@
                             <!--<label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>-->
 
                             <div class="col-md-10 col-md-offset-1">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                                <img src="/img/Password-64.png"  class="input_img" alt="">
+                                <label for="=password_confirmation">Wachtwoord herhalen</label>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Wachtwoord herhalen" required>
+                                <!--<img src="/img/Password-64.png"  class="input_img" alt="">-->
                             </div>
                         </div>
 

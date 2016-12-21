@@ -20,16 +20,17 @@ class ProfielController extends Controller
      */
     public function index($id)
     {
-        //
-        //$profiel = DB::table('users')->where('id', '=', $id)->get();
-        $profiel = \App\User::findOrFail($id); //Input::get('id')
-        $openklusjes = DB::table('kluss')->where([
-                ['user_id', '=', $id],
-                ['accepted', '=', 0],
-            ])->get();
-        $data['profiel'] = $profiel;
-        $data['openkluss'] = $openklusjes;
-        return view('kluss/profiel', $data)->with('title', 'Profiel');
+        $personalData = DB::table('users')->where('id', '=', \Auth::user()->id)->get();
+        $klussjes = DB::table('kluss')->where('user_id', '=', \Auth::user()->id)->get();
+        $sollicitanten = DB::table('kluss_applicants')
+                    ->join('users', 'kluss_applicants.user_id', '=', 'users.id')
+                    ->join('kluss', 'kluss_applicants.kluss_id', '=', 'kluss.id')
+                    ->select('kluss_applicants.*', 'users.id', 'users.profile_pic', 'users.name')
+                    ->where('kluss.user_id', '=', $id)->orderBy('date', 'asc')->paginate(5, ['*'], 'sollicitanten');
+
+        // historiek van uitgevoerde klussjes
+        // reviews gebruikers
+        return view('/profile/profiel', compact('personalData', 'klussjes', 'sollicitanten'))->with('title', 'Profiel');
     }
 
     public function show($id)

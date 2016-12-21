@@ -34,7 +34,7 @@
         var date = kluss.date;
         var id = kluss.id
 
-        var html = "<div id='iw-container'><img class='map-image' alt='klussje' src='"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address + "</b> </br>" + "<b>"+ price +" credits </b></br>"+
+        var html = "<div id='iw-container'><img class='map-image' alt='klussje' src='"+image+"'>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
         "<div class='card-action'><a href='/kluss/"+id+"'>Ga naar de kluss</a></div></div>";
 
 
@@ -84,8 +84,8 @@
              @endif</span>
            </div>
            <div class="card-content">
-             <p>{{substr($kluss->description, 0, 120) . '...'}}</p>
-             <p class="card--description"><b>{{$kluss->address}}</b></p>
+             <p class="card--description">{{substr($kluss->description, 0, 120) . '...'}}</p>
+             <p><b>{{$kluss->address}}</b></p>
              <p class="card--price"><b>{{$kluss->price}} credits</b></p>
            </div>
            <div class="card-action">

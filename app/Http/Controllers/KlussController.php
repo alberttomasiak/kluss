@@ -40,8 +40,8 @@ class KlussController extends Controller
                 $extension = Input::file('kluss_image')->getClientOriginalExtension();
                 $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
 
-                $destinationPath = "img/klussjes/". $fileName;
-                $file->move('img/klussjes', $fileName);
+                $destinationPath = "/img/klussjes/". $fileName;
+                $file->move('/img/klussjes', $fileName);
 
                 if($description == ""){
                     $description = "Geen beschrijving beschikbaar.";
@@ -136,8 +136,8 @@ class KlussController extends Controller
             $extension = Input::file('kluss_image')->getClientOriginalExtension();
             $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
 
-            $destinationPath = "img/klussjes/". $fileName;
-            $file->move('img/klussjes', $fileName);
+            $destinationPath = "/img/klussjes/". $fileName;
+            $file->move('/img/klussjes', $fileName);
 
             $queryImage = DB::table('kluss')->where('id', '=', $id)->update([
                 'kluss_image' => $destinationPath
