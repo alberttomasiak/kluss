@@ -7797,6 +7797,7 @@ button.close {
 .card--description {
   display: block;
   padding-top: 30px;
+  margin-bottom: 25px;
 }
 
 .klussjes-wrap {
