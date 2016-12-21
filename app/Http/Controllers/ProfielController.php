@@ -20,16 +20,12 @@ class ProfielController extends Controller
      */
     public function index($id)
     {
-        //
-        //$profiel = DB::table('users')->where('id', '=', $id)->get();
-        $profiel = \App\User::findOrFail($id); //Input::get('id')
-        $openklusjes = DB::table('kluss')->where([
-                ['user_id', '=', $id],
-                ['accepted', '=', 0],
-            ])->get();
-        $data['profiel'] = $profiel;
-        $data['openkluss'] = $openklusjes;
-        return view('kluss/profiel', $data)->with('title', 'Profiel');
+        $personalData = DB::table('users')->where('id', '=', \Auth::user()->id)->get();
+        $klussjes = DB::table('kluss')->where('user_id', '=', \Auth::user()->id)->get();
+
+        // historiek van uitgevoerde klussjes
+        // reviews gebruikers
+        return view('/profile/profiel', compact('personalData', 'klussjes'))->with('title', 'Profiel');
     }
 
     public function show($id)

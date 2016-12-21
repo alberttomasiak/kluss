@@ -1,18 +1,80 @@
-.profile_userinfo {
-  width: 94%;
-  margin-left: auto;
-  margin-right: auto;
+.user--name{
+    font-weight: bold;
+    font-size: 1.4em;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
 }
 
-.profile_avatar img {
-  margin-left: auto;
-  margin-right: auto;
+.profile--pic{
+    display: block;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
 }
 
-@media only screen and (min-width: 650px) {
-  .profile_userinfo {
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
+.header--profile{
+    display: block;
+    margin-top: 50px;
+}
+
+.card-wrap-profile{
+    display: block;
+    height: auto;
+    float: left;
+}
+
+.klussjes-wrap-profile{
+    display: block;
+    margin-top: 50px;
+}
+
+.klussjes-wrap-profile h2{
+    display: block;
+    margin-left: 15px;
+    color: #2E9C4E;
+    margin-bottom: 25px;
+}
+
+.card--title-black, .card--description{
+    display: block;
+    margin-left: 15px;
+}
+
+.card--title-black{
+    margin-bottom: 15px;
+    padding-bottom: 0;
+}
+
+.card--description{
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 25px;
+}
+
+.card-action-profile{
+    display: block;
+    width: 100%;
+    border: 0;
+    border-radius: 0;
+    background-color: #2E9C4E;
+    height: 40px;
+    padding-top: 8px;
+    text-align: center;
+    transition: all .2s linear;
+}
+
+.card-action-profile a{
+    color: white;
+    font-size: 1.1em;
+}
+
+.card-action-profile:hover{
+    background-color: #1f6834;
+}
+
+@media screen and (min-width: 750px){
+    .card-wrap-profile{
+        display: block;
+        height: 380px;
+    }
 }
