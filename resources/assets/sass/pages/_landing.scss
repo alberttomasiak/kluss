@@ -1,46 +1,52 @@
-.landing_body {
-  width: 100%;
-  background-image: url("../img/wasserette.jpg");
+#landing-body{
+    background-image: url("../img/wasserette.jpg");
+    display: block;
+    width: 100%;
+    background-size: cover;
 }
 
-.landing_intro {
-  width: 94%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5%;
+.landing_container{
+    display: block;
+    padding-top: 100px;
 }
 
-.landing_intro_map {
-  margin-bottom: 4%;
+.landing-image-map{
+    display: block;
+    width: 100%;
 }
 
-.landing_intro_map img {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+.landing_intro_map{
+    display: block;
+    margin-bottom: 30px;
 }
 
-.landing_intro_text {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+.landing_intro_logo{
+    display: block;
+    width: 75%;
 }
 
-.landing_intro_text img {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
+.landing_intro_ctas{
+    display: block;
+    margin-bottom: 180px;
 }
 
-.landing_intro_welcometxt {
-  color: white;
+.landing_cta{
+    display: block;
+    margin-bottom: 15px;
+    max-width: 125px;
+    float: left;
+    margin-right: 7px;
 }
 
-.landing_intro_ctas {
-  text-align: center;
+.landing_cta:nth-child(2){
+    max-width: 100px;
+}
+
+.landing_intro_welcometxt{
+    color: white;
+    font-size: 1.2em;
+    line-height: 23px;
+    margin-top: 25px;
 }
 
 .landing_footer {
@@ -65,38 +71,9 @@
   color: greenyellow;
 }
 
-@media only screen and (min-width: 650px) {
-  .landing_intro {
-    width: 84%;
-    margin-left: auto;
-    margin-right: auto;
-    display: flex;
-    padding-top: 7%;
-  }
-
-  .landing_intro_map {
-    width: 46%;
-    display: block;
-    margin-right: 2%;
-  }
-
-  .landing_intro_text {
-    width: 46%;
-    display: block;
-    margin-left: 2%;
-  }
-
-  .landing_intro_map img {
-    width: 100%;
-  }
-
-  .landing_intro_text img {
-    width: 70%;
-    margin-left: 0%;
-    margin-right: auto;
-  }
-
-  .landing_intro_ctas {
-    text-align: left;
-  }
+@media screen and (min-width: 1000px){
+    .landing_intro_ctas{
+        display: block;
+        margin-bottom: 100px;
+    }
 }
