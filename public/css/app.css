@@ -8040,11 +8040,19 @@ button.close {
   margin-top: 50px;
 }
 
-.klussjes-wrap-profile h2 {
+.klussjes-wrap-profile h2, .applicants h2 {
   display: block;
   margin-left: 15px;
-  color: #2E9C4E;
   margin-bottom: 25px;
+}
+
+.applicants {
+  display: block;
+  margin-top: 60px;
+}
+
+.applicants h2 {
+  display: block;
 }
 
 .card--title-black, .card--description {
@@ -8083,6 +8091,23 @@ button.close {
 
 .card-action-profile:hover {
   background-color: #1f6834;
+}
+
+.applicant-image {
+  display: block;
+  width: 65px;
+  height: 65px;
+  border-radius: 50%;
+}
+
+.table-applicants {
+  display: block;
+  margin-top: 20px;
+}
+
+.profile-history, .profile-reviews {
+  display: block;
+  margin-bottom: 60px;
 }
 
 @media screen and (min-width: 750px) {

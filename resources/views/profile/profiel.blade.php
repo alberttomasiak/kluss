@@ -42,16 +42,36 @@
         @endforeach
         </div>
         @if($pd->id == \Auth::user()->id)
-            <div class="col-sm-12">
-                <!-- Applicants -->
+            <div class="col-sm-12 applicants">
+                <h2>Sollicitanten voor klussjes:</h2>
+                <table class="table table-applicants">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      <th>Naam</th>
+                      <th>Contact</th>
+                      <th>Opties</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      @foreach($sollicitanten as $sol)
+                        <tr>
+                          <th scope="row"><img class="applicant-image" src="{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture"></th>
+                          <td>{{$sol->name}}</td>
+                          <td><a href="#" class="btn btn-info">Contacteer deze persoon</a></td>
+                          <td><a href="#" class="btn btn-success">Accepteren</a><a href="#" class="btn btn-danger">Weigeren</a></td>
+                        </tr>
+                    @endforeach
+                  </tbody>
+                </table>
             </div>
         @endif
         <div class="col-sm-12">
             <div class="col-sm-8">
-                <!-- Historiek -->
+                <h2 class="profile-history">Historiek klussjes</h2>
             </div>
             <div class="col-sm-4">
-                <!-- Reviews -->
+                <h2 class="profile-reviews">Reviews</h2>
             </div>
         </div>
         @endforeach
