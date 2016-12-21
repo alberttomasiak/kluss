@@ -26,9 +26,7 @@ class ProfielController extends Controller
                     ->join('users', 'kluss_applicants.user_id', '=', 'users.id')
                     ->join('kluss', 'kluss_applicants.kluss_id', '=', 'kluss.id')
                     ->select('kluss_applicants.*', 'users.id', 'users.profile_pic', 'users.name')
-                    ->where(
-                        'kluss.user_id', '=', $id
-                        )->get();
+                    ->where('kluss.user_id', '=', $id)->orderBy('date', 'asc')->paginate(5, ['*'], 'sollicitanten');
 
         // historiek van uitgevoerde klussjes
         // reviews gebruikers

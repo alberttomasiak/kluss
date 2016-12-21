@@ -64,6 +64,7 @@
                     @endforeach
                   </tbody>
                 </table>
+                {!! $sollicitanten->appends(Request::except('sollicitanten'))->render() !!}
             </div>
         @endif
         <div class="col-sm-12">
