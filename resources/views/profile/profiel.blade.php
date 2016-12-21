@@ -28,7 +28,9 @@
             <div class="col-sm-4 card-wrap-profile">
               <div class="card">
                 <div class="card-image">
+                    <div class="card-image-wrap">
                   <img src="{{$kl->kluss_image}}" alt="{{$kl->title}}">
+                  </div>
                   <h4 class="card--title-black">{{$kl->title}}</h4>
                 </div>
                 <div class="card-content">

@@ -34,18 +34,25 @@
         var date = kluss.date;
         var id = kluss.id
 
-        var html = "<div id='iw-container'><img class='map-image' alt='klussje' src='"+image+"'>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
+        var html = "<div id='iw-container'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='"+image+"'></div>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
         "<div class='card-action'><a href='/kluss/"+id+"'>Ga naar de kluss</a></div></div>";
 
 
         var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
 
-
-        var mark = new google.maps.Marker({
-            map: map,
-            position: klussLatlng,
-            icon: "/img/marker_1-klein.png",
-        });
+        if(parseFloat(kluss.latitude) == "51.024678" && parseFloat(kluss.longitude) == "4.484660"){
+            var mark = new google.maps.Marker({
+                map: map,
+                position: klussLatlng,
+                icon: "/img/marker_gold-klein.png",
+            });
+        }else{
+            var mark = new google.maps.Marker({
+                map: map,
+                position: klussLatlng,
+                icon: "/img/marker_1-klein.png",
+            });
+        }
 
         //var infoWindow = new google.maps.InfoWindow;
         var infoWindow = new google.maps.InfoWindow({
@@ -76,7 +83,9 @@
        <div class="col s12 m6 card-wrap">
          <div class="card">
            <div class="card-image">
-             <img src="{{$kluss->kluss_image}}" alt="Klussje">
+               <div class="card-image-wrap">
+             <img src="{{$kluss->kluss_image}}" class="card--image" alt="Klussje">
+             </div>
              <span class="card-title">@if($kluss->kluss_image == "/img/klussjes/geen-image.png")
                  <h4 class="card--title-black">{{$kluss->title}}</h4>
              @else
