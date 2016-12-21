@@ -28,10 +28,12 @@ class UserTableSeeder extends Seeder
 
         // Tom
         DB::table('users')->insert([
-            'name' => 'Albert Tomasiak',
+            'name' => 'DJ Khaled',
             'email' => 'tomasiakalbert@gmail.com',
-            'password' => bcrypt('BlessUp'),
+            'password' => bcrypt('ISecretlyLove50Cent'),
             'account_type' => 'admin',
+            'bio' => 'Watch your back, but more importantly when you get out the shower, dry your back. It’s a cold world out there. Bless up! Another one!',
+            'profile_pic' => '/img/dj-khaledicious.png'
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
