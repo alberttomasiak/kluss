@@ -7,37 +7,36 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="/css/app.css" rel="stylesheet">
 </head>
-<body>
+<body id="landing-body">
 
     <div class="landing_container">
-        <div class="landing_body">
-        <div class="landing_intro">
+        <div class="col-sm-12">
+        <div class="col-sm-5 col-sm-offset-1">
             <div class="landing_intro_map">
-                <img src="/img/Map2.jpg" alt="logo" class="landing_intro_map">
+                <img src="/img/Map2.jpg" alt="logo" class="landing-image-map">
             </div>
-            <div class="landing_intro_text">
+        </div>
+            <div class="col-sm-5">
                 <img src="/img/logo-klusswit.png" alt="logo" class="landing_intro_logo">
                 <br>
-                <p class="landing_intro_welcometxt">KLUSS laat je toe om alle overblijvende klusjes open te stellen aan klussers uit de buurt, of om zelf klusjes uit de buurt te vinden en op te knappen voor een beloning. Vanaf nu hoeven er nooit meer klusjes te blijven liggen tot later! Get KLUSS'ing!</p>
-                <div class="landing_intro_ctas">
-                    <a href="{{ url('/register') }}" class="btn btn--form landing_cta">REGISTEER</a>
+                <p class="landing_intro_welcometxt col-sm-12">KLUSS laat je toe om alle overblijvende klusjes open te stellen aan klussers uit de buurt, of om zelf klusjes uit de buurt te vinden en op te knappen voor een beloning. Vanaf nu hoeven er nooit meer klusjes te blijven liggen tot later!    Get KLUSS'ing!</p>
+                <div class="landing_intro_ctas col-sm-12">
+                    <a href="{{ url('/register') }}" class="btn btn--form landing_cta">REGISTREER</a>
                     <a href="{{ url('/login') }}" class="btn btn--form landing_cta">LOG IN</a>
                 </div>
             </div>
         </div>
-
-        </div>
         <footer class="landing_footer">
             <div class="footer_list">
-                <a href="www.google.com" class="landing_footer_link">Wat is KLUSS</a>
+                <a href="#" class="landing_footer_link">Wat is KLUSS</a>
                 &#124;
-                <a href="www.facebook.com" class="landing_footer_link">Team</a>
+                <a href="#" class="landing_footer_link">Team</a>
                 &#124;
-                <a href="www.twitter.com" class="landing_footer_link">Partners</a>
+                <a href="#" class="landing_footer_link">Partners</a>
                 &#124;
-                <a href="www.instagram.com" class="landing_footer_link">Privacy</a>
+                <a href="#" class="landing_footer_link">Privacy</a>
                 &#124;
-                <a href="www.weareimd.be" class="landing_footer_link">Contact</a>
+                <a href="#" class="landing_footer_link">Contact</a>
             </div>
         </footer>
     </div>

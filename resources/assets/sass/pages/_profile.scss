@@ -45,7 +45,10 @@
 
 .card--title-black, .card--description{
     display: block;
-    margin-left: 15px;
+    //margin-left: 15px;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .card--title-black{
@@ -100,6 +103,6 @@
 @media screen and (min-width: 750px){
     .card-wrap-profile{
         display: block;
-        height: 380px;
+        height: 600px;
     }
 }

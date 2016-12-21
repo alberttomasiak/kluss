@@ -53,6 +53,18 @@ class klussSeeder extends Seeder
             'user_id' => '1'
         ]);
 
+        DB::table('kluss')->insert([
+            'title' => 'Kerstboompje versieren!',
+            'description' => 'We moeten pitchen en hebben niet echt tijd om het zelf te doen. Maar de eerste twee inschrijvers per klas krijgen een cadeautje!',
+            'kluss_image' => '/img/klussjes/kerstboompje.jpg',
+            'price' => '2',
+            'date' => '2016-12-22 09:00:00',
+            'address' => 'Kruidtuin, Blok G',
+            'latitude' => '51.024678',
+            'longitude' => '4.484660',
+            'user_id' => '2'
+        ]);
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }

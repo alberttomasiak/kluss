@@ -38,12 +38,19 @@
 
         var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
 
-
-        var mark = new google.maps.Marker({
-            map: map,
-            position: klussLatlng,
-            icon: "/img/marker_1-klein.png",
-        });
+        if(parseFloat(kluss.latitude) == "51.024678" && parseFloat(kluss.longitude) == "4.484660"){
+            var mark = new google.maps.Marker({
+                map: map,
+                position: klussLatlng,
+                icon: "/img/marker_gold-klein.png",
+            });
+        }else{
+            var mark = new google.maps.Marker({
+                map: map,
+                position: klussLatlng,
+                icon: "/img/marker_1-klein.png",
+            });
+        }
 
         //var infoWindow = new google.maps.InfoWindow;
         var infoWindow = new google.maps.InfoWindow({

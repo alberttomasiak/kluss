@@ -7814,6 +7814,12 @@ button.close {
   padding: 0;
 }
 
+.card {
+  display: block;
+  max-height: 600px;
+  overflow: hidden;
+}
+
 .gm-style-iw {
   width: 350px !important;
   top: 0 !important;
@@ -7829,55 +7835,73 @@ button.close {
   width: 350px;
 }
 
+.card-image-wrap {
+  display: block;
+  max-height: 365px;
+  overflow: hidden;
+}
+
+.map-image-wrap {
+  display: block;
+  max-height: 300px;
+  overflow: hidden;
+}
+
 .map-image {
   display: block;
   width: 100%;
-  height: 300px;
+  max-height: 300px;
 }
 
-.landing_body {
-  width: 100%;
+#landing-body {
   background-image: url("../img/wasserette.jpg");
+  display: block;
+  width: 100%;
+  background-size: cover;
 }
 
-.landing_intro {
-  width: 94%;
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 5%;
+.landing_container {
+  display: block;
+  padding-top: 100px;
+}
+
+.landing-image-map {
+  display: block;
+  width: 100%;
 }
 
 .landing_intro_map {
-  margin-bottom: 4%;
+  display: block;
+  margin-bottom: 30px;
 }
 
-.landing_intro_map img {
-  width: 50%;
-  margin-left: auto;
-  margin-right: auto;
+.landing_intro_logo {
   display: block;
+  width: 75%;
 }
 
-.landing_intro_text {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+.landing_intro_ctas {
   display: block;
+  margin-bottom: 180px;
 }
 
-.landing_intro_text img {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+.landing_cta {
   display: block;
+  margin-bottom: 15px;
+  max-width: 125px;
+  float: left;
+  margin-right: 7px;
+}
+
+.landing_cta:nth-child(2) {
+  max-width: 100px;
 }
 
 .landing_intro_welcometxt {
   color: white;
-}
-
-.landing_intro_ctas {
-  text-align: center;
+  font-size: 1.2em;
+  line-height: 23px;
+  margin-top: 25px;
 }
 
 .landing_footer {
@@ -7902,35 +7926,10 @@ button.close {
   color: greenyellow;
 }
 
-@media only screen and (min-width: 650px) {
-  .landing_intro {
-    width: 84%;
-    margin-left: auto;
-    margin-right: auto;
-    display: -webkit-box;
-    display: flex;
-    padding-top: 7%;
-  }
-  .landing_intro_map {
-    width: 46%;
-    display: block;
-    margin-right: 2%;
-  }
-  .landing_intro_text {
-    width: 46%;
-    display: block;
-    margin-left: 2%;
-  }
-  .landing_intro_map img {
-    width: 100%;
-  }
-  .landing_intro_text img {
-    width: 70%;
-    margin-left: 0%;
-    margin-right: auto;
-  }
+@media screen and (min-width: 1000px) {
   .landing_intro_ctas {
-    text-align: left;
+    display: block;
+    margin-bottom: 100px;
   }
 }
 
@@ -8057,7 +8056,9 @@ button.close {
 
 .card--title-black, .card--description {
   display: block;
-  margin-left: 15px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card--title-black {
@@ -8113,7 +8114,7 @@ button.close {
 @media screen and (min-width: 750px) {
   .card-wrap-profile {
     display: block;
-    height: 380px;
+    height: 600px;
   }
 }
 
