@@ -7786,6 +7786,10 @@ button.close {
   display: block;
 }
 
+body {
+  overflow-x: hidden;
+}
+
 .card--title-black {
   color: black;
 }
@@ -7796,7 +7800,7 @@ button.close {
 
 .card-wrap {
   display: block;
-  height: 600px;
+  max-height: 650px;
 }
 
 .card--description {
@@ -7808,6 +7812,7 @@ button.close {
 .klussjes-wrap {
   display: block;
   height: auto;
+  margin-bottom: 40px;
 }
 
 #map {
@@ -7842,7 +7847,7 @@ button.close {
 
 .card-image-wrap {
   display: block;
-  max-height: 365px;
+  max-height: 200px;
   overflow: hidden;
 }
 
@@ -7856,6 +7861,18 @@ button.close {
   display: block;
   width: 100%;
   max-height: 300px;
+}
+
+@media screen and (min-width: 1000px) {
+  .card-wrap {
+    display: block;
+    height: 600px;
+  }
+  .card-image-wrap {
+    display: block;
+    max-height: 365px;
+    overflow: hidden;
+  }
 }
 
 #landing-body {
@@ -7910,6 +7927,7 @@ button.close {
 }
 
 .landing_footer {
+  margin-top: 15px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -7918,13 +7936,14 @@ button.close {
   font-size: 1.2em;
   /* Set the fixed height of the footer here */
   height: 60px;
-  line-height: 60px;
+  padding-top: 8px;
   background-color: #2e9c4e;
   z-index: 999;
 }
 
 .landing_footer-app {
-  display: block;
+  margin-top: 15px;
+  display: fixed;
   position: relative;
   bottom: 0;
   width: 100%;
@@ -7932,7 +7951,7 @@ button.close {
   color: white;
   text-align: center;
   font-size: 1.2em;
-  line-height: 60px;
+  padding-top: 8px;
   background-color: #2e9c4e;
   z-index: 999;
 }
@@ -7949,6 +7968,9 @@ button.close {
   .landing_intro_ctas {
     display: block;
     margin-bottom: 100px;
+  }
+  .landing_footer, .landing_footer-app {
+    padding-top: 15px;
   }
 }
 

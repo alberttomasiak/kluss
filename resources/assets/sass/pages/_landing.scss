@@ -50,6 +50,7 @@
 }
 
 .landing_footer {
+    margin-top: 15px;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -58,13 +59,14 @@
   font-size: 1.2em;
   /* Set the fixed height of the footer here */
   height: 60px;
-  line-height: 60px;
+  padding-top: 8px;
+  //line-height: 60px;
   background-color: #2e9c4e;
   z-index: 999;
 }
-
 .landing_footer-app{
-    display: block;
+    margin-top: 15px;
+    display: fixed;
     position: relative;
     bottom: 0;
     width: 100%;
@@ -72,7 +74,8 @@
     color: white;
     text-align: center;
     font-size: 1.2em;
-    line-height: 60px;
+    padding-top: 8px;
+    //line-height: 60px;
     background-color: #2e9c4e;
     z-index: 999;
 }
@@ -89,5 +92,9 @@
     .landing_intro_ctas{
         display: block;
         margin-bottom: 100px;
+    }
+
+    .landing_footer, .landing_footer-app{
+        padding-top: 15px;
     }
 }
