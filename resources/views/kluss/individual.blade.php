@@ -91,6 +91,7 @@
                     <b>{{$kl->price}} Credits</b></br></br>
                     @if(\Auth::user()->id == $kl->user_id)
                         <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">Bewerk deze Kluss</a>
+                        <a href="/kluss/{{$kl->id}}/verwijderen" class="btn btn-danger">Deze kluss verwijderen</a>
                     @else
                         @if($kluss_applicant->first())
                             <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
