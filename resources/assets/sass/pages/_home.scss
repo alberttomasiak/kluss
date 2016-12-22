@@ -1,3 +1,7 @@
+body{
+    overflow-x: hidden;
+}
+
 .card--title-black{
     color: black;
 }
@@ -8,7 +12,7 @@
 
 .card-wrap{
     display: block;
-    height: 600px;
+    max-height: 650px;
 }
 
 .card--description{
@@ -20,6 +24,7 @@
 .klussjes-wrap{
     display: block;
     height: auto;
+    margin-bottom: 40px;
 }
 
 #map{
@@ -54,7 +59,7 @@
 
 .card-image-wrap{
     display: block;
-    max-height: 365px;
+    max-height: 200px;
     overflow: hidden;
 }
 .map-image-wrap{
@@ -66,4 +71,17 @@
     display: block;
     width: 100%;
     max-height: 300px;
+}
+
+@media screen and (min-width: 1000px){
+    .card-wrap{
+        display: block;
+        height: 600px;
+    }
+
+    .card-image-wrap{
+        display: block;
+        max-height: 365px;
+        overflow: hidden;
+    }
 }
