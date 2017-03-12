@@ -44,6 +44,8 @@ Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
 // profile routes
 Route::get('/profiel/{id}', 'ProfielController@index');
 
-
 // test routes
 Route::get('/send', 'EmailController@send');
+
+Route::get('/chat', 'ChatController@getIndex');
+Route::post('/chat/message', 'ChatController@postMessage');

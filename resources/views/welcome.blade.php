@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
 </head>
 <body id="landing-body">
 
@@ -42,7 +42,7 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="assets/js/app.js"></script>
     <script>
         $(".landing_body").css("height", window.innerHeight-60 + "px");
 

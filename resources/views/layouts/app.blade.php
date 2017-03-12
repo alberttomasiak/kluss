@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link href="/css/app.css" rel="stylesheet">
+    <link href="assets/css/app.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Scripts -->
@@ -43,6 +43,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="assets/js/app.js"></script>
 </body>
 </html>
