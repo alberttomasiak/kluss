@@ -8,12 +8,14 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\User;
+use App\Conversation;
+use App\Message;
 
 class ChatController extends Controller
 {
     var $pusher;
     var $user;
-    var $chatChannel;
+    //var $chatChannel;
 
     const DEFAULT_CHAT_CHANNEL = 'chat';
 
@@ -21,7 +23,7 @@ class ChatController extends Controller
     {
         $this->pusher = App::make('pusher');
         $this->middleware('auth');
-        $this->chatChannel = self::DEFAULT_CHAT_CHANNEL;
+        //$this->chatChannel = self::DEFAULT_CHAT_CHANNEL;
     }
 
     /*public function postAuth(Request $request)
@@ -37,25 +39,51 @@ class ChatController extends Controller
         return !$this->user ? '401 Unauthorized' : $auth;
     }*/
 
-    public function getIndex()
+    public function requestChat($id)
+    {
+        $users = [$id, \Auth::user()->id];
+        $chatroom = Conversation::getSingleConversation($id);
+        $target = User::get($id);
+
+        if($chatroom == null)
+        {
+            $chatroom = new Conversation();
+            //set name
+            $chatroom->user_one = \Auth::user()->id;
+            $chatroom->user_two = $id;
+            $chatroom->chatname = str_slug($target, '_');
+            $chatroom->save();
+            //add user 2
+        }
+
+        return redirect()->to('chat/'. $chatroom->chatname);
+    }
+
+    /*public function getIndex(Request $request, $name)
     {
         if(!$this->user)
         {
             $this->user = \App\User::getCurrentUser();
         }
+        return view('chat.index', ['chatChannel' => $name]);
+    }*/
 
-        return view('chat.index', ['chatChannel' => $this->chatChannel]);
+    public function startChatroom($name){
+        $match = Conversation::matchConversationName($name);
+        //$this->chatChannel = $name;
+        return $match == null ? redirect()->back() : view('chat.index', ['chatChannel' => $name]);
     }
 
     public function postMessage(Request $request)
     {
         $user = \App\User::getCurrentUser();
+        $chatChannel = e($request->chatChannel);
         $message = [
             'text' => e($request->input('chat_text')),
             'username' => $user->name,
             'avatar' => $user->profile_pic,
             'timestamp' => (time()*1000)
         ];
-        $this->pusher->trigger($this->chatChannel, 'new-message', $message);
+        $this->pusher->trigger($chatChannel, 'new-message', $message);
     }
 }
