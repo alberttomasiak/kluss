@@ -8,7 +8,7 @@
         @foreach($personalData as $pd)
         <div class="col-sm-10 col-sm-offset-1 header--profile">
             <div class="col-sm-3">
-                <img src="{{$pd->profile_pic}}" class="profile--pic" alt="{{$pd->name}}'s profile pic">
+                <img src="/{{$pd->profile_pic}}" class="profile--pic" alt="{{$pd->name}}'s profile pic">
             </div>
             <div class="col-sm-6">
                 <p class="user--name">{{$pd->name}}</p>

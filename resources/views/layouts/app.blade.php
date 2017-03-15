@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/img/favicon.ico" sizes="48x48">
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico" sizes="48x48">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -12,7 +12,7 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link href="assets/css/app.css" rel="stylesheet">
+    <link href="/assets/css/app.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Scripts -->
@@ -43,6 +43,6 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
 </body>
 </html>

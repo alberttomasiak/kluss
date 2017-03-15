@@ -13,11 +13,11 @@
         <div class="col-sm-12">
         <div class="col-sm-5 col-sm-offset-1">
             <div class="landing_intro_map">
-                <img src="/img/Map2.jpg" alt="logo" class="landing-image-map">
+                <img src="assets/img/Map2.jpg" alt="logo" class="landing-image-map">
             </div>
         </div>
             <div class="col-sm-5">
-                <img src="/img/logo-klusswit.png" alt="logo" class="landing_intro_logo">
+                <img src="assets/img/logo-klusswit.png" alt="logo" class="landing_intro_logo">
                 <br>
                 <p class="landing_intro_welcometxt col-sm-12">KLUSS laat je toe om alle overblijvende klusjes open te stellen aan klussers uit de buurt, of om zelf klusjes uit de buurt te vinden en op te knappen voor een beloning. Vanaf nu hoeven er nooit meer klusjes te blijven liggen tot later!    Get KLUSS'ing!</p>
                 <div class="landing_intro_ctas col-sm-12">

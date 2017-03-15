@@ -42,13 +42,13 @@
             var mark = new google.maps.Marker({
                 map: map,
                 position: klussLatlng,
-                icon: "/img/marker_gold-klein.png",
+                icon: "assets/img/marker_gold-klein.png",
             });
         }else{
             var mark = new google.maps.Marker({
                 map: map,
                 position: klussLatlng,
-                icon: "/img/marker_1-klein.png",
+                icon: "assets/img/marker_1-klein.png",
             });
         }
 

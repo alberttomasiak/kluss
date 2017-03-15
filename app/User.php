@@ -30,4 +30,8 @@ class User extends Authenticatable
     public static function getCurrentUser(){
         return self::where("id", \Auth::user()->id)->first();
     }
+
+    public static function getTargetInfo($id){
+        return self::where("id", $id)->get();
+    }
 }
