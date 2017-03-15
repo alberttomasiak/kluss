@@ -15,6 +15,10 @@ class Conversation extends Model
     public static function getSingleConversation($id){
         return self::whereIn('user_one', [$id, \Auth::user()->id])
                     ->whereIn('user_two', [$id, \Auth::user()->id])
-                    ->get();
+                    ->first();
+    }
+
+    public static function matchConversationName($name){
+        return self::where('chatname', $name)->first();
     }
 }
