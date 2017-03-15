@@ -47,5 +47,7 @@ Route::get('/profiel/{id}', 'ProfielController@index');
 // test routes
 Route::get('/send', 'EmailController@send');
 
-Route::get('/chat', 'ChatController@getIndex');
-Route::post('/chat/message', 'ChatController@postMessage');
+//Route::get('/chat', 'ChatController@getIndex')->middleware('chatusers');
+Route::post('/chat/message', 'ChatController@postMessage')->middleware('chatusers');
+Route::post('/chat/{id}', 'ChatController@requestChat');
+Route::get('/chat/{chatname}', 'ChatController@startChatroom')->middleware('chatusers');
