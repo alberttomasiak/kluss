@@ -78,12 +78,19 @@ class ChatController extends Controller
     {
         $user = \App\User::getCurrentUser();
         $chatChannel = e($request->chatChannel);
+        $conversationID = Conversation::getConversationID($chatChannel);
         $message = [
             'text' => e($request->input('chat_text')),
             'username' => $user->name,
             'avatar' => $user->profile_pic,
             'timestamp' => (time()*1000)
         ];
+
+        $sent_message = new Message();
+        $sent_message->$message = $message->text;
+        $sent_message->user_id = \Auth::user()->id;
+        $sent_message->conversation_id =
+
         $this->pusher->trigger($chatChannel, 'new-message', $message);
     }
 }

@@ -47,7 +47,7 @@
     <div class="fixed wrapper">
         <ol class="strong" start="1">
             <li>
-                <img src="assets/img/logo-klussklein_720.png" alt="" width="50px;" style="float:left; margin-right: 2rem;">
+                <img src="/assets/img/logo-klussklein_720.png" alt="" width="50px;" style="float:left; margin-right: 2rem;">
                 <h2 style="margin-top: .8rem;"><b>Kluss Chat</b> <small>Global test chat</small></h2>
             </li>
         </ol>
