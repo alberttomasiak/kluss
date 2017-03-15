@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Real-Time Laravel with Pusher</title>
+    <title>Kluss chat</title>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic" rel="stylesheet" type="text/css">
@@ -45,16 +45,16 @@
 
 <div class="stripe no-padding-bottom numbered-stripe">
     <div class="fixed wrapper">
-        <ol class="strong" start="2">
+        <ol class="strong" start="1">
             <li>
-                <div class="hexagon"></div>
-                <h2><b>Real-Time Chat</b> <small>Fundamental real-time communication.</small></h2>
+                <img src="assets/img/logo-klussklein_720.png" alt="" width="50px;" style="float:left; margin-right: 2rem;">
+                <h2 style="margin-top: .8rem;"><b>Kluss Chat</b> <small>Global test chat</small></h2>
             </li>
         </ol>
     </div>
 </div>
 
-<section class="blue-gradient-background">
+<section class="" style="background-color: #238e48; border:none;">
     <div class="container">
         <div class="row light-grey-blue-background chat-app">
 
@@ -116,7 +116,7 @@
         }
 
         // Build POST data and make AJAX request
-        var data = {chat_text: messageText};
+        var data = {chat_text: messageText, chatChannel : "{{$chatChannel}}"};
         $.post('/chat/message', data).success(sendMessageSuccess);
 
         // Ensure the normal browser event doesn't take place
@@ -135,7 +135,7 @@
         var el = createMessageEl();
         el.find('.message-body').html(data.text);
         el.find('.author').text(data.username);
-        el.find('.avatar img').attr('src', data.avatar)
+        el.find('.avatar img').attr('src', '/'+data.avatar)
 
         // Utility to build nicely formatted time
         el.find('.timestamp').text(strftime('%H:%M:%S %P', new Date(data.timestamp)));
@@ -168,7 +168,8 @@
             }
         }
     });
-    var channel = pusher.subscribe('{{$chatChannel}}');
+    var channel = pusher.subscribe("{{$chatChannel}}");
+    console.log(channel);
     channel.bind('new-message', addMessage);
 
 </script>

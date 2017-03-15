@@ -18,7 +18,11 @@
                 @if($pd->id == \Auth::user()->id)
                     <a href="/profiel/{{$pd->id}}/bewerken" class="btn btn--form">Profiel bewerken</a>
                 @else
-                    <a href="#" class="btn btn--form">Contacteer mij</a>
+                    <form class="" action="/chat/{{$pd->id}}" method="post">
+                        {{ csrf_field() }}
+                        <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
+                    </form>
+                    <!--<a href="#" class="btn btn--form">Contacteer mij</a>-->
                 @endif
             </div>
         </div>
