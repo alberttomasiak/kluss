@@ -11,6 +11,7 @@ use App\User;
 use App\Conversation;
 use App\Message;
 use Vinkla\Hashids\Facades\Hashids;
+use Illuminate\Support\Str;
 
 class ChatController extends Controller
 {
@@ -70,7 +71,17 @@ class ChatController extends Controller
     public function startChatroom($chatname, $user){
         $match = Conversation::matchConversationName($chatname);
         //$this->chatChannel = $name;
-        return $match == null ? redirect()->back() : view('chat.index', ['chatChannel' => $chatname]);
+        //dd($match["user_one"]);
+        // $current_user = \Auth::user()->id;
+        // $data_partner = $current_user == $match["user_one"] ? User::getTargetInfo($match["user_two"]) : User::getTargetInfo($match["user_one"]);
+        // $user_one_name = User::get($match["user_one"]);
+        // $user_two_name = User::get($match["user_two"]);
+        // $partner_name = Str::slug($data_partner[0]["name"]);
+        // dd($partner_name);
+        // if($user != Str::slug($user_one_name) || $user != Str::slug($user_two_name)){
+        //     return $match == null ? redirect()->back() : $this->startChatroom($chatname, $partner_name);
+        // }
+        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname]);
     }
 
     public function postMessage(Request $request)
