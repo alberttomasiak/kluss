@@ -50,4 +50,4 @@ Route::get('/send', 'EmailController@send');
 //Route::get('/chat', 'ChatController@getIndex')->middleware('chatusers');
 Route::post('/chat/message', 'ChatController@postMessage')->middleware('chatusers');
 Route::post('/chat/{id}', 'ChatController@requestChat');
-Route::get('/chat/{chatname}', 'ChatController@startChatroom')->middleware('chatusers');
+Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');

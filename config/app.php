@@ -163,6 +163,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Vinkla\Pusher\PusherServiceProvider::class,
+        //'ZackKitzmiller\TinyServiceProvider',
         /*
          * Package Service Providers...
          */
@@ -228,6 +229,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Form' => Collective\Html\FormFacade::class,
         'Notify' => Codecourse\Notify\Facades\Notify::class,
+        'Tiny' => 'ZackKitzmiller\Facades\Tiny',
     ],
 
 ];
