@@ -60,14 +60,11 @@ class ChatController extends Controller
         return redirect()->to('chat/'. $chatroom->chatname.'/'.$user);
     }
 
-    /*public function getIndex(Request $request, $name)
-    {
-        if(!$this->user)
-        {
-            $this->user = \App\User::getCurrentUser();
-        }
-        return view('chat.index', ['chatChannel' => $name]);
-    }*/
+    public function index(){
+        $user = \Auth::user()->id;
+        $conversations = Conversation::getUserConversations($user);
+        return view('chat.index', compact('conversations', $conversations));
+    }
 
     public function startChatroom($chatname, $user){
         // checking if the conversation exists
@@ -78,7 +75,7 @@ class ChatController extends Controller
         // $current_user = \Auth::user()->id;
         // $data_partner = $current_user == $match["user_one"] ? User::getTargetInfo($match["user_two"]) : User::getTargetInfo($match["user_one"]);
         // $user_one_name = User::get($match["user_one"]);
-        // $user_two_name = User::get($match["user_two"]);
+        $user_two_name = User::get($match["user_two"]);
         // $partner_name = Str::slug($data_partner[0]["name"]);
         // dd($partner_name);
         // if($user != Str::slug($user_one_name) || $user != Str::slug($user_two_name)){
@@ -88,7 +85,7 @@ class ChatController extends Controller
         // grab all the messages for that specific conversation and send them to the channel.
         $messages = Message::getMessages($chatname);
         // if the conversation exists we send the user to it. If not, he gets sent back.
-        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname, 'messages' => $messages]);
+        return $match == null ? view('home') : view('chat.chat', ['chatChannel' => $chatname, 'messages' => $messages, 'user' => $user_two_name]);
     }
 
     public function postMessage(Request $request)

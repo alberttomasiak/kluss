@@ -22,6 +22,12 @@ class Conversation extends Model
         return self::where("chatname", $name)->pluck("id")->get();
     }*/
 
+    public static function getUserConversations($id){
+        return self::where('user_one', $id)
+                    ->orWhere('user_two', $id)
+                    ->get();
+    }
+
     private static $lijst = [];
 
     public static function getConversationIDs(){
