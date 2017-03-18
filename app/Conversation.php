@@ -18,6 +18,26 @@ class Conversation extends Model
                     ->first();
     }
 
+    /*public static function getConversationID($name){
+        return self::where("chatname", $name)->pluck("id")->get();
+    }*/
+
+    private static $lijst = [];
+
+    public static function getConversationIDs(){
+        return self::select("id", "chatname")->get()->pluck("id", "chatname")->toArray();
+    }
+
+    public static function get($key){
+        if(empty(self::$lijst)){
+            self::$lijst = Conversation::getConversationIDs();
+        }
+        if(!array_key_exists($key, self::$lijst)){
+            return null;
+        }
+        return self::$lijst[$key];
+    }
+
     public static function matchConversationName($name){
         return self::where('chatname', $name)->first();
     }
