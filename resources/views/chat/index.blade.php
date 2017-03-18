@@ -62,6 +62,21 @@
                 <div class="time-divide">
                     <span class="date">Today</span>
                 </div>
+                @foreach($messages as $message)
+                    <div class="message">
+                        <div class="avatar">
+                            <img src="/assets{{$message->profile_pic}}" alt="">
+                        </div>
+                        <div class="text-display">
+                            <div class="message-data">
+                                <span class="author">{{$message->name}}</span>
+                                <span class="timestamp">{{substr($message->created_at, -8)}}</span>
+                                <span class="seen"></span>
+                            </div>
+                            <p class="message-body">{{$message->message}}</p>
+                        </div>
+                    </div>
+                @endforeach
             </div>
 
             <div class="action-bar">
@@ -138,7 +153,7 @@
         el.find('.avatar img').attr('src', '/assets'+data.avatar);
 
         // Utility to build nicely formatted time
-        el.find('.timestamp').text(strftime('%H:%M:%S %P', new Date(data.timestamp)));
+        el.find('.timestamp').text(strftime('%H:%M:%S', new Date(data.timestamp)));
 
         var messages = $('#messages');
         messages.append(el)
