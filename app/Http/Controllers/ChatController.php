@@ -86,7 +86,7 @@ class ChatController extends Controller
         // grab all the messages for that specific conversation and send them to the channel.
         $messages = Message::getMessages($chatname);
         // if the conversation exists we send the user to it. If not, he gets sent back.
-        return $match == null ? view('home') : view('chat.chat', ['chatChannel' => $chatname, 'messages' => $messages, 'user' => $user_two_name]);
+        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname, 'messages' => $messages, 'user' => $user_two_name]);
     }
 
     public function postMessage(Request $request)
