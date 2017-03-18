@@ -44,13 +44,13 @@
             var mark = new google.maps.Marker({
                 map: map,
                 position: klussLatlng,
-                icon: "/img/marker_gold-klein.png",
+                icon: "assets/img/marker_gold-klein.png",
             });
         }else{
             var mark = new google.maps.Marker({
                 map: map,
                 position: klussLatlng,
-                icon: "/img/marker_1-klein.png",
+                icon: "assets/img/marker_1-klein.png",
             });
         }
 
@@ -86,7 +86,7 @@
                <div class="card-image-wrap">
              <img src="{{$kluss->kluss_image}}" class="card--image" alt="Klussje">
              </div>
-             <span class="card-title">@if($kluss->kluss_image == "/img/klussjes/geen-image.png")
+             <span class="card-title">@if($kluss->kluss_image == "assets/img/klussjes/geen-image.png")
                  <h4 class="card--title-black">{{$kluss->title}}</h4>
              @else
                  <h4>{{$kluss->title}}</h4>

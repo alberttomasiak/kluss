@@ -26,4 +26,28 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    private static $lijst = [];
+
+    public static function getCurrentUser(){
+        return self::where("id", \Auth::user()->id)->first();
+    }
+
+    public static function getTargetInfo($id){
+        return self::where("id", $id)->get();
+    }
+
+    public static function userNameList(){
+        return self::select("id", "name")->get()->pluck("name", "id")->toArray();
+    }
+
+    public static function get($key){
+        if(empty(self::$lijst)){
+            self::$lijst = User::userNameList();
+        }
+        if(!array_key_exists($key, self::$lijst)){
+            return null;
+        }
+        return self::$lijst[$key];
+    }
 }

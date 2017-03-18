@@ -44,6 +44,11 @@ Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
 // profile routes
 Route::get('/profiel/{id}', 'ProfielController@index');
 
-
 // test routes
 Route::get('/send', 'EmailController@send');
+
+// Chat routes
+Route::get('/chat', 'ChatController@index');
+Route::post('/chat/message', 'ChatController@postMessage')->middleware('chatusers');
+Route::post('/chat/{id}', 'ChatController@requestChat');
+Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');

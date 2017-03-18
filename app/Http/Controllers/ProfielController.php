@@ -20,8 +20,8 @@ class ProfielController extends Controller
      */
     public function index($id)
     {
-        $personalData = DB::table('users')->where('id', '=', \Auth::user()->id)->get();
-        $klussjes = DB::table('kluss')->where('user_id', '=', \Auth::user()->id)->get();
+        $personalData = DB::table('users')->where('id', '=', $id)->get();
+        $klussjes = DB::table('kluss')->where('user_id', '=', $id)->get();
         $sollicitanten = DB::table('kluss_applicants')
                     ->join('users', 'kluss_applicants.user_id', '=', 'users.id')
                     ->join('kluss', 'kluss_applicants.kluss_id', '=', 'kluss.id')
