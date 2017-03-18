@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use App\User;
 use App\Conversation;
 use App\Message;
+use Vinkla\Hashids\Facades\Hashids;
 
 class ChatController extends Controller
 {
@@ -42,10 +43,8 @@ class ChatController extends Controller
         $users = [$id, \Auth::user()->id];
         $chatroom = Conversation::getSingleConversation($id);
         $target = User::get($id);
-        $tiny = new \ZackKitzmiller\Tiny('5SX0TEjkR1mLOw8Gvq2VyJxIFhgCAYidrclDWaM3so9bfzZpuUenKtP74QNH6B');
-        $toTiny = "private-".str_slug(\Auth::user()->name).\Auth::user()->id.str_slug($target).$id;
-        $chatname = $tiny->to($toTiny);
-        dd($tiny->from($chatname));
+        //$toTiny = "private-".str_slug(\Auth::user()->name).\Auth::user()->id.str_slug($target).$id;
+        $chatname = Hashids::encode(\Auth::user()->id, $id);
         $user = str_slug($target);
 
         if($chatroom == null)

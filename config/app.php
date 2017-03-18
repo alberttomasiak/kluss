@@ -164,6 +164,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Vinkla\Pusher\PusherServiceProvider::class,
         //'ZackKitzmiller\TinyServiceProvider',
+        Vinkla\Hashids\HashidsServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -230,6 +231,7 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Notify' => Codecourse\Notify\Facades\Notify::class,
         'Tiny' => 'ZackKitzmiller\Facades\Tiny',
+        'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
     ],
 
 ];
