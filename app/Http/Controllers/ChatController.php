@@ -62,8 +62,9 @@ class ChatController extends Controller
 
     public function index(){
         $user = \Auth::user()->id;
-        $conversations = Conversation::getUserConversations($user);
-        return view('chat.index', compact('conversations', $conversations));
+        $conversationsLeft = Conversation::getUserConversationsLeft($user);
+        $conversationsRight = Conversation::getUserConversationsRight($user);
+        return view('chat.index', compact('conversationsLeft', $conversationsLeft, 'conversationsRight', $conversationsRight))->with('title', 'Chat geschiedenis');
     }
 
     public function startChatroom($chatname, $user){
