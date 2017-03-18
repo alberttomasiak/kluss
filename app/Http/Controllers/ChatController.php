@@ -18,8 +18,7 @@ class ChatController extends Controller
     var $pusher;
     var $user;
     //var $chatChannel;
-
-    const DEFAULT_CHAT_CHANNEL = 'chat';
+    // const DEFAULT_CHAT_CHANNEL = 'chat';
 
     public function __construct()
     {
@@ -45,9 +44,11 @@ class ChatController extends Controller
         $chatroom = Conversation::getSingleConversation($id);
         $target = User::get($id);
         //$toTiny = "private-".str_slug(\Auth::user()->name).\Auth::user()->id.str_slug($target).$id;
+        // we generate a conversation chatroom bij hashing the ids of the two users.
         $chatname = Hashids::encode(\Auth::user()->id, $id);
         $user = str_slug($target);
 
+        // if the chatroom between these two users doesn't exist, we make a new one.
         if($chatroom == null)
         {
             $chatroom = new Conversation();
@@ -69,7 +70,9 @@ class ChatController extends Controller
     }*/
 
     public function startChatroom($chatname, $user){
+        // checking if the conversation exists
         $match = Conversation::matchConversationName($chatname);
+
         //$this->chatChannel = $name;
         //dd($match["user_one"]);
         // $current_user = \Auth::user()->id;
@@ -81,14 +84,21 @@ class ChatController extends Controller
         // if($user != Str::slug($user_one_name) || $user != Str::slug($user_two_name)){
         //     return $match == null ? redirect()->back() : $this->startChatroom($chatname, $partner_name);
         // }
-        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname]);
+
+        // grab all the messages for that specific conversation and send them to the channel.
+        $messages = Message::getMessages($chatname);
+        // if the conversation exists we send the user to it. If not, he gets sent back.
+        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname, 'messages' => $messages]);
     }
 
     public function postMessage(Request $request)
     {
+        // getting user information and the channel name from our blade
         $user = \App\User::getCurrentUser();
         $chatChannel = e($request->chatChannel);
         //$conversationID = Conversation::getConversationID($chatChannel);
+
+        // creating the message, that we will send back to the view
         $message = [
             'text' => e($request->input('chat_text')),
             'username' => $user->name,
@@ -97,12 +107,14 @@ class ChatController extends Controller
         ];
 
         //dd(Conversation::getConversationID($chatChannel));
+        // saving the message to the DB
         $sent_message = new Message();
         $sent_message->message = e($request->input('chat_text'));
         $sent_message->user_id = \Auth::user()->id;
         $sent_message->conversation_id = Conversation::get($chatChannel);
         $sent_message->save();
 
+        // pushing the message back to our view
         $this->pusher->trigger($chatChannel, 'new-message', $message);
     }
 }
