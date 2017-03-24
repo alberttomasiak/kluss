@@ -3,14 +3,14 @@
 
 <h3> Stappenplan </h3>
 <p> In deze stappenplan worden allerlei tools gebruikt. Ik ga er vanuit dat je deze al hebt. Voor de zekerheid post ik hieronder de guides voor de installatie van de tools in kwestie.</p>
-1. Clone kluss, gebruik hiervoor de commandline of een tool, zoals, Github For Windows (of mac in jullie geval).
-2. Open een commandline tool, zoals bijvoorbeeld cmder en navigeer naar de directory waar je Kluss hebt opgeslagen.
-3. Voer <code> npm install </code> uit. Dit zal alle packages installeren die we gebruiken voor Kluss. Deze zijn niet aanwezig op de repo sinds ze te groot zijn om mee te sturen. 
-4. Na npm install voer <code> vagrant up </code> uit in de commandline tool. Dit zal de virtuele machiene opstarten waarop kluss lokaal draait.
-5. Eens dit klaar is voer je <code> vagrant ssh </code> uit. Zo zal je een connectie aanmaken met de server die je net opgestart hebt. 
-6. voer vervolgens <code> cd /var/www/ </code> uit, gevolgd door <code> composer install </code>. 
-7. Ondertussen kan je een tweede commandline tool openen en terug naar de directory van kluss, eens je daar bent voer je <code> gulp </code> uit. 
-8. Als je van plan bent om te werken aan de styling (veranderingen aan de css, js of images) kan je <code> gulp watch </code> daarna uitvoeren. Deze zal kijken naar alle veranderingen in de files, en deze dan compressen. Zo moeten wij er niet aan denken sinds het allemaal voor ons gedaan wordt (yay gulp).
+<p>1. Clone kluss, gebruik hiervoor de commandline of een tool, zoals, Github For Windows (of mac in jullie geval).</p>
+<p>2. Open een commandline tool, zoals bijvoorbeeld cmder en navigeer naar de directory waar je Kluss hebt opgeslagen.
+<p>3. Voer <code> npm install </code> uit. Dit zal alle packages installeren die we gebruiken voor Kluss. Deze zijn niet aanwezig op de repo sinds ze te groot zijn om mee te sturen.</p>
+<p>4. Na npm install voer <code> vagrant up </code> uit in de commandline tool. Dit zal de virtuele machiene opstarten waarop kluss lokaal draait.</p>
+<p>5. Eens dit klaar is voer je <code> vagrant ssh </code> uit. Zo zal je een connectie aanmaken met de server die je net opgestart hebt.</p>
+<p>6. voer vervolgens <code> cd /var/www/ </code> uit, gevolgd door <code> composer install.</code></p> 
+<p>7. Ondertussen kan je een tweede commandline tool openen en terug naar de directory van kluss, eens je daar bent voer je <code> gulp </code> uit.</p>
+<p>8. Als je van plan bent om te werken aan de styling (veranderingen aan de css, js of images) kan je <code> gulp watch </code> daarna uitvoeren. Deze zal kijken naar alle veranderingen in de files, en deze dan compressen. Zo moeten wij er niet aan denken sinds het allemaal voor ons gedaan wordt (yay gulp).</p>
 
 <h6>Bonus guide - hostsfile aanpassen</h6>
 <p>In de settings van Kluss heb ik ervoor gezorgd dat onze lokale server op <i>192.168.33.12</i> draait. Natuurlijk is het lastig om elke keer de IP in uw browser in te geven als je naar kluss wilt gaan.</p>
