@@ -11,6 +11,8 @@ class Kluss extends Model
             'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted', 'address'
     ];
 
+    public $table = "kluss";
+
     public static function getPublished(){
         return self::where('accepted', '=', '0')->get();
     }
