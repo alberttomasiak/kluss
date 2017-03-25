@@ -71,32 +71,21 @@ class KlussController extends Controller
     }
 
     public function SingleKluss($id){
-        $kluss = DB::table('kluss')->where('id', '=', $id)->get();
-        $title = DB::table('kluss')->where('id', '=', $id)->value('title');
-        $kluss_applicant = DB::table('kluss_applicants')->where([
-            ['kluss_id', '=', $id],
-            ['user_id', '=', \Auth::user()->id],
-            ])->get();
+        $kluss = \App\Kluss::getSingle($id);
+        $title = \App\Kluss::getSingleTitle($id);
+        $kluss_applicant = \App\Kluss_applicant::getApplicants($id);
         return view('kluss/individual', compact('kluss', 'kluss_applicant'))->with('title', $title);
     }
 
     public function apply($id){
-        $kluss = DB::table('kluss')->where('id', '=', $id)->get();
-        $title = DB::table('kluss')->where('id', '=', $id)->value('title');
-        $kluss_applicant = DB::table('kluss_applicants')->where([
-            ['kluss_id', '=', $id],
-            ['user_id', '=', \Auth::user()->id],
-            ])->get();
+        $kluss = \App\Kluss::getSingle($id);
+        $title = \App\Kluss::getSingleTitle($id);
+        $kluss_applicant = \App\Kluss_applicant::getApplicants($id);
 
         if($kluss_applicant->first()){
-            DB::table('kluss_applicants')->where([
-                ['kluss_id', '=', $id],
-                ['user_id', '=', \Auth::user()->id],
-                ])->delete();
+            \App\Kluss_applicant::deleteApplicant($id);
         }else{
-            DB::table('kluss_applicants')->insert(
-                ['kluss_id' => $id, 'user_id' => \Auth::user()->id]
-            );
+            \App\Kluss_applicant::insertApplicant($id);
         }
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);
@@ -104,7 +93,7 @@ class KlussController extends Controller
     }
 
     public function update($id){
-        $kluss = DB::table('kluss')->where('id', '=', $id)->get();
+        $kluss = \App\Kluss::getSingle($id);
         return view('kluss/bewerken', compact('kluss'))->with('title', 'Kluss bewerken');
     }
 
