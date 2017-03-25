@@ -1,9 +1,8 @@
 @extends('layouts.app')
 @section('content')
-    {{-- <link rel="stylesheet" type="text/css" href="http://d3dhju7igb20wy.cloudfront.net/assets/0-4-0/all-the-things.css" /> --}}
-
     <div class="container">
         <div class="row">
+            {{-- Looping all conversations we had that we gathered in the controller ;) --}}
             <div id="messages">
                 @foreach($conversationsLeft as $conversationLeft)
                     <div class="message">
@@ -42,22 +41,4 @@
             </div>
         </div>
     </div>
-    {{-- <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="https://cdn.rawgit.com/samsonjs/strftime/master/strftime-min.js"></script>
-    <script src="//js.pusher.com/3.0/pusher.min.js"></script> --}}
-    {{-- <script id="chat_message_template" type="text/template">
-        <div class="message">
-            <div class="avatar">
-                <img src="">
-            </div>
-            <div class="text-display">
-                <div class="message-data">
-                    <span class="author"></span>
-                    <span class="timestamp"></span>
-                    <span class="seen"></span>
-                </div>
-                <p class="message-body"></p>
-            </div>
-        </div>
-    </script> --}}
 @endsection

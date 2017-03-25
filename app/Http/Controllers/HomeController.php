@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $klussjes = DB::table('kluss')->where('accepted', '=', '0')->get();
+        $klussjes = \App\Kluss::getPublished();
         return view('home', compact('klussjes'));
 
     }

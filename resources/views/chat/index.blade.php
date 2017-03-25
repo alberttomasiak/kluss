@@ -60,7 +60,7 @@
 
             <div id="messages">
                 <div class="time-divide">
-                    <span class="date">Today</span>
+                    <span class="date">Start chat</span>
                 </div>
                 @foreach($messages as $message)
                     <div class="message">
@@ -70,7 +70,7 @@
                         <div class="text-display">
                             <div class="message-data">
                                 <span class="author">{{$message->name}}</span>
-                                <span class="timestamp">{{substr($message->created_at, -8)}}</span>
+                                <span class="timestamp">{{\App\Message::formatDate($message->created_at)}}</span>
                                 <span class="seen"></span>
                             </div>
                             <p class="message-body">{{$message->message}}</p>
@@ -114,6 +114,9 @@
         // send button click handling
         $('.send-message').click(sendMessage);
         $('.input-message').keypress(checkSend);
+
+        var d = $('#messages');
+        d.scrollTop(d.prop("scrollHeight"));
     }
 
     // Send on enter/return key
@@ -153,7 +156,7 @@
         el.find('.avatar img').attr('src', '/assets'+data.avatar);
 
         // Utility to build nicely formatted time
-        el.find('.timestamp').text(strftime('%H:%M:%S', new Date(data.timestamp)));
+        el.find('.timestamp').text(strftime('%d/%m/%y %H:%M:%S', new Date(data.timestamp)));
 
         var messages = $('#messages');
         messages.append(el)

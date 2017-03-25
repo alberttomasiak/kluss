@@ -20,13 +20,9 @@ class ProfielController extends Controller
      */
     public function index($id)
     {
-        $personalData = DB::table('users')->where('id', '=', $id)->get();
-        $klussjes = DB::table('kluss')->where('user_id', '=', $id)->get();
-        $sollicitanten = DB::table('kluss_applicants')
-                    ->join('users', 'kluss_applicants.user_id', '=', 'users.id')
-                    ->join('kluss', 'kluss_applicants.kluss_id', '=', 'kluss.id')
-                    ->select('kluss_applicants.*', 'users.id', 'users.profile_pic', 'users.name')
-                    ->where('kluss.user_id', '=', $id)->orderBy('date', 'asc')->paginate(5, ['*'], 'sollicitanten');
+        $personalData = \App\User::getTargetInfo($id);
+        $klussjes = \App\Kluss::getUserKluss($id);
+        $sollicitanten = \App\Kluss_applicant::getApplicants($id);
 
         // historiek van uitgevoerde klussjes
         // reviews gebruikers
