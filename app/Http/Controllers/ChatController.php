@@ -13,6 +13,10 @@ use App\Message;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Str;
 
+/*
+* Author Albert Tomasiak;
+*/
+
 class ChatController extends Controller
 {
     var $pusher;
@@ -71,6 +75,7 @@ class ChatController extends Controller
 
     public function postMessage(Request $request)
     {
+        date_default_timezone_set('Europe/Brussels');
         // getting user information and the channel name from our blade
         $user = \App\User::getCurrentUser();
         $chatChannel = e($request->chatChannel);
