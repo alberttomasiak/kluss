@@ -22,4 +22,8 @@ class Kluss extends Model
     public static function getSingleTitle($id){
         return self::where('id', '=', $id)->value('title');
     }
+
+    public static function getUserKluss($id){
+        return self::where('user_id', '=', $id)->get();
+    }
 }

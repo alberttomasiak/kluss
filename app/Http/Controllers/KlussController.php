@@ -73,14 +73,14 @@ class KlussController extends Controller
     public function SingleKluss($id){
         $kluss = \App\Kluss::getSingle($id);
         $title = \App\Kluss::getSingleTitle($id);
-        $kluss_applicant = \App\Kluss_applicant::getApplicants($id);
+        $kluss_applicant = \App\Kluss_applicant::getApplicant($id);
         return view('kluss/individual', compact('kluss', 'kluss_applicant'))->with('title', $title);
     }
 
     public function apply($id){
         $kluss = \App\Kluss::getSingle($id);
         $title = \App\Kluss::getSingleTitle($id);
-        $kluss_applicant = \App\Kluss_applicant::getApplicants($id);
+        $kluss_applicant = \App\Kluss_applicant::getApplicant($id);
 
         if($kluss_applicant->first()){
             \App\Kluss_applicant::deleteApplicant($id);
