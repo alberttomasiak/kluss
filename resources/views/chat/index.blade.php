@@ -114,6 +114,9 @@
         // send button click handling
         $('.send-message').click(sendMessage);
         $('.input-message').keypress(checkSend);
+
+        var d = $('#messages');
+        d.scrollTop(d.prop("scrollHeight"));
     }
 
     // Send on enter/return key
