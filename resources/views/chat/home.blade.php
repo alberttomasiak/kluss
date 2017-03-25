@@ -3,6 +3,7 @@
     <div class="container">
         <div class="row">
             {{-- Looping all conversations we had that we gathered in the controller ;) --}}
+            {{$lastMessages}}
             <div id="messages">
                 @foreach($conversationsLeft as $conversationLeft)
                     <div class="message">

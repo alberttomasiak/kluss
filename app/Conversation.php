@@ -18,15 +18,11 @@ class Conversation extends Model
                     ->first();
     }
 
-    /*public static function getConversationID($name){
-        return self::where("chatname", $name)->pluck("id")->get();
-    }*/
-
     public static function getUserConversationsLeft($id){
         return self::join('users', 'conversations.user_one', '=', 'users.id')
                             ->select('conversations.*', 'users.*')
                             ->where('conversations.user_two', $id)
-                            ->get();    
+                            ->get();
     }
 
     public static function getUserConversationsRight($id){
