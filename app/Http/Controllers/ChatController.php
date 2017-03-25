@@ -73,12 +73,12 @@ class ChatController extends Controller
 
         //$this->chatChannel = $name;
         //dd($match["user_one"]);
-        // $current_user = \Auth::user()->id;
-        // $data_partner = $current_user == $match["user_one"] ? User::getTargetInfo($match["user_two"]) : User::getTargetInfo($match["user_one"]);
-        // $user_one_name = User::get($match["user_one"]);
-        $user_two_name = User::get($match["user_two"]);
-        // $partner_name = Str::slug($data_partner[0]["name"]);
-        // dd($partner_name);
+        $current_user = \Auth::user()->id;
+        $data_partner = $current_user == $match["user_one"] ? User::getTargetInfo($match["user_two"]) : User::getTargetInfo($match["user_one"]);
+        //$user_one_name = User::get($match["user_one"]);
+        //$user_two_name = User::get($match["user_two"]);
+        $partner_name = $data_partner[0]["name"];
+        //dd($partner_name);
         // if($user != Str::slug($user_one_name) || $user != Str::slug($user_two_name)){
         //     return $match == null ? redirect()->back() : $this->startChatroom($chatname, $partner_name);
         // }
@@ -86,7 +86,7 @@ class ChatController extends Controller
         // grab all the messages for that specific conversation and send them to the channel.
         $messages = Message::getMessages($chatname);
         // if the conversation exists we send the user to it. If not, he gets sent back.
-        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname, 'messages' => $messages, 'user' => $user_two_name]);
+        return $match == null ? view('home') : view('chat.index', ['chatChannel' => $chatname, 'messages' => $messages, 'user' => $partner_name]);
     }
 
     public function postMessage(Request $request)
