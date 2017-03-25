@@ -17,35 +17,23 @@ class ChatController extends Controller
 {
     var $pusher;
     var $user;
-    //var $chatChannel;
-    // const DEFAULT_CHAT_CHANNEL = 'chat';
 
     public function __construct()
     {
         $this->pusher = App::make('pusher');
         $this->middleware('auth');
-        //$this->chatChannel = self::DEFAULT_CHAT_CHANNEL;
     }
-
-    /*public function postAuth(Request $request)
-    {
-        if(!$this->user){
-            $this->user = Session::get('user');
-        }
-        $channelName = e($request->input('channel_name'));
-        $socket_id = e($request->socket_id);
-        $auth = $this->pusher->socket_auth($channelName, $socketId);
-        return !$this->user ? '401 Unauthorized' : $auth;
-    }*/
-
     public function requestChat($id)
     {
+        // generating the array of our users
         $users = [$id, \Auth::user()->id];
+        // checking if a conversation with our ID already exists
         $chatroom = Conversation::getSingleConversation($id);
+        // getting our partner's data
         $target = User::get($id);
-        //$toTiny = "private-".str_slug(\Auth::user()->name).\Auth::user()->id.str_slug($target).$id;
-        // we generate a conversation chatroom bij hashing the ids of the two users.
+        // encoding the chat id for security purposes
         $chatname = Hashids::encode(\Auth::user()->id, $id);
+        //slugging the other person's name for URL readability
         $user = str_slug($target);
 
         // if the chatroom between these two users doesn't exist, we make a new one.
@@ -61,6 +49,7 @@ class ChatController extends Controller
     }
 
     public function index(){
+        // grabbing all conversations the user has.
         $user = \Auth::user()->id;
         $conversationsLeft = Conversation::getUserConversationsLeft($user);
         $conversationsRight = Conversation::getUserConversationsRight($user);
@@ -70,19 +59,10 @@ class ChatController extends Controller
     public function startChatroom($chatname, $user){
         // checking if the conversation exists
         $match = Conversation::matchConversationName($chatname);
-
-        //$this->chatChannel = $name;
-        //dd($match["user_one"]);
+        // getting our chat partner's name
         $current_user = \Auth::user()->id;
         $data_partner = $current_user == $match["user_one"] ? User::getTargetInfo($match["user_two"]) : User::getTargetInfo($match["user_one"]);
-        //$user_one_name = User::get($match["user_one"]);
-        //$user_two_name = User::get($match["user_two"]);
         $partner_name = $data_partner[0]["name"];
-        //dd($partner_name);
-        // if($user != Str::slug($user_one_name) || $user != Str::slug($user_two_name)){
-        //     return $match == null ? redirect()->back() : $this->startChatroom($chatname, $partner_name);
-        // }
-
         // grab all the messages for that specific conversation and send them to the channel.
         $messages = Message::getMessages($chatname);
         // if the conversation exists we send the user to it. If not, he gets sent back.
