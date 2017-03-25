@@ -32,23 +32,22 @@ Route::get('/logout', function(){
 // home routes
 Route::get('/home', 'HomeController@index');
 
-// kluss routes
-Route::get('/kluss_toevoegen', 'KlussController@index');
-Route::post('/kluss/add', 'KlussController@add');
-Route::get('/kluss/{id}', 'KlussController@singleKluss');
-// kluss solliciteren / bewerken routes
-Route::get('/kluss/{id}/bewerken', 'KlussController@update');
-Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
-Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
-
-// profile routes
-Route::get('/profiel/{id}', 'ProfielController@index');
-
-// test routes
-Route::get('/send', 'EmailController@send');
-
-// Chat routes
-Route::get('/chat', 'ChatController@index');
-Route::post('/chat/message', 'ChatController@postMessage');
-Route::post('/chat/{id}', 'ChatController@requestChat');
-Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');
+Route::group(['middleware' => ['auth']], function(){
+    // kluss routes
+    Route::get('/kluss_toevoegen', 'KlussController@index');
+    Route::post('/kluss/add', 'KlussController@add');
+    Route::get('/kluss/{id}', 'KlussController@singleKluss');
+    // kluss solliciteren / bewerken routes
+    Route::get('/kluss/{id}/bewerken', 'KlussController@update');
+    Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
+    Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
+    // profile routes
+    Route::get('/profiel/{id}', 'ProfielController@index');
+    // test routes
+    // Route::get('/send', 'EmailController@send');
+    // Chat routes
+    Route::get('/chat', 'ChatController@index');
+    Route::post('/chat/message', 'ChatController@postMessage');
+    Route::post('/chat/{id}', 'ChatController@requestChat');
+    Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');
+});
