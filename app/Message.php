@@ -23,19 +23,10 @@ class Message extends Model
     }
 
     public static function getLastConversationMessages(){
-        // return self::select('id', 'conversation_id', 'user_id', 'message', 'created_at')
-        //             ->where([
-        //                 ['id', 'in', max(['id'])]
-        //                 ])
-        //             ->from('messages')
-        //             ->groupBy('conversation_id')
-        //             // ->groupBy('conversation_id')
-        //             // ->orderBy('created_at', 'desc')
-        //             // ->latest()
-        //             ->get();
-        return self::where(function($query){
-            $query->select(max(['id']))
+        return self::whereIn('id', function($query){
+            $query->selectRaw('max(id)')
             ->from('messages')
+            ->orderBy('created_at', 'desc')
             ->groupBy('conversation_id');
         })
         ->get();
