@@ -20,14 +20,14 @@ class Conversation extends Model
 
     public static function getUserConversationsLeft($id){
         return self::join('users', 'conversations.user_one', '=', 'users.id')
-                            ->select('conversations.*', 'users.*')
+                            ->select('conversations.*', 'conversations.id as convid', 'users.*')
                             ->where('conversations.user_two', $id)
                             ->get();
     }
 
     public static function getUserConversationsRight($id){
         return self::join('users', 'conversations.user_two', '=', 'users.id')
-                            ->select('conversations.*', 'users.*')
+                            ->select('conversations.*', 'conversations.id as convid', 'users.*')
                             ->where('conversations.user_one', $id)
                             ->get();
     }
