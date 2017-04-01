@@ -12,6 +12,7 @@
 */
 
 Route::get('/', function () {
+
     return view('welcome');
 });
 
@@ -29,10 +30,10 @@ Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
 });
-// home routes
-Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth']], function(){
+    // home routes
+    Route::get('/home', 'HomeController@index');
     // kluss routes
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
@@ -42,7 +43,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
     // profile routes
-    Route::get('/profiel/{id}', 'ProfielController@index');
+    Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     // test routes
     // Route::get('/send', 'EmailController@send');
     // Chat routes
