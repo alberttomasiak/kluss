@@ -101,4 +101,12 @@ class ChatController extends Controller
         // pushing the message back to our view
         $this->pusher->trigger($chatChannel, 'new-message', $message);
     }
+
+    public function overview(){
+        $user = \Auth::user()->id;
+        $conversationsLeft = Conversation::getUserConversationsLeft($user);
+        $conversationsRight = Conversation::getUserConversationsRight($user);
+        $firstConversation = Conversation::getSingleConversation($user);
+        return view('chat.overview', compact('conversationsLeft', $conversationsLeft, 'conversationsRight', $conversationsRight, 'firstConversation', $firstConversation))->with('title', 'Chat overzicht');
+    }
 }
