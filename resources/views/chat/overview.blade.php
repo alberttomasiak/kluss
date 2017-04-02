@@ -5,10 +5,12 @@
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        height: calc(100vh - 145px);
     }
     .chat-overview{
         width: 25%;
         display:block;
+        height: 100%;
     }
 
     .chat-overview h3{
@@ -42,18 +44,19 @@
         height: 50px;
         float: left;
         margin-right: 1em;
+        margin-left: 1em;
     }
 
     .user .author{
         display: block;
-        margin-top: 1em;
+        margin-top: .5em;
     }
 </style>
 <div class="chat-wrap">
     <div class="chat-overview" style="">
         <h3>Recente gesprekken</h3>
         @foreach($conversationsLeft as $conversationLeft)
-            <a href="/chat/overview/{{$conversationLeft->id}}">
+            <a href="/chat/overview/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}">
                 <div class="user">
                     <div class="avatar">
                         <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}">
@@ -67,7 +70,7 @@
             </a>
         @endforeach
         @foreach($conversationsRight as $conversationRight)
-            <a href="/chat/overview/{{$conversationLeft->id}}">
+            <a href="/chat/overview/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}">
                 <div class="user">
                     <div class="avatar">
                         <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
@@ -82,7 +85,7 @@
         @endforeach
     </div>
     <div class="chat-details" style="">
-        @include('chat.partials.chat', array('user', $firstConversation))
+        @include('chat.partials.chat', array('firstConversation', $firstConversation))
     </div>
 </div>
 @endsection

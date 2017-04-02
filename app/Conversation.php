@@ -18,6 +18,12 @@ class Conversation extends Model
                     ->first();
     }
 
+    public static function getFirstConversation($user){
+        return self::where('user_one', $user)
+                    ->orWhere('user_two', $user)
+                    ->first();
+    }
+
     public static function getUserConversationsLeft($id){
         return self::join('users', 'conversations.user_one', '=', 'users.id')
                             ->select('conversations.*', 'conversations.id as convid', 'users.*')
