@@ -37,7 +37,7 @@
 
         // Added Pusher logging
         Pusher.log = function(msg) {
-            console.log(msg);
+            // console.log(msg);
         };
     </script>
 </head>
@@ -131,7 +131,7 @@
     // Handle the success callback
     function sendMessageSuccess() {
         $('.input-message').val('')
-        console.log('message sent successfully');
+        // console.log('message sent successfully');
     }
 
     // Build the UI for a new message and add to the DOM
@@ -174,7 +174,7 @@
         }
     });
     var channel = pusher.subscribe("{{$chatChannel}}");
-    console.log(channel);
+    // console.log(channel);
     channel.bind('new-message', addMessage);
 
 </script>

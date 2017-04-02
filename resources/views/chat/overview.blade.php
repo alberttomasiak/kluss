@@ -13,6 +13,10 @@
         height: 100%;
     }
 
+    .chat-overview a{
+        display: block;
+    }
+
     .chat-overview h3{
         display: block;
         width: 100%;
@@ -51,13 +55,17 @@
         display: block;
         margin-top: .5em;
     }
+
+    .active{
+        background-color: #f7f7f7;
+    }
 </style>
 <div class="chat-wrap">
     <div class="chat-overview" style="">
         <h3>Recente gesprekken</h3>
         @foreach($conversationsLeft as $conversationLeft)
             <a href="/chat/overview/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}">
-                <div class="user">
+                <div class="user {{$conversationLeft->chatname == $firstConversation->chatname ? 'active' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}">
                     </div>
@@ -71,7 +79,7 @@
         @endforeach
         @foreach($conversationsRight as $conversationRight)
             <a href="/chat/overview/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}">
-                <div class="user">
+                <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
                     </div>

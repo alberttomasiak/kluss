@@ -126,7 +126,7 @@ class ChatController extends Controller
         // if the conversation exists we send the user to it. If not, he gets sent back.
         $conversationsLeft = Conversation::getUserConversationsLeft($current_user);
         $conversationsRight = Conversation::getUserConversationsRight($current_user);
-        $firstConversation = Conversation::getFirstConversation($current_user);
+        $firstConversation = Conversation::getSingleConversationByChatname($chatName);
         return $match == null ? view('home') : view('chat.overview', ['chatChannel' => $chatName, 'messages' => $messages, 'user' => $partner_name, 'conversationsLeft' => $conversationsLeft, 'conversationsRight' => $conversationsRight, 'firstConversation' => $firstConversation]);
     }
 
