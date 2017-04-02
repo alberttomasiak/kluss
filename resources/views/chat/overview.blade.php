@@ -93,6 +93,7 @@
         @endforeach
     </div>
     <div class="chat-details" style="">
+        {{$firstConversation}}
         @include('chat.partials.chat', array('firstConversation', $firstConversation))
     </div>
 </div>

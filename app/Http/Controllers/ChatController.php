@@ -114,6 +114,16 @@ class ChatController extends Controller
         //return view('chat.overview', compact(/*'conversationsLeft', $conversationsLeft, 'conversationsRight', $conversationsRight,*/ 'firstConversation', $firstConversation))->with('title', 'Chat overzicht');
     }
 
+    public function chatOverviewUser($id){
+        $user = \Auth::user()->id;
+        dd($id);
+        $conversation = Conversation::getSingleConversation($id);
+        $chatName = $conversation["chatname"];
+        $conversation["user_one"] == $user ? $chatPartner = \App\User::get($conversation["user_two"]) : $chatPartner = \App\User::get($conversation["user_one"]);
+        //dd($chatName);
+        return redirect('/chat/overview/'.$chatName.'/'.$chatPartner);
+    }
+
     public function chatOverview($chatName, $chatPartner){
         // checking if the conversation exists
         $match = Conversation::matchConversationName($chatName);
@@ -128,13 +138,5 @@ class ChatController extends Controller
         $conversationsRight = Conversation::getUserConversationsRight($current_user);
         $firstConversation = Conversation::getSingleConversationByChatname($chatName);
         return $match == null ? view('home') : view('chat.overview', ['chatChannel' => $chatName, 'messages' => $messages, 'user' => $partner_name, 'conversationsLeft' => $conversationsLeft, 'conversationsRight' => $conversationsRight, 'firstConversation' => $firstConversation]);
-    }
-
-    public function chatOverviewUser($id){
-        $user = \Auth::user()->id;
-        $conversation = Conversation::getSingleConversation($id);
-        $chatName = $conversation["chatname"];
-        $conversation["user_one"] == $user ? $chatPartner = \App\User::get($conversation["user_two"]) : $chatPartner = \App\User::get($conversation["user_one"]);
-        return redirect('/chat/overview/'.$chatName.'/'.$chatPartner);
     }
 }
