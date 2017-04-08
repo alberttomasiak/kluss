@@ -53,6 +53,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');
     // Chat testing routes
     Route::get('/chat/overview','ChatController@overview');
-    Route::get('/chat/overview/{chatname}/{user}', 'ChatController@chatOverview');
-    Route::get('/chat/overview/{id}', 'ChatController@chatOverviewUser');
+    Route::post('/chat/t/{id}', 'ChatController@chatOverviewUser');
+    Route::get('/chat/t/{chatname}/{user}', 'ChatController@chatOverview');
 });

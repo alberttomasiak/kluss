@@ -64,7 +64,6 @@
     <div class="chat-overview" style="">
         <h3>Recente gesprekken</h3>
         @foreach($conversationsLeft as $conversationLeft)
-            <a href="/chat/overview/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}">
                 <div class="user {{$conversationLeft->chatname == $firstConversation->chatname ? 'active' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}">
@@ -73,12 +72,14 @@
                         <div class="message-data">
                             <span class="author">{{$conversationLeft->name}}</span>
                         </div>
+                        <form class="" action="/chat/t/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}" method="post">
+                            {{ csrf_field() }}
+                            <input type="submit" name="" value="Chat">
+                        </form>
                     </div>
                 </div>
-            </a>
         @endforeach
         @foreach($conversationsRight as $conversationRight)
-            <a href="/chat/overview/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}">
                 <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
@@ -87,13 +88,15 @@
                         <div class="message-data">
                             <span class="author">{{$conversationRight->name}}</span>
                         </div>
+                        <form class="" action="/chat/t/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}" method="post">
+                            {{ csrf_field() }}
+                            <input type="submit" name="" value="Chat">
+                        </form>
                     </div>
                 </div>
-            </a>
         @endforeach
     </div>
     <div class="chat-details" style="">
-        {{$firstConversation}}
         @include('chat.partials.chat', array('firstConversation', $firstConversation))
     </div>
 </div>
