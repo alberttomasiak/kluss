@@ -72,7 +72,7 @@
                         <div class="message-data">
                             <span class="author">{{$conversationLeft->name}}</span>
                         </div>
-                        <form class="" action="/chat/t/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}" method="post">
+                        <form class="" action="/chat/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}" method="post">
                             {{ csrf_field() }}
                             <input type="submit" name="" value="Chat">
                         </form>
@@ -88,7 +88,7 @@
                         <div class="message-data">
                             <span class="author">{{$conversationRight->name}}</span>
                         </div>
-                        <form class="" action="/chat/t/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}" method="post">
+                        <form class="" action="/chat/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}" method="post">
                             {{ csrf_field() }}
                             <input type="submit" name="" value="Chat">
                         </form>

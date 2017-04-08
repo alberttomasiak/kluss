@@ -49,10 +49,10 @@ Route::group(['middleware' => ['auth']], function(){
     // Chat routes
     Route::get('/chat', 'ChatController@index');
     Route::post('/chat/message', 'ChatController@postMessage');
+    // Route::post('/chat/{id}', 'ChatController@requestChat');
+    // Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');
+    // // Chat testing routes
+    // Route::get('/chat/overview','ChatController@overview');
     Route::post('/chat/{id}', 'ChatController@requestChat');
-    Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');
-    // Chat testing routes
-    Route::get('/chat/overview','ChatController@overview');
-    Route::post('/chat/t/{id}', 'ChatController@chatOverviewUser');
-    Route::get('/chat/t/{chatname}/{user}', 'ChatController@chatOverview');
+    Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
 });
