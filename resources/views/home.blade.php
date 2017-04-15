@@ -28,6 +28,7 @@
          var poslng = position.coords.longitude;
          var poslat = position.coords.latitude;
         load(poslat, poslng);
+        sendCoords(poslat, poslng);
      }
 
      function fail()
@@ -35,6 +36,27 @@
         // geolocation doesn't work with this browser / not a secure request
         // perform the load with the coordinates for Mechelen -> our HQ
         load(51.02574, 4.47762);
+        sendCoords(51.02574, 4.47762);
+     }
+
+     function sendCoords(lat, lng){
+         $.ajaxSetup({
+             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+         });
+         jQuery.ajax({
+             url:'/getTasks',
+             type: 'POST',
+             data: {
+                 lat: lat,
+                 lng: lng
+             },
+             success: function( data ){
+                 console.log(data);
+             },
+             error: function (xhr, b, c) {
+                 console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+             }
+         });
      }
 
      initGeolocation();

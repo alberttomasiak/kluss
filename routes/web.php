@@ -34,6 +34,7 @@ Route::get('/logout', function(){
 Route::group(['middleware' => ['auth']], function(){
     // home routes
     Route::get('/home', 'HomeController@index');
+    Route::post('/getTasks', 'HomeController@getTasks');
     // kluss routes
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
