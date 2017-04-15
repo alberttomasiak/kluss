@@ -28,6 +28,9 @@ class HomeController extends Controller
     {
         $klussjes = \App\Kluss::getPublished();
         return view('home', compact('klussjes'));
+    }
 
+    public function getTasks(Request $request){
+        return true;
     }
 }
