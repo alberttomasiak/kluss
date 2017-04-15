@@ -3,15 +3,45 @@
 @section('content')
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback=load" async deter></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback" async deter></script>
     <script type="text/javascript">
       var map;
       var klussjes = {!! json_encode($klussjes) !!};
       var marks = [];
+      var poslat;
+      var poslng;
+      function initGeolocation()
+     {
+        if( navigator.geolocation )
+        {
+           // Call getCurrentPosition with success and failure callbacks
+           navigator.geolocation.getCurrentPosition( success, fail );
+        }
+        else
+        {
+           alert("Sorry, your browser does not support geolocation services.");
+        }
+     }
 
-      function load() {
+     function success(position)
+     {
+         var poslng = position.coords.longitude;
+         var poslat = position.coords.latitude;
+        load(poslat, poslng);
+     }
+
+     function fail()
+     {
+        // geolocation doesn't work with this browser / not a secure request
+        // perform the load with the coordinates for Mechelen -> our HQ
+        load(51.02574, 4.47762);
+     }
+
+     initGeolocation();
+
+      function load(lat, lng) {
           map = new google.maps.Map(document.getElementById('map'), {
-              center: {lat: 51.027575, lng: 4.481958},
+              center: {lat: lat, lng: lng},
               zoom: 15,
               scrollwheel: false,
               navigationControl: false,
