@@ -27,8 +27,8 @@
      {
          var poslng = position.coords.longitude;
          var poslat = position.coords.latitude;
-        load(poslat, poslng);
-        sendCoords(poslat, poslng);
+         load(poslat, poslng);
+         sendCoords(poslat, poslng);
      }
 
      function fail()
@@ -39,9 +39,12 @@
         sendCoords(51.02574, 4.47762);
      }
 
+     initGeolocation();
+     
+
      function sendCoords(lat, lng){
          $.ajaxSetup({
-             headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+             headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
          });
          jQuery.ajax({
              url:'/getTasks',
@@ -59,7 +62,6 @@
          });
      }
 
-     initGeolocation();
 
       function load(lat, lng) {
           map = new google.maps.Map(document.getElementById('map'), {

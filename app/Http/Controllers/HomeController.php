@@ -31,6 +31,9 @@ class HomeController extends Controller
     }
 
     public function getTasks(Request $request){
-        return true;
+        return response()->json([
+            'lat' => $request->get('lat'),
+            'lng' => $request->get('lng'),
+        ]);
     }
 }
