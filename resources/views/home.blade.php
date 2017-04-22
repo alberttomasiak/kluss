@@ -11,27 +11,19 @@
       var poslng;
       var poslatDefault = 51.022636;
       var poslngDefault = 4.486062;
-      function initGeolocation()
-     {
-        if( navigator.geolocation )
-        {
+      function initGeolocation(){
+        if( navigator.geolocation ){
            // Call getCurrentPosition with success and failure callbacks
            navigator.geolocation.getCurrentPosition( success, fail );
-        }
-        else
-        {
-           // Your browser does not support geolocation.
-        }
+        }else{ /* Your browser does not support geolocation. */ }
      }
-     function success(position)
-     {
+     function success(position){
          var poslng = position.coords.longitude;
          var poslat = position.coords.latitude;
          load(poslat, poslng);
          sendCoords(poslat, poslng);
      }
-     function fail()
-     {
+     function fail(){
         // geolocation doesn't work with this browser / not a secure request
         // perform the load with the coordinates for Mechelen -> our HQ
         load(poslatDefault, poslngDefault);
@@ -50,10 +42,15 @@
                  lng: lng
              },
              success: function( data ){
-                 console.log(data);
+                 $.each(data, function() {
+                     $.each(this, function(k, v) {
+                         // We found tasks in a radius of 2.5km, so we append them to our list here :)
+                         $('.klussjes-wrap').append('<div class="col s12 m6 card-wrap"><div class="card"><div class="card-image"><div class="card-image-wrap"><img src="'+this.kluss_image+'" class="card--image" alt="Klussje"> </div> <span class="card-title">@if('this.image' == "assets/img/klussjes/geen-image.png")<h4 class="card--title-black">'+this.title+'</h4>@else<h4>'+this.title+'</h4>@endif</span></div><div class="card-content"><p class="card--description">'+this.description.substring(0, 120)+'...</p><p><b>'+this.address+'</b></p><p class="card--price"><b>'+this.price+' credits</b></p></div><div class="card-action"><a href="/kluss/'+this.id+'">Ga naar de kluss</a></div></div></div>');
+                     });
+                 });
              },
              error: function (xhr, b, c) {
-                 console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+                 // Something went wrong brosephino
              }
          });
      }
@@ -113,34 +110,9 @@
         <!-- MAP MET KLUSSJES -->
         <div id="map"></div>
         <!-- KLUSSJES IN DE BUURT -->
-        <h2 class="home-h2">Actieve klussjes in uw buurt:</h2>
+        <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
         <div class="klussjes-wrap">
-        @if(isset($klussjes))
-        @foreach($klussjes as $kluss)
-        <div class="col s12 m6 card-wrap">
-         <div class="card">
-           <div class="card-image">
-               <div class="card-image-wrap">
-             <img src="{{$kluss->kluss_image}}" class="card--image" alt="Klussje">
-             </div>
-             <span class="card-title">@if($kluss->kluss_image == "assets/img/klussjes/geen-image.png")
-                 <h4 class="card--title-black">{{$kluss->title}}</h4>
-             @else
-                 <h4>{{$kluss->title}}</h4>
-             @endif</span>
-           </div>
-           <div class="card-content">
-             <p class="card--description">{{substr($kluss->description, 0, 120) . '...'}}</p>
-             <p><b>{{$kluss->address}}</b></p>
-             <p class="card--price"><b>{{$kluss->price}} credits</b></p>
-           </div>
-           <div class="card-action">
-             <a href="/kluss/{{$kluss->id}}">Ga naar de kluss</a>
-           </div>
-         </div>
-        </div>
-        @endforeach
-        @endif
+        {{-- Our tasks will be appended here. --}}
         </div>
     </div>
 </div>
