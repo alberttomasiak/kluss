@@ -34,6 +34,6 @@ class HomeController extends Controller
         $lat = $request->get('lat');
         $lng = $request->get('lng');
         $klusjes = \App\Kluss::getTasksInNeighborhood($lat, $lng);
-        return view('home', compact('klussjes', $klusjes));
+        return [$klusjes];
     }
 }
