@@ -27,13 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         $klussjes = \App\Kluss::getPublished();
-        return view('home', compact('klussjes'));
+        return view('home', compact('klussjes', $klussjes));
     }
 
     public function getTasks(Request $request){
-        return response()->json([
-            'lat' => $request->get('lat'),
-            'lng' => $request->get('lng'),
-        ]);
+        $lat = $request->get('lat');
+        $lng = $request->get('lng');
+        $klusjes = \App\Kluss::getTasksInNeighborhood($lat, $lng);
+        return view('home', compact('klussjes', $klusjes));
     }
 }
