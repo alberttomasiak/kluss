@@ -11,6 +11,7 @@ body{
     -moz-box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.75);
     padding-bottom: 0.1em;
+    height: 370px;
 }
 .login--form img{
     display: block;
@@ -60,6 +61,7 @@ body{
     padding-top: 1em;
     padding-bottom: 1em;
     margin-top: 1em;
+    cursor: pointer;
 }
 
 .login--form .btn--link{
@@ -72,6 +74,7 @@ body{
     margin-top: .5em;
     margin-bottom: 2em;
 }
+
 
 .admin--login-footer{
     color: white;
@@ -113,6 +116,15 @@ input:-webkit-autofill:active {
 
 @media only screen and (min-width: 400px) and (min-height: 800px){
     .login--form{
-        
+        position: absolute;
+        top: 50%;
+        height: 400px;
+        margin-top: -200px;
+        left: 0;
+        right: 0;
+    }
+
+    .admin--login-footer{
+        padding-top: 1em;
     }
 }

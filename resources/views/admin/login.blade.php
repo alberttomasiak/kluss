@@ -7,7 +7,7 @@
             {{ csrf_field() }}
             <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email">E-mail:</label>
-                <input id="email" type="email" class="" name="email" value="{{ old('email') }}" placeholder="Email" required autofocus>
+                <input id="email" type="email" class="" name="email" value="{{ old('email') }}" placeholder="E-mail" required autofocus>
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -28,8 +28,9 @@
                 Wachtwoord vergeten?
             </a>
         </form>
+        <div class="admin--login-footer">
+            <p class="admin--login-info">info@kluss.be</p>
+        </div>
     </section>
-    <div class="admin--login-footer">
-        <p class="admin--login-info">info@kluss.be</p>
-    </div>
+
 @endsection
