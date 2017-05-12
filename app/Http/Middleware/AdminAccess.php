@@ -15,10 +15,13 @@ class AdminAccess
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $guard = null)
     {
-        $current_user = User::getCurrentUser();
-        $user_role = $current_user->account_type;
-        return $user_role == "admin" ? $next($request) : redirect('/admin/login');
+        if(Auth::guard($guard)->check()){
+            $current_user = User::getCurrentUser();
+            $user_role = $current_user->account_type;
+            return $user_role == "admin" ? $next($request) : redirect('/admin/login');
+        }
+        return redirect('/admin/login');
     }
 }
