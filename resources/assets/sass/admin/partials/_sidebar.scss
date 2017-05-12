@@ -1,0 +1,25 @@
+.sidebar--admin{
+    display: block;
+    background-color: #8ac33f;
+    ul{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        li{
+            width: 50%;
+            text-align: center;
+            padding-top: .5em;
+            padding-bottom: .5em;
+            a{
+                text-decoration: none;
+                color: white;
+                font-size: .9em;
+                text-transform: uppercase;
+                font-weight: bold;
+                line-height: 1.1em;
+                display: block;
+                margin-top: .75em;
+            }
+        }
+    }
+}
