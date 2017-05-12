@@ -66,7 +66,7 @@ Route::group(['prefix' => 'admin'], function () {
         return redirect('/admin/dashboard');
     });
     Route::get('login', 'AdminController@index');
-    Route::post('login', 'Auth\LoginController@login');
+    Route::post('login', 'AdminController@login');
     Route::group(['middleware' => ['AdminAccess']], function(){
         Route::get('dashboard', 'AdminController@dashboard');
     });

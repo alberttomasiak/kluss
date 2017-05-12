@@ -50,4 +50,12 @@ class User extends Authenticatable
         }
         return self::$lijst[$key];
     }
+
+    public static function is_admin($account_type){
+        if($account_type == "admin"){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
