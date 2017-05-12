@@ -46,6 +46,8 @@
                      $.each(this, function(k, v) {
                          // We found tasks in a radius of 2.5km, so we append them to our list here :)
                          $('.klussjes-wrap').append('<div class="col s12 m6 card-wrap"><div class="card"><div class="card-image"><div class="card-image-wrap"><img src="'+this.kluss_image+'" class="card--image" alt="Klussje"> </div> <span class="card-title">@if('this.image' == "assets/img/klussjes/geen-image.png")<h4 class="card--title-black">'+this.title+'</h4>@else<h4>'+this.title+'</h4>@endif</span></div><div class="card-content"><p class="card--description">'+this.description.substring(0, 120)+'...</p><p><b>'+this.address+'</b></p><p class="card--price"><b>'+this.price+' credits</b></p></div><div class="card-action"><a href="/kluss/'+this.id+'">Ga naar de kluss</a></div></div></div>');
+                         // And we make our map markers ;)
+                         addMarker(this);
                      });
                  });
              },
@@ -70,9 +72,11 @@
               position: new google.maps.LatLng(parseFloat(lat),parseFloat(lng))
           });
           }
-          for(var i = 0; i < klussjes.length; i++){
-              marks[i] = addMarker(klussjes[i]);
-          }
+
+        // We don't need it here, since we do it in our Ajax request :)
+        //   for(var i = 0; i < klussjes.length; i++){
+        //       marks[i] = addMarker(klussjes[i]);
+        //   }
       }
       function addMarker(kluss){
         var title = kluss.title;
