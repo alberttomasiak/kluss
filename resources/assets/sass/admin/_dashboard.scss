@@ -1,0 +1,114 @@
+.dashboard--main{
+    display: block;
+    width: 100%;
+    div{
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #eee;
+        margin-bottom: 1em;
+        text-align: center;
+        height: 150px;
+        position: relative;
+        p:first-child{
+            font-size: 7em;
+            text-align: center;
+            font-weight: bold;
+        }
+        p:last-child{
+            position: absolute;
+            bottom: 1em;
+            left: 0;
+            right: 0;
+            font-size: .9em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+    }
+    div:first-child{
+        margin-top: 2em;
+    }
+    h1{
+        font-size: 1.4em;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        &::after{
+            content: "";
+            display: block;
+            width: 110px;
+            margin-top: .5em;
+            height: 7px;
+            background-color: black;
+        }
+    }
+}
+
+@media only screen and (min-width: 500px){
+    .dashboard--main{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
+        justify-content: space-between;
+        div{
+            width: 47%;
+            flex: 0 1 auto;
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        h1{
+            width: 90%;
+        }
+        div:first-child{
+            margin-top: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .dashboard--main{
+        width: 600px;
+         div{
+            width: 250px;
+            height: 175px;
+            margin-bottom: 3em;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .dashboard--main{
+        position: absolute;
+        right: 0;
+        width: calc(100% - 275px);
+        margin-right: 1.5em;
+        div{
+            width: 225px;
+            height: 150px;
+            margin-bottom: 1em;
+        }
+        h1{
+            width: 100%;
+        }
+    }
+}
+
+@media only screen and (min-width: 950px){
+    .dashboard--main{
+        justify-content: flex-start;
+        div{
+            margin-right: 1em;
+        }
+    }
+}

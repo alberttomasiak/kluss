@@ -1,0 +1,38 @@
+.admin--header{
+    display: flex;
+    background-color: $washington;
+    width: 100%;
+    height: 40px;
+    flex-direction: row;
+    justify-content: space-between;
+    color: white;
+    a{
+        display: block;
+        width: 65px;
+        height: 40px;
+    }
+    a img{
+        height: 30px;
+        margin-left: .5em;
+        margin-top: 5px;
+    }
+}
+
+.user--info{
+    display: block;
+    width: 185px;
+    font-size: .9em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: .75em;
+    margin-right: 1.5em;
+    a{
+        text-decoration: none;
+        color: white;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-size: .8em;
+        margin-top: .3em;
+    }
+}

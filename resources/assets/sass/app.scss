@@ -1,5 +1,10 @@
-@import "variables/all";
+// Vendor shit
 @import "vendor-sass/all";
-@import "modules/all";
-@import "mixins/all";
-@import "pages/all";
+// Front-end Pages
+@import "pages/header";
+@import "pages/kluss";
+@import "pages/home";
+@import "pages/landing";
+@import "pages/forms";
+@import "pages/individual-kluss";
+@import "pages/profile";
