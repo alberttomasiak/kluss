@@ -57,3 +57,12 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
 });
+
+
+Route::group(['middleware' => ['AdminAccess']], function(){
+    Route::group(['prefix' => 'admin'], function () {
+        Route::get('users', function ()    {
+            // Matches The "/admin/users" URL
+        });
+    });
+});
