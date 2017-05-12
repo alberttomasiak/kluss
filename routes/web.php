@@ -59,10 +59,15 @@ Route::group(['middleware' => ['auth']], function(){
 });
 
 
-Route::group(['middleware' => ['AdminAccess']], function(){
-    Route::group(['prefix' => 'admin'], function () {
-        Route::get('users', function ()    {
-            // Matches The "/admin/users" URL
-        });
+
+Route::group(['prefix' => 'admin'], function () {
+    // Login route
+    Route::get('/', function(){
+        return redirect('/admin/dashboard');
+    });
+    Route::get('login', 'AdminController@index');
+    Route::post('login', 'AdminController@login');
+    Route::group(['middleware' => ['AdminAccess']], function(){
+        Route::get('dashboard', 'AdminController@dashboard');
     });
 });
