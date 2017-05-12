@@ -3,6 +3,7 @@
 @include('admin.dashboard.partials.header')
 @include('admin.dashboard.partials.sidebar')
 <section class="dashboard--main">
+    <h1>Dashboard</h1>
     <div class="dashboard--block">
         <p class="registered--counter"></p>
         <p>Geregistreerde gebruikers</p>
@@ -20,4 +21,13 @@
         <p>Gold gebruikers</p>
     </div>
 </section>
+<script type="text/javascript">
+    function getData(){
+        
+    }
+    getData();
+    window.setInterval(function(){
+        getData();
+    }, 60000);
+</script>
 @endsection

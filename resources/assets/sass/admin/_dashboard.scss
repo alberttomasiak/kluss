@@ -29,4 +29,70 @@
     div:first-child{
         margin-top: 2em;
     }
+    h1{
+        font-size: 1.4em;
+        text-transform: uppercase;
+        font-weight: bold;
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 1em;
+        margin-bottom: 2em;
+        &::after{
+            content: "";
+            display: block;
+            width: 110px;
+            margin-top: .5em;
+            height: 7px;
+            background-color: black;
+        }
+    }
+}
+
+@media only screen and (min-width: 500px){
+    .dashboard--main{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2em;
+        div{
+            width: 47%;
+        }
+
+        h1{
+            width: 90%;
+        }
+        div:first-child{
+            margin-top: 0;
+        }
+    }
+}
+
+@media only screen and (min-width: 600px){
+    .dashboard--main{
+        width: 600px;
+         div{
+            width: 250px;
+            height: 175px;
+            margin-bottom: 3em;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .dashboard--main{
+        position: absolute;
+        right: 0;
+        width: calc(100% - 225px);
+        div{
+            width: 225px;
+            height: 150px;
+            margin-bottom: 1em;
+        }
+    }
 }

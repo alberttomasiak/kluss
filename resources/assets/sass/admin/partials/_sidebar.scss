@@ -1,6 +1,6 @@
 .sidebar--admin{
     display: block;
-    background-color: #8ac33f;
+    background-color: $darkWashington;
     ul{
         display: flex;
         flex-direction: row;
@@ -19,6 +19,26 @@
                 line-height: 1.1em;
                 display: block;
                 margin-top: .75em;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .sidebar--admin{
+        width: 225px;
+        height: calc(100vh - 40px);
+        position: absolute;
+        left: 0;
+        top: 40px;
+        ul{
+            flex-direction: column;
+            margin-top: 1em;
+            li{
+                width: 90%;
+                margin-left: auto;
+                margin-right: auto;
+                text-align: left;
             }
         }
     }
