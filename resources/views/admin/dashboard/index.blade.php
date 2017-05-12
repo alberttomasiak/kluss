@@ -31,6 +31,6 @@
     getData();
     window.setInterval(function(){
         getData();
-    }, 60000);
+    }, 300000);
 </script>
 @endsection
