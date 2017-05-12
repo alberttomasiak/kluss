@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Kluss;
 
 class AdminController extends Controller
 {
@@ -29,7 +30,14 @@ class AdminController extends Controller
                 return redirect('/home');
             }
         }
-
         return redirect()->back();
+    }
+
+    public function getData(){
+        $registeredUsers = User::getRegisteredUserCount();
+        $activeTasks = Kluss::getActiveTaskCount();
+        $goldUsers = User::getGoldUserCount();
+
+        return [$registeredUsers, $activeTasks, $goldUsers];
     }
 }

@@ -58,4 +58,12 @@ class User extends Authenticatable
             return false;
         }
     }
+
+    public static function getRegisteredUserCount(){
+        return self::where('account_type', '!=', 'admin')->count();
+    }
+
+    public static function getGoldUserCount(){
+        return self::where('account_type', '=', 'gold')->count();
+    }
 }

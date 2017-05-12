@@ -9,10 +9,6 @@
         <p>Geregistreerde gebruikers</p>
     </div>
     <div class="dashboard--block">
-        <p class="active--counter"></p>
-        <p>Actieve gebruikers</p>
-    </div>
-    <div class="dashboard--block">
         <p class="task--counter"></p>
         <p>Actieve klusjes</p>
     </div>
@@ -23,7 +19,14 @@
 </section>
 <script type="text/javascript">
     function getData(){
-        
+        $.ajaxSetup({
+            headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
+        });
+        $.get("/admin/getData", function(data, status){
+            $('.registered--counter').text(data[0]);
+            $('.task--counter').text(data[1]);
+            $('.gold--counter').text(data[2]);
+        });
     }
     getData();
     window.setInterval(function(){
