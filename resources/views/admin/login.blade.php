@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+    <div class="login-wrapper">
     <a class="back-to-kluss" href="/home">Terug naar Kluss</a>
     <section class="login--form">
         <img src="/assets/img/logo-kluss.png" alt="Kluss logo">
@@ -32,5 +33,5 @@
             <p class="admin--login-info">info@kluss.be</p>
         </div>
     </section>
-
+</div>
 @endsection
