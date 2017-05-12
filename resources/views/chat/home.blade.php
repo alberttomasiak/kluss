@@ -5,6 +5,10 @@
         .text-display{
             margin-bottom: 5em;
         }
+
+        .message img{
+            width: 60%;
+        }
     </style>
     <div class="container">
         <div class="row">
