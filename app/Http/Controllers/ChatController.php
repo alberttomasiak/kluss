@@ -71,9 +71,21 @@ class ChatController extends Controller
     public function requestChat($id){
         $user = \Auth::user()->id;
         $conversation = Conversation::getSingleConversation($id);
-        $chatName = $conversation["chatname"];
-        $conversation["user_one"] == $user ? $chatPartner = \App\User::get($conversation["user_two"]) : $chatPartner = \App\User::get($conversation["user_one"]);
-        return redirect('/chat/'.$chatName.'/'.str_slug($chatPartner));
+        if($conversation == null){
+            $chatroom = new Conversation();
+            //set name
+            $chatroom->user_one = \Auth::user()->id;
+            $chatroom->user_two = $id;
+            $chatroom->chatname = Hashids::encode(\Auth::user()->id, $id);
+            $chatroom->save();
+            //add user 2
+            $partner_name = User::get($id);
+            return redirect('/chat/'.$chatroom->chatname.'/'.str_slug($partner_name));
+        }else{
+            $chatName = $conversation["chatname"];
+            $conversation["user_one"] == $user ? $chatPartner = \App\User::get($conversation["user_two"]) : $chatPartner = \App\User::get($conversation["user_one"]);
+            return redirect('/chat/'.$chatName.'/'.str_slug($chatPartner));
+        }
     }
 
     public function startChat($chatName, $chatPartner){
