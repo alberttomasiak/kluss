@@ -34,10 +34,13 @@ class AdminController extends Controller
     }
 
     public function getData(){
+        // Users
         $registeredUsers = User::getRegisteredUserCount();
         $activeTasks = Kluss::getActiveTaskCount();
         $goldUsers = User::getGoldUserCount();
+        // Tasks
 
+        // Messages
         return [$registeredUsers, $activeTasks, $goldUsers];
     }
 }
