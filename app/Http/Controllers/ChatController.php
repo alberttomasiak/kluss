@@ -42,7 +42,7 @@ class ChatController extends Controller
         $conversationsLeft = Conversation::getUserConversationsLeft($user);
         $conversationsRight = Conversation::getUserConversationsRight($user);
         $firstConversation = Conversation::getSingleConversationByChatname($chatName);
-        return $match == null ? view('home') : view('chat.overview', ['chatChannel' => $chatName, 'messages' => $messages, 'user' => $chatPartner, 'conversationsLeft' => $conversationsLeft, 'conversationsRight' => $conversationsRight, 'firstConversation' => $firstConversation]);
+        return $match == null ? redirect('/home') : view('chat.overview', ['chatChannel' => $chatName, 'messages' => $messages, 'user' => $chatPartner, 'conversationsLeft' => $conversationsLeft, 'conversationsRight' => $conversationsRight, 'firstConversation' => $firstConversation]);
     }
 
     public function postMessage(Request $request)
@@ -83,6 +83,6 @@ class ChatController extends Controller
         $conversationsLeft = Conversation::getUserConversationsLeft($user);
         $conversationsRight = Conversation::getUserConversationsRight($user);
         $firstConversation = Conversation::getSingleConversationByChatname($chatName);
-        return $match == null ? view('home') : view('chat.overview', ['chatChannel' => $chatName, 'messages' => $messages, 'user' => $chatPartner, 'conversationsLeft' => $conversationsLeft, 'conversationsRight' => $conversationsRight, 'firstConversation' => $firstConversation]);
+        return $match == null ? redirect('/home') : view('chat.overview', ['chatChannel' => $chatName, 'messages' => $messages, 'user' => $chatPartner, 'conversationsLeft' => $conversationsLeft, 'conversationsRight' => $conversationsRight, 'firstConversation' => $firstConversation]);
     }
 }

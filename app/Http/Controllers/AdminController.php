@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Kluss;
 use App\Message;
+use App\Conversation;
 
 class AdminController extends Controller
 {
@@ -43,8 +44,9 @@ class AdminController extends Controller
         // Tasks
         $activeTasks = Kluss::getActiveTaskCount();
         $closedTasks = Kluss::getClosedTaskCount();
-        // Messages
-        $sentMessages = Message::getSentMessagesCount();;
-        return [$registeredUsers, $activeTasks, $goldUsers];
+        // Conversations
+        $conversationsCounter = Conversation::getConversationsCounter();
+        $sentMessages = Message::getSentMessagesCount();
+        return [$registeredUsers, $verifiedUsers, $goldUsers, $blockedUsers, $activeTasks, $closedTasks, $conversationsCounter, $sentMessages];
     }
 }

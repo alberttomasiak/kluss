@@ -30,7 +30,11 @@
         <p class="closed--counter"></p>
         <p>Afgesloten klusjes</p>
     </div>
-    <h2>Berichten</h2>
+    <h2>Gesprekken</h2>
+    <div>
+        <p class="conversations--counter"></p>
+        <p>Lopende gesprekken</p>
+    </div>
     <div>
         <p class="messages--counter"></p>
         <p>Verstuurde berichtjes</p>
@@ -52,7 +56,8 @@
             $('.task--counter').text(data[4]);
             $('.closed--counter').text(data[5]);
             // Messages
-            $('.messages--counter').text(data[6]);
+            $('.conversations--counter').text(data[6]);
+            $('.messages--counter').text(data[7]);
         });
     }
     getData();
