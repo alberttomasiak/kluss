@@ -27,7 +27,7 @@
         <p>Actieve klusjes</p>
     </div>
     <div>
-        <p class="finished--counter"></p>
+        <p class="closed--counter"></p>
         <p>Afgesloten klusjes</p>
     </div>
     <h2>Berichten</h2>
@@ -45,11 +45,14 @@
             // We populate our divs with live data from the database
             // Users
             $('.registered--counter').text(data[0]);
+            $('.verified--counter').text(data[1]);
             $('.gold--counter').text(data[2]);
+            $('.blocked--counter').text(data[3]);
             // Tasks
-            $('.task--counter').text(data[1]);
-                
+            $('.task--counter').text(data[4]);
+            $('.closed--counter').text(data[5]);
             // Messages
+            $('.messages--counter').text(data[6]);
         });
     }
     getData();

@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Kluss;
+use App\Message;
 
 class AdminController extends Controller
 {
@@ -36,11 +37,14 @@ class AdminController extends Controller
     public function getData(){
         // Users
         $registeredUsers = User::getRegisteredUserCount();
-        $activeTasks = Kluss::getActiveTaskCount();
+        $verifiedUsers = User::getVerifiedUserCount();
         $goldUsers = User::getGoldUserCount();
+        $blockedUsers = User::getBlockedUserCount();
         // Tasks
-
+        $activeTasks = Kluss::getActiveTaskCount();
+        $closedTasks = Kluss::getClosedTaskCount();
         // Messages
+        $sentMessages = Message::getSentMessagesCount();;
         return [$registeredUsers, $activeTasks, $goldUsers];
     }
 }

@@ -29,7 +29,7 @@
     div:first-child{
         margin-top: 2em;
     }
-    h1{
+    h1, h2{
         font-size: 1.4em;
         text-transform: uppercase;
         font-weight: bold;
@@ -46,6 +46,14 @@
             margin-top: .5em;
             height: 7px;
             background-color: black;
+        }
+    }
+    h2{
+        font-size: 1em;
+        &::after{
+            content: "";
+            width: 50px;
+            height: 7px;
         }
     }
 }
@@ -67,7 +75,7 @@
             margin-right: 0;
         }
 
-        h1{
+        h1, h2{
             width: 90%;
         }
         div:first-child{
@@ -98,7 +106,7 @@
             height: 150px;
             margin-bottom: 1em;
         }
-        h1{
+        h1, h2{
             width: 100%;
         }
     }
