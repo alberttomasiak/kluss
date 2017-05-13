@@ -60,7 +60,9 @@ class User extends Authenticatable
     }
 
     public static function getRegisteredUserCount(){
-        return self::where('account_type', '!=', 'admin')->count();
+        // first option doesn't include admins :)
+        //return self::where('account_type', '!=', 'admin')->count();
+        return self::count();
     }
 
     public static function getGoldUserCount(){
