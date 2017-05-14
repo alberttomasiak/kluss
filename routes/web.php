@@ -19,8 +19,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/login', function(){
-    return view('auth/login')->with('title', 'Log in');
+    return redirect('/aanmelden');
 });
+
+Route::get('/aanmelden', function(){
+    return view('auth/login')->with('title', 'Aanmelden');
+});
+Route::post('/aanmelden', 'UserController@login');
 
 Route::get('/register', function(){
     return view('auth/register')->with('title', 'Registreer');

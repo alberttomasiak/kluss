@@ -7,7 +7,7 @@
             <div class="logreg--logo"></div>
             <div class="panel logreg--form">
                 <div class="logreg--body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/aanmelden') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

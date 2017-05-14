@@ -6,9 +6,14 @@
         <img src="/assets/img/logo-kluss.png" alt="Kluss logo">
         <form class="" action="{{ url('/admin/login') }}" method="post">
             {{ csrf_field() }}
+            @if (session('not_admin'))
+                <div class="not_admin">
+                    {{ session('not_admin') }}
+                </div>
+            @endif
             <div class="{{ $errors->has('email') ? ' has-error' : '' }}">
                 <label for="email">E-mail:</label>
-                <input id="email" type="email" class="" name="email" value="{{ old('email') }}" placeholder="E-mail" required autofocus>
+                <input id="email" type="email" class="" name="email" value="{{ old('email') }}" placeholder="E-mail" autofocus>
                 @if ($errors->has('email'))
                     <span class="help-block">
                         <strong>{{ $errors->first('email') }}</strong>
@@ -17,7 +22,7 @@
             </div>
             <div class="{{ $errors->has('password') ? ' has-error' : '' }}">
                 <label for="password">Wachtwoord:</label>
-                <input id="password" type="password" placeholder="Wachtwoord" class="" name="password" required>
+                <input id="password" type="password" placeholder="Wachtwoord" class="" name="password">
                 @if ($errors->has('password'))
                     <span class="help-block">
                         <strong>{{ $errors->first('password') }}</strong>

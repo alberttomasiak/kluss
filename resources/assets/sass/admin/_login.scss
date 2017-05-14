@@ -12,6 +12,9 @@ body{
     background-color: $washington;
 }
 
+.help-block{ margin-top: .5em; display: block; color: red; }
+.not_admin{ line-height: 1.1em; color: red;}
+
 .login--form{
     background-color: #fff;
     display: block;
@@ -132,9 +135,10 @@ input:-webkit-autofill:active {
         margin-top: -200px;
         left: 0;
         right: 0;
+        padding-bottom: 2em;
     }
 
     .admin--login-footer{
-        padding-top: 1em;
+        padding-top: 3em;
     }
 }

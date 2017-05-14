@@ -59,6 +59,10 @@ class User extends Authenticatable
         }
     }
 
+    public static function getByEmail($email){
+        return self::where('email', $email)->get();
+    }
+
     public static function getRegisteredUserCount(){
         // first option doesn't include admins :)
         //return self::where('account_type', '!=', 'admin')->count();

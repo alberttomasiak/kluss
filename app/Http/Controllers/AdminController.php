@@ -21,17 +21,23 @@ class AdminController extends Controller
 
     public function login(Request $request){
         // custom authentication method
-        if(Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ])){
-            $user = User::where('email', $request->email)->first();
-            if(User::is_admin($user->account_type)){
+        $this->validate($request, [
+            'email' => 'required',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+        if(User::is_admin($user->account_type)){
+            if(Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])){
                 return redirect('/admin/dashboard');
-            }else{
-                return redirect('/home');
             }
+        }else{
+            return redirect()->back()->with('not_admin', 'Deze gegevens komen niet overeen met onze data.');
         }
+
         return redirect()->back();
     }
 
