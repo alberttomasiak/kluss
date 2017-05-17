@@ -61,4 +61,8 @@ class Conversation extends Model
     public static function matchConversationName($name){
         return self::where('chatname', $name)->first();
     }
+
+    public static function getConversationsCounter(){
+        return self::count();
+    }
 }

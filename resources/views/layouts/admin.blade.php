@@ -12,7 +12,8 @@
 
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
-    <link href="/assets/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/reset.css">
+    <link href="/assets/css/admin.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Scripts -->
@@ -35,11 +36,11 @@
 
 </script>
     <div class="page">
-        @include('layouts.header')
+        @include('layouts.admin.header')
         <div class="page-content">
                 @yield('content')
         </div>
-        @include('layouts.footer')
+        @include('layouts.admin.footer')
     </div>
 
     <!-- Scripts -->

@@ -19,8 +19,13 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/login', function(){
-    return view('auth/login')->with('title', 'Log in');
+    return redirect('/aanmelden');
 });
+
+Route::get('/aanmelden', function(){
+    return view('auth/login')->with('title', 'Aanmelden');
+});
+Route::post('/aanmelden', 'UserController@login');
 
 Route::get('/register', function(){
     return view('auth/register')->with('title', 'Registreer');
@@ -56,4 +61,18 @@ Route::group(['middleware' => ['auth']], function(){
     // Route::get('/chat/overview','ChatController@overview');
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
+});
+
+Route::group(['prefix' => 'admin'], function () {
+    // Login route
+    Route::get('/', function(){
+        return redirect('/admin/dashboard');
+    });
+    Route::get('login', 'AdminController@index');
+    Route::post('login', 'AdminController@login');
+    Route::get('getData', 'AdminController@getData');
+    Route::group(['middleware' => ['AdminAccess']], function(){
+        Route::get('dashboard', 'AdminController@dashboard');
+        // Route::get('users', ...);
+    });
 });

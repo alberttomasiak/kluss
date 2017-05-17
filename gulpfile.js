@@ -8,7 +8,7 @@ var pngquant = require('imagemin-pngquant'); // bundled with imagemin
 var uglify = require('gulp-uglify'); // minify javascript files
 //var livereload = livereload = require('gulp-livereload'); // live reload with chrome extension
 
-gulp.task('default', ['css-minify', 'image-minify', 'compress-js', 'sass']);
+gulp.task('default', ['css-minify', 'image-minify', 'compress-js', 'sass', 'admin']);
 
 gulp.task('party', function(){
 		console.log("Making my way downtown, walking fast, faces pass, and I'm home-bound.");
@@ -24,6 +24,15 @@ gulp.task('sass', function(){
 		.pipe(sourcemaps.write('./maps'))
 		.pipe(gulp.dest('public/assets/css'));
 		//.pipe(livereload());
+});
+
+// Admin sass -> compress + minify & store in public
+gulp.task('admin', function(){
+	return gulp.src('resources/assets/sass/admin.scss')
+		.pipe(sourcemaps.init())
+		.pipe(sass({outputStyle: 'compressed'})) // sass -> css
+		.pipe(sourcemaps.write('./maps'))
+		.pipe(gulp.dest('public/assets/css'));
 });
 
 gulp.task('css-minify', function(){
@@ -55,6 +64,13 @@ gulp.task('compress-js', function() {
 gulp.task('watch', function(){
 	//livereload.reload();
 	gulp.watch('resources/assets/sass/**/*.scss', ['sass']);
+	gulp.watch('resources/assets/img/*', ['image-minify']);
+	gulp.watch('resources/assets/css/**/*.css', ['css-minify']);
+	gulp.watch('resources/assets/js/*.js', ['compress-js']);
+});
+
+gulp.task('adminWatch', function(){
+	gulp.watch('resources/assets/sass/**/*.scss', ['admin']);
 	gulp.watch('resources/assets/img/*', ['image-minify']);
 	gulp.watch('resources/assets/css/**/*.css', ['css-minify']);
 	gulp.watch('resources/assets/js/*.js', ['compress-js']);

@@ -50,4 +50,34 @@ class User extends Authenticatable
         }
         return self::$lijst[$key];
     }
+
+    public static function is_admin($account_type){
+        if($account_type == "admin"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    public static function getByEmail($email){
+        return self::where('email', $email)->get();
+    }
+
+    public static function getRegisteredUserCount(){
+        // first option doesn't include admins :)
+        //return self::where('account_type', '!=', 'admin')->count();
+        return self::count();
+    }
+
+    public static function getGoldUserCount(){
+        return self::where('account_type', '=', 'gold')->count();
+    }
+
+    public static function getVerifiedUserCount(){
+        return self::where('verified', '=', '1')->count();
+    }
+
+    public static function getBlockedUserCount(){
+        return self::where('blocked', '=', '1')->count();
+    }
 }

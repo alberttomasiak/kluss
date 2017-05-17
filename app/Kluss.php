@@ -44,4 +44,12 @@ class Kluss extends Model
                HAVING distance < 2.5
                ORDER BY distance;"));
     }
+
+    public static function getActiveTaskCount(){
+        return self::where('accepted', '=', '0')->count();
+    }
+
+    public static function getClosedTaskCount(){
+        return self::where('closed', '=', '1')->count();
+    }
 }

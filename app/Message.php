@@ -35,4 +35,8 @@ class Message extends Model
     public static function formatDate($date){
         return Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/y H:i:s');
     }
+
+    public static function getSentMessagesCount(){
+        return self::count();
+    }
 }
