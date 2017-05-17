@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Location;
 use App\Kluss;
 use DB;
+use App\Conversation;
+use App\Message;
 
 class HomeController extends Controller
 {
@@ -27,6 +29,8 @@ class HomeController extends Controller
     public function index()
     {
         $klussjes = \App\Kluss::getPublished();
+        Conversation::createConversation(\Auth::user()->email);
+        Message::sendDefaultMessage(\Auth::user()->email);
         return view('home', compact('klussjes', $klussjes));
     }
 
