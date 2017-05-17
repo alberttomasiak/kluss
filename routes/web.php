@@ -63,8 +63,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
 });
 
-
-
 Route::group(['prefix' => 'admin'], function () {
     // Login route
     Route::get('/', function(){
@@ -75,5 +73,6 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('getData', 'AdminController@getData');
     Route::group(['middleware' => ['AdminAccess']], function(){
         Route::get('dashboard', 'AdminController@dashboard');
+        // Route::get('users', ...);
     });
 });
