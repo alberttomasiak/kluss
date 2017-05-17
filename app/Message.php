@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use \Carbon;
+use App\User;
 
 class Message extends Model
 {
@@ -39,4 +40,12 @@ class Message extends Model
     public static function getSentMessagesCount(){
         return self::count();
     }
+
+    public static function sendDefaultMessage($email){
+        $userID = User::getIdByMail($email);
+        $chatUserID = User::getIdByMail("chat@kluss.be");
+        $chatID = Conversation::getConversationForDefaultUser($chatUserID, $userID);
+        return self::insert(["message" => "Hey! Ik ben de contactpersoon van Kluss. Als je vragen hebt, kan je die gerust aan mij stellen.", "user_id" => $chatUserID, "conversation_id" => $chatID, "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]);
+    }
+
 }

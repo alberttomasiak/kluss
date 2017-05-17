@@ -26,7 +26,17 @@ class UserTableSeeder extends Seeder
             'account_type' => 'admin',
         ]);
 
-        // Tom
+        // Onzen chat maaafk
+        DB::table('users')->insert([
+            'name' => 'Chat',
+            'email' => 'chat@kluss.be',
+            'password' => bcrypt('T95158I54wvp'),
+            'account_type' => 'admin',
+            'verified' => '1',
+            'blocked' => '0',
+        ]);
+
+        // Den Albert eh ;)
         DB::table('users')->insert([
             'name' => 'DJ Khaled',
             'email' => 'tomasiakalbert@gmail.com',
