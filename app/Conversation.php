@@ -3,6 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
+use Vinkla\Hashids\Facades\Hashids;
+use \Carbon;
 
 class Conversation extends Model
 {
@@ -64,5 +67,18 @@ class Conversation extends Model
 
     public static function getConversationsCounter(){
         return self::count();
+    }
+
+    public static function getConversationForDefaultUser($chat, $realUser){
+        return self::where([
+            ["user_one", "=", $chat],
+            ["user_two", "=", $realUser],
+        ])->pluck("id")->first();
+    }
+
+    public static function createConversation($email){
+        $userID = User::getIdByMail($email);
+        $chatUserID = User::getIdByMail("chat@kluss.be");
+        return self::insert(["user_one" => $chatUserID, "user_two" => $userID, "chatname" => Hashids::encode($chatUserID, $userID), "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]);
     }
 }

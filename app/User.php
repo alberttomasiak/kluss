@@ -80,4 +80,12 @@ class User extends Authenticatable
     public static function getBlockedUserCount(){
         return self::where('blocked', '=', '1')->count();
     }
+
+    public static function getIdByMail($mail){
+        return self::where("email", $mail)->pluck("id")->first();
+    }
+
+    public static function getUserMail($id){
+        return self::where("id", $id)->pluck("email")->first();
+    }
 }
