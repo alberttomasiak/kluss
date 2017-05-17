@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('bio')->default("Vul me in!");
             $table->integer('user_rating')->default('0');
             $table->string('account_type')->default('normal');
+            $table->integer('verified')->default('0');
+            $table->integer('blocked')->default('0');
             $table->rememberToken();
             $table->timestamps();
         });

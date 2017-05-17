@@ -59,11 +59,25 @@ class User extends Authenticatable
         }
     }
 
+    public static function getByEmail($email){
+        return self::where('email', $email)->get();
+    }
+
     public static function getRegisteredUserCount(){
-        return self::where('account_type', '!=', 'admin')->count();
+        // first option doesn't include admins :)
+        //return self::where('account_type', '!=', 'admin')->count();
+        return self::count();
     }
 
     public static function getGoldUserCount(){
         return self::where('account_type', '=', 'gold')->count();
+    }
+
+    public static function getVerifiedUserCount(){
+        return self::where('verified', '=', '1')->count();
+    }
+
+    public static function getBlockedUserCount(){
+        return self::where('blocked', '=', '1')->count();
     }
 }
