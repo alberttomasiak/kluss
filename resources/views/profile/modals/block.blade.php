@@ -15,15 +15,15 @@
             {{-- Dropdown radio group --}}
             <div class="form-group">
                 <select name="block_category" class="form-control" id="sel1">
-                    <option value="1">Misbruik Regels</option>
-                    <option value="2">Grof gedrag t.o.v. anderen</option>
-                    <option value="3">Plaatsing van offensieve klusjes</option>
+                    @foreach($block_categories as $block_category)
+                        <option value="{{$block_category->id}}">{{$block_category->name}}</option>
+                    @endforeach
                 </select>
             </div>
             <p>Extra informatie voor rapportering:</p>
             {{-- textarea --}}
             <div class="form-group">
-                <textarea name="block_reason" rows="8" cols="80"></textarea>
+                <textarea name="block_reason" class="form-control" id="comment" rows="8" style="text-indent: .5em; height: 5em;" cols="20" placeholder="Extra informatie..."></textarea>
             </div>
         </form>
       </div>
