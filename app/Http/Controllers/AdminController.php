@@ -8,6 +8,7 @@ use App\User;
 use App\Kluss;
 use App\Message;
 use App\Conversation;
+use App\UserBlocks;
 
 class AdminController extends Controller
 {
@@ -47,12 +48,13 @@ class AdminController extends Controller
         $verifiedUsers = User::getVerifiedUserCount();
         $goldUsers = User::getGoldUserCount();
         $blockedUsers = User::getBlockedUserCount();
+        $reportedCounter = UserBlocks::userReportCount();
         // Tasks
         $activeTasks = Kluss::getActiveTaskCount();
         $closedTasks = Kluss::getClosedTaskCount();
         // Conversations
         $conversationsCounter = Conversation::getConversationsCounter();
         $sentMessages = Message::getSentMessagesCount();
-        return [$registeredUsers, $verifiedUsers, $goldUsers, $blockedUsers, $activeTasks, $closedTasks, $conversationsCounter, $sentMessages];
+        return [$registeredUsers, $verifiedUsers, $goldUsers, $blockedUsers, $reportedCounter, $activeTasks, $closedTasks, $conversationsCounter, $sentMessages];
     }
 }

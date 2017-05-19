@@ -20,4 +20,8 @@ class UserBlocks extends Model
             ['blocked_id', '=', $blocked]
         ])->first();
     }
+
+    public static function userReportCount(){
+        return self::count();
+    }
 }

@@ -21,6 +21,10 @@
         <p class="blocked--counter"></p>
         <p>Geblokkeerde gebruikers</p>
     </div>
+    <div>
+        <p class="reported--counter"></p>
+        <p>Rapporteringen</p>
+    </div>
     <h2>Klusjes</h2>
     <div>
         <p class="task--counter"></p>
@@ -52,12 +56,13 @@
             $('.verified--counter').text(data[1]);
             $('.gold--counter').text(data[2]);
             $('.blocked--counter').text(data[3]);
+            $('.reported--counter').text(data[4]);
             // Tasks
-            $('.task--counter').text(data[4]);
-            $('.closed--counter').text(data[5]);
+            $('.task--counter').text(data[5]);
+            $('.closed--counter').text(data[6]);
             // Messages
-            $('.conversations--counter').text(data[6]);
-            $('.messages--counter').text(data[7]);
+            $('.conversations--counter').text(data[7]);
+            $('.messages--counter').text(data[8]);
         });
     }
     getData();
