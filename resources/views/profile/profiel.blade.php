@@ -22,7 +22,8 @@
                         {{ csrf_field() }}
                         <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
                     </form>
-                    <a href="#blockModal" data-toggle="modal" class="btn btn-danger">Rapporteer gebruiker</a>
+                    <a href="#blockModal" data-toggle="modal" role="button" class="btn blockModal btn-danger">Rapporteer gebruiker</a>
+                    @include('profile.modals.block')
                 @endif
             </div>
         </div>

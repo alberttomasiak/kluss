@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
+    Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // test routes
     // Route::get('/send', 'EmailController@send');
     // Chat routes
