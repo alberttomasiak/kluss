@@ -8,6 +8,7 @@ use App\UserBlocks;
 class UserBlockController extends Controller
 {
     public function blockUser(Request $request){
+        // dd($request);
         $blockedID = $request->blocked_id;
         $blockerID = $request->blocker_id;
         $block_category = $request->block_category;
@@ -19,8 +20,8 @@ class UserBlockController extends Controller
             $block = new UserBlocks;
             $block->blocker_id = $blockerID;
             $block->blocked_id = $blockedID;
-            $block_category = $block_category;
-            $block_reason = $block_reason;
+            $block->block_category = $block_category;
+            $block->block_reason = $block_reason;
             $block->save();
             return redirect()->back()->with('succesful_report', 'De gebruiker werd successvol gerapporteerd.');
         }else{
