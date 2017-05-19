@@ -14,4 +14,10 @@ class UserBlocks extends Model
     public $table = "user_blocks";
 
     // Our functions
+    public static function checkForBlocks($blocker, $blocked){
+        return self::where([
+            ['blocker_id', '=', $blocker],
+            ['blocked_id', '=', $blocked]
+        ])->first();
+    }
 }
