@@ -19,7 +19,8 @@ class CreateUserBlocksTable extends Migration
             $table->foreign('blocker_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('blocked_id')->unsigned();
             $table->foreign('blocked_id')->references('id')->on('users')->onDelete('cascade');
-            $table->integer('block_category')->default('0');
+            $table->foreign('block_category')->unsigned();
+            $table->integer('block_category')->references('id')->on('block_reasons')->onDelete('cascade');
             $table->text('block_reason');
             $table->timestamps();
         });
