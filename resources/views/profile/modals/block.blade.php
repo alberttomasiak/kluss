@@ -14,7 +14,7 @@
             <p>Reden voor rapportering:</p>
             {{-- Dropdown radio group --}}
             <div class="form-group">
-                <select name="block_category" class="form-control" id="sel1">
+                <select name="block_category" class="form-control" id="sel1" style="height: 45px;">
                     @foreach($block_categories as $block_category)
                         <option value="{{$block_category->id}}">{{$block_category->name}}</option>
                     @endforeach

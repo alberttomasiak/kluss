@@ -24,6 +24,16 @@
                     </form>
                     <a href="#blockModal" data-toggle="modal" role="button" class="btn blockModal btn-danger">Rapporteer gebruiker</a>
                     @include('profile.modals.block')
+                    @if(session('succesful_report'))
+                        <div class="succesful_report">
+                            <p>{{ session('succesful_report') }}</p>
+                        </div>
+                    @endif
+                    @if(session('already_blocked'))
+                        <div class="already_blocked">
+                            <p>{{ session('already_blocked') }}</p>
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
