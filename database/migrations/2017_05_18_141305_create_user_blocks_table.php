@@ -15,7 +15,9 @@ class CreateUserBlocksTable extends Migration
     {
         Schema::create('user_blocks', function(Blueprint $table){
             $table->increments('id');
+            $table->integer('blocker_id')->unsigned();
             $table->foreign('blocker_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('blocked_id')->unsigned();
             $table->foreign('blocked_id')->references('id')->on('users')->onDelete('cascade');
             $table->integer('block_category')->default('0');
             $table->text('block_reason');
