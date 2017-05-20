@@ -51,6 +51,10 @@ a{
     overflow: initial;
 }
 
+nav a:hover{
+    border-bottom: 5px solid #2E9C4E;
+}
+
 .primary-nav{
     height: 60px;
     background-color: #FFFFFA;
