@@ -1,0 +1,173 @@
+﻿@charset "UTF-8";
+
+/*
+  Temporary CSS Edits, These have to be merged with the main app.css later
+  Edits yoho jaja en nog eens, en NOG EENS? EN NOG KEERPLZ? FINAL TEST!
+*/
+
+
+/* Aanpassingen Schamuel */
+
+html {
+    min-height: 100% !important;
+    height: 100% !important;
+}
+
+body {
+    font-family: 'Karla', sans-serif;
+    background-color: #F3F3F3;
+    min-height: 100% !important;
+    height: 100% !important;
+}
+
+a,
+h1,
+h2,
+h2.intro,
+h3,
+p {
+    font-family: 'Karla', sans-serif;
+}
+
+#page-wrap {
+    min-height: 100%;
+    overflow: initial;
+}
+
+.primary-nav{
+    height: 60px;
+    background-color: #FFFFFA;
+    display: flex;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-align-content: stretch;
+    -ms-flex-line-pack: stretch;
+    align-content: stretch;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999
+}
+
+.primary-nav a{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.primary-nav-left{
+    width: 40%;
+}
+
+.primary-nav-left a{
+    text-decoration: none;
+    color: #2E9C4E;
+}
+
+.primary-nav-left img{
+
+}
+
+.primary-nav-center{
+    width: 10%;
+}
+
+.primary-nav-right{
+    width: 40%;
+    padding: 20px;
+    float: right;
+}
+
+.primary-nav-right a{
+    text-decoration: none;
+}
+
+.addboxshadow {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -o-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+}
+
+.btn {
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    -o-border-radius: 7px;
+    border-radius: 7px;
+    border: 0;
+    font-family: 'Karla', sans-serif;
+    color: #ffffff;
+    background: #2E9C4E;
+    padding: 10px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #8BC53F;
+    text-decoration: none;
+}
+
+/* FOOTER */
+
+footer {
+    background-color: #2E9C4E;
+    color: #fff;
+    padding: 2em 1em;
+    left: 0;
+}
+
+footer .footer-content {
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    margin: 0 auto;
+    width: 100%;
+    max-width: 960px;
+
+}
+
+.footer {
+    position: relative !important;
+    z-index: 7 !important;
+}
+
+.footer-content {
+    display: block !important;
+}
+
+.footer-content section {
+    /*width: 200px !important;*/
+    display: block !important;
+    float: left !important;
+    margin: 0 55px 0 0 !important;
+}
+
+/* FLEX & CONTAINER */
+
+.container {
+    width: 70%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 90px;
+    margin-bottom: 40px;
+    background-color: #FFFFFA;
+}
+
+#page-wrap {
+    display: flex;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
+    transition: all .3s ease;
+    width: 100%
+}
+
+
