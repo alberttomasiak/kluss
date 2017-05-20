@@ -80,3 +80,7 @@ Route::group(['prefix' => 'admin'], function () {
 Route::get('/terms', function () {
     return view('/terms');
 });
+
+Route::get('/team', function () {
+    return view('/team');
+});
