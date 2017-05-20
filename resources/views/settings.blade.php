@@ -25,10 +25,10 @@
     </div>
 </nav>
 
-<div class="addboxshadow container" style="height: 1300px;">
+<div class="addboxshadow container" style="height: 1100px;">
     <h1 style="float: left; padding: 15px;">Instellingen</h1>
     <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-    <div style="height: 605px; float: left; width: 20%; margin-left: 30px; margin-top: -10px; border-right: 1px solid #677578;">
+    <div style="height: 1007px; float: left; width: 20%; margin-left: 30px; margin-top: -10px; border-right: 1px solid #677578;">
         <section style="margin-top: 30px;">
         <a href="#">Persoonlijke informatie <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
         <br><br>
