@@ -88,3 +88,7 @@ Route::get('/team', function () {
 Route::get('/what', function () {
     return view('/what');
 });
+
+Route::get('/settings', function () {
+    return view('/settings');
+});
