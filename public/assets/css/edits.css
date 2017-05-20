@@ -24,9 +24,26 @@ a,
 h1,
 h2,
 h2.intro,
-h3,
-p {
-    font-family: 'Karla', sans-serif;
+h3{
+    font-family: 'Coolvetica', sans-serif;
+}
+
+p{
+    font-family: 'Lato', sans-serif;
+    line-height: 25px;
+    color: #677578;
+}
+
+h1,
+h2,
+h3{
+    color: #2E9C4E;
+    font-size: 25px;
+}
+
+a{
+    color: #2E9C4E;
+    text-decoration: none;
 }
 
 #page-wrap {
@@ -168,6 +185,26 @@ footer .footer-content {
     overflow-x: hidden;
     transition: all .3s ease;
     width: 100%
+}
+
+.centraliseren{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ANIMATIONS */
+
+.animationout{
+    -webkit-transition: all 200ms ease;
+    -moz-transition: all 200ms ease;
+    -o-transition: all 200ms ease;
+    -ms-transition: all 200ms ease;
+    transition: all 200ms ease;
+}
+
+.animationout:hover {
+    transform: scale(0.95);
 }
 
 
