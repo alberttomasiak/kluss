@@ -84,3 +84,7 @@ Route::get('/terms', function () {
 Route::get('/team', function () {
     return view('/team');
 });
+
+Route::get('/what', function () {
+    return view('/what');
+});
