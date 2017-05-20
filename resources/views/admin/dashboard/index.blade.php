@@ -6,41 +6,41 @@
     <h1>Dashboard</h1>
     <h2>Gebruikers</h2>
     <div>
-        <p class="registered--counter"></p>
+        <p class="registered--counter">-</p>
         <p>Geregistreerde gebruikers</p>
     </div>
     <div>
-        <p class="verified--counter"></p>
+        <p class="verified--counter">-</p>
         <p>Geverifiëerde gebruikers</p>
     </div>
     <div>
-        <p class="gold--counter"></p>
+        <p class="gold--counter">-</p>
         <p>Gold gebruikers</p>
     </div>
     <div>
-        <p class="blocked--counter"></p>
+        <p class="blocked--counter">-</p>
         <p>Geblokkeerde gebruikers</p>
     </div>
     <div>
-        <p class="reported--counter"></p>
+        <p class="reported--counter">-</p>
         <p>Rapporteringen</p>
     </div>
     <h2>Klusjes</h2>
     <div>
-        <p class="task--counter"></p>
+        <p class="task--counter">-</p>
         <p>Actieve klusjes</p>
     </div>
     <div>
-        <p class="closed--counter"></p>
+        <p class="closed--counter">-</p>
         <p>Afgesloten klusjes</p>
     </div>
     <h2>Gesprekken</h2>
     <div>
-        <p class="conversations--counter"></p>
+        <p class="conversations--counter">-</p>
         <p>Lopende gesprekken</p>
     </div>
     <div>
-        <p class="messages--counter"></p>
+        <p class="messages--counter">-</p>
         <p>Verstuurde berichtjes</p>
     </div>
 </section>

@@ -57,4 +57,24 @@ class AdminController extends Controller
         $sentMessages = Message::getSentMessagesCount();
         return [$registeredUsers, $verifiedUsers, $goldUsers, $blockedUsers, $reportedCounter, $activeTasks, $closedTasks, $conversationsCounter, $sentMessages];
     }
+
+    // Users
+    public function userOverview(){
+        
+    }
+
+    public function userReports(){
+
+    }
+
+    public function userBlocks(){
+
+    }
+    // Klusjes
+    public function taskOverview(){
+
+    }
+    public function taskClosed(){
+
+    }
 }
