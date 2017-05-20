@@ -82,4 +82,8 @@ class AdminController extends Controller
         $X = 0;
         return view('admin.tasks.closed', ['X' => $X]);
     }
+    // settings
+    public function settingsIndex(){
+        return view('admin.settings.index');
+    }
 }

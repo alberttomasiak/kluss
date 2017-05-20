@@ -83,5 +83,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('klusjes', 'AdminController@taskOverview');
         Route::get('klusjes/overzicht','AdminController@taskOverview');
         Route::get('klusjes/afgesloten','AdminController@taskClosed');
+        // Settings
+        Route::get('settings', 'AdminController@settingsIndex');
     });
 });

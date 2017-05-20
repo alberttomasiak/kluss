@@ -24,4 +24,8 @@ class UserBlocks extends Model
     public static function userReportCount(){
         return self::count();
     }
+
+    public static function blockCounter($userID){
+        return self::where('blocked_id', $userID)->count();
+    }
 }

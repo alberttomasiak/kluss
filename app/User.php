@@ -69,6 +69,12 @@ class User extends Authenticatable
         return self::count();
     }
 
+    public function BANHAMER($foolsID){
+        // Banhammer initiate
+        return self::where('id', $foolsID)->update(['blocked' => 1]);
+    }
+
+    // ADMIN FUNCTIONS
     public static function getGoldUserCount(){
         return self::where('account_type', '=', 'gold')->count();
     }

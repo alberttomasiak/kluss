@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserBlocks;
+use App\User;
 
 class UserBlockController extends Controller
 {
@@ -23,6 +24,10 @@ class UserBlockController extends Controller
             $block->block_category = $block_category;
             $block->block_reason = $block_reason;
             $block->save();
+            $checkForBlocks = UserBlocks::blockCounter($blockedID);
+            if($checkForBlocks >= 3){
+                $banThatFool = User::BANHAMMER($blockedID);
+            }
             return redirect()->back()->with('succesful_report', 'De gebruiker werd successvol gerapporteerd.');
         }else{
             return redirect()->back()->with('already_blocked', 'De gebruiker werd door u al gerapporteerd.');
