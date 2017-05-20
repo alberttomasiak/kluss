@@ -60,21 +60,26 @@ class AdminController extends Controller
 
     // Users
     public function userOverview(){
-        
+        $X = 0;
+        return view('admin.users.overview', ['X' => $X]);
     }
 
     public function userReports(){
-
+        $X = 0;
+        return view('admin.users.reports', ['X' => $X]);
     }
 
     public function userBlocks(){
-
+        $X = 0;
+        return view('admin.users.blocks', ['X' => $X]);
     }
     // Klusjes
     public function taskOverview(){
-
+        $X = 0;
+        return view('admin.tasks.overview', ['X' => $X]);
     }
     public function taskClosed(){
-
+        $X = 0;
+        return view('admin.tasks.closed', ['X' => $X]);
     }
 }

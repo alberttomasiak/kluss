@@ -75,10 +75,12 @@ Route::group(['prefix' => 'admin'], function () {
     Route::group(['middleware' => ['AdminAccess']], function(){
         Route::get('dashboard', 'AdminController@dashboard');
         // Users
+        Route::get('gebruikers', 'AdminController@userOverview');
         Route::get('gebruikers/overzicht', 'AdminController@userOverview');
         Route::get('gebruikers/rapporteringen', 'AdminController@userReports');
         Route::get('gebruikers/blocks', 'AdminController@userBlocks');
         // Klusjes
+        Route::get('klusjes', 'AdminController@taskOverview');
         Route::get('klusjes/overzicht','AdminController@taskOverview');
         Route::get('klusjes/afgesloten','AdminController@taskClosed');
     });
