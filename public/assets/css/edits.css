@@ -46,6 +46,20 @@ a{
     text-decoration: none;
 }
 
+a:hover{
+    color: #8BC53F;
+}
+
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 0.5px solid grey;
+    border-radius: 10px;
+
+}
+
 #page-wrap {
     min-height: 100%;
     overflow: initial;

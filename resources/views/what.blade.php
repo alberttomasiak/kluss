@@ -41,7 +41,7 @@
                 We bieden ook extra leuke features aan met Kluss Gold. Met een maandelijkse bijdrage zorgen wij dat uw klusjes bovenaan de lijst staan en een groter bereik hebben, waardoor uw klusjes zeker in een oogwenk afgelegd zullen worden.
             </p>
 
-            <a class="btn">Aan de slag!</a>
+            <a class="btn">Ga aan de slag!</a>
 
         </div>
 
