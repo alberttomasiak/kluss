@@ -225,4 +225,22 @@ footer .footer-content {
     transform: scale(0.95);
 }
 
+/* TASK BLOCKS */
+
+.dev-block {
+    width: 300px;
+    height: 325px;
+    background-color: #ffffff;
+    margin-right: 10px;
+    margin-bottom: 20px;
+;
+    margin-left: 10px;
+}
+
+.dev-block-image {
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+}
+
 

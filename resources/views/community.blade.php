@@ -21,7 +21,7 @@
             </div>
         </nav>
 
-        <div class="addboxshadow container" style="height: 1300px;">
+        <div class="addboxshadow container" style="height: 1400px;">
             <h1 style="float: left; padding: 15px;">Klusjes in de buurt</h1>
             <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
 
@@ -68,6 +68,77 @@
                 </div>
             </div>
         </div>
+
+
+            <a href="#" style="float: left">
+            <div class="dev-block animationout" style="box-shadow: 0 2px 3px rgba(0,0,0,.16); position: relative;">
+
+                        <div class="dev-block-image" style="background-image: url('../assets/img/wasserette.jpg');">
+                            &nbsp;
+                        </div>
+
+                <div style="float: left; width: 70%; padding: 10px;">
+                    <p style="display: inline;">VERSIERING</p> <p style="display: inline;">-</p> <p style="color: #2E9C4E; display: inline;">max 2h.</p>
+                </div>
+
+                <div style="float: right; width: 30%; padding: 10px; margin-top: -25px;">
+                    <h1>€ 15</h1>
+                </div>
+
+                <div style="padding: 10px;">
+                    <p>Need help decorating and tidying living room before birthday party, thanks.</p>
+                </div>
+
+            </div>
+            </a>
+
+            <a href="#" style="float: left">
+                <div class="dev-block animationout" style="box-shadow: 0 2px 3px rgba(0,0,0,.16); position: relative;">
+
+                    <div class="dev-block-image" style="background-image: url('../assets/img/wasserette.jpg');">
+                        &nbsp;
+                    </div>
+
+                    <div style="float: left; width: 70%; padding: 10px;">
+                        <p style="display: inline;">VERSIERING</p> <p style="display: inline;">-</p> <p style="color: #2E9C4E; display: inline;">max 2h.</p>
+                    </div>
+
+                    <div style="float: right; width: 30%; padding: 10px; margin-top: -25px;">
+                        <h1>€ 15</h1>
+                    </div>
+
+                    <div style="padding: 10px;">
+                        <p>Need help decorating and tidying living room before birthday party, thanks.</p>
+                    </div>
+
+                </div>
+            </a>
+
+            <a href="#" style="float: left;">
+                <div class="dev-block animationout" style="box-shadow: 0 2px 3px rgba(0,0,0,.16); position: relative;">
+
+                    <div class="dev-block-image" style="background-image: url('../assets/img/wasserette.jpg');">
+                        &nbsp;
+                    </div>
+
+                    <div style="float: left; width: 70%; padding: 10px;">
+                        <p style="display: inline;">VERSIERING</p> <p style="display: inline;">-</p> <p style="color: #2E9C4E; display: inline;">max 2h.</p>
+                    </div>
+
+                    <div style="float: right; width: 30%; padding: 10px; margin-top: -25px;">
+                        <h1>€ 15</h1>
+                    </div>
+
+                    <div style="padding: 10px;">
+                        <p>Need help decorating and tidying living room before birthday party, thanks.</p>
+                    </div>
+
+                </div>
+            </a>
+
+            <section style="margin-top: 40px !important;">
+            <h1 style="text-align: center;">Geen andere klusjes in je buurt.</h1>
+            </section>
 
             </div>
 
