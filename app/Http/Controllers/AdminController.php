@@ -77,8 +77,8 @@ class AdminController extends Controller
     }
     // Klusjes
     public function taskOverview(){
-        $X = 0;
-        return view('admin.tasks.overview', ['X' => $X]);
+        $tasks = Kluss::getPublished();
+        return view('admin.tasks.overview', ['tasks' => $tasks]);
     }
     public function taskClosed(){
         $X = 0;
