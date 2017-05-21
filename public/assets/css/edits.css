@@ -56,7 +56,7 @@ input{
     margin: 8px 0;
     box-sizing: border-box;
     border: 0.5px solid grey;
-    border-radius: 10px;
+    border-radius: 50px;
 
 }
 
@@ -122,10 +122,10 @@ input{
 }
 
 .btn {
-    -webkit-border-radius: 7px;
-    -moz-border-radius: 7px;
-    -o-border-radius: 7px;
-    border-radius: 7px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -o-border-radius: 50px;
+    border-radius: 50px;
     border: 0;
     font-family: 'Karla', sans-serif;
     color: #ffffff;
