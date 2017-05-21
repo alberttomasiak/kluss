@@ -60,8 +60,10 @@ class AdminController extends Controller
 
     // Users
     public function userOverview(){
-        $X = 0;
-        return view('admin.users.overview', ['X' => $X]);
+        $adminUsers = User::getAdminUsers();
+        $regularUsers = User::getRegularUsers();
+        $goldUsers = User::getGoldUsers();
+        return view('admin.users.overview', ['adminUsers' => $adminUsers, 'regularUsers' => $regularUsers, 'goldUsers' => $goldUsers]);
     }
 
     public function userReports(){

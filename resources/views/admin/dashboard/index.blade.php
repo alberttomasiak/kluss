@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-@include('admin.dashboard.partials.header')
-@include('admin.dashboard.partials.sidebar')
+
 <section class="dashboard--main">
     <h1>Dashboard</h1>
     <h2>Gebruikers</h2>

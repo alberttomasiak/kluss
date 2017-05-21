@@ -37,8 +37,12 @@
 </script>
     <div class="page">
         @include('layouts.admin.header')
-        <div class="page-content">
+        <div class="page-content" style="position:relative; min-height: calc(100vh - 40px);">
+            @include('admin.dashboard.partials.header')
+            @include('admin.dashboard.partials.sidebar')
+            <div class="admin--content">
                 @yield('content')
+            </div>
         </div>
         @include('layouts.admin.footer')
     </div>

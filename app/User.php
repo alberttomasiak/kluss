@@ -81,6 +81,7 @@ class User extends Authenticatable
     }
 
     // ADMIN FUNCTIONS
+    // DASHBOARD
     public static function getGoldUserCount(){
         return self::where('account_type', '=', 'gold')->count();
     }
@@ -99,5 +100,15 @@ class User extends Authenticatable
 
     public static function getUserMail($id){
         return self::where("id", $id)->pluck("email")->first();
+    }
+    // USERS
+    public static function getAdminUsers(){
+        return self::where('account_type', 'admin')->get();
+    }
+    public static function getRegularUsers(){
+        return self::where('account_type', '==', 'normal')->get();
+    }
+    public static function getGoldUsers(){
+        return self::where('account_type', '==', 'gold')->get();
     }
 }

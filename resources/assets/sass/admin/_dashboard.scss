@@ -29,32 +29,32 @@
     div:first-child{
         margin-top: 2em;
     }
-    h1, h2{
-        font-size: 1.4em;
-        text-transform: uppercase;
-        font-weight: bold;
+}
+h1, h2{
+    font-size: 1.4em;
+    text-transform: uppercase;
+    font-weight: bold;
+    display: block;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1em;
+    margin-bottom: 2em;
+    &::after{
+        content: "";
         display: block;
-        width: 85%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 1em;
-        margin-bottom: 2em;
-        &::after{
-            content: "";
-            display: block;
-            width: 110px;
-            margin-top: .5em;
-            height: 7px;
-            background-color: black;
-        }
+        width: 110px;
+        margin-top: .5em;
+        height: 7px;
+        background-color: black;
     }
-    h2{
-        font-size: 1em;
-        &::after{
-            content: "";
-            width: 50px;
-            height: 7px;
-        }
+}
+h2{
+    font-size: 1em;
+    &::after{
+        content: "";
+        width: 50px;
+        height: 7px;
     }
 }
 
@@ -97,15 +97,7 @@
 
 @media only screen and (min-width: 768px){
     .dashboard--main{
-        position: absolute;
-        right: 0;
-        width: calc(100% - 275px);
-        margin-right: 1.5em;
-        div{
-            width: 225px;
-            height: 150px;
-            margin-bottom: 1em;
-        }
+        width: 100%;
         h1, h2{
             width: 100%;
         }
