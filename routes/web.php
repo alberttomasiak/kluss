@@ -92,3 +92,11 @@ Route::get('/what', function () {
 Route::get('/settings', function () {
     return view('/settings');
 });
+
+Route::get('/FAQ', function () {
+    return view('/FAQ');
+});
+
+Route::get('/community', function () {
+    return view('/community');
+});
