@@ -45,3 +45,9 @@
         width: 700px;
     }
 }
+
+@media only screen and (min-width: 1200px){
+    .users--overview .user-div{
+        width: 900px;
+    }
+}

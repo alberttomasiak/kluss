@@ -67,13 +67,13 @@ class AdminController extends Controller
     }
 
     public function userReports(){
-        $X = 0;
-        return view('admin.users.reports', ['X' => $X]);
+        $userReports = UserBlocks::getUserReportsByDate();
+        return view('admin.users.reports', ['userReports' => $userReports]);
     }
 
     public function userBlocks(){
-        $X = 0;
-        return view('admin.users.blocks', ['X' => $X]);
+        $userBlocks = User::getBlockedUsers();
+        return view('admin.users.blocks', ['userBlocks' => $userBlocks]);
     }
     // Klusjes
     public function taskOverview(){

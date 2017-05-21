@@ -111,4 +111,7 @@ class User extends Authenticatable
     public static function getGoldUsers(){
         return self::where('account_type', '==', 'gold')->get();
     }
+    public static function getBlockedUsers(){
+        return self::where('blocked', '=', '1')->get();
+    }
 }
