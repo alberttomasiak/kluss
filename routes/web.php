@@ -89,3 +89,27 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('settings', 'AdminController@settingsIndex');
     });
 });
+
+Route::get('/terms', function () {
+    return view('/terms');
+});
+
+Route::get('/team', function () {
+    return view('/team');
+});
+
+Route::get('/what', function () {
+    return view('/what');
+});
+
+Route::get('/settings', function () {
+    return view('/settings');
+});
+
+Route::get('/FAQ', function () {
+    return view('/FAQ');
+});
+
+Route::get('/community', function () {
+    return view('/community');
+});
