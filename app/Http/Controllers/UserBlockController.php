@@ -26,6 +26,7 @@ class UserBlockController extends Controller
             $checkForBlocks = UserBlocks::blockCounter($blockedID);
             if($checkForBlocks >= 3){
                 $banThatFool = User::BANHAMMER($blockedID);
+                $archiveReports = UserBlocks::archiveUserReports($blockedID);
             }
             return redirect()->back()->with('succesful_report', 'De gebruiker werd successvol gerapporteerd.');
         }else{

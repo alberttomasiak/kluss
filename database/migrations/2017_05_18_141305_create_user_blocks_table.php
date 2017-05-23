@@ -22,6 +22,7 @@ class CreateUserBlocksTable extends Migration
             $table->integer('block_category')->unsigned();
             $table->foreign('block_category')->references('id')->on('block_reasons')->onDelete('cascade');
             $table->text('block_reason');
+            $table->integer('archived')->default('0');
             $table->timestamps();
         });
     }

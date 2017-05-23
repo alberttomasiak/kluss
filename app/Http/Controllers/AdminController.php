@@ -68,7 +68,8 @@ class AdminController extends Controller
 
     public function userReports(){
         $userReports = UserBlocks::getUserReportsByDate();
-        return view('admin.users.reports', ['userReports' => $userReports]);
+        $archivedReports = UserBlocks::getArchivedReports();
+        return view('admin.users.reports', ['userReports' => $userReports, 'archivedReports' => $archivedReports]);
     }
 
     public function userBlocks(){

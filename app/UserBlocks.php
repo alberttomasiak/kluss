@@ -36,6 +36,18 @@ class UserBlocks extends Model
                     ->join('users', 'user_blocks.blocked_id', 'users.id')
                     ->join('block_reasons', 'user_blocks.block_category', 'block_reasons.id')
                     ->select('user_blocks.*', 'users.*', 'block_reasons.*')
+                    ->where('user_blocks.archived', '=', '0')
                     ->paginate(5);
+    }
+    public static function getArchivedReports(){
+        return DB::table('user_blocks')
+                    ->join('users', 'user_blocks.blocked_id', 'users.id')
+                    ->join('block_reasons', 'user_blocks.block_category', 'block_reasons.id')
+                    ->select('user_blocks.*', 'users.*', 'block_reasons.*')
+                    ->where('user_blocks.archived', '=', '1')
+                    ->paginate(5);
+    }
+    public static function archiveUserReports($userID){
+        return self::where('blocked_id', '=', $userID)->update(['archived' => 1]);
     }
 }
