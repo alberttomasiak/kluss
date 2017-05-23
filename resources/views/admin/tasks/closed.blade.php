@@ -4,12 +4,13 @@
         <h1>Gesloten klusjes</h1>
 
         <h2>Overzicht gesloten klusjes</h2>
+        <div class="task-overview">
         @foreach($tasks as $task)
             <div class="task-div">
                 <div>
                     <img src="/assets{{$task->kluss_image}}" alt="{{$task->title}}">
                 </div>
-                <div>
+                <div class="task-text">
                     <h6>{{$task->title}}</h6>
                     <p>{{$task->description}}</p>
                     <p>{{$task->address}}</p>
@@ -19,6 +20,7 @@
                 </div>
             </div>
         @endforeach
+        </div>
         {{$tasks->links()}}
     </div>
 @endsection

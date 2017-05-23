@@ -54,9 +54,9 @@ class Kluss extends Model
     }
 
     public static function getOpenTasks(){
-        return self::where('accepted', '=', '0')->paginate(5);
+        return self::where('accepted', '=', '0')->paginate(6);
     }
     public static function getClosedTasks(){
-        return self::where('accepted', '=', '1')->paginate(5);
+        return self::where('accepted', '=', '1')->paginate(6);
     }
 }
