@@ -79,6 +79,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('gebruikers/overzicht', 'AdminController@userOverview');
         Route::get('gebruikers/rapporteringen', 'AdminController@userReports');
         Route::get('gebruikers/blocks', 'AdminController@userBlocks');
+        Route::get('block/{id}/block', 'AdminController@blockUser');
+        Route::get('block/{id}/unblock', 'AdminController@unblockUser');
         // Klusjes
         Route::get('klusjes', 'AdminController@taskOverview');
         Route::get('klusjes/overzicht','AdminController@taskOverview');

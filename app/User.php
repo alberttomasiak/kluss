@@ -75,9 +75,11 @@ class User extends Authenticatable
         // Banhammer initiate
         return self::where('id', $foolsID)->update(['blocked' => 1]);
     }
-
     public static function amIBanned($email){
         return self::where('email', $email)->pluck('blocked')->first();
+    }
+    public static function unblockUser($userID){
+        return self::where('id', $userID)->update(['blocked' => 0]);
     }
 
     // ADMIN FUNCTIONS

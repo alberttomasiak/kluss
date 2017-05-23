@@ -25,16 +25,22 @@
             display: flex;
             flex-direction: row;
         }
-        a{
+        a, input{
             text-decoration: none;
-            color: $washington;
-            border: 1px solid $washington;
+            color: #2e9c4e;
+            border: 1px solid #2e9c4e;
             padding: 1em;
             height: 17.5px;
+            cursor: pointer;
+            background-color: transparent;
+            text-transform: uppercase;
             &:hover{
                 background-color: $washington;
                 color: white;
             }
+        }
+        input{
+            padding-bottom: 2em;
         }
     }
 }

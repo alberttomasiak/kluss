@@ -71,11 +71,19 @@ class AdminController extends Controller
         $archivedReports = UserBlocks::getArchivedReports();
         return view('admin.users.reports', ['userReports' => $userReports, 'archivedReports' => $archivedReports]);
     }
-
     public function userBlocks(){
         $userBlocks = User::getBlockedUsers();
         return view('admin.users.blocks', ['userBlocks' => $userBlocks]);
     }
+    public function blockUser($userID){
+        $block = User::BANHAMMER($userID);
+        return redirect()->back();
+    }
+    public function unblockUser($userID){
+        $unblock = User::unblockUser($userID);
+        return redirect()->back();
+    }
+
     // Klusjes
     public function taskOverview(){
         $tasks = Kluss::getOpenTasks();

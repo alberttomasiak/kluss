@@ -11,7 +11,10 @@
                 <p>{{$adminUser->name}}</p>
             </div>
             <div class="user__btns">
-                <a href="/admin/user/{{$adminUser->id}}/bewerken">Bewerken</a>
+                <form class="" action="/chat/{{$adminUser->id}}" method="post">
+                    {{ csrf_field() }}
+                    <input type="submit" name="chatstart" class="btn btn--form" value="contact">
+                </form>
             </div>
         </div>
     @endforeach
@@ -25,7 +28,11 @@
                 <p>{{$goldUser->name}}</p>
             </div>
             <div class="user__btns">
-                <a href="/admin/user/{{$goldUser->id}}/bewerken">Bewerken</a>
+                <form class="" action="/chat/{{$goldUser->id}}" method="post">
+                    {{ csrf_field() }}
+                    <input type="submit" name="chatstart" class="btn btn--form" value="contact">
+                </form>
+                <a href="/admin/block/{{$goldUser->id}}/block">BLOKKEER</a>
             </div>
         </div>
     @endforeach
@@ -39,7 +46,11 @@
                 <p>{{$regularUser->name}}</p>
             </div>
             <div class="user__btns">
-                <a href="/admin/user/{{$regularUser->id}}/bewerken">Bewerken</a>
+                <form class="" action="/chat/{{$regularUser->id}}" method="post">
+                    {{ csrf_field() }}
+                    <input type="submit" name="chatstart" class="btn btn--form" value="contact">
+                </form>
+                <a href="/admin/block/{{$regularUser->id}}/block">BLOKKEER</a>
             </div>
         </div>
     @endforeach

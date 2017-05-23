@@ -11,7 +11,7 @@
                     <p>{{$userBlock->email}} is geblokkeerd.</p>
                 </div>
                 <div class="report__btns">
-                    <a href="/admin/block/{{$userBlock->id}}/bewerken">Bewerken</a>
+                    <a href="/admin/block/{{$userBlock->id}}/unblock">Blokkering opheffen</a>
                 </div>
             </div>
         @endforeach
