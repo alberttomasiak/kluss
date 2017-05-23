@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.admin.login')
 @section('content')
     <div class="login-wrapper">
     <a class="back-to-kluss" href="/home">Terug naar Kluss</a>
