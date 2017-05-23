@@ -77,12 +77,12 @@ class AdminController extends Controller
     }
     // Klusjes
     public function taskOverview(){
-        $tasks = Kluss::getPublished();
+        $tasks = Kluss::getOpenTasks();
         return view('admin.tasks.overview', ['tasks' => $tasks]);
     }
     public function taskClosed(){
-        $X = 0;
-        return view('admin.tasks.closed', ['X' => $X]);
+        $tasks = Kluss::getClosedTasks();
+        return view('admin.tasks.closed', ['tasks' => $tasks]);
     }
     // settings
     public function settingsIndex(){

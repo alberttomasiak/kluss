@@ -52,4 +52,11 @@ class Kluss extends Model
     public static function getClosedTaskCount(){
         return self::where('closed', '=', '1')->count();
     }
+
+    public static function getOpenTasks(){
+        return self::where('accepted', '=', '0')->paginate(5);
+    }
+    public static function getClosedTasks(){
+        return self::where('accepted', '=', '1')->paginate(5);
+    }
 }

@@ -15,5 +15,6 @@
                 </div>
             </div>
         @endforeach
+        {{$userReports->links()}}
     </div>
 @endsection

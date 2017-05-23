@@ -15,6 +15,7 @@
             </div>
         </div>
     @endforeach
+    {{$adminUsers->links()}}
 
     <h2>Gold gebruikers</h2>
     @foreach($goldUsers as $goldUser)
@@ -28,6 +29,7 @@
             </div>
         </div>
     @endforeach
+    {{$goldUsers->links()}}
 
     <h2>Starter gebruikers</h2>
     @foreach($regularUsers as $regularUser)
@@ -41,5 +43,6 @@
             </div>
         </div>
     @endforeach
+    {{$regularUsers->links()}}
 </div>
 @endsection

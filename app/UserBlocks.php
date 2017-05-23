@@ -36,6 +36,6 @@ class UserBlocks extends Model
                     ->join('users', 'user_blocks.blocked_id', 'users.id')
                     ->join('block_reasons', 'user_blocks.block_category', 'block_reasons.id')
                     ->select('user_blocks.*', 'users.*', 'block_reasons.*')
-                    ->get();
+                    ->paginate(5);
     }
 }
