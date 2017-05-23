@@ -1,0 +1,59 @@
+.users--overview{
+    h1, h2{
+        width: 100%;
+    }
+    h2{
+        margin-top: 3em;
+    }
+    .user-div{
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 1em;
+        justify-content: space-between;
+        img{
+            display: block;
+            width: 50px;
+            border-radius: 50%;
+            height: 50px;
+            margin-right: 1em;
+        }
+        p{
+            margin-top: 1em;
+            font-size: .9em;
+        }
+        div{
+            display: flex;
+            flex-direction: row;
+        }
+        a, input{
+            text-decoration: none;
+            color: #2e9c4e;
+            border: 1px solid #2e9c4e;
+            padding: 1em;
+            height: 17.5px;
+            cursor: pointer;
+            background-color: transparent;
+            text-transform: uppercase;
+            &:hover{
+                background-color: $washington;
+                color: white;
+            }
+        }
+        input{
+            padding-bottom: 2em;
+        }
+    }
+}
+
+
+@media only screen and (min-width: 1000px){
+    .users--overview .user-div{
+        width: 700px;
+    }
+}
+
+@media only screen and (min-width: 1200px){
+    .users--overview .user-div{
+        width: 900px;
+    }
+}

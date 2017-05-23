@@ -69,6 +69,21 @@ class User extends Authenticatable
         return self::count();
     }
 
+
+    // Ban related functions
+    public static function BANHAMMER($foolsID){
+        // Banhammer initiate
+        return self::where('id', $foolsID)->update(['blocked' => 1]);
+    }
+    public static function amIBanned($email){
+        return self::where('email', $email)->pluck('blocked')->first();
+    }
+    public static function unblockUser($userID){
+        return self::where('id', $userID)->update(['blocked' => 0]);
+    }
+
+    // ADMIN FUNCTIONS
+    // DASHBOARD
     public static function getGoldUserCount(){
         return self::where('account_type', '=', 'gold')->count();
     }
@@ -87,5 +102,18 @@ class User extends Authenticatable
 
     public static function getUserMail($id){
         return self::where("id", $id)->pluck("email")->first();
+    }
+    // USERS
+    public static function getAdminUsers(){
+        return self::where('account_type', 'admin')->paginate(5);
+    }
+    public static function getRegularUsers(){
+        return self::where('account_type', '==', 'normal')->paginate(5);
+    }
+    public static function getGoldUsers(){
+        return self::where('account_type', '==', 'gold')->paginate(5);
+    }
+    public static function getBlockedUsers(){
+        return self::where('blocked', '=', '1')->paginate(5);
     }
 }

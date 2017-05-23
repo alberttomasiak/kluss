@@ -23,10 +23,10 @@ class ProfielController extends Controller
         $personalData = \App\User::getTargetInfo($id);
         $klussjes = \App\Kluss::getUserKluss($id);
         $sollicitanten = \App\Kluss_applicant::getApplicants($id);
-
+        $block_categories = \App\BlockReasons::getCategories();
         // historiek van uitgevoerde klussjes
         // reviews gebruikers
-        return view('/profile/profiel', compact('personalData', 'klussjes', 'sollicitanten'))->with('title', 'Profiel');
+        return view('/profile/profiel', compact('personalData', 'klussjes', 'sollicitanten', 'block_categories'))->with('title', 'Profiel');
     }
 
     public function show($id)

@@ -79,6 +79,11 @@ class Conversation extends Model
     public static function createConversation($email){
         $userID = User::getIdByMail($email);
         $chatUserID = User::getIdByMail("chat@kluss.be");
-        return self::insert(["user_one" => $chatUserID, "user_two" => $userID, "chatname" => Hashids::encode($chatUserID, $userID), "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]);
+        $gesprek = self::where([
+            ["user_one", '=', $chatUserID],
+            ["user_two", '=', $userID],
+        ])->first();
+        
+        return $gesprek == "" ? self::insert(["user_one" => $chatUserID, "user_two" => $userID, "chatname" => Hashids::encode($chatUserID, $userID), "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]) : true;
     }
 }

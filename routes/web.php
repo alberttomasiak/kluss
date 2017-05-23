@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
+    Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // test routes
     // Route::get('/send', 'EmailController@send');
     // Chat routes
@@ -73,7 +74,19 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('getData', 'AdminController@getData');
     Route::group(['middleware' => ['AdminAccess']], function(){
         Route::get('dashboard', 'AdminController@dashboard');
-        // Route::get('users', ...);
+        // Users
+        Route::get('gebruikers', 'AdminController@userOverview');
+        Route::get('gebruikers/overzicht', 'AdminController@userOverview');
+        Route::get('gebruikers/rapporteringen', 'AdminController@userReports');
+        Route::get('gebruikers/blocks', 'AdminController@userBlocks');
+        Route::get('block/{id}/block', 'AdminController@blockUser');
+        Route::get('block/{id}/unblock', 'AdminController@unblockUser');
+        // Klusjes
+        Route::get('klusjes', 'AdminController@taskOverview');
+        Route::get('klusjes/overzicht','AdminController@taskOverview');
+        Route::get('klusjes/afgesloten','AdminController@taskClosed');
+        // Settings
+        Route::get('settings', 'AdminController@settingsIndex');
     });
 });
 
