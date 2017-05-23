@@ -24,9 +24,6 @@
                     <img src="/assets{{$archivedReport->profile_pic}}" alt="{{$archivedReport->email}}'s profielfoto'">
                     <p>{{$archivedReport->email}} werd gerapporteerd voor: "{{$archivedReport->name}}"</p>
                 </div>
-                <div class="report__btns">
-                    <a href="/admin/report/{{$archivedReport->id}}/bewerken">Bewerken</a>
-                </div>
             </div>
         @endforeach
         {{$archivedReports->links()}}

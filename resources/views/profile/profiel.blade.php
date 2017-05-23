@@ -44,7 +44,7 @@
               <div class="card">
                 <div class="card-image">
                     <div class="card-image-wrap">
-                  <img src="{{$kl->kluss_image}}" alt="{{$kl->title}}">
+                  <img src="/assets{{$kl->kluss_image}}" alt="{{$kl->title}}">
                   </div>
                   <h4 class="card--title-black">{{$kl->title}}</h4>
                 </div>
