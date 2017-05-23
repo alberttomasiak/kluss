@@ -6,6 +6,28 @@
       var map;
       var kluss = {!! json_encode($kluss) !!};
       var marks = [];
+      var poslat;
+      var poslng;
+      var poslatDefault = 51.022636;
+      var poslngDefault = 4.486062;
+
+      function initGeolocation(){
+        if( navigator.geolocation ){
+           // Call getCurrentPosition with success and failure callbacks
+           navigator.geolocation.getCurrentPosition( success, fail );
+        }else{ /* Your browser does not support geolocation. */ }
+     }
+     function success(position){
+         var poslng = position.coords.longitude;
+         var poslat = position.coords.latitude;
+         calculateDistance(poslat, poslng, {!! json_encode($kl->latitude) !!}, {!! json_encode($kl->longitude) !!})
+     }
+     function fail(){
+        // geolocation doesn't work with this browser / not a secure request
+        // perform the load with the coordinates for Mechelen -> our HQ
+        load(poslatDefault, poslngDefault);
+        sendCoords(poslatDefault, poslngDefault);
+     }
 
       function load() {
           map = new google.maps.Map(document.getElementById('map--individual'), {
@@ -15,7 +37,10 @@
               navigationControl: false,
               mapTypeControl: false,
               scaleControl: false,
+              streetViewControl: false,
+              disableDefaultUI: true,
               draggable: false,
+              setClickable: false,
               styles: [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}]
           });
 
@@ -33,31 +58,17 @@
         var date = kluss.date;
         var id = kluss.id
 
-        var html = "<div id='iw-container'><img class='map-image' alt='klussje' src='../"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address + "</b> </br>" + "<b>"+ price +" credits </b></br></div>";
-
-
+        var html = "<div id='iw-container'><img class='map-image' alt='klussje' src='../assets/"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address + "</b> </br>" + "<b>"+ price +" credits </b></br></div>";
         var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
-
-        if(parseFloat(kluss.latitude) == "51.024678" && parseFloat(kluss.longitude) == "4.484660"){
-            var mark = new google.maps.Marker({
-                map: map,
-                position: klussLatlng,
-                icon: "assets/img/marker_gold-klein.png",
-            });
-        }else{
-            var mark = new google.maps.Marker({
-                map: map,
-                position: klussLatlng,
-                icon: "assets/img/marker_1-klein.png",
-            });
-        }
-
-        //var infoWindow = new google.maps.InfoWindow;
+        var mark = new google.maps.Marker({
+            map: map,
+            position: klussLatlng,
+            icon: "/assets/img/marker_1-klein.png",
+        });
         var infoWindow = new google.maps.InfoWindow({
             content: html,
             maxWidth: 350
         });
-
         google.maps.event.addListener(mark, 'click', function(){
             infoWindow.setContent(html);
             infoWindow.open(map, mark);
@@ -69,8 +80,7 @@
 
         return mark;
         google.maps.event.addListener(infoWindow, 'domready', function() {
-            alert('eyo');
-
+            console.log('eyo');
         });
     }
     @endforeach
@@ -82,7 +92,7 @@
             @foreach($kluss as $kl)
             <div class="col s12 m6">
                 <div class="col-md-6">
-                    <img class="individual--image" src="../{{$kl->kluss_image}}" alt="{{$kl->title}}">
+                    <img class="individual--image" src="../assets/{{$kl->kluss_image}}" alt="{{$kl->title}}">
                 </div>
                 <div class="col-md-6">
                     <h1>{{$kl->title}}</h1>
