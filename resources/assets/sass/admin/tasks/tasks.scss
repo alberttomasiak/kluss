@@ -1,0 +1,60 @@
+.task-div{
+    background: #eee;
+    margin-bottom: 2em;
+    position: relative;
+    padding-bottom: 50px;
+    img{
+        display: block;
+        width: 100%;
+        padding-bottom: 1em;
+    }
+    .task-text{
+        padding-left: 1em;
+        padding-right: 1em;
+        p{
+            font-size: .9em;
+            line-height: 1.5em;
+            margin-bottom: 1em;
+        }
+    }
+    h6{
+        font-size: .9em;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: .5em;
+    }
+    .report__btns a{
+        text-decoration: none;
+        display: block;
+        width: 100%;
+        text-align: center;
+        height: 30px;
+        padding-top: 15px;
+        color: white;
+        font-size: .8em;
+        text-transform: uppercase;
+        font-weight: bold;
+        background-color: $washington;
+        position: absolute;
+        bottom: 0;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .task-overview{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        margin-right: 1em;
+    }
+    .task-div{
+        width: 48%;
+    }
+}
+
+@media only screen and (min-width: 1365px){
+    .task-div{
+        width: 31%;
+    }
+}

@@ -22,7 +22,18 @@
                         {{ csrf_field() }}
                         <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
                     </form>
-                    <!--<a href="#" class="btn btn--form">Contacteer mij</a>-->
+                    <a href="#blockModal" data-toggle="modal" role="button" class="btn blockModal btn-danger">Rapporteer gebruiker</a>
+                    @include('profile.modals.block')
+                    @if(session('succesful_report'))
+                        <div class="succesful_report">
+                            <p>{{ session('succesful_report') }}</p>
+                        </div>
+                    @endif
+                    @if(session('already_blocked'))
+                        <div class="already_blocked">
+                            <p>{{ session('already_blocked') }}</p>
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
@@ -33,7 +44,7 @@
               <div class="card">
                 <div class="card-image">
                     <div class="card-image-wrap">
-                  <img src="{{$kl->kluss_image}}" alt="{{$kl->title}}">
+                  <img src="/assets{{$kl->kluss_image}}" alt="{{$kl->title}}">
                   </div>
                   <h4 class="card--title-black">{{$kl->title}}</h4>
                 </div>

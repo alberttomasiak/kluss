@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use App\User;
 
 class UserController extends Controller
 {
@@ -12,14 +13,17 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+        $AmIBanned = User::amIBanned($request->email);
 
-        if(Auth::attempt([
-            'email' => $request->email,
-            'password' => $request->password
-        ])){
-            return redirect('/home');
+        if($AmIBanned == 0){
+            if(Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])){
+                return redirect('/home');
+            }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
     }
 }

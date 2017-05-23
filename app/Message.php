@@ -45,7 +45,12 @@ class Message extends Model
         $userID = User::getIdByMail($email);
         $chatUserID = User::getIdByMail("chat@kluss.be");
         $chatID = Conversation::getConversationForDefaultUser($chatUserID, $userID);
-        return self::insert(["message" => "Hey! Ik ben de contactpersoon van Kluss. Als je vragen hebt, kan je die gerust aan mij stellen.", "user_id" => $chatUserID, "conversation_id" => $chatID, "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]);
+        $messageExists = self::where([
+            ["user_id", "=", $chatUserID],
+            ["conversation_id", "=", $chatID],
+        ])->first();
+
+        return $messageExists == "" ? self::insert(["message" => "Hey! Ik ben de contactpersoon van Kluss. Als je vragen hebt, kan je die gerust aan mij stellen.", "user_id" => $chatUserID, "conversation_id" => $chatID, "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]) : true;
     }
 
 }
