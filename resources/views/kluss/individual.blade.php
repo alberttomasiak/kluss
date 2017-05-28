@@ -20,13 +20,35 @@
      function success(position){
          var poslng = position.coords.longitude;
          var poslat = position.coords.latitude;
-         calculateDistance(poslat, poslng, {!! json_encode($kl->latitude) !!}, {!! json_encode($kl->longitude) !!})
+         calculateDistance(poslat, poslng, {!! json_encode($kl->latitude) !!}, {!! json_encode($kl->longitude) !!});
      }
      function fail(){
         // geolocation doesn't work with this browser / not a secure request
         // perform the load with the coordinates for Mechelen -> our HQ
-        load(poslatDefault, poslngDefault);
-        sendCoords(poslatDefault, poslngDefault);
+        calculateDistance(poslatDefault, poslngDefault, {!! json_encode($kl->latitude) !!}, {!! json_encode($kl->longitude) !!});
+     }
+
+     function calculateDistance(userlat, userlng, tasklat, tasklng){
+         console.log(userlat + " " + userlng + " " + tasklat + " " + tasklng);
+         $.ajaxSetup({
+             headers: {'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content')}
+         });
+         jQuery.ajax({
+             url: '/calculateDistance',
+             type: 'POST',
+             data: {
+                 userlat: userlat,
+                 userlng: userlng,
+                 tasklat: tasklat,
+                 tasklng: tasklng
+             },
+             success: function( data ){
+                 console.log(data);
+             },
+             error: function(xhr, b, c){
+                 console.log('oh no broski, you dungoofd');
+             }
+         });
      }
 
       function load() {
@@ -83,6 +105,7 @@
             console.log('eyo');
         });
     }
+    initGeolocation();
     @endforeach
     </script>
     <div class="container">

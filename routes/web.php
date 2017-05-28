@@ -26,7 +26,9 @@ Route::get('/logout', function(){
 Route::group(['middleware' => ['auth']], function(){
     // home routes
     Route::get('/home', 'HomeController@index');
+    // Ajax Routes
     Route::post('/getTasks', 'HomeController@getTasks');
+    Route::post('/calculateDistance', 'KlussController@calculateUserDistance');
     // kluss routes
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
