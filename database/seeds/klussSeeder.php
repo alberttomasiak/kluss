@@ -17,6 +17,22 @@ class klussSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         //DB::table('kluss')->truncate();
 
+        // Some dummy tasks
+        $limit = 100;
+        DB::table('kluss')->truncate();
+        for($i = 0; $i <= $limit; $i++){
+            DB::table('kluss')->insert([
+                'title'         => $faker->name,
+                'description'   => $faker->text(255),
+                'price'         => $faker->numberBetween(1, 15),
+                'date'          => $faker->dateTime(),
+                'address'       => $faker->address,
+                'latitude'      => $faker->randomFloat($nbMaxDecimals = 5, $min = 49.56652, $max = 51.46791),
+                'longitude'     => $faker->randomFloat($nbMaxDecimals = 5, $min = 2.59368, $max = 6.25749),
+                'user_id'       => $faker->numberBetween(1,3),
+            ]);
+        }
+
         DB::table('kluss')->insert([
             'title' => 'Afterparty cleanup',
             'description' => 'Oh man, het was een dik feestje gistere.. Maar ik heb mijn MVP presentatie straks!',

@@ -134,7 +134,21 @@ class KlussController extends Controller
 
             }
         }
-
         return redirect()->back();
+    }
+
+    public function calculateUserDistance(Request $request){
+        $userlat = $request->get('userlat');
+        $userlng = $request->get('userlng');
+        $tasklat = $request->get('tasklat');
+        $tasklng = $request->get('tasklng');
+
+        $theta = $userlng - $tasklng;
+        $dist = sin(deg2rad($userlat)) * sin(deg2rad($tasklat)) +  cos(deg2rad($userlat)) * cos(deg2rad($tasklat)) * cos(deg2rad($theta));
+        $dist = acos($dist);
+        $dist = rad2deg($dist);
+        $miles = $dist * 60 * 1.1515;
+        $distance = $miles * 1.609344; // to km conversion
+        return $distance;
     }
 }

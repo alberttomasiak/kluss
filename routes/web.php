@@ -11,25 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-
-    return view('welcome');
-});
-
+Route::get('/', function () { return view('welcome'); });
 Auth::routes();
-
-Route::get('/login', function(){
-    return redirect('/aanmelden');
-});
-
-Route::get('/aanmelden', function(){
-    return view('auth/login')->with('title', 'Aanmelden');
-});
+Route::get('/login', function(){ return redirect('/aanmelden'); });
+Route::get('/aanmelden', function(){ return view('auth/login')->with('title', 'Aanmelden'); });
 Route::post('/aanmelden', 'UserController@login');
-
-Route::get('/register', function(){
-    return view('auth/register')->with('title', 'Registreer');
-});
+Route::get('/register', function(){ return view('auth/register')->with('title', 'Registreer'); });
 
 Route::get('/logout', function(){
     Auth::logout();
@@ -39,7 +26,9 @@ Route::get('/logout', function(){
 Route::group(['middleware' => ['auth']], function(){
     // home routes
     Route::get('/home', 'HomeController@index');
+    // Ajax Routes
     Route::post('/getTasks', 'HomeController@getTasks');
+    Route::post('/calculateDistance', 'KlussController@calculateUserDistance');
     // kluss routes
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
@@ -51,15 +40,10 @@ Route::group(['middleware' => ['auth']], function(){
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
-    // test routes
-    // Route::get('/send', 'EmailController@send');
     // Chat routes
     Route::get('/chat', 'ChatController@index');
     Route::post('/chat/message', 'ChatController@postMessage');
-    // Route::post('/chat/{id}', 'ChatController@requestChat');
-    // Route::get('/chat/{chatname}/{user}', 'ChatController@startChatroom')->middleware('chatusers');
     // // Chat testing routes
-    // Route::get('/chat/overview','ChatController@overview');
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
 });
