@@ -148,6 +148,7 @@ class KlussController extends Controller
         $dist = acos($dist);
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
-        return [$miles * 1.609344];
+        $distance = $miles * 1.609344; // to km conversion
+        return $distance;
     }
 }

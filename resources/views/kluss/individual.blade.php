@@ -43,7 +43,11 @@
                  tasklng: tasklng
              },
              success: function( data ){
-                 console.log(data);
+                 $distance = data;
+                 if($distance > 2){
+                     $('.apply-btn a').remove();
+                     $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="#">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
+                 }
              },
              error: function(xhr, b, c){
                  console.log('oh no broski, you dungoofd');
@@ -126,11 +130,13 @@
                         <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">Bewerk deze Kluss</a>
                         <a href="/kluss/{{$kl->id}}/verwijderen" class="btn btn-danger">Deze kluss verwijderen</a>
                     @else
-                        @if($kluss_applicant->first())
-                            <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
-                        @else
-                            <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
-                        @endif
+                        <div class="apply-btn">
+                            @if($kluss_applicant->first())
+                                <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
+                            @else
+                                <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                            @endif
+                        </div>
                     @endif
                 </div>
             </div>
