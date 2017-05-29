@@ -1,7 +1,7 @@
 <?php
 
-if(!function_exists("spillit")){
-    function spillit($key){
+if(!function_exists("spillvalue")){
+    function spillvalue($key){
         return \App\GlobalSettings::get($key);
     }
 }

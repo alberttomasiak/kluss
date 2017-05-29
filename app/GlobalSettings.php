@@ -27,4 +27,8 @@ class GlobalSettings extends Model
         }
         return self::$lijst[$key];
     }
+
+    public static function getSettings(){
+        return self::paginate(10);
+    }
 }
