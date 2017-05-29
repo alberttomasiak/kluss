@@ -41,7 +41,7 @@ class Kluss extends Model
             		)
                ) AS distance
                FROM kluss
-               HAVING distance < 2.5
+               HAVING distance < 2
                ORDER BY distance;"));
     }
 
