@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBlockReasonsTable extends Migration
+class CreateGlobalSettingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateBlockReasonsTable extends Migration
      */
     public function up()
     {
-        Schema::create('block_reasons', function(Blueprint $table){
+        Schema::create('global_settings', function(Blueprint $table){
             $table->increments('id');
-            $table->string('name');
+            $table->string('key');
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateBlockReasonsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('block_reasons');
+        Schema::dropIfExists('global_settings');
     }
 }
