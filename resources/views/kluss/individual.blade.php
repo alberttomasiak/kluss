@@ -146,6 +146,7 @@
                                 <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
                             @else
                                 <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                {{spillit("test")}}
                             @endif
                         </div>
                     @endif
