@@ -23,6 +23,36 @@
     }
 }
 
+.settings-titles{
+    display: flex;
+    flex-direction: row;
+    h6{
+        width: 50%;
+        font-weight: bold;
+        font-size: 1.1em;
+        text-transform: uppercase;
+        margin-bottom: 1em;
+        border-bottom: 2px solid #111111;
+    }
+}
+
+.settings-div{
+    display: flex;
+    flex-direction: row;
+    background-color: #eee;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: .5em;
+    margin-bottom: .75em;
+    div{
+        width: 50%;
+    }
+}
+
+.settings-value p{
+    margin-bottom: 1em;
+}
+
 @media only screen and (min-width: 480px){
     .addSettingModal{
         width: 50px;

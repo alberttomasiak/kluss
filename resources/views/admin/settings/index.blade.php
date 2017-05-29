@@ -14,10 +14,11 @@
             @foreach($settings as $setting)
                 <div class="settings-div">
                     <div class="settings-key">
-                        {{$setting->key}}
+                        <p>{{$setting->key}}</p>
                     </div>
                     <div class="settings-value">
-                        {{$setting->value}}
+                        <p>{{$setting->value}}</p>
+                        <a href="/admin/setting/{{$setting->id}}/edit" class="btn btn-warning">Bewerken</a>
                     </div>
                 </div>
             @endforeach

@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin'], function () {
         // Settings
         Route::get('globale_instellingen', 'AdminController@settingsIndex');
         Route::post('setting/add', 'AdminController@settingsAdd');
+        Route::get('setting/{id}/edit', 'AdminController@settingEdit');
     });
 });
 

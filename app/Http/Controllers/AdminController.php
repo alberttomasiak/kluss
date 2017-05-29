@@ -100,6 +100,16 @@ class AdminController extends Controller
         return view('admin.settings.index', ['settings' => $settings]);
     }
     public function settingsAdd(Request $request){
-        dd($request);
+        $key = $request->settingKey;
+        $value = $request->settingValue;
+
+        $setting = new GlobalSettings;
+        $setting->key = $key;
+        $setting->value = $value;
+        $setting->save();
+        return redirect()->back();
+    }
+    public function settingEdit($id){
+
     }
 }
