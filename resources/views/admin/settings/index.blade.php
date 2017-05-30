@@ -18,12 +18,19 @@
                     </div>
                     <div class="settings-value">
                         <p>{{$setting->value}}</p>
-                        <a href="/admin/setting/{{$setting->id}}/edit" class="btn btn-warning">Bewerken</a>
+                        <a href="#setting-{{$setting->id}}-edit" data-toggle="modal" role="button" data-id="{{$setting->id}}" class="btn opener-translation btn-warning">Bewerken</a>
                     </div>
                 </div>
+                @include('admin.settings.modals.edit', ['id' => $setting->id ])
             @endforeach
         </div>
         {{$settings->links()}}
         </div>
     </div>
+    <script type="text/javascript">
+        // $('.opener-translation').click(function(){
+        //     var id = (this).data('id');
+        //     $('.modal-footer .edit').data('value', id);
+        // });
+    </script>
 @endsection

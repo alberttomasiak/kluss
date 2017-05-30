@@ -109,7 +109,14 @@ class AdminController extends Controller
         $setting->save();
         return redirect()->back();
     }
-    public function settingEdit($id){
+    public function settingEdit(Request $request){
+        $settingID = $request->settingID;
+        $key = $request->settingKey;
+        $value = $request->settingValue;
 
+        $update = GlobalSettings::updateSetting($settingID, $key, $value);
+        if($update == true){
+            return redirect()->back();
+        }
     }
 }

@@ -31,4 +31,8 @@ class GlobalSettings extends Model
     public static function getSettings(){
         return self::paginate(10);
     }
+
+    public static function updateSetting($ID, $key, $value){
+        return self::where('id', $ID)->update(['key' => $key, 'value' => $value]);
+    }
 }
