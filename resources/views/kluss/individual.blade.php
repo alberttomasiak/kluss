@@ -46,14 +46,14 @@
                  $account_type = data.account_type;
                  $distance = data.distance;
                  if($account_type == "normal"){
-                     if($distance > 2){
+                     if($distance > {{ spillvalue("limit_starter")}} ){
                          // 2 km for standard users
                          $('.apply-btn a').remove();
                          $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="#">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
                      }
                  }else{
                      // Distance of 5KM for all Gold Users + admins
-                     if($distance > 5){
+                     if($distance > {{ spillvalue("limit_gold")}}){
                          $('.apply-btn a').remove();
                          $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren.</p></div>');
                      }
