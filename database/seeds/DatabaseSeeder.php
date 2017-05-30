@@ -14,5 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(klussSeeder::class);
         $this->call(BlockReasonsTableSeeder::class);
+        $this->call(GlobalSettingsTableSeeder::class);
     }
 }
