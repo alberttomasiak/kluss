@@ -27,7 +27,7 @@ class Kluss extends Model
     }
 
     public static function getUserKluss($id){
-        return self::where('user_id', '=', $id)->get();
+        return self::where('user_id', '=', $id)->paginate(6);
     }
 
     public static function getTasksInNeighborhood($lat, $lng){

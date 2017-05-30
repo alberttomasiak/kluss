@@ -8,6 +8,7 @@ use DB;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Kluss;
 use App\User;
+use App\Kluss_applicant;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -72,21 +73,36 @@ class KlussController extends Controller
     }
 
     public function SingleKluss($id){
-        $kluss = \App\Kluss::getSingle($id);
-        $title = \App\Kluss::getSingleTitle($id);
-        $kluss_applicant = \App\Kluss_applicant::getApplicant($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant'))->with('title', $title);
+        $kluss = Kluss::getSingle($id);
+        $title = Kluss::getSingleTitle($id);
+        $kluss_applicant = Kluss_applicant::getApplicant($id);
+        $kluss_applicants = Kluss_applicant::getAllApplicants($id);
+        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants'))->with('title', $title);
+    }
+
+    public function acceptUser(Request $request){
+        //
+    }
+
+    public function refuseUser(Request $request){
+        $taskID = $request->kluss_id;
+        $refusedID = $request->user_id;
+        $removeApplier = Kluss_applicant::removeApplicant($taskID, $refusedID);
+
+        if($removeApplier == true){
+            return redirect()->back();
+        }
     }
 
     public function apply($id){
-        $kluss = \App\Kluss::getSingle($id);
-        $title = \App\Kluss::getSingleTitle($id);
-        $kluss_applicant = \App\Kluss_applicant::getApplicant($id);
+        $kluss = Kluss::getSingle($id);
+        $title = Kluss::getSingleTitle($id);
+        $kluss_applicant = Kluss_applicant::getApplicant($id);
 
         if($kluss_applicant->first()){
-            \App\Kluss_applicant::deleteApplicant($id);
+            Kluss_applicant::removeApplication($id);
         }else{
-            \App\Kluss_applicant::insertApplicant($id);
+            Kluss_applicant::insertApplicant($id);
         }
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);
@@ -94,7 +110,7 @@ class KlussController extends Controller
     }
 
     public function update($id){
-        $kluss = \App\Kluss::getSingle($id);
+        $kluss = Kluss::getSingle($id);
         return view('kluss/bewerken', compact('kluss'))->with('title', 'Kluss bewerken');
     }
 

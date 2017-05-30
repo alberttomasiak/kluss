@@ -150,6 +150,52 @@
                         </div>
                     @endif
                 </div>
+                {{-- User applicants --}}
+                @if($kl->user_id == \Auth::user()->id)
+                    <div class="col-sm-12 applicants">
+                        <h2>Sollicitanten voor klussjes:</h2>
+                        <table class="table table-applicants">
+                          <thead>
+                            <tr>
+                              <th></th>
+                              <th>Naam</th>
+                              <th>Contact</th>
+                              <th>Opties</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                              @foreach($kluss_applicants as $sol)
+                                <tr>
+                                    <th scope="row"><img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture"></th>
+                                    <td><a href="/profiel/{{$sol->id}}/{{$sol->name}}">{{$sol->name}}</a></td>
+                                    <td><form action="/chat/{{$sol->id}}" method="post">
+                                        {{csrf_field()}}
+                                        <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
+                                    </form></td>
+                                    <td>
+                                        {{-- Gebruiker accepteren --}}
+                                        <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/accepteren" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
+                                            <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
+                                            <input type="submit" name="" class="btn btn-success" value="Accepteren">
+                                        </form>
+                                        {{-- Gebruiker weigeren --}}
+                                        <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/weigeren" method="post">
+                                            {{csrf_field()}}
+                                            <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
+                                            <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
+                                            <input type="submit" name="" class="btn btn-danger" value="Weigeren">
+                                            {{-- <a href="" role="button" class="btn btn-danger">Weigeren</a> --}}
+                                        </form>
+                                </td>
+                                </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                        {!! $kluss_applicants->appends(Request::except('sollicitanten'))->render() !!}
+                    </div>
+                @endif
             </div>
             @endforeach
         </div>

@@ -57,8 +57,9 @@
               </div>
             </div>
         @endforeach
+        {{$klussjes->links()}}
         </div>
-        @if($pd->id == \Auth::user()->id)
+        {{-- @if($pd->id == \Auth::user()->id)
             <div class="col-sm-12 applicants">
                 <h2>Sollicitanten voor klussjes:</h2>
                 <table class="table table-applicants">
@@ -83,7 +84,7 @@
                 </table>
                 {!! $sollicitanten->appends(Request::except('sollicitanten'))->render() !!}
             </div>
-        @endif
+        @endif --}}
         <div class="col-sm-12">
             <div class="col-sm-8">
                 <h2 class="profile-history">Historiek klussjes</h2>

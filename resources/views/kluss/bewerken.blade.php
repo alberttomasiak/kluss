@@ -6,7 +6,7 @@
                 @if($kl->user_id == \Auth::user()->id)
             <div class="col s12 m6 kluss--edit">
                 <div class="col-sm-7">
-                    <img src="../../{{$kl->kluss_image}}" class="individual--image" alt="{{$kl->title}}">
+                    <img src="../../assets{{$kl->kluss_image}}" class="individual--image" alt="{{$kl->title}}">
                 </div>
                 <div class="col-sm-5">
                     <form class="kluss--add individual--image container right" action="{{URL('/kluss/'.$kl->id.'/bewerken')}}" method="post">
