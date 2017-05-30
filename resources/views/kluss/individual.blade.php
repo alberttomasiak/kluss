@@ -29,7 +29,6 @@
      }
 
      function calculateDistance(userlat, userlng, tasklat, tasklng){
-         console.log(userlat + " " + userlng + " " + tasklat + " " + tasklng);
          $.ajaxSetup({
              headers: {'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content')}
          });
@@ -40,14 +39,26 @@
                  userlat: userlat,
                  userlng: userlng,
                  tasklat: tasklat,
-                 tasklng: tasklng
+                 tasklng: tasklng,
+                 userID: {{\Auth::user()->id}}
              },
              success: function( data ){
-                 $distance = data;
-                 if($distance > 2){
-                     $('.apply-btn a').remove();
-                     $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="#">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
+                 $account_type = data.account_type;
+                 $distance = data.distance;
+                 if($account_type == "normal"){
+                     if($distance > {{ spillvalue("limit_starter")}} ){
+                         // 2 km for standard users
+                         $('.apply-btn a').remove();
+                         $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="#">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
+                     }
+                 }else{
+                     // Distance of 5KM for all Gold Users + admins
+                     if($distance > {{ spillvalue("limit_gold")}}){
+                         $('.apply-btn a').remove();
+                         $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren.</p></div>');
+                     }
                  }
+
              },
              error: function(xhr, b, c){
                  console.log('oh no broski, you dungoofd');

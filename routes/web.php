@@ -70,7 +70,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('klusjes/overzicht','AdminController@taskOverview');
         Route::get('klusjes/afgesloten','AdminController@taskClosed');
         // Settings
-        Route::get('settings', 'AdminController@settingsIndex');
+        Route::get('globale_instellingen', 'AdminController@settingsIndex');
+        Route::post('setting/add', 'AdminController@settingsAdd');
+        Route::post('setting/{id}/edit', 'AdminController@settingEdit');
     });
 });
 

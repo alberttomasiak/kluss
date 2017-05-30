@@ -59,6 +59,10 @@ class User extends Authenticatable
         }
     }
 
+    public static function checkAccountType($userID){
+        return self::where('id', $userID)->pluck('account_type')->first();
+    }
+
     public static function getByEmail($email){
         return self::where('email', $email)->get();
     }

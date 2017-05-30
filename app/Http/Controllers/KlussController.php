@@ -7,6 +7,7 @@ use App\Http\Requests;
 use DB;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Kluss;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -142,6 +143,8 @@ class KlussController extends Controller
         $userlng = $request->get('userlng');
         $tasklat = $request->get('tasklat');
         $tasklng = $request->get('tasklng');
+        $userID = $request->get('userID');
+        $account_type = User::checkAccountType($userID);
 
         $theta = $userlng - $tasklng;
         $dist = sin(deg2rad($userlat)) * sin(deg2rad($tasklat)) +  cos(deg2rad($userlat)) * cos(deg2rad($tasklat)) * cos(deg2rad($theta));
@@ -149,6 +152,9 @@ class KlussController extends Controller
         $dist = rad2deg($dist);
         $miles = $dist * 60 * 1.1515;
         $distance = $miles * 1.609344; // to km conversion
-        return $distance;
+        return response()->json([
+            'distance' => $distance,
+            'account_type' => $account_type
+        ]);
     }
 }
