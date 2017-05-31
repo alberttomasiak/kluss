@@ -81,7 +81,22 @@ class KlussController extends Controller
     }
 
     public function acceptUser(Request $request){
-        //
+        // 1. Gather user information
+        $taskID = $request->kluss_id;
+        $acceptedID = $request->user_id;
+        // 2. Set his status to accepted in kluss_applicants
+        $acceptUser = Kluss_applicant::acceptApplicant($taskID, $acceptedID);
+        // 3. Delete all other applicants
+        $deleteApplicants = Kluss_applicant::deleteNotAcceptedApplicants($taskID);
+        // 4. Set the task to accepted in the kluss table
+        $applicantTableID = Kluss_applicant::getApplicantTableID($taskID, $acceptedID);
+        $taskStatus = Kluss::acceptUser($taskID, $applicantTableID);
+        // 5. Remove the apply btn on the task
+
+        // 6. Send the update to our map --> pusher.js implementation
+
+        // 7. Return after everything is handled
+        return redirect()->back();
     }
 
     public function refuseUser(Request $request){

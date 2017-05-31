@@ -102,15 +102,34 @@
     var address = kluss.address;
     var price = kluss.price;
     var date = kluss.date;
-    var id = kluss.id
+    var id = kluss.id;
+    var accepted = kluss.accepted_applicant_id;
+    var account_type = kluss.account_type;
     var html = "<div id='iw-container'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='/assets"+image+"'></div>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
     "<div class='card-action'><a href='/kluss/"+id+"'>Ga naar de kluss</a></div></div>";
     var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
-    var mark = new google.maps.Marker({
-        map: map,
-        position: klussLatlng,
-        icon: "assets/img/marker_1-klein.png",
-    });
+    if(accepted == 0){
+        if(account_type == "normal"){
+            var mark = new google.maps.Marker({
+                map: map,
+                position: klussLatlng,
+                icon: "/assets/img/marker_1-klein.png",
+            });
+        }else{
+            var mark = new google.maps.Marker({
+                map: map,
+                position: klussLatlng,
+                icon: "/assets/img/marker_gold-klein.png",
+            });
+        }
+    }else{
+        var mark = new google.maps.Marker({
+            map: map,
+            position: klussLatlng,
+            icon: "/assets/img/marker_2-klein.png",
+        });
+    }
+
     var infoWindow = new google.maps.InfoWindow({
         content: html,
         maxWidth: 350
