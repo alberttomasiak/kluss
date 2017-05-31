@@ -160,6 +160,10 @@ function deleteMarker(data){
     markers[data.taskID].setMap(null);
 }
 
+function applicantSelected(data){
+    markers[data.taskID].setIcon("/assets/img/marker_2-klein.png");
+}
+
 var pusher = new Pusher('1a329a7dd69a92834d4d', {
   cluster: 'eu',
   encrypted: true,
@@ -174,5 +178,6 @@ var channel = pusher.subscribe("kluss-map");
 // channel binds
 channel.bind('new-task', addMarker);
 channel.bind('deleted-task', deleteMarker);
+channel.bind('applicant-selected-task', applicantSelected);
 </script>
 @endsection

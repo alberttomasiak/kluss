@@ -118,7 +118,10 @@ class KlussController extends Controller
         // 5. Remove the apply btn on the task
 
         // 6. Send the update to our map --> pusher.js implementation
-
+        $selected = [
+            'taskID' => $taskID
+        ];
+        $this->pusher->trigger("kluss-map", "applicant-selected-task", $selected);
         // 7. Return after everything is handled
         return redirect()->back();
     }
