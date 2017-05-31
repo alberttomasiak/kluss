@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use DB;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Session;
 use App\Kluss;
 use App\User;
 use App\Kluss_applicant;
@@ -15,9 +17,11 @@ use Illuminate\Support\Facades\Input;
 
 class KlussController extends Controller
 {
-    //
+    var $pusher;
+    var $user;
 
     public function __construct(){
+        $this->pusher = App::make('pusher');
         $this->middleware('auth');
     }
 
@@ -41,18 +45,26 @@ class KlussController extends Controller
             if(substr($file->getMimeType(), 0, 5) == 'image'){
                 $extension = Input::file('kluss_image')->getClientOriginalExtension();
                 $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
-
                 $destinationPath = "/img/klussjes/". $fileName;
-                $file->move('img/klussjes', $fileName);
-
+                $file->move('/assets/img/klussjes', $fileName);
                 if($description == ""){
                     $description = "Geen beschrijving beschikbaar.";
                 }
-
                 $query = DB::table('kluss')->insert(
                     ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
                 );
-
+                $kluss = [
+                    'title' => $title,
+                    'description' => $description,
+                    'kluss_image' => $destinationPath,
+                    'price' => $price,
+                    'address' => $address,
+                    'date' => $date,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'user_id' => $user_id
+                ];
+                $this->pusher->trigger("kluss-map", "new-task", $kluss);
                 if($query){
                     return redirect('/home');
                 }
@@ -61,15 +73,27 @@ class KlussController extends Controller
             if($description == ""){
                 $description = "Geen beschrijving beschikbaar.";
             }
-
             $query = DB::table('kluss')->insert(
                 ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
             );
-
+            $kluss = [
+                'title' => $title,
+                'description' => $description,
+                'kluss_image' => "/img/klussjes/geen-image.png",
+                'price' => $price,
+                'address' => $address,
+                'date' => $date,
+                'latitude' => $latitude,
+                'longitude' => $longitude,
+                'user_id' => $user_id
+            ];
+            $this->pusher->trigger("kluss-map", "new-task", $kluss);
             if($query){
                 return redirect('/home');
             }
         }
+
+
     }
 
     public function SingleKluss($id){

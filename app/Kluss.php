@@ -9,7 +9,7 @@ class Kluss extends Model
 {
     //
     protected $fillable = [
-            'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted_applicant_id', 'address'
+            'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted_applicant_id', 'address', 'closed'
     ];
 
     public $table = "kluss";

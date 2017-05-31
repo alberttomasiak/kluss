@@ -15,7 +15,7 @@
         </div>
     </div>
 </div>
-
+<script src="//js.pusher.com/3.0/pusher.min.js"></script>
 <script type="text/javascript">
   var map;
   var klussjes = {!! json_encode($klussjes) !!};
@@ -108,7 +108,7 @@
     var html = "<div id='iw-container'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='/assets"+image+"'></div>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
     "<div class='card-action'><a href='/kluss/"+id+"'>Ga naar de kluss</a></div></div>";
     var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
-    if(accepted == 0){
+    if(accepted == null){
         if(account_type == "normal"){
             var mark = new google.maps.Marker({
                 map: map,
@@ -146,5 +146,24 @@
 }
 initGeolocation();
 
+// ***************************************************
+// Pusher time
+// function logTask(data){
+//     addMarker(data);
+// }
+
+var pusher = new Pusher('1a329a7dd69a92834d4d', {
+  cluster: 'eu',
+  encrypted: true,
+  authEndpoint: '/map/auth',
+  auth: {
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    }
+});
+var channel = pusher.subscribe("kluss-map");
+// channel binds
+channel.bind('new-task', addMarker);
 </script>
 @endsection
