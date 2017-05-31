@@ -97,10 +97,10 @@
         var accepted = kluss.accepted_applicant_id;
         var account_type = kluss.account_type;
 
-        var html = "<div id='iw-container'><img class='map-image' alt='klussje' src='../assets/"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address + "</b> </br>" + "<b>"+ price +" credits </b></br></div>";
+        var html = "<div id='iw-container task-"+id+"'><img class='map-image' alt='klussje' src='../assets/"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address + "</b> </br>" + "<b>"+ price +" credits </b></br></div>";
         var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
 
-        if(accepted == 0){
+        if(accepted == null){
             if(account_type == "normal"){
                 var mark = new google.maps.Marker({
                     map: map,

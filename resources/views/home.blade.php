@@ -95,6 +95,8 @@
           marks[i] = addMarker(klussjes[i]);
       }
   }
+  var id;
+  var markers =  {};
   function addMarker(kluss){
     var title = kluss.title;
     var description = kluss.description;
@@ -105,7 +107,7 @@
     var id = kluss.id;
     var accepted = kluss.accepted_applicant_id;
     var account_type = kluss.account_type;
-    var html = "<div id='iw-container'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='/assets"+image+"'></div>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
+    var html = "<div id='iw-container task-"+id+"'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='/assets"+image+"'></div>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
     "<div class='card-action'><a href='/kluss/"+id+"'>Ga naar de kluss</a></div></div>";
     var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
     if(accepted == null){
@@ -115,12 +117,14 @@
                 position: klussLatlng,
                 icon: "/assets/img/marker_1-klein.png",
             });
+            markers[id] = mark;
         }else{
             var mark = new google.maps.Marker({
                 map: map,
                 position: klussLatlng,
                 icon: "/assets/img/marker_gold-klein.png",
             });
+            markers[id] = mark;
         }
     }else{
         var mark = new google.maps.Marker({
@@ -128,6 +132,7 @@
             position: klussLatlng,
             icon: "/assets/img/marker_2-klein.png",
         });
+        markers[id] = mark;
     }
 
     var infoWindow = new google.maps.InfoWindow({
@@ -151,6 +156,9 @@ initGeolocation();
 // function logTask(data){
 //     addMarker(data);
 // }
+function deleteMarker(data){
+    markers[data.taskID].setMap(null);
+}
 
 var pusher = new Pusher('1a329a7dd69a92834d4d', {
   cluster: 'eu',
@@ -165,5 +173,6 @@ var pusher = new Pusher('1a329a7dd69a92834d4d', {
 var channel = pusher.subscribe("kluss-map");
 // channel binds
 channel.bind('new-task', addMarker);
+channel.bind('deleted-task', deleteMarker);
 </script>
 @endsection

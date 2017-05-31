@@ -46,7 +46,7 @@ class KlussController extends Controller
                 $extension = Input::file('kluss_image')->getClientOriginalExtension();
                 $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
                 $destinationPath = "/img/klussjes/". $fileName;
-                $file->move('/assets/img/klussjes', $fileName);
+                $file->move('assets/img/klussjes', $fileName);
                 if($description == ""){
                     $description = "Geen beschrijving beschikbaar.";
                 }
@@ -211,5 +211,14 @@ class KlussController extends Controller
             'distance' => $distance,
             'account_type' => $account_type
         ]);
+    }
+
+    public function delete($id){
+        $delete = Kluss::deleteTask($id);
+        $deleted = [
+            'taskID' => $id
+        ];
+        $this->pusher->trigger("kluss-map", "deleted-task", $deleted);
+        return redirect('/home');
     }
 }

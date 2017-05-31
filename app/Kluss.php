@@ -40,6 +40,10 @@ class Kluss extends Model
         return self::where('user_id', '=', $id)->paginate(6);
     }
 
+    public static function deleteTask($id){
+        return self::where('id', $id)->delete();
+    }
+
     public static function getTasksInNeighborhood($lat, $lng){
         return DB::select(DB::raw(" SELECT *, (
 		            6371 * acos (

@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
     Route::post('/kluss/{id}/sollicitant/{userid}/accepteren', 'KlussController@acceptUser');
     Route::post('/kluss/{id}/sollicitant/{userid}/weigeren', 'KlussController@refuseUser');
+    Route::get('/kluss/{id}/verwijderen', 'KlussController@delete');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
