@@ -6,43 +6,47 @@
                 @if($kl->user_id == \Auth::user()->id)
             <div class="col s12 m6 kluss--edit">
                 <div class="col-sm-7">
-                    <img src="../../{{$kl->kluss_image}}" class="individual--image" alt="{{$kl->title}}">
+                    <img src="../../assets{{$kl->kluss_image}}" class="individual--image" alt="{{$kl->title}}">
+                    @if($kl->accepted_applicant_id != null)
+                        <h3 style="margin-top: -60px;">Er werd al een applicant gekozen. Het bewerken van dit klusje is niet meer mogelijk.</h3>
+                    @endif
                 </div>
                 <div class="col-sm-5">
-                    <form class="kluss--add individual--image container right" action="{{URL('/kluss/'.$kl->id.'/bewerken')}}" method="post">
+                    <form class="kluss--add individual--image container right" action="{{URL('/kluss/'.$kl->id.'/bewerken')}}" method="post" {{ $kl->accepted_applicant_id != null ? 'disabled' : '' }}>
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <div class="form-group title-group">
                             <label for="title">Titel</label>
-                            <input type="text" name="title" class="form-control kluss--title" value="{{$kl->title}}" placeholder="Stofzuigen kot" required>
+                            <input type="text" name="title" class="form-control kluss--title" value="{{$kl->title}}" placeholder="Stofzuigen kot" required {{ $kl->accepted_applicant_id != null ? 'disabled' : '' }}>
                         </div>
 
                         <div class="form-group">
                             <label for="description">Beschrijving</label>
-                            <textarea name="description" class="form-control kluss--description" rows="3" placeholder="Klein kot, 2 uurtjes werk max!">{{$kl->description}}</textarea>
+                            <textarea name="description" class="form-control kluss--description" rows="3" placeholder="Klein kot, 2 uurtjes werk max!" {{ $kl->accepted_applicant_id != null ? 'disabled' : '' }}>{{$kl->description}}</textarea>
                         </div>
 
                         <div class="form-group">
                             <label for="address">Adres</label>
                             <input id="autocomplete" name="address" class="form-control" placeholder="Geef uw adres in:"
-                            onFocus="geolocate()" value="{{$kl->address}}" type="text" required></input>
+                            onFocus="geolocate()" value="{{$kl->address}}" type="text" required {{ $kl->accepted_applicant_id != null ? 'disabled' : '' }}></input>
                         </div>
 
                         <div class="form-group">
                             <label for="kluss_image">Foto toevoegen</label>
-                            <input type="file" class="kluss--image" name="kluss_image" id="kluss--input">
+                            <input type="file" class="kluss--image" name="kluss_image" id="kluss--input" {{ $kl->accepted_applicant_id != null ? 'disabled' : '' }}>
                         </div>
 
                         <div class="form-group price-group">
                             <label for="price">Credits</label>
-                            <input type="number" name="price" class="kluss--price form-control" value="{{$kl->price}}" placeholder="15" required>
+                            <input type="number" name="price" class="kluss--price form-control" value="{{$kl->price}}" placeholder="15" required {{ $kl->accepted_applicant_id != null ? 'disabled' : '' }}>
                         </div>
 
                         <div class="form-group">
                             <input type="hidden" name="latitude" id="kluss--latB" value="{{$kl->latitude}}">
                             <input type="hidden" name="longitude" id="kluss--lngB" value="{{$kl->longitude}}">
                         </div>
-
-                        <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="Opslaan">
+                        @if($kl->accepted_applicant_id == null)
+                            <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="Opslaan">
+                        @endif
                     </form>
                 </div>
             </div>
