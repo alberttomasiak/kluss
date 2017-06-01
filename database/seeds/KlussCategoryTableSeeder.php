@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class GlobalSettingsTableSeeder extends Seeder
+class KlussCategoryTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,14 +14,14 @@ class GlobalSettingsTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        DB::table('global_settings')->insert([
-            'key'   => 'limit_starter',
-            'value' => '2'
+        DB::table('kluss_categories')->insert([
+            'name' => 'Tuinwerk'
         ]);
-        DB::table('global_settings')->insert([
-            'key'   => 'limit_gold',
-            'value' => '5'
+        
+        DB::table('kluss_categories')->insert([
+            'name' => 'Algemene huishoudhulp'
         ]);
+
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
