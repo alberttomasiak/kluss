@@ -53,7 +53,9 @@ class KlussController extends Controller
                 $query = DB::table('kluss')->insert(
                     ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
                 );
+                $id = Kluss::getLatestID($user_id);
                 $kluss = [
+                    'id' => $id,
                     'title' => $title,
                     'description' => $description,
                     'kluss_image' => $destinationPath,
@@ -76,7 +78,9 @@ class KlussController extends Controller
             $query = DB::table('kluss')->insert(
                 ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
             );
+            $id = Kluss::getLatestID($user_id);
             $kluss = [
+                'id' => $id,
                 'title' => $title,
                 'description' => $description,
                 'kluss_image' => "/img/klussjes/geen-image.png",
@@ -101,7 +105,8 @@ class KlussController extends Controller
         $title = Kluss::getSingleTitle($id);
         $kluss_applicant = Kluss_applicant::getApplicant($id);
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants'))->with('title', $title);
+        $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
+        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant'))->with('title', $title);
     }
 
     public function acceptUser(Request $request){
@@ -116,10 +121,16 @@ class KlussController extends Controller
         $applicantTableID = Kluss_applicant::getApplicantTableID($taskID, $acceptedID);
         $taskStatus = Kluss::acceptUser($taskID, $applicantTableID);
         // 5. Remove the apply btn on the task
-
+        $accepted_applicant = Kluss_applicant::getAcceptedApplicant($taskID);
+        $userImage = $accepted_applicant->profile_pic;
+        $userID = $accepted_applicant->id;
+        $userName = $accepted_applicant->name;
         // 6. Send the update to our map --> pusher.js implementation
         $selected = [
-            'taskID' => $taskID
+            'taskID' => $taskID,
+            'userName' => $userName,
+            'userID' => $userID,
+            'userImage' => $userImage
         ];
         $this->pusher->trigger("kluss-map", "applicant-selected-task", $selected);
         // 7. Return after everything is handled

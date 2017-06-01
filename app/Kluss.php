@@ -32,6 +32,12 @@ class Kluss extends Model
                     ->get();
     }
 
+    public static function getLatestID($userID){
+        return self::where([
+            ['user_id', $userID]
+        ])->orderBy('id', 'desc')->pluck('id')->first();
+    }
+
     public static function getSingleTitle($id){
         return self::where('id', '=', $id)->value('title');
     }

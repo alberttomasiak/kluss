@@ -40,6 +40,15 @@ class Kluss_applicant extends Model
             ])->delete();
     }
 
+    public static function getAcceptedApplicant($taskID){
+        return self::join('users', 'kluss_applicants.user_id', '=', 'users.id')
+                    ->select('kluss_applicants.*', 'users.*')
+                    ->where([
+                        ['kluss_id', $taskID],
+                        ['accepted', 1]
+                    ])->first();
+    }
+
     public static function acceptApplicant($taskID, $userID){
         return self::where([
             ['kluss_id', $taskID],
