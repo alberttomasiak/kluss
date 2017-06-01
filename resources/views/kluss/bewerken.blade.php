@@ -44,8 +44,9 @@
                             <input type="hidden" name="latitude" id="kluss--latB" value="{{$kl->latitude}}">
                             <input type="hidden" name="longitude" id="kluss--lngB" value="{{$kl->longitude}}">
                         </div>
-
-                        <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="Opslaan">
+                        @if($kl->accepted_applicant_id == null)
+                            <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="Opslaan">
+                        @endif
                     </form>
                 </div>
             </div>
