@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Kluss;
 use App\User;
 use App\Kluss_applicant;
+use App\KlussCategories;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -26,21 +27,25 @@ class KlussController extends Controller
     }
 
     public function index(){
-        return view('kluss/add')->with('title', 'Voeg een Kluss toe');
+        $kluss_categories = KlussCategories::getCategories();
+        return view('kluss/add', compact('kluss_categories'))->with('title', 'Voeg een Kluss toe');
     }
 
     public function add(Request $request){
-            $title = $request->title;
-            $description = $request->description;
-            $kluss_image = $request->kluss_image;
-            $price = $request->price;
-            $date = Carbon::now()->toDateTimeString();
-            $latitude = $request->latitude;
-            $longitude = $request->longitude;
-            $user_id = \Auth::user()->id;
-            $address = $request->address;
+        dd($request);
+        $title = $request->title;
+        $description = $request->description;
+        $kluss_image = $request->kluss_image;
+        $price = $request->price;
+        $date = Carbon::now()->toDateTimeString();
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+        $user_id = \Auth::user()->id;
+        $address = $request->address;
+        $time = $request->kluss_time;
+        $category = $request->kluss_category;
 
-            if(Input::hasFile('kluss_image')){
+        if(Input::hasFile('kluss_image')){
             $file = Input::file('kluss_image');
             if(substr($file->getMimeType(), 0, 5) == 'image'){
                 $extension = Input::file('kluss_image')->getClientOriginalExtension();
@@ -96,8 +101,6 @@ class KlussController extends Controller
                 return redirect('/home');
             }
         }
-
-
     }
 
     public function SingleKluss($id){
