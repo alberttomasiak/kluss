@@ -32,7 +32,6 @@ class KlussController extends Controller
     }
 
     public function add(Request $request){
-        dd($request);
         $title = $request->title;
         $description = $request->description;
         $kluss_image = $request->kluss_image;
@@ -70,7 +69,7 @@ class KlussController extends Controller
                     'user_id' => $user_id
                 ];
                 $this->pusher->trigger("kluss-map", "new-task", $kluss);
-                if($query){
+                if($task){
                     return redirect('/home');
                 }
             }
@@ -78,7 +77,7 @@ class KlussController extends Controller
             if($description == ""){
                 $description = "Geen beschrijving beschikbaar.";
             }
-            $image = "/img/klussjes/geen-image.png"
+            $image = "/img/klussjes/geen-image.png";
             $task = Kluss::createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
             $id = Kluss::getLatestID($user_id);
             $kluss = [
@@ -94,7 +93,7 @@ class KlussController extends Controller
                 'user_id' => $user_id
             ];
             $this->pusher->trigger("kluss-map", "new-task", $kluss);
-            if($query){
+            if($task){
                 return redirect('/home');
             }
         }
