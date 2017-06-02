@@ -55,9 +55,7 @@ class KlussController extends Controller
                 if($description == ""){
                     $description = "Geen beschrijving beschikbaar.";
                 }
-                $query = DB::table('kluss')->insert(
-                    ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
-                );
+                $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
                 $id = Kluss::getLatestID($user_id);
                 $kluss = [
                     'id' => $id,
@@ -80,9 +78,8 @@ class KlussController extends Controller
             if($description == ""){
                 $description = "Geen beschrijving beschikbaar.";
             }
-            $query = DB::table('kluss')->insert(
-                ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
-            );
+            $image = "/img/klussjes/geen-image.png"
+            $task = Kluss::createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
             $id = Kluss::getLatestID($user_id);
             $kluss = [
                 'id' => $id,
