@@ -13,3 +13,63 @@
     width: 100%;
     display: block;
 }
+
+.kluss-left, .kluss-right{
+    position: relative;
+}
+
+input[type="file"]{
+    z-index: -1;
+    display: block;
+    width: 100%;
+    height: 300px;
+    background-color: transparent;
+    border: 3px solid #eee;
+    border-style: dashed;
+    text-align: center;
+    font-weight: normal;
+    color: transparent;
+    overflow: hidden;
+    padding-top: 310px;
+}
+
+.kluss-file-upload{
+    display: block;
+    width: 225px;
+    margin-left: auto;
+    margin-right: auto;
+    position: absolute;
+    top: 45%;
+    bottom: 55%;
+    left: 0;
+    right: 0;
+    z-index: -5;
+}
+
+#preview--kluss{
+    display: block;
+    width: 100%;
+    height: 315px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    border: none;
+    z-index: -1;
+}
+
+
+@media only screen and (min-width: 768px){
+    #kluss--toevoegen{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        .kluss-left, .kluss-right{
+            width: 48%;
+        }
+        .kluss-fullwidth{
+            display: block;
+            width: 100%;
+        }
+    }
+}
