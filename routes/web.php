@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\TestMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,11 +18,19 @@ Auth::routes();
 Route::get('/login', function(){ return redirect('/aanmelden'); });
 Route::get('/aanmelden', function(){ return view('auth/login')->with('title', 'Aanmelden'); });
 Route::post('/aanmelden', 'UserController@login');
-Route::get('/register', function(){ return view('auth/register')->with('title', 'Registreer'); });
+Route::get('/register', function(){ return redirect('/registreren'); });
+Route::get('/registreren', function(){ return view('auth/register')->with('title', 'Registreer'); });
+Route::post('/registreren', 'UserController@register');
 
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
+});
+
+Route::get('/test', function(){
+    Mail::to('info@boogiewoogie.com')->send(new TestMail);
+
+    return redirect('/home');
 });
 
 Route::group(['middleware' => ['auth']], function(){
