@@ -9,6 +9,7 @@ use App\Kluss;
 use App\Message;
 use App\Conversation;
 use App\UserBlocks;
+use App\GlobalSettings;
 
 class AdminController extends Controller
 {
@@ -95,6 +96,27 @@ class AdminController extends Controller
     }
     // settings
     public function settingsIndex(){
-        return view('admin.settings.index');
+        $settings = GlobalSettings::getSettings();
+        return view('admin.settings.index', ['settings' => $settings]);
+    }
+    public function settingsAdd(Request $request){
+        $key = $request->settingKey;
+        $value = $request->settingValue;
+
+        $setting = new GlobalSettings;
+        $setting->key = $key;
+        $setting->value = $value;
+        $setting->save();
+        return redirect()->back();
+    }
+    public function settingEdit(Request $request){
+        $settingID = $request->settingID;
+        $key = $request->settingKey;
+        $value = $request->settingValue;
+
+        $update = GlobalSettings::updateSetting($settingID, $key, $value);
+        if($update == true){
+            return redirect()->back();
+        }
     }
 }

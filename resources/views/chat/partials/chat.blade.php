@@ -146,7 +146,7 @@
         el.find('.timestamp').text(strftime('%d/%m/%y %H:%M:%S', new Date(data.timestamp)));
 
         var messages = $('#messages');
-        messages.append(el)
+        messages.append(el);
 
         // Make sure the incoming message is shown
         messages.scrollTop(messages[0].scrollHeight);

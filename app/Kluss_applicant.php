@@ -26,7 +26,51 @@ class Kluss_applicant extends Model
                     ->where('kluss.user_id', '=', $id)->orderBy('date', 'asc')->paginate(5, ['*'], 'sollicitanten');
     }
 
-    public static function deleteApplicant($id){
+    public static function getAllApplicants($id){
+        return self::join('users', 'kluss_applicants.user_id', '=', 'users.id')
+                    ->select('kluss_applicants.*', 'users.*')
+                    ->where('kluss_applicants.kluss_id', '=', $id)
+                    ->paginate(5, ['*'], 'sollicitanten');
+    }
+
+    public static function removeApplicant($taskID, $userID){
+        return self::where([
+            ['kluss_id', $taskID],
+            ['user_id', $userID],
+            ])->delete();
+    }
+
+    public static function getAcceptedApplicant($taskID){
+        return self::join('users', 'kluss_applicants.user_id', '=', 'users.id')
+                    ->select('kluss_applicants.*', 'users.*')
+                    ->where([
+                        ['kluss_id', $taskID],
+                        ['accepted', 1]
+                    ])->first();
+    }
+
+    public static function acceptApplicant($taskID, $userID){
+        return self::where([
+            ['kluss_id', $taskID],
+            ['user_id', $userID]
+        ])->update(['accepted' => 1]);
+    }
+
+    public static function deleteNotAcceptedApplicants($taskID){
+        return self::where([
+            ['kluss_id', $taskID],
+            ['accepted', 0]
+        ])->delete();
+    }
+
+    public static function getApplicantTableID($taskID, $userID){
+        return self::where([
+            ['kluss_id', $taskID],
+            ['user_id', $userID]
+        ])->pluck('id')->first();
+    }
+
+    public static function removeApplication($id){
         return self::where([
             ['kluss_id', '=', $id],
             ['user_id', '=', \Auth::user()->id],

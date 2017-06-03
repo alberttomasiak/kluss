@@ -31,6 +31,6 @@ node backup/*
 /.git
 .git/*
 npm-debug.log.*
-/public/img/klussjes/kluss-*
+/public/assets/img/klussjes/kluss-*
 .vagrant
 .vagrant/*

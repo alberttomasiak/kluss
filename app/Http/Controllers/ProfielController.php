@@ -22,7 +22,7 @@ class ProfielController extends Controller
     {
         $personalData = \App\User::getTargetInfo($id);
         $klussjes = \App\Kluss::getUserKluss($id);
-        $sollicitanten = \App\Kluss_applicant::getApplicants($id);
+        // $sollicitanten = \App\Kluss_applicant::getApplicants($id);
         $block_categories = \App\BlockReasons::getCategories();
         // historiek van uitgevoerde klussjes
         // reviews gebruikers

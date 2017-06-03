@@ -4,22 +4,52 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
 
 class Kluss extends Model
 {
     //
     protected $fillable = [
-            'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted', 'address'
+            'title', 'description', 'kluss_image', 'price', 'date', 'latitude', 'longitude', 'user_id', 'accepted_applicant_id', 'address', 'closed'
     ];
 
     public $table = "kluss";
 
     public static function getPublished(){
-        return self::where('accepted', '=', '0')->get();
+        //return self::where('closed', '=', '0')->get();
+        return DB::table('kluss')
+                    ->join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('kluss.*', 'users.account_type')
+                    ->where('kluss.closed', '=', 0)
+                    ->get();
     }
 
     public static function getSingle($id){
-        return self::where('id', '=', $id)->get();
+        //return self::where('id', '=', $id)->get();
+        return DB::table('kluss')
+                    ->join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('kluss.*', 'users.account_type')
+                    ->where('kluss.id', '=', $id)
+                    ->get();
+    }
+
+    public static function getUserHistory($user_id){
+        return self::where([
+            ['date', '>=', Carbon::now()->subMonth()],
+            ['user_id', $user_id]
+            ])->count();
+    }
+
+    public static function createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time){
+        return self::insert([
+            'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
+        ]);
+    }
+
+    public static function getLatestID($userID){
+        return self::where([
+            ['user_id', $userID]
+        ])->orderBy('id', 'desc')->pluck('id')->first();
     }
 
     public static function getSingleTitle($id){
@@ -27,7 +57,11 @@ class Kluss extends Model
     }
 
     public static function getUserKluss($id){
-        return self::where('user_id', '=', $id)->get();
+        return self::where('user_id', '=', $id)->paginate(6);
+    }
+
+    public static function deleteTask($id){
+        return self::where('id', $id)->delete();
     }
 
     public static function getTasksInNeighborhood($lat, $lng){
@@ -41,12 +75,12 @@ class Kluss extends Model
             		)
                ) AS distance
                FROM kluss
-               HAVING distance < 2.5
+               HAVING distance < 2
                ORDER BY distance;"));
     }
 
     public static function getActiveTaskCount(){
-        return self::where('accepted', '=', '0')->count();
+        return self::where('accepted_applicant_id', '=', '0')->count();
     }
 
     public static function getClosedTaskCount(){
@@ -54,9 +88,15 @@ class Kluss extends Model
     }
 
     public static function getOpenTasks(){
-        return self::where('accepted', '=', '0')->paginate(6);
+        return self::where('accepted_applicant_id', '=', '0')->paginate(6);
     }
     public static function getClosedTasks(){
-        return self::where('accepted', '=', '1')->paginate(6);
+        return self::where('closed', '=', '1')->paginate(6);
+    }
+
+    public static function acceptUser($taskID, $applicantID){
+        return self::where([
+            ['id', $taskID]
+        ])->update(['accepted_applicant_id' => $applicantID]);
     }
 }
