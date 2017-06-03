@@ -33,7 +33,6 @@ class KlussController extends Controller
     }
 
     public function add(Request $request){
-        dd($request);
         $title = $request->title;
         $description = $request->description;
         $kluss_image = $request->kluss_image;

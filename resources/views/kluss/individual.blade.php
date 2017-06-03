@@ -98,7 +98,7 @@
         var accepted = kluss.accepted_applicant_id;
         var account_type = kluss.account_type;
 
-        var html = "<div id='iw-container task-"+id+"'><img class='map-image' alt='klussje' src='../assets/"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address + "</b> </br>" + "<b>"+ price +" credits </b></br></div>";
+        var html = "<div id='iw-container task-"+id+"'><img class='map-image' alt='klussje' src='../assets/"+image+"'>"+ "<b>" + title + "</b> <br/>" + description.substring(0, 100) + "... </br></br>" + "<b>" + address.replace(/\d+/g, "") + "</b> </br>" + "<b>"+ price +" credits </b></br></div>";
         var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
 
         if(accepted == null){
@@ -177,7 +177,7 @@
                 <div class="col-md-6 kluss-data">
                     <h1>{{$kl->title}}</h1>
                     <p>{{$kl->description}}</p></br></br>
-                    <b>{{$kl->address}}</b></br>
+                    <b>{{preg_replace('/[0-9]+/', '', $kl->address)}}</b></br>
                     <b>{{$kl->price}} Credits</b></br></br>
                     @if($accepted_applicant == null)
                         @if(\Auth::user()->id == $kl->user_id)
