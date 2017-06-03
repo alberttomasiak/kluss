@@ -113,3 +113,7 @@ Route::get('/FAQ', function () {
 Route::get('/community', function () {
     return view('/community');
 });
+
+Route::get('/landing', function () {
+    return view('/landing');
+});
