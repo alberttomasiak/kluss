@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Mail\VerificationMail;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -33,10 +34,15 @@ class User extends Authenticatable
     public static function sendVerificationMail($email){
         $code = User::getVerificationCode($email);
         Mail::to($email)->send(new VerificationMail($code));
+        return true;
     }
 
     public static function verifyAccount($code){
-        return self::where('activation_code', $code)->update('activated', 1);
+        return self::where('activation_code', $code)->update(['activated' => 1]);
+    }
+
+    public static function generateVerificationCode($email){
+        return self::where('email', $email)->update(['activation_code' => str_random(45)]);
     }
 
     public static function getVerificationCode($email){

@@ -33,7 +33,6 @@ class UserController extends Controller
     }
 
     public function register(Request $request){
-        dd($request);
         $this->validate($request, [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -41,13 +40,13 @@ class UserController extends Controller
         ]);
 
         User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-            'activation_code' => str_random(45);
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'password' => bcrypt($request['password']),
         ]);
 
-        $verification = User::sendVerificationMail($data['email']);
+        $generateCode = User::generateVerificationCode($request['email']);
+        $verification = User::sendVerificationMail($request['email']);
         return $verification ? redirect()->back()->with('verificationMail', "Uw verificatie mail werd verstuurd. Om uw account te activeren klik op de link in de mail.") : "Er is iets misgelopen.";
     }
 }

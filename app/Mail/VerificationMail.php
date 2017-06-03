@@ -16,9 +16,9 @@ class VerificationMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($code)
     {
-        //
+        $this->code = $code;
     }
 
     /**
@@ -28,6 +28,14 @@ class VerificationMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        $verification = $this->code;
+        $address = 'no-reply@kluss.be';
+        $name = 'Account Verification';
+        $subject = 'Account verifiëren | KLUSS';
+
+        return $this->view('emails.verification', compact('verification'))
+                ->from($address, $name)
+                ->replyTo($address, $name)
+                ->subject($subject);
     }
 }
