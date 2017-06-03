@@ -3,7 +3,7 @@
     <div class="kluss--add container col-md-6 col-md-offset-3 center">
             <form class="row flex-row add-kluss" enctype="multipart/form-data" id="kluss--toevoegen" action="{{ URL('/kluss/add')}}" method="post">
                 <h1 class="kluss-fullwidth">Plaats een klussje op de kaart</h1>
-                @if($account_type == "admin" && $task_history >= 2)
+                @if($account_type == "normal" && $task_history >= 3)
                     <div class="task-limit">
                         <h4>Het spijt ons maar u hebt uw maandelijks limiet van klusjes bereikt.</h4>
                         <h5>Door een Gold subscriptie aan te schaffen kunt u maandelijks meer klusjes plaatsen.</h5>
