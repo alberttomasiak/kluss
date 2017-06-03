@@ -27,6 +27,11 @@ class UserController extends Controller
         return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
     }
 
+    public function verifyAccount($code){
+        $verify = User::verifyAccount($code);
+        return $verify ? redirect('/aanmelden') : redirect('/');
+    }
+
     public function register(Request $request){
         dd($request);
         $this->validate($request, [

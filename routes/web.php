@@ -21,6 +21,7 @@ Route::post('/aanmelden', 'UserController@login');
 Route::get('/register', function(){ return redirect('/registreren'); });
 Route::get('/registreren', function(){ return view('auth/register')->with('title', 'Registreer'); });
 Route::post('/registreren', 'UserController@register');
+Route::get('/verificatie/{code}', 'UserController@verifyAccount');
 
 Route::get('/logout', function(){
     Auth::logout();
