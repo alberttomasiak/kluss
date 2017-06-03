@@ -102,10 +102,8 @@ Route::get('/FAQ', function () {
 Route::get('/community', function () {
     return view('/community');
 });
-<<<<<<< HEAD
 
 Route::get('/landing', function () {
     return view('/landing');
 });
-=======
->>>>>>> development
+
