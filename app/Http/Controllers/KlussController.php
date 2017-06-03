@@ -28,14 +28,19 @@ class KlussController extends Controller
 
     public function index(){
         $kluss_categories = KlussCategories::getCategories();
-        return view('kluss/add', compact('kluss_categories'))->with('title', 'Voeg een Kluss toe');
+        $account_type = User::checkAccountType(\Auth::user()->id);
+        return view('kluss/add', compact('kluss_categories', 'account_type'))->with('title', 'Voeg een Kluss toe');
     }
 
     public function add(Request $request){
+        dd($request);
         $title = $request->title;
         $description = $request->description;
         $kluss_image = $request->kluss_image;
         $price = $request->price;
+        if($price == null){
+            $price = 0;
+        }
         $date = Carbon::now()->toDateTimeString();
         $latitude = $request->latitude;
         $longitude = $request->longitude;

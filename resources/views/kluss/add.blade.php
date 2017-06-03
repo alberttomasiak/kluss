@@ -10,10 +10,12 @@
                         <input type="text" name="title" class="form-control kluss--title" value="" placeholder="Titel:" required>
                     </div>
 
-                    <div class="form-group price-group">
-                        {{-- <label for="price">Prijs</label> --}}
-                        <input type="number" name="price" class="kluss--price form-control" value="" placeholder="Prijs (PayPal):" required>
-                    </div>
+                    @if($account_type != "admin")
+                        <div class="form-group price-group">
+                            {{-- <label for="price">Prijs</label> --}}
+                            <input type="number" name="price" class="kluss--price form-control" value="" placeholder="Prijs (PayPal):" required>
+                        </div>
+                    @endif
 
                     <div class="form-group time-group">
                         <select class="form-control" name="kluss_time" id="kluss_time">
