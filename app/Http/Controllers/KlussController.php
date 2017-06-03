@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Session;
 use App\Kluss;
 use App\User;
 use App\Kluss_applicant;
+use App\KlussCategories;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -26,21 +27,24 @@ class KlussController extends Controller
     }
 
     public function index(){
-        return view('kluss/add')->with('title', 'Voeg een Kluss toe');
+        $kluss_categories = KlussCategories::getCategories();
+        return view('kluss/add', compact('kluss_categories'))->with('title', 'Voeg een Kluss toe');
     }
 
     public function add(Request $request){
-            $title = $request->title;
-            $description = $request->description;
-            $kluss_image = $request->kluss_image;
-            $price = $request->price;
-            $date = Carbon::now()->toDateTimeString();
-            $latitude = $request->latitude;
-            $longitude = $request->longitude;
-            $user_id = \Auth::user()->id;
-            $address = $request->address;
+        $title = $request->title;
+        $description = $request->description;
+        $kluss_image = $request->kluss_image;
+        $price = $request->price;
+        $date = Carbon::now()->toDateTimeString();
+        $latitude = $request->latitude;
+        $longitude = $request->longitude;
+        $user_id = \Auth::user()->id;
+        $address = $request->address;
+        $time = $request->kluss_time;
+        $category = $request->kluss_category;
 
-            if(Input::hasFile('kluss_image')){
+        if(Input::hasFile('kluss_image')){
             $file = Input::file('kluss_image');
             if(substr($file->getMimeType(), 0, 5) == 'image'){
                 $extension = Input::file('kluss_image')->getClientOriginalExtension();
@@ -50,9 +54,7 @@ class KlussController extends Controller
                 if($description == ""){
                     $description = "Geen beschrijving beschikbaar.";
                 }
-                $query = DB::table('kluss')->insert(
-                    ['title' => $title, 'description' => $description, 'kluss_image' => $destinationPath, 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
-                );
+                $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
                 $id = Kluss::getLatestID($user_id);
                 $kluss = [
                     'id' => $id,
@@ -67,7 +69,7 @@ class KlussController extends Controller
                     'user_id' => $user_id
                 ];
                 $this->pusher->trigger("kluss-map", "new-task", $kluss);
-                if($query){
+                if($task){
                     return redirect('/home');
                 }
             }
@@ -75,9 +77,8 @@ class KlussController extends Controller
             if($description == ""){
                 $description = "Geen beschrijving beschikbaar.";
             }
-            $query = DB::table('kluss')->insert(
-                ['title' => $title, 'description' => $description, 'kluss_image' => "/img/klussjes/geen-image.png", 'price' => $price, 'address' => $address, 'date' => $date, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id]
-            );
+            $image = "/img/klussjes/geen-image.png";
+            $task = Kluss::createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
             $id = Kluss::getLatestID($user_id);
             $kluss = [
                 'id' => $id,
@@ -92,12 +93,10 @@ class KlussController extends Controller
                 'user_id' => $user_id
             ];
             $this->pusher->trigger("kluss-map", "new-task", $kluss);
-            if($query){
+            if($task){
                 return redirect('/home');
             }
         }
-
-
     }
 
     public function SingleKluss($id){

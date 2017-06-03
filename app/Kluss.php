@@ -32,6 +32,12 @@ class Kluss extends Model
                     ->get();
     }
 
+    public static function createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time){
+        return self::insert([
+            'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
+        ]);
+    }
+
     public static function getLatestID($userID){
         return self::where([
             ['user_id', $userID]
