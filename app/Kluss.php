@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use DB;
+use Carbon\Carbon;
 
 class Kluss extends Model
 {
@@ -30,6 +31,13 @@ class Kluss extends Model
                     ->select('kluss.*', 'users.account_type')
                     ->where('kluss.id', '=', $id)
                     ->get();
+    }
+
+    public static function getUserHistory($user_id){
+        return self::where([
+            ['date', '>=', Carbon::now()->subMonth()],
+            ['user_id', $user_id]
+            ])->count();
     }
 
     public static function createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time){

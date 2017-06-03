@@ -27,9 +27,10 @@ class KlussController extends Controller
     }
 
     public function index(){
+        $task_history = Kluss::getUserHistory(\Auth::user()->id);
         $kluss_categories = KlussCategories::getCategories();
         $account_type = User::checkAccountType(\Auth::user()->id);
-        return view('kluss/add', compact('kluss_categories', 'account_type'))->with('title', 'Voeg een Kluss toe');
+        return view('kluss/add', compact('kluss_categories', 'account_type', 'task_history'))->with('title', 'Voeg een Kluss toe');
     }
 
     public function add(Request $request){
