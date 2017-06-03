@@ -27,8 +27,10 @@ class KlussController extends Controller
     }
 
     public function index(){
+        $task_history = Kluss::getUserHistory(\Auth::user()->id);
         $kluss_categories = KlussCategories::getCategories();
-        return view('kluss/add', compact('kluss_categories'))->with('title', 'Voeg een Kluss toe');
+        $account_type = User::checkAccountType(\Auth::user()->id);
+        return view('kluss/add', compact('kluss_categories', 'account_type', 'task_history'))->with('title', 'Voeg een Kluss toe');
     }
 
     public function add(Request $request){
@@ -36,6 +38,9 @@ class KlussController extends Controller
         $description = $request->description;
         $kluss_image = $request->kluss_image;
         $price = $request->price;
+        if($price == null){
+            $price = 0;
+        }
         $date = Carbon::now()->toDateTimeString();
         $latitude = $request->latitude;
         $longitude = $request->longitude;
