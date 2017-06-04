@@ -23,16 +23,19 @@ Route::get('/registreren', function(){ return view('auth/register')->with('title
 Route::post('/registreren', 'UserController@register');
 Route::get('/verificatie/{code}', 'UserController@verifyAccount');
 
+
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
 });
 
+// test routes --> to be deleted
 Route::get('/test', function(){
     Mail::to('info@boogiewoogie.com')->send(new TestMail);
-
     return redirect('/home');
 });
+Route::get('verificationmail', function(){return view('emails/verification');});
+
 
 Route::group(['middleware' => ['auth']], function(){
     // home routes

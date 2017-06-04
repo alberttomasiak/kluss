@@ -28,12 +28,16 @@ class VerificationMail extends Mailable
      */
     public function build()
     {
-        $verification = $this->code;
+        $verification = "verificatie/".$this->code;
+        $title = "Account verifiëren";
+        $body = "Hey! Je hebt u onlangs geregistreerd op KLUSS.be. Uw account moet nog wel geverifiëerd worden.";
+        $btnTitle = "Verifiëren";
+
+
         $address = 'no-reply@kluss.be';
         $name = 'Account Verification';
         $subject = 'Account verifiëren | KLUSS';
-
-        return $this->view('emails.verification', compact('verification'))
+        return $this->view('emails.verification', compact('verification', 'title', 'body', 'btnTitle'))
                 ->from($address, $name)
                 ->replyTo($address, $name)
                 ->subject($subject);
