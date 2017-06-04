@@ -6,22 +6,34 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
        <link href="assets/css/edits.css" rel="stylesheet">
 
-        <nav class="primary-nav addboxshadow">
-            <div class="primary-nav-left">
-                <a href="#"><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/home-logo.png">HOME</a>
-                <a href="#"><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/bell-logo.png">MELDINGEN</a>
-                <a href="#"><img class="animationout" style="height: 25px; padding-right: 15px;" src="../assets/img/berichten-logo.png">BERICHTEN</a>
-            </div>
-            <div class="primary-nav-center">
-                <a href="#"><img class="animationout" style="height: 40px; margin-top: 7px;" src="../assets/img/logo-kluss.png"></a>
-            </div>
-            <div class="primary-nav-right">
-                <a href="#"> ACCOUNT </a>
-                <a href="#" class="btn">POST</a>
-            </div>
-        </nav>
+       <div class="addboxshadow" id='cssmenu'>
+           <ul>
+               <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/logo-kluss.png"></a></li>
+               <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/home-logo.png">Home</a></li>
+               <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/plaats-logo.png">Plaats een klusje</a></li>
+               <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/bell-logo.png">Meldingen</a></li>
+               <li><a href='#'><img class="animationout" style="height: 25px; padding-right: 15px;" src="../assets/img/berichten-logo.png">Berichten</a></li>
+               <li class='active'><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/settings-logo.png">Instellingen</a>
+                   <ul>
+                       <li><a href='#'>Profiel</a>
+                           <ul>
+                               <li><a href='#'>Bewerk Profiel</a></li>
+                               <li><a href='#'>Kluss Gold</a></li>
+                           </ul>
+                       </li>
+                       <li><a href='#'>Meldingen en gebruikers</a>
+                           <ul>
+                               <li><a href='#'>Demp meldingen</a></li>
+                               <li><a href='#'>Geblokkeerde gebruikers</a></li>
+                           </ul>
+                       </li>
+                   </ul>
+               </li>
+           </ul>
+       </div>
 
-        <div class="addboxshadow container" style="height: 1400px;">
+
+        <div class="addboxshadow container" style="display:block; overflow:auto;">
             <h1 style="float: left; padding: 15px;">Klusjes in de buurt</h1>
             <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
 
@@ -143,34 +155,6 @@
             </div>
 
 
-        <footer>
-            <div class="footer-content container">
-                <section>
-                    <p>KLUSS</p>
-                    <ul>
-                        <li><a style="color: #FFFFFF !important;" href="#">Home</a></li>
-                        <li><a style="color: #FFFFFF !important;" href="#">Team</a></li>
-                        <li><a style="color: #FFFFFF !important;" href="#">Algemene Voorwaarden</a></li>
-                        <li><a style="color: #FFFFFF !important;" href="#">FAQ</a></li>
-
-                    </ul>
-                </section>
-                <section style="margin-right:0px !important;">
-                    <p>CONTACT</p>
-                    <ul>
-                        <li><a style="color: #FFFFFF !important;" href="#">Contact</a></li>
-                        <li><a style="color: #FFFFFF !important;" href="#">Facebook</a></li>
-                        <li><a style="color: #FFFFFF !important;" href="#">Twitter</a></li>
-
-                    </ul>
-
-                </section>
-            </div>
-            <div style="clear:both;text-align:center;font-size:10px;position:relative;bottom:-20px;">
-                &copy; KLUSS 2017 - Made with &#10084; by our team
-            </div>
-        </footer>
-
         <script type="text/javascript">
             var map;
             var klussjes; {{-- = {!! json_encode($klussjes) !!}; --}}
@@ -281,6 +265,81 @@
             }
             initGeolocation();
 
+        </script>
+
+        <script>
+            (function($) {
+
+                $.fn.menumaker = function(options) {
+
+                    var cssmenu = $(this), settings = $.extend({
+                        title: "Menu",
+                        format: "dropdown",
+                        sticky: false
+                    }, options);
+
+                    return this.each(function() {
+                        cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
+                        $(this).find("#menu-button").on('click', function(){
+                            $(this).toggleClass('menu-opened');
+                            var mainmenu = $(this).next('ul');
+                            if (mainmenu.hasClass('open')) {
+                                mainmenu.hide().removeClass('open');
+                            }
+                            else {
+                                mainmenu.show().addClass('open');
+                                if (settings.format === "dropdown") {
+                                    mainmenu.find('ul').show();
+                                }
+                            }
+                        });
+
+                        cssmenu.find('li ul').parent().addClass('has-sub');
+
+                        multiTg = function() {
+                            cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
+                            cssmenu.find('.submenu-button').on('click', function() {
+                                $(this).toggleClass('submenu-opened');
+                                if ($(this).siblings('ul').hasClass('open')) {
+                                    $(this).siblings('ul').removeClass('open').hide();
+                                }
+                                else {
+                                    $(this).siblings('ul').addClass('open').show();
+                                }
+                            });
+                        };
+
+                        if (settings.format === 'multitoggle') multiTg();
+                        else cssmenu.addClass('dropdown');
+
+                        if (settings.sticky === true) cssmenu.css('position', 'fixed');
+
+                        resizeFix = function() {
+                            if ($( window ).width() > 768) {
+                                cssmenu.find('ul').show();
+                            }
+
+                            if ($(window).width() <= 768) {
+                                cssmenu.find('ul').hide().removeClass('open');
+                            }
+                        };
+                        resizeFix();
+                        return $(window).on('resize', resizeFix);
+
+                    });
+                };
+            })(jQuery);
+
+            (function($){
+                $(document).ready(function(){
+
+                    $("#cssmenu").menumaker({
+                        title: "Menu",
+                        format: "multitoggle"
+                    });
+
+                });
+            })(jQuery);
         </script>
     @endsection
 
