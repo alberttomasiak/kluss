@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class VerificationMail extends Mailable
+class CtaMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,9 +16,12 @@ class VerificationMail extends Mailable
      *
      * @return void
      */
-    public function __construct($code)
+    public function __construct($title, $body, $btnSource, $btnTitle)
     {
-        $this->code = $code;
+        $this->title = $title;
+        $this->body = $body;
+        $this->btnSource = $btnSource;
+        $this->btnTitle = $btnTitle;
     }
 
     /**
@@ -28,10 +31,10 @@ class VerificationMail extends Mailable
      */
     public function build()
     {
-        $btnSource = "verificatie/".$this->code;
-        $title = "Account verifiëren";
-        $body = "Hey! Je hebt u onlangs geregistreerd op KLUSS.be. Uw account moet nog wel geverifiëerd worden.";
-        $btnTitle = "Verifiëren";
+        $btnSource = $this->btnSource;
+        $title = $this->btnTitle;
+        $body = $this->body;
+        $btnTitle = $this->btnTitle;
 
 
         $address = 'no-reply@kluss.be';

@@ -29,9 +29,9 @@
             <img src="http://kluss.dev/assets/img/logo-klusswit.png" alt="Logo KLUSS">
         </header>
         <div class="mail-body">
-            <h2>title</h2>
-            <p> body body body body body body body  body body body body body body body  body body body body body body body  body body body body body body body  body body body body body body body  body body body body body body body </p>
-            <a href="http://kluss.dev/">BTN TITLE</a>
+            <h2>{{$title}}</h2>
+            <p>{{$body}}</p>
+            <a href="http://kluss.dev/{{$btnSource}}">{{$btnTitle}}</a>
         </div>
         <footer>
             <p>&copy; KLUSS</p>
