@@ -14,17 +14,21 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         $AmIBanned = User::amIBanned($request->email);
-
-        if($AmIBanned == 0){
-            if(Auth::attempt([
-                'email' => $request->email,
-                'password' => $request->password
-            ])){
-                return redirect('/home');
+        $amIVerified = User::amIVerified($request->email);
+        if($amIVerified == 1){
+            if($AmIBanned == 0){
+                if(Auth::attempt([
+                    'email' => $request->email,
+                    'password' => $request->password
+                ])){
+                    return redirect('/home');
+                }
+            }else{
+                return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
             }
+        }else{
+            return redirect()->back()->with('ImBannedBro', "Dit account is nog niet geverifieërd.");
         }
-
-        return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
     }
 
     public function verifyAccount($code){
