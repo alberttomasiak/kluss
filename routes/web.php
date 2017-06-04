@@ -22,7 +22,8 @@ Route::get('/register', function(){ return redirect('/registreren'); });
 Route::get('/registreren', function(){ return view('auth/register')->with('title', 'Registreer'); });
 Route::post('/registreren', 'UserController@register');
 Route::get('/verificatie/{code}', 'UserController@verifyAccount');
-
+Route::get('/verificatie_hersturen', 'UserController@verificationIndex');
+Route::post('/verificatie_hersturen', 'UserController@resendVerification');
 
 Route::get('/logout', function(){
     Auth::logout();
@@ -30,12 +31,8 @@ Route::get('/logout', function(){
 });
 
 // test routes --> to be deleted
-Route::get('/test', function(){
-    Mail::to('info@boogiewoogie.com')->send(new TestMail);
-    return redirect('/home');
-});
-Route::get('verificationmail', function(){return view('emails/verification');});
 
+// end test routes
 
 Route::group(['middleware' => ['auth']], function(){
     // home routes

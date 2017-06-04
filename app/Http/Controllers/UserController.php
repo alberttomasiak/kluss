@@ -36,6 +36,16 @@ class UserController extends Controller
         return $verify ? redirect('/aanmelden') : redirect('/');
     }
 
+    public function verificationIndex(){
+        return view('/user/verification');
+    }
+
+    public function resendVerification(Request $request){
+        $email = $request->verification_box;
+        $mail = User::resendVerificationMail($email);
+        return redirect()->back()->with('successful', 'Verwacht uw verificatie e-mail binnen een aantal minuten.');
+    }
+
     public function register(Request $request){
         $this->validate($request, [
             'name' => 'required|max:255',

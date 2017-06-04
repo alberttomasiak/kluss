@@ -39,7 +39,19 @@ class User extends Authenticatable
         $body = "Hey ".$userName."! Je hebt je onlangs geregistreerd op KLUSS.be. Uw account moet nog wel geverifiëerd worden.";
         $btnSource = "verificatie/".$code;
         $btnTitle = "Verifiëren";
-        
+
+        Mail::to($email)->send(new CtaMail($title, $body, $btnSource, $btnTitle));
+        return true;
+    }
+
+    public static function resendVerificationMail($email){
+        $code = User::getVerificationCode($email);
+        $title = "Account verifiëren";
+        $userName = User::getNameByEmail($email);
+        $body = "Hey ".$userName."! Je hebt recentelijk een nieuwe verificatiemail aangevraagd. Klik op de knop hieronder om uw account te verifiëren.";
+        $btnSource = "verificatie/".$code;
+        $btnTitle = "Verifiëren";
+
         Mail::to($email)->send(new CtaMail($title, $body, $btnSource, $btnTitle));
         return true;
     }
