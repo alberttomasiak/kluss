@@ -24,17 +24,24 @@
             .mail-body p{ max-width: 400px;}
             .mail-body{height: calc(100vh - 250px);}
         }
+        @media only screen and (min-width: 1024px){
+            .mail-wrap{display: block; width: 768px; margin-left: auto; margin-right: auto;}
+            body{background-color: transparent;}
+            .mail-body{ background-color: #eee;}
+        }
         </style>
-        <header>
-            <img src="http://kluss.dev/assets/img/logo-klusswit.png" alt="Logo KLUSS">
-        </header>
-        <div class="mail-body">
-            <h2>{{$title}}</h2>
-            <p>{{$body}}</p>
-            <a href="http://kluss.dev/{{$btnSource}}">{{$btnTitle}}</a>
+        <div class="mail-wrap">
+            <header>
+                <img src="http://kluss.dev/assets/img/logo-klusswit.png" alt="Logo KLUSS">
+            </header>
+            <div class="mail-body">
+                <h2>{{$title}}</h2>
+                <p>{{$body}}</p>
+                <a href="http://kluss.dev/{{$btnSource}}">{{$btnTitle}}</a>
+            </div>
+            <footer>
+                <p>&copy; KLUSS</p>
+            </footer>
         </div>
-        <footer>
-            <p>&copy; KLUSS</p>
-        </footer>
     </body>
 </html>
