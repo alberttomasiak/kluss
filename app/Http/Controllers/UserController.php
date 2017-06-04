@@ -33,7 +33,7 @@ class UserController extends Controller
 
     public function verifyAccount($code){
         $verify = User::verifyAccount($code);
-        return $verify ? redirect('/aanmelden') : redirect('/');
+        return $verify ? redirect('/aanmelden')->with('verified', 'Uw account werd succesvol geverifiëerd. U kunt nu aanmelden.') : redirect('/');
     }
 
     public function verificationIndex(){

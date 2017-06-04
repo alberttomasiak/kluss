@@ -12,6 +12,9 @@
                         @if(session('ImBannedBro'))
                             <p>{{session('ImBannedBro')}}</p>
                         @endif
+                        @if(session('verified'))
+                            <p>{{session('verified')}}</p>
+                        @endif
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <!--<label for="email" class="col-md-4 control-label">E-Mail Adres</label>-->
 
