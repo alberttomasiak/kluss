@@ -1,0 +1,26 @@
+.verification{
+    display: block;
+    height: calc(100vh - 148px);
+}
+.verification-wrap{
+    margin-top: 2em;
+    display: block;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #eee;
+    padding-top: .1em;
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    h1{
+        font-size: 2em;
+    }
+}
+@media only screen and (min-width: 768px){
+    .verification{
+        width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

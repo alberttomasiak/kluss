@@ -34,123 +34,35 @@
 
 
         <div class="addboxshadow container" style="display:block; overflow:auto;">
-            <h1 style="float: left; padding: 15px;">Klusjes in de buurt</h1>
+            <h1 style="float: left; padding: 15px;">Meldingen</h1>
             <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
 
-            <h1 style="float: left; padding: 15px; margin-top: -10px; color: black !important;">Filtreer klusjes: </h1>
-            <form action="/action_page.php">
+            <a href="#">
+            <div class="notification-box addboxshadow animationout new-notification-box">
 
-                <style>
-                    input{
-                        width: 20% !important;
-                        padding: 7px 20px !important;
-                        margin: 0px 0;
-                    }
+                <img style="height: 150px; float: left" src="../assets/img/wasserette.jpg">
 
-                    .btn{
-                        padding: 2px !important;
-                    }
-                </style>
+                <h1 style="float: left; font-size: 20px; padding-left: 30px;">Samuel Sieben</h1>
 
-                <input type="text" name="price" value="Prijs">
+                <p style="float: left; display: inline; font-size: 20px; padding-left: 30px;">heeft zich aangemeld voor het klusje <b>decoratie</b> </p>
 
-                <input type="text" name="time" value="Tijd">
-
-                <input type="text" name="type" value="Soort Klusje">
-
-
-                <input style="float: right; font-size: 20px;" class="btn" type="submit" value="ZOEK">
-            </form>
-
-        <div style="margin-left: 25px; margin-right: 25px;">
-            <div class="row">
-                <!-- MAP MET KLUSSJES -->
-                <div id="map"></div>
-                <!-- KLUSSJES IN DE BUURT -->
-                <hr style="background-color: #8BC53F; height: 0.2px; width: 100%; ">
-                <h1>Actieve klusjes in de omgeving:</h1>
-                <div style="width: 50%; float: right;">
-                    <h1 style="float: left; padding: 15px; margin-top: -10px; color: black !important;">Sorteer op:</h1>
-                    <form action="/action_page.php">
-                        <input style="width: 60% !important;" type="text" name="mostrecent" value="Meest recent">
-                    </form>
-                </div>
-                <div class="klussjes-wrap">
-                    {{-- Our tasks will be appended here. --}}
-                </div>
-            </div>
-        </div>
-
-
-            <a href="#" style="float: left">
-            <div class="dev-block animationout" style="box-shadow: 0 2px 3px rgba(0,0,0,.16); position: relative;">
-
-                        <div class="dev-block-image" style="background-image: url('../assets/img/wasserette.jpg');">
-                            &nbsp;
-                        </div>
-
-                <div style="float: left; width: 70%; padding: 10px;">
-                    <p style="display: inline;">VERSIERING</p> <p style="display: inline;">-</p> <p style="color: #2E9C4E; display: inline;">max 2h.</p>
-                </div>
-
-                <div style="float: right; width: 30%; padding: 10px; margin-top: -25px;">
-                    <h1>€ 15</h1>
-                </div>
-
-                <div style="padding: 10px;">
-                    <p>Need help decorating and tidying living room before birthday party, thanks.</p>
-                </div>
-
+                <p style="float: right;">2 minuten geleden</p>
             </div>
             </a>
 
-            <a href="#" style="float: left">
-                <div class="dev-block animationout" style="box-shadow: 0 2px 3px rgba(0,0,0,.16); position: relative;">
 
-                    <div class="dev-block-image" style="background-image: url('../assets/img/wasserette.jpg');">
-                        &nbsp;
-                    </div>
+            <a href="#">
+                <div class="notification-box addboxshadow animationout">
 
-                    <div style="float: left; width: 70%; padding: 10px;">
-                        <p style="display: inline;">VERSIERING</p> <p style="display: inline;">-</p> <p style="color: #2E9C4E; display: inline;">max 2h.</p>
-                    </div>
+                    <img style="height: 150px; float: left" src="../assets/img/wasserette.jpg">
 
-                    <div style="float: right; width: 30%; padding: 10px; margin-top: -25px;">
-                        <h1>€ 15</h1>
-                    </div>
+                    <h1 style="float: left; font-size: 20px; padding-left: 30px;">Samuel Sieben</h1>
 
-                    <div style="padding: 10px;">
-                        <p>Need help decorating and tidying living room before birthday party, thanks.</p>
-                    </div>
+                    <p style="float: left; display: inline; font-size: 20px; padding-left: 30px;">heeft zich aangemeld voor het klusje <b>decoratie</b> </p>
 
+                    <p style="float: right;">2 minuten geleden</p>
                 </div>
             </a>
-
-            <a href="#" style="float: left;">
-                <div class="dev-block animationout" style="box-shadow: 0 2px 3px rgba(0,0,0,.16); position: relative;">
-
-                    <div class="dev-block-image" style="background-image: url('../assets/img/wasserette.jpg');">
-                        &nbsp;
-                    </div>
-
-                    <div style="float: left; width: 70%; padding: 10px;">
-                        <p style="display: inline;">VERSIERING</p> <p style="display: inline;">-</p> <p style="color: #2E9C4E; display: inline;">max 2h.</p>
-                    </div>
-
-                    <div style="float: right; width: 30%; padding: 10px; margin-top: -25px;">
-                        <h1>€ 15</h1>
-                    </div>
-
-                    <div style="padding: 10px;">
-                        <p>Need help decorating and tidying living room before birthday party, thanks.</p>
-                    </div>
-
-                </div>
-            </a>
-
-            <section style="margin-top: 40px !important;">
-            <h1 style="text-align: center;">Geen andere klusjes in je buurt.</h1>
-            </section>
 
             </div>
 

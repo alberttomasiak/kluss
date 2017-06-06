@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\TestMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +18,21 @@ Auth::routes();
 Route::get('/login', function(){ return redirect('/aanmelden'); });
 Route::get('/aanmelden', function(){ return view('auth/login')->with('title', 'Aanmelden'); });
 Route::post('/aanmelden', 'UserController@login');
-Route::get('/register', function(){ return view('auth/register')->with('title', 'Registreer'); });
+Route::get('/register', function(){ return redirect('/registreren'); });
+Route::get('/registreren', function(){ return view('auth/register')->with('title', 'Registreer'); });
+Route::post('/registreren', 'UserController@register');
+Route::get('/verificatie/{code}', 'UserController@verifyAccount');
+Route::get('/verificatie_hersturen', 'UserController@verificationIndex');
+Route::post('/verificatie_hersturen', 'UserController@resendVerification');
 
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
 });
+
+// test routes --> to be deleted
+
+// end test routes
 
 Route::group(['middleware' => ['auth']], function(){
     // home routes
@@ -102,3 +113,12 @@ Route::get('/FAQ', function () {
 Route::get('/community', function () {
     return view('/community');
 });
+
+Route::get('/landing', function () {
+    return view('/landing');
+});
+
+Route::get('/meldingen', function () {
+    return view('/meldingen');
+});
+
