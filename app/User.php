@@ -64,6 +64,10 @@ class User extends Authenticatable
         return self::where('activation_code', $code)->update(['activated' => 1]);
     }
 
+    public static function amIVerified($email){
+        return self::where('email', $email)->pluck('verified')->first();
+    }
+
     public static function generateVerificationCode($email){
         return self::where('email', $email)->update(['activation_code' => str_random(45)]);
     }
