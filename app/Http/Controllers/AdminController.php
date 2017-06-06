@@ -88,7 +88,8 @@ class AdminController extends Controller
     // Klusjes
     public function taskOverview(){
         $tasks = Kluss::getOpenTasks();
-        return view('admin.tasks.overview', ['tasks' => $tasks]);
+        $approval = Kluss::getTasksForApproval();
+        return view('admin.tasks.overview', ['tasks' => $tasks, 'approval' => $approval]);
     }
     public function taskClosed(){
         $tasks = Kluss::getClosedTasks();

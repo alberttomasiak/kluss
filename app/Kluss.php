@@ -113,8 +113,13 @@ class Kluss extends Model
     }
 
     public static function getOpenTasks(){
-        return self::where('accepted_applicant_id', '=', '0')->paginate(6);
+        return self::where('accepted_applicant_id', '=', null)->paginate(6);
     }
+
+    public static function getTasksForApproval(){
+        return self::where('approved', '=', 0)->paginate(6);
+    }
+
     public static function getClosedTasks(){
         return self::where('closed', '=', '1')->paginate(6);
     }
