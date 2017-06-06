@@ -22,6 +22,8 @@ class CreateKlussTable extends Migration
             $table->double('price');
             $table->dateTime('date');
             $table->string('address');
+            $table->string('time')->nullable();
+            $table->integer('approved')->default('1');
             $table->double('latitude', 15, 8);
             $table->double('longitude', 15, 8);
             $table->engine = 'InnoDB';
@@ -30,7 +32,6 @@ class CreateKlussTable extends Migration
             $table->integer('accepted_applicant_id')->unsigned()->nullable();
             $table->integer('kluss_category')->unsigned()->nullable();
             $table->integer('closed')->default('0');
-            $table->string('time')->nullable();
             $table->timestamps();
         });
     }

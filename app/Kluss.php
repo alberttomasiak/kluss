@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use DB;
 use Carbon\Carbon;
+use App\KlussCategories;
 
 class Kluss extends Model
 {
@@ -20,7 +21,10 @@ class Kluss extends Model
         return DB::table('kluss')
                     ->join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
-                    ->where('kluss.closed', '=', 0)
+                    ->where([
+                        ['kluss.closed', '=', 0],
+                        ['kluss.approved', '=', 1]
+                    ])
                     ->get();
     }
 
@@ -41,9 +45,17 @@ class Kluss extends Model
     }
 
     public static function createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time){
-        return self::insert([
-            'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
-        ]);
+        $categoryName = KlussCategories::IDToName($category);
+        if($categoryName == "Overige"){
+            return self::insert([
+                'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'approved' => '0', 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
+            ]);
+        }else{
+            return self::insert([
+                'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
+            ]);
+        }
+
     }
 
     public static function getLatestID($userID){
@@ -57,7 +69,10 @@ class Kluss extends Model
     }
 
     public static function getUserKluss($id){
-        return self::where('user_id', '=', $id)->paginate(6);
+        return self::where([
+            ['user_id', '=', $id],
+            ['approved', '=', '1']
+            ])->paginate(6);
     }
 
     public static function deleteTask($id){
@@ -75,6 +90,7 @@ class Kluss extends Model
             		)
                ) AS distance
                FROM kluss
+               WHERE approved = 1
                HAVING distance < 2
                ORDER BY distance;"));
     }
