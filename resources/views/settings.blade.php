@@ -10,22 +10,33 @@
 </head>
 <body>
 
-<nav class="primary-nav addboxshadow">
-<div class="primary-nav-left">
-    <a href="#"><img style="height: 35px; padding-right: 15px;" src="../assets/img/home-logo.png">HOME</a>
-    <a href="#"><img style="height: 35px; padding-right: 15px;" src="../assets/img/bell-logo.png">MELDINGEN</a>
-    <a href="#"><img style="height: 25px; padding-right: 15px;" src="../assets/img/berichten-logo.png">BERICHTEN</a>
+<div class="addboxshadow" id='cssmenu'>
+    <ul>
+        <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/logo-kluss.png"></a></li>
+        <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/home-logo.png">Home</a></li>
+        <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/plaats-logo.png">Plaats een klusje</a></li>
+        <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/bell-logo.png">Meldingen</a></li>
+        <li><a href='#'><img class="animationout" style="height: 25px; padding-right: 15px;" src="../assets/img/berichten-logo.png">Berichten</a></li>
+        <li class='active'><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/settings-logo.png">Instellingen</a>
+            <ul>
+                <li><a href='#'>Profiel</a>
+                    <ul>
+                        <li><a href='#'>Bewerk Profiel</a></li>
+                        <li><a href='#'>Kluss Gold</a></li>
+                    </ul>
+                </li>
+                <li><a href='#'>Meldingen en gebruikers</a>
+                    <ul>
+                        <li><a href='#'>Demp meldingen</a></li>
+                        <li><a href='#'>Geblokkeerde gebruikers</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
 </div>
-    <div class="primary-nav-center">
-    <a href="#"><img style="height: 40px; margin-top: 7px;" src="../assets/img/logo-kluss.png"></a>
-    </div>
-    <div class="primary-nav-right">
-        <a href="#"> ACCOUNT </a>
-        <a href="#" class="btn">POST</a>
-    </div>
-</nav>
 
-<div class="addboxshadow container" style="height: 1100px;">
+<div class="addboxshadow container" style="display:block; overflow:auto;">
     <h1 style="float: left; padding: 15px;">Instellingen</h1>
     <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
     <div style="height: 1007px; float: left; width: 20%; margin-left: 30px; margin-top: -10px; border-right: 1px solid #677578;">
@@ -113,5 +124,79 @@
             $(".landing_body").css("height", window.innerHeight-60 + "px");
         };
     </script>
+<script>
+    (function($) {
+
+        $.fn.menumaker = function(options) {
+
+            var cssmenu = $(this), settings = $.extend({
+                title: "Menu",
+                format: "dropdown",
+                sticky: false
+            }, options);
+
+            return this.each(function() {
+                cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
+                $(this).find("#menu-button").on('click', function(){
+                    $(this).toggleClass('menu-opened');
+                    var mainmenu = $(this).next('ul');
+                    if (mainmenu.hasClass('open')) {
+                        mainmenu.hide().removeClass('open');
+                    }
+                    else {
+                        mainmenu.show().addClass('open');
+                        if (settings.format === "dropdown") {
+                            mainmenu.find('ul').show();
+                        }
+                    }
+                });
+
+                cssmenu.find('li ul').parent().addClass('has-sub');
+
+                multiTg = function() {
+                    cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
+                    cssmenu.find('.submenu-button').on('click', function() {
+                        $(this).toggleClass('submenu-opened');
+                        if ($(this).siblings('ul').hasClass('open')) {
+                            $(this).siblings('ul').removeClass('open').hide();
+                        }
+                        else {
+                            $(this).siblings('ul').addClass('open').show();
+                        }
+                    });
+                };
+
+                if (settings.format === 'multitoggle') multiTg();
+                else cssmenu.addClass('dropdown');
+
+                if (settings.sticky === true) cssmenu.css('position', 'fixed');
+
+                resizeFix = function() {
+                    if ($( window ).width() > 768) {
+                        cssmenu.find('ul').show();
+                    }
+
+                    if ($(window).width() <= 768) {
+                        cssmenu.find('ul').hide().removeClass('open');
+                    }
+                };
+                resizeFix();
+                return $(window).on('resize', resizeFix);
+
+            });
+        };
+    })(jQuery);
+
+    (function($){
+        $(document).ready(function(){
+
+            $("#cssmenu").menumaker({
+                title: "Menu",
+                format: "multitoggle"
+            });
+
+        });
+    })(jQuery);
+</script>
 </body>
 </html>
