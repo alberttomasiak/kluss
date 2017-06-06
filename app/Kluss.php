@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use DB;
 use Carbon\Carbon;
 use App\KlussCategories;
+use Mail;
+use App\Mail\TaskForApproval;
 
 class Kluss extends Model
 {
@@ -47,6 +49,9 @@ class Kluss extends Model
     public static function createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time){
         $categoryName = KlussCategories::IDToName($category);
         if($categoryName == "Overige"){
+            $userName = User::get($user_id);
+            $userEmail = User::getUserMail($user_id);
+            Mail::to($userEmail)->send(new TaskForApproval($title, $userName));
             return self::insert([
                 'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'approved' => '0', 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
             ]);
@@ -96,7 +101,7 @@ class Kluss extends Model
     }
 
     public static function getActiveTaskCount(){
-        return self::where('accepted_applicant_id', '=', '0')->count();
+        return self::where('accepted_applicant_id', '=', null)->count();
     }
 
     public static function getClosedTaskCount(){
