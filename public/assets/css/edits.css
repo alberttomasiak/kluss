@@ -143,6 +143,31 @@ input{
     background: #8BC53F;
     text-decoration: none;
 }
+
+/* NOTIFICATIONS */
+.notification-box{
+    background-color: #FFFFFA;
+    display:block;
+    overflow:auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.new-notification-box{
+    background-color: #EAFDD1;
+    display:block;
+    overflow:auto;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+
 /* FOOTER */
 
 footer {
