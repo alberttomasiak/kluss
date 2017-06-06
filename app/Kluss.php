@@ -8,6 +8,7 @@ use Carbon\Carbon;
 use App\KlussCategories;
 use Mail;
 use App\Mail\TaskForApproval;
+use App\Mail\TaskApprovalAdmin;
 
 class Kluss extends Model
 {
@@ -51,7 +52,10 @@ class Kluss extends Model
         if($categoryName == "Overige"){
             $userName = User::get($user_id);
             $userEmail = User::getUserMail($user_id);
+            // Mail to user
             Mail::to($userEmail)->send(new TaskForApproval($title, $userName));
+            // Mail to admin
+            Mail::to("admin@kluss.be")->send(new TaskApprovalAdmin($userEmail, $title, $description));
             return self::insert([
                 'title' => $title, 'description' => $description, 'kluss_image' => $image, 'price' => $price, 'date' => $date, 'address' => $address, 'approved' => '0', 'latitude' => $latitude, 'longitude' => $longitude, 'user_id' => $user_id, 'kluss_category' => $category, 'time' => $time
             ]);
