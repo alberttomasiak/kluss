@@ -107,3 +107,7 @@ Route::get('/landing', function () {
     return view('/landing');
 });
 
+Route::get('/meldingen', function () {
+    return view('/meldingen');
+});
+
