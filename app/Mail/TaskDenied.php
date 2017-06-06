@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class TaskForApproval extends Mailable
+class TaskDenied extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,10 +16,11 @@ class TaskForApproval extends Mailable
      *
      * @return void
      */
-    public function __construct($title, $name)
+    public function __construct($title, $name, $reason)
     {
         $this->title = $title;
-        $this->userName = $name;
+        $this->name = $name;
+        $this->reason = $reason;
     }
 
     /**
@@ -29,13 +30,14 @@ class TaskForApproval extends Mailable
      */
     public function build()
     {
-        $user = $this->userName;
-        $taskTitle = $this->title;
+        $title = $this->title;
+        $user = $this->name;
+        $reason = $this->reason;
 
         $address = "no-reply@kluss.be";
         $mailTitle = "KLUSS TEAM";
-        $subject = "Uw klusje verwacht goedkeuring. | KLUSS";
-        return $this->view('emails.approval', compact('user', 'taskTitle'))
+        $subject = "Uw klusje werd goedgekeurd | KLUSS";
+        return $this->view('emails.denied', compact('user', 'title', 'reason'))
                 ->from($address, $mailTitle)
                 ->replyTo($address, $mailTitle)
                 ->subject($subject);

@@ -129,4 +129,17 @@ class Kluss extends Model
             ['id', $taskID]
         ])->update(['accepted_applicant_id' => $applicantID]);
     }
+
+    public static function approveTask($id){
+        return self::where('id', $id)->update(['approved' => 1]);
+    }
+    public static function denyTask($id){
+        return self::where('id', $id)->delete();
+    }
+    public static function getUserMailForTaskID($id){
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('users.email', 'users.name')
+                    ->where('kluss.id', $id)
+                    ->first();
+    }
 }

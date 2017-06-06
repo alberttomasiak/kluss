@@ -35,8 +35,8 @@
                         <p>{{$appr->address}}</p>
                     </div>
                     <div class="approval__btns">
-                        <a href="/admin/task/{{$appr->id}}/approve">Goedkeuren</a>
-                        <a href="/admin/task/{{$appr->id}}/deny">Afwijzen</a>
+                        <a href="/admin/klusje/{{$appr->id}}/goedkeuren">Goedkeuren</a>
+                        <a href="/admin/klusje/{{$appr->id}}/afwijzen">Afwijzen</a>
                     </div>
                 </div>
             @endforeach

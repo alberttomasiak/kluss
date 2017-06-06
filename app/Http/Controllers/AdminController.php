@@ -10,6 +10,9 @@ use App\Message;
 use App\Conversation;
 use App\UserBlocks;
 use App\GlobalSettings;
+use Mail;
+use App\Mail\TaskApproved;
+use App\Mail\TaskDenied;
 
 class AdminController extends Controller
 {
@@ -94,6 +97,24 @@ class AdminController extends Controller
     public function taskClosed(){
         $tasks = Kluss::getClosedTasks();
         return view('admin.tasks.closed', ['tasks' => $tasks]);
+    }
+    public function approveTask($id){
+        $task = Kluss::approveTask($id);
+        $taskTitle = Kluss::getSingleTitle($id);
+        $userData = Kluss::getUserMailForTaskID($id);
+        $userMail = $userData->email;
+        $userName = $userData->name;
+        Mail::to($userMail)->send(new TaskApproved($taskTitle, $userName));
+        return redirect()->back();
+    }
+    public function denyTask($id){
+        $task = Kluss::denyTask($id);
+        $taskTitle = Kluss::getSingleTitle($id);
+        $userData = Kluss::getUserMailForTaskID($id);
+        $userMail = $userData->email;
+        $userName = $userData->name;
+        Mail::to($userMail)->send(new TaskDenied($taskTitle, $userName));
+        return redirect()->back();
     }
     // settings
     public function settingsIndex(){

@@ -35,7 +35,7 @@ class TaskApprovalAdmin extends Mailable
         $description = $this->description;
 
         $address = "no-reply@kluss.be";
-        $mailTitle = "Goedkeuring Klus";
+        $mailTitle = "KLUSS TEAM";
         $subject = "Een nieuw klusje verwacht goedkeuring! | KLUSS";
         return $this->view('emails.approvalAdmin', compact('user', 'title', 'description'))
                 ->from($address, $mailTitle)
