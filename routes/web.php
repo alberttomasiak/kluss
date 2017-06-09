@@ -122,3 +122,10 @@ Route::get('/meldingen', function () {
     return view('/meldingen');
 });
 
+Route::get('/plaatsklusje', function () {
+    return view('/plaatsklusje');
+});
+
+Route::get('/userprofiel', function () {
+    return view('/userprofiel');
+});
