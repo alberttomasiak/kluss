@@ -14,11 +14,13 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link href="/assets/css/app.css" rel="stylesheet">
     <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
     <script src="//js.pusher.com/3.0/pusher.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -47,7 +49,8 @@
   });
 
   function notifyUser(data){
-      console.log(data);
+      toastr.options.progressBar = true;
+      toastr.info(data["message"]);
   }
 
   var globalNotifications = pusher.subscribe("global-notifications");
