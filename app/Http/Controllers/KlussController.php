@@ -12,6 +12,7 @@ use App\Kluss;
 use App\User;
 use App\Kluss_applicant;
 use App\KlussCategories;
+use App\Notifications;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -174,9 +175,12 @@ class KlussController extends Controller
             Kluss_applicant::insertApplicant($id);
             $data = $applicantName . " sollicteerde net voor uw klusje!";
         }
-        
+
         // We are the maker of this task so let's get a notification that someone applied to it!
         $this->pusher->trigger($channel, "new-notification", $data);
+        // let's also store the notification in our Database so the user can review it, in case he's not online ;)
+        // The fields we need are: user_id, message, url and channel. We'll make the date in our model
+        $notification = Notifications::createNotification($userID, $data, "/kluss/".$id, $channel);
 
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);

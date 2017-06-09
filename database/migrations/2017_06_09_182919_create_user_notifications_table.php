@@ -19,7 +19,7 @@ class CreateUserNotificationsTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('message');
             $table->string('url');
-            $table->integer('read');
+            $table->integer('read')->default('0');
             $table->dateTime('date');
             $table->timestamps();
         });
