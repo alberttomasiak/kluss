@@ -4,6 +4,9 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Mail\VerificationMail;
+use App\Mail\CtaMail;
+use Mail;
 
 class User extends Authenticatable
 {
@@ -28,6 +31,50 @@ class User extends Authenticatable
     ];
 
     private static $lijst = [];
+
+    public static function sendVerificationMail($email){
+        $code = User::getVerificationCode($email);
+        $title = "Account verifiëren";
+        $userName = User::getNameByEmail($email);
+        $body = "Hey ".$userName."! Je hebt je onlangs geregistreerd op KLUSS.be. Uw account moet nog wel geverifiëerd worden.";
+        $btnSource = "verificatie/".$code;
+        $btnTitle = "Verifiëren";
+
+        Mail::to($email)->send(new CtaMail($title, $body, $btnSource, $btnTitle));
+        return true;
+    }
+
+    public static function resendVerificationMail($email){
+        $code = User::getVerificationCode($email);
+        $title = "Account verifiëren";
+        $userName = User::getNameByEmail($email);
+        $body = "Hey ".$userName."! Je hebt recentelijk een nieuwe verificatiemail aangevraagd. Klik op de knop hieronder om uw account te verifiëren.";
+        $btnSource = "verificatie/".$code;
+        $btnTitle = "Verifiëren";
+
+        Mail::to($email)->send(new CtaMail($title, $body, $btnSource, $btnTitle));
+        return true;
+    }
+
+    public static function getNameByEmail($email){
+        return self::where('email', $email)->pluck('name')->first();
+    }
+
+    public static function verifyAccount($code){
+        return self::where('activation_code', $code)->update(['activated' => 1]);
+    }
+
+    public static function amIVerified($email){
+        return self::where('email', $email)->pluck('verified')->first();
+    }
+
+    public static function generateVerificationCode($email){
+        return self::where('email', $email)->update(['activation_code' => str_random(45)]);
+    }
+
+    public static function getVerificationCode($email){
+        return self::where('email', $email)->pluck('activation_code')->first();
+    }
 
     public static function getCurrentUser(){
         return self::where("id", \Auth::user()->id)->first();
