@@ -35,7 +35,7 @@
                 <img src="http://kluss.dev/assets/img/logo-klusswit.png" alt="Logo KLUSS">
             </header>
             <div class="mail-body">
-                <h2>Uw klusje werd goedgekeurd!</h2>
+                <h2>Uw klusje werd afgewezen!</h2>
                 <p>Hey {{$user}}, we hebben uw klusje ({{$title}}) nagekeken en we moeten u spijtig genoeg melden dat deze afgewezen werd.</p>
                 <p>De reden voor afwijziging: {{$reason}}</p>
                 <p>Met vriendelijke groeten, <br>

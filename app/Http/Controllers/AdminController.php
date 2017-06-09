@@ -107,13 +107,15 @@ class AdminController extends Controller
         Mail::to($userMail)->send(new TaskApproved($taskTitle, $userName));
         return redirect()->back();
     }
-    public function denyTask($id){
-        $task = Kluss::denyTask($id);
+    public function denyTask(Request $request){
+        $id = $request->taskID;
         $taskTitle = Kluss::getSingleTitle($id);
         $userData = Kluss::getUserMailForTaskID($id);
+        $task = Kluss::denyTask($id);
         $userMail = $userData->email;
         $userName = $userData->name;
-        Mail::to($userMail)->send(new TaskDenied($taskTitle, $userName));
+        $reason = $request->denyReason;
+        Mail::to($userMail)->send(new TaskDenied($taskTitle, $userName, $reason));
         return redirect()->back();
     }
     // settings

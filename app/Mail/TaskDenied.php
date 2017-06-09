@@ -36,7 +36,7 @@ class TaskDenied extends Mailable
 
         $address = "no-reply@kluss.be";
         $mailTitle = "KLUSS TEAM";
-        $subject = "Uw klusje werd goedgekeurd | KLUSS";
+        $subject = "Uw klusje werd afgekeurd | KLUSS";
         return $this->view('emails.denied', compact('user', 'title', 'reason'))
                 ->from($address, $mailTitle)
                 ->replyTo($address, $mailTitle)

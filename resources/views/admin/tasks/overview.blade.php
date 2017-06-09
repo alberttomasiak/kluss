@@ -36,9 +36,10 @@
                     </div>
                     <div class="approval__btns">
                         <a href="/admin/klusje/{{$appr->id}}/goedkeuren">Goedkeuren</a>
-                        <a href="/admin/klusje/{{$appr->id}}/afwijzen">Afwijzen</a>
+                        <a href="#klusje-{{$appr->id}}-afwijzen" data-toggle="modal" role="button" data-id="{{$appr->id}}">Afwijzen</a>
                     </div>
                 </div>
+                @include('admin.tasks.modals.deny', ['id' => $appr->id])
             @endforeach
         </div>
         {{$approval->links()}}
