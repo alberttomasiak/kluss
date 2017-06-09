@@ -18,6 +18,7 @@
     <!-- Scripts -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -33,6 +34,26 @@
 
   ga('create', 'UA-89370521-1', 'auto');
   ga('send', 'pageview');
+
+  var pusher = new Pusher('1a329a7dd69a92834d4d', {
+    cluster: 'eu',
+    encrypted: true,
+    authEndpoint: '/map/auth',
+    auth: {
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+      }
+  });
+
+  function notifyUser(data){
+      console.log(data);
+  }
+
+  var globalNotifications = pusher.subscribe("global-notifications");
+  var privateNotifications = pusher.subscribe("{{$data["channel"]}}");
+  globalNotifications.bind("global-notification", notifyUser);
+  privateNotifications.bind("new-notification", notifyUser);
 
 </script>
     <div class="page">

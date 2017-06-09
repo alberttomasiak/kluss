@@ -72,6 +72,15 @@ class User extends Authenticatable
         return self::where('email', $email)->update(['activation_code' => str_random(45)]);
     }
 
+    public static function generateNotificationsChannel($email){
+        $userID = User::getIdByMail($email);
+        return self::where('email', $email)->update(['notifications_channel' => $userID."-".str_random(35)]);
+    }
+
+    public static function getUserNotificationsChannel($id){
+        return self::where('id', $id)->pluck('notifications_channel')->first();
+    }
+
     public static function getVerificationCode($email){
         return self::where('email', $email)->pluck('activation_code')->first();
     }

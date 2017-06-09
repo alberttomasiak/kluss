@@ -175,17 +175,6 @@
     $(init);
 
     /***********************************************/
-
-    var pusher = new Pusher('1a329a7dd69a92834d4d', {
-      cluster: 'eu',
-      encrypted: true,
-      authEndpoint: '/chat/auth',
-      auth: {
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }
-    });
     var channel = pusher.subscribe("{{$chatChannel}}");
     console.log(channel);
     channel.bind('new-message', addMessage);

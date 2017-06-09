@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Location;
 use App\Kluss;
+use App\User;
 use DB;
 use App\Conversation;
 use App\Message;
+use App;
 
 class HomeController extends Controller
 {
