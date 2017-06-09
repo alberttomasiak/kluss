@@ -227,6 +227,7 @@
                               <tbody>
                                   @foreach($kluss_applicants as $sol)
                                     <tr>
+                                        {{$sol->id}}
                                         <th scope="row"><img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture"></th>
                                         <td><a href="/profiel/{{$sol->id}}/{{$sol->name}}">{{$sol->name}}</a></td>
                                         <td><form action="/chat/{{$sol->id}}" method="post">

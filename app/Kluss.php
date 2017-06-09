@@ -41,10 +41,21 @@ class Kluss extends Model
     }
 
     public static function getUserHistory($user_id){
-        return self::where([
-            ['date', '>=', Carbon::now()->subMonth()],
-            ['user_id', $user_id]
-            ])->count();
+        $creator = self::where([
+                        ['date', '>=', Carbon::now()->subMonth()],
+                        ['user_id', $user_id] ])
+                    ->count();
+
+        $fixer = self::join('kluss_applicants', 'kluss.id', '=', 'kluss_applicants.kluss_id')
+                    ->where([
+                        ['kluss_applicants.user_id', $user_id],
+                        ['kluss_applicants.updated_at', '>=', Carbon::now()->subMonth()],
+                        ['kluss_applicants.accepted', '1']
+                    ])
+                    ->count();
+
+        $total = $creator + $fixer;
+        return $total;
     }
 
     public static function createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time){
