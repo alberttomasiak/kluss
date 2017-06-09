@@ -15,4 +15,8 @@ class KlussCategories extends Model
     public static function getCategories(){
         return self::get();
     }
+
+    public static function IDToName($id){
+        return self::where('id', $id)->pluck('name')->first();
+    }
 }

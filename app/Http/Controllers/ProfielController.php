@@ -7,6 +7,8 @@ use App\Http\Requests;
 use DB;
 use Illuminate\Contracts\Auth\Authenticatable;
 use App\Kluss;
+use App\User;
+use App\BlockReasons;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -20,10 +22,10 @@ class ProfielController extends Controller
      */
     public function index($id)
     {
-        $personalData = \App\User::getTargetInfo($id);
-        $klussjes = \App\Kluss::getUserKluss($id);
+        $personalData = User::getTargetInfo($id);
+        $klussjes = Kluss::getUserKluss($id);
         // $sollicitanten = \App\Kluss_applicant::getApplicants($id);
-        $block_categories = \App\BlockReasons::getCategories();
+        $block_categories = BlockReasons::getCategories();
         // historiek van uitgevoerde klussjes
         // reviews gebruikers
         return view('/profile/profiel', compact('personalData', 'klussjes', 'sollicitanten', 'block_categories'))->with('title', 'Profiel');

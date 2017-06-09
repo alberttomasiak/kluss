@@ -28,7 +28,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $klussjes = \App\Kluss::getPublished();
+        $klussjes = Kluss::getPublished();
         Conversation::createConversation(\Auth::user()->email);
         Message::sendDefaultMessage(\Auth::user()->email);
         return view('home', compact('klussjes', $klussjes));
@@ -37,7 +37,7 @@ class HomeController extends Controller
     public function getTasks(Request $request){
         $lat = $request->get('lat');
         $lng = $request->get('lng');
-        $klusjes = \App\Kluss::getTasksInNeighborhood($lat, $lng);
+        $klusjes = Kluss::getTasksInNeighborhood($lat, $lng);
         return [$klusjes];
     }
 }

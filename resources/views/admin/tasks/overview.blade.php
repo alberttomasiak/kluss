@@ -22,5 +22,26 @@
         @endforeach
         </div>
         {{$tasks->links()}}
+        <h2>Overzicht klusjes voor goedkeuring</h2>
+        <div class="task-overview">
+            @foreach($approval as $appr)
+                <div class="task-div">
+                    <div>
+                        <img src="/assets{{$appr->kluss_image}}" alt="{{$appr->title}}">
+                    </div>
+                    <div class="task-text">
+                        <h6>{{$appr->title}}</h6>
+                        <p>{{$appr->description}}</p>
+                        <p>{{$appr->address}}</p>
+                    </div>
+                    <div class="approval__btns">
+                        <a href="/admin/klusje/{{$appr->id}}/goedkeuren">Goedkeuren</a>
+                        <a href="#klusje-{{$appr->id}}-afwijzen" data-toggle="modal" role="button" data-id="{{$appr->id}}">Afwijzen</a>
+                    </div>
+                </div>
+                @include('admin.tasks.modals.deny', ['id' => $appr->id])
+            @endforeach
+        </div>
+        {{$approval->links()}}
     </div>
 @endsection

@@ -17,10 +17,12 @@ class KlussCategoryTableSeeder extends Seeder
         DB::table('kluss_categories')->insert([
             'name' => 'Tuinwerk'
         ]);
-        
+
         DB::table('kluss_categories')->insert([
             'name' => 'Algemene huishoudhulp'
         ]);
+
+        DB::table('kluss_categories')->insert(['name' => 'Overige']);
 
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
