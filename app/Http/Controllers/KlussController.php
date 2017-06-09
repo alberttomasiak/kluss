@@ -161,11 +161,23 @@ class KlussController extends Controller
         $title = Kluss::getSingleTitle($id);
         $kluss_applicant = Kluss_applicant::getApplicant($id);
 
+        // Notification
+        $userID = $kluss[0]->user_id;
+        $applicant = User::getTargetInfo($userID);
+        $applicantName = $applicant[0]->name;
+        $channel = User::getUserNotificationsChannel($userID);
+
         if($kluss_applicant->first()){
             Kluss_applicant::removeApplication($id);
+            $data = $applicantName . " verwijderde net zijn sollicitatie.";
         }else{
             Kluss_applicant::insertApplicant($id);
+            $data = $applicantName . " sollicteerde net voor uw klusje!";
         }
+        
+        // We are the maker of this task so let's get a notification that someone applied to it!
+        $this->pusher->trigger($channel, "new-notification", $data);
+
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);
         //return redirect()->back(compact('kluss','kluss_applicant'))->with('title', $title);
