@@ -23,6 +23,7 @@ class CreateUserNotificationsTable extends Migration
             $table->string('url');
             $table->integer('read')->default('0');
             $table->dateTime('date');
+            $table->string('channel');
             $table->timestamps();
         });
     }

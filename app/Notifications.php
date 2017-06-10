@@ -15,6 +15,12 @@ class Notifications extends Model
 
     public static function createNotification($about_user, $for_user, $message, $url, $channel){
         $date = Carbon::now()->toDateTimeString();
-        return self::insert(['about_user' => $about_user, 'for_user' => $for_user, 'message' => $message, 'url' => $url, 'date' => $date]);
+        return self::insert(['about_user' => $about_user, 'for_user' => $for_user, 'message' => $message, 'url' => $url, 'date' => $date, 'channel' => $channel]);
+    }
+
+    public static function getAllAdminNotifications(){
+        return self::where('channel', 'GLOBAL')
+                    ->orWhere('url', 'ADMIN')
+                    ->paginate(5);
     }
 }

@@ -71,10 +71,10 @@ class ChatController extends Controller
         // about ==> sender, for ==> receiver, message = Naam: bericht, url = /kluss/ID, channel = accepted
         $conversation = Conversation::getSingleConversationByChatname($chatChannel);
         $conversation->user_one == \Auth::user()->id ? $for_user = $conversation->user_two : $for_user = $conversation->user_one;
-
+        $partnerName = User::get($for_user);
         $about_user = \Auth::user()->id;
         $message = \Auth::user()->name .": ". $sent_message->message;
-        $url = "/chat/".$chatChannel;
+        $url = "/chat/".$chatChannel."/".str_slug($partnerName);
         $channel = User::getUserNotificationsChannel($for_user);
 
         // push notification + save in database

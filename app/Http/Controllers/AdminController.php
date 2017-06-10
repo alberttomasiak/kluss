@@ -13,6 +13,7 @@ use App\GlobalSettings;
 use Mail;
 use App\Mail\TaskApproved;
 use App\Mail\TaskDenied;
+use App\Notifications;
 
 class AdminController extends Controller
 {
@@ -142,5 +143,10 @@ class AdminController extends Controller
         if($update == true){
             return redirect()->back();
         }
+    }
+    // Notifications
+    public function notificationsIndex(){
+        $notifications = Notifications::getAllAdminNotifications();
+        return view('admin.notifications.index', ['notifications' => $notifications]);
     }
 }
