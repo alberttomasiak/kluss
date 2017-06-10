@@ -14,8 +14,8 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         $AmIBanned = User::amIBanned($request->email);
-        $amIVerified = User::amIVerified($request->email);
-        if($amIVerified == 1){
+        $amIActivated = User::amIActivated($request->email);
+        if($amIActivated == 1){
             if($AmIBanned == 0){
                 if(Auth::attempt([
                     'email' => $request->email,

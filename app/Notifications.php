@@ -13,8 +13,8 @@ class Notifications extends Model
 
     public $table = "user_notifications";
 
-    public static function createNotification($user_id, $message, $url, $channel){
+    public static function createNotification($about_user, $for_user, $message, $url, $channel){
         $date = Carbon::now()->toDateTimeString();
-        return self::insert(['user_id' => $user_id, 'message' => $message, 'url' => $url, 'date' => $date]);
+        return self::insert(['about_user' => $about_user, 'for_user' => $for_user, 'message' => $message, 'url' => $url, 'date' => $date]);
     }
 }
