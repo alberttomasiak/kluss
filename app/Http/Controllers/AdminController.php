@@ -164,7 +164,7 @@ class AdminController extends Controller
         $type = "global";
 
         $this->pusher->trigger($channel, "global-notification", $message);
-        $notification = Notifications::createNotification($user, $user, $message, $url, $channel, $type);
+        $notification = Notifications::createNotification($user, $user, $message, $url, $channel, $type, null);
         return redirect()->back();
     }
     public function sendPersonalNotification(Request $request, $id){
@@ -176,7 +176,7 @@ class AdminController extends Controller
         $type = "global";
 
         $this->pusher->trigger($channel, "new-notification", $message);
-        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, null);
         return redirect()->back();
     }
 }

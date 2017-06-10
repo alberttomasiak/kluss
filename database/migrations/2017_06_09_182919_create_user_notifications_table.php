@@ -25,6 +25,8 @@ class CreateUserNotificationsTable extends Migration
             $table->dateTime('date');
             $table->string('channel');
             $table->string('type');
+            $table->integer('kluss_id')->nullable()->unsigned();
+            $table->foreign('kluss_id')->references('id')->on('kluss')->onDelete('cascade');
             $table->timestamps();
         });
     }

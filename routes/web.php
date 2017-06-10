@@ -57,9 +57,10 @@ Route::group(['middleware' => ['auth']], function(){
     // Chat routes
     Route::get('/chat', 'ChatController@index');
     Route::post('/chat/message', 'ChatController@postMessage');
-    // // Chat testing routes
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
+    // meldingen
+    Route::get('/meldingen', 'HomeController@notificationsIndex');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -122,8 +123,4 @@ Route::get('/community', function () {
 
 Route::get('/landing', function () {
     return view('/landing');
-});
-
-Route::get('/meldingen', function () {
-    return view('/meldingen');
 });

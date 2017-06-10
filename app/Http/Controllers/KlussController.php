@@ -156,7 +156,7 @@ class KlussController extends Controller
 
         // push notification + save in database
         $this->pusher->trigger($channel, "new-notification", $message);
-        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, $taskID);
 
 
         return redirect()->back();
@@ -178,7 +178,7 @@ class KlussController extends Controller
         $type = "task";
         // push notification + save in database
         $this->pusher->trigger($channel, "new-notification", $message);
-        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, $taskID);
 
         if($removeApplier == true){
             return redirect()->back();
@@ -211,7 +211,7 @@ class KlussController extends Controller
         $this->pusher->trigger($channel, "new-notification", $data);
         // let's also store the notification in our Database so the user can review it, in case he's not online ;)
         // The fields we need are: user_id, message, url and channel. We'll make the date in our model
-        $notification = Notifications::createNotification($applicantID, $userID, $data, "/kluss/".$id, $channel, $type);
+        $notification = Notifications::createNotification($applicantID, $userID, $data, "/kluss/".$id, $channel, $type, $id);
 
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);
