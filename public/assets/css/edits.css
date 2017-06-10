@@ -167,6 +167,34 @@ input{
     margin-bottom: 20px;
 }
 
+/* KLUSS GOLD INFO BLOCK */
+
+.klussgoldinfo{
+    width:90% !important;
+    clear:both;
+    margin-left: auto;
+    margin-right: auto;
+    background-color:lightgrey;
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.bannerprojects-bottom{
+    min-height: 280px;
+    overflow: auto;
+    background-image: url(../img/klussgoldinfo.png);
+    background-position: center;
+    background-size: cover;
+    display: block;
+    margin-top: 15px !important;
+    -moz-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+    -webkit-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+    -o-box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+    box-shadow: 0 5px 5px rgba(182, 182, 182, 0.75);
+}
+
 
 /* FOOTER */
 
@@ -238,6 +266,79 @@ footer .footer-content {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+
+/* FORMS KLUSJE TOEVOEGEN */
+.form-container {
+    background: #FFFFFA;
+    -webkit-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+    -moz-box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+    box-shadow: rgba(000,000,000,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0px 0;
+    font-family: 'Lato',sans-serif;
+    text-decoration: none;
+    vertical-align: middle;
+    min-width:300px;
+    padding:20px;
+    width:300px;
+    margin-left: 20px;
+}
+.form-field {
+    border: 1px solid grey;
+    background: #ffffff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #2E9C4E;
+    -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(000,000,000,0.7) 0 0px 0px;
+    padding:8px;
+    margin-bottom:20px;
+    width:280px;
+}
+.form-field:focus {
+    background: #fff;
+    color: #2E9C4E;
+}
+.form-container h2 {
+    text-shadow: #fdf2e4 0 1px 0;
+    font-size:18px;
+    margin: 0 0 10px 0;
+    font-weight:bold;
+    text-align:center;
+}
+.form-title {
+    margin-bottom:10px;
+    color: #2E9C4E;
+    text-shadow: #fdf2e4 0 1px 0;
+}
+.submit-container {
+    margin:8px 0;
+    text-align:right;
+}
+
+/* DRAG & DROP */
+
+.box__dragndrop,
+.box__uploading,
+.box__success,
+.box__error {
+    display: none;
+}
+
+.box.is-dragover {
+    background-color: grey;
+}
+
+.box__file{
+    background-image: url(../img/draganddrop.png) !important;
+    height: 400px;
+    /*background-color: #EAFDD1;*/
+    border-radius: 20px;
+    background-position: center;
+    background-size: cover;
+    display: block;
 }
 
 /* ANIMATIONS */
@@ -620,5 +721,11 @@ footer .footer-content {
     }
     #cssmenu .submenu-button.submenu-opened:before {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 1150px) {
+    .plaatsklusje-div{
+        width: 100% !important;
     }
 }
