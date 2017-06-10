@@ -15,6 +15,9 @@ class Notifications extends Model
 
     public static function createNotification($about_user, $for_user, $message, $url, $channel){
         $date = Carbon::now()->toDateTimeString();
+        if($url == ""){
+            $url = "null";
+        }
         return self::insert(['about_user' => $about_user, 'for_user' => $for_user, 'message' => $message, 'url' => $url, 'date' => $date, 'channel' => $channel]);
     }
 

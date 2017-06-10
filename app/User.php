@@ -172,10 +172,10 @@ class User extends Authenticatable
         return self::where('account_type', 'admin')->paginate(5);
     }
     public static function getRegularUsers(){
-        return self::where('account_type', '==', 'normal')->paginate(5);
+        return self::where('account_type', 'normal')->paginate(5);
     }
     public static function getGoldUsers(){
-        return self::where('account_type', '==', 'gold')->paginate(5);
+        return self::where('account_type', 'gold')->paginate(5);
     }
     public static function getBlockedUsers(){
         return self::where('blocked', '=', '1')->paginate(5);

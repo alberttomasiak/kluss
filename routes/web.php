@@ -92,6 +92,7 @@ Route::group(['prefix' => 'admin'], function () {
         // meldingen
         Route::get('meldingen', 'AdminController@notificationsIndex');
         Route::post('notification/add', 'AdminController@sendGlobalNotification');
+        Route::post('notify/user/{id}', 'AdminController@sendPersonalNotification');
     });
 });
 

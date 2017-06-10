@@ -166,4 +166,15 @@ class AdminController extends Controller
         $notification = Notifications::createNotification($user, $user, $message, $url, $channel);
         return redirect()->back();
     }
+    public function sendPersonalNotification(Request $request, $id){
+        $about_user = \Auth::user()->id;
+        $for_user = $request->notification_user;
+        $channel = User::getUserNotificationsChannel($for_user);
+        $message = $request->notification_msg;
+        $url = $request->notification_url;
+
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel);
+        return redirect()->back();
+    }
 }
