@@ -143,7 +143,21 @@ class KlussController extends Controller
             'userImage' => $userImage
         ];
         $this->pusher->trigger("kluss-map", "applicant-selected-task", $selected);
-        // 7. Return after everything is handled
+        // 7. make a notification, send it to the right user + redirect back
+
+        // about ==> denier, for ==> accepted, message = Uw applicatie voor klusje X werd goedgekeurd!, url = /kluss/ID, channel = accepted
+        $taskTitle = Kluss::getSingleTitle($taskID);
+        $about_user = \Auth::user()->id;
+        $for_user = $acceptedID;
+        $message = "Uw applicatie voor klusje '".$taskTitle."' werd goedgekeurd!";
+        $url = "/kluss/".$taskID;
+        $channel = User::getUserNotificationsChannel($acceptedID);
+
+        // push notification + save in database
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel);
+
+
         return redirect()->back();
     }
 
