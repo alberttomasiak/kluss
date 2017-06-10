@@ -76,10 +76,10 @@ class ChatController extends Controller
         $message = \Auth::user()->name .": ". $sent_message->message;
         $url = "/chat/".$chatChannel."/".str_slug($partnerName);
         $channel = User::getUserNotificationsChannel($for_user);
-
+        $type = "chat";
         // push notification + save in database
         $this->pusher->trigger($channel, "new-notification", $message);
-        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type);
     }
 
     public function requestChat($id){

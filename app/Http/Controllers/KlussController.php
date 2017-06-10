@@ -152,10 +152,11 @@ class KlussController extends Controller
         $message = "Uw applicatie voor klusje '".$taskTitle."' werd goedgekeurd!";
         $url = "/kluss/".$taskID;
         $channel = User::getUserNotificationsChannel($acceptedID);
+        $type = "task";
 
         // push notification + save in database
         $this->pusher->trigger($channel, "new-notification", $message);
-        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type);
 
 
         return redirect()->back();
@@ -174,10 +175,10 @@ class KlussController extends Controller
         $message = "Uw applicatie voor klusje '".$taskTitle."' werd geweigerd.";
         $url = "/kluss/".$taskID;
         $channel = User::getUserNotificationsChannel($refusedID);
-
+        $type = "task";
         // push notification + save in database
         $this->pusher->trigger($channel, "new-notification", $message);
-        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type);
 
         if($removeApplier == true){
             return redirect()->back();
@@ -192,6 +193,7 @@ class KlussController extends Controller
         // Notification
         $userID = $kluss[0]->user_id;
         $channel = User::getUserNotificationsChannel($userID);
+        $type = "task";
 
         $applicant = User::getTargetInfo(\Auth::user()->id);
         $applicantName = $applicant[0]->name;
@@ -209,7 +211,7 @@ class KlussController extends Controller
         $this->pusher->trigger($channel, "new-notification", $data);
         // let's also store the notification in our Database so the user can review it, in case he's not online ;)
         // The fields we need are: user_id, message, url and channel. We'll make the date in our model
-        $notification = Notifications::createNotification($applicantID, $userID, $data, "/kluss/".$id, $channel);
+        $notification = Notifications::createNotification($applicantID, $userID, $data, "/kluss/".$id, $channel, $type);
 
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);

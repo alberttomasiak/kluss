@@ -24,6 +24,7 @@ class CreateUserNotificationsTable extends Migration
             $table->integer('read')->default('0');
             $table->dateTime('date');
             $table->string('channel');
+            $table->string('type');
             $table->timestamps();
         });
     }
