@@ -2,7 +2,6 @@
 @section('content')
     @foreach($kluss as $kl)
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback=load" async deter></script>
-    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
     <script type="text/javascript">
       var map;
       var kluss = {!! json_encode($kluss) !!};

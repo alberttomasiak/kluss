@@ -152,6 +152,19 @@ class KlussController extends Controller
         $refusedID = $request->user_id;
         $removeApplier = Kluss_applicant::removeApplicant($taskID, $refusedID);
 
+        $taskTitle = Kluss::getSingleTitle($taskID);
+
+        // about ==> denier, for ==> refused, message = Uw applicatie voor klusje X werd geweigerd, url = /kluss/ID, channel = refused
+        $about_user = \Auth::user()->id;
+        $for_user = $refusedID;
+        $message = "Uw applicatie voor klusje '".$taskTitle."' werd geweigerd.";
+        $url = "/kluss/".$taskID;
+        $channel = User::getUserNotificationsChannel($refusedID);
+
+        // push notification + save in database
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel);
+
         if($removeApplier == true){
             return redirect()->back();
         }
