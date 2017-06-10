@@ -19,8 +19,8 @@ class Notifications extends Model
     }
 
     public static function getAllAdminNotifications(){
-        return self::where('channel', 'GLOBAL')
-                    ->orWhere('url', 'ADMIN')
+        return self::where('channel', 'global-notifications')
+                    ->orWhere('about_user', '1')
                     ->paginate(5);
     }
 }

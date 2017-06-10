@@ -14,9 +14,16 @@ use Mail;
 use App\Mail\TaskApproved;
 use App\Mail\TaskDenied;
 use App\Notifications;
+use App;
 
 class AdminController extends Controller
 {
+    var $pusher;
+
+    public function __construct(){
+        $this->pusher = App::make('pusher');
+    }
+
     public function index(){
         return view('admin.login');
     }
@@ -148,5 +155,15 @@ class AdminController extends Controller
     public function notificationsIndex(){
         $notifications = Notifications::getAllAdminNotifications();
         return view('admin.notifications.index', ['notifications' => $notifications]);
+    }
+    public function sendGlobalnotification(Request $request){
+        $user = $request->notification_user;
+        $message = $request->notification_msg;
+        $channel = $request->notification_channel;
+        $url = $request->notification_url;
+
+        $this->pusher->trigger($channel, "global-notification", $message);
+        $notification = Notifications::createNotification($user, $user, $message, $url, $channel);
+        return redirect()->back();
     }
 }

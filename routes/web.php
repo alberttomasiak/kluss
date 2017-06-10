@@ -91,6 +91,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::post('setting/{id}/edit', 'AdminController@settingEdit');
         // meldingen
         Route::get('meldingen', 'AdminController@notificationsIndex');
+        Route::post('notification/add', 'AdminController@sendGlobalNotification');
     });
 });
 
