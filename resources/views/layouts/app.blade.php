@@ -49,7 +49,6 @@
   });
 
   function notifyUser(data){
-      console.log(data);
       toastr.options.progressBar = true;
       toastr.info(data);
   }
