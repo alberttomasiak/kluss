@@ -37,83 +37,122 @@
 </div>
 
 <div class="addboxshadow container" style="display:block; overflow:auto;">
-    <h1 style="float: left; padding: 15px;">Instellingen</h1>
+    <h1 style="float: left; padding: 15px;">Profiel</h1>
     <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-    <div style="height: 1007px; float: left; width: 20%; margin-left: 30px; margin-top: -10px; border-right: 1px solid #677578;">
+    <div style="display:block; overflow:auto; float: left; width: 20%; margin-left: 30px; margin-top: -10px; margin-bottom: 30px; border-right: 1px solid #677578;">
         <section style="margin-top: 30px;">
-        <a href="#">Persoonlijke informatie <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <a href="#" class="persoonlijkeinformatie"> Persoonlijke informatie <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
         <br><br>
-        <a href="#">Meldingen <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <a href="#" class="uitgevoerdeklusjes">Uitgevoerde klusjes <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
             <br><br>
-            <a href="#">Geblockte gebruikers <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <a href="#" class="reviews">Reviews <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
             <br><br>
-            <a href="#">Betalingen <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <a href="#" class="openstaandeklusjes">Openstaande klusjes <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
             <br><br>
-            <a href="#">Kluss Gold <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+            <a href="#"><i style="margin-right: 10px;" class="fa fa-wrench" aria-hidden="true"></i>Pas profiel aan</a>
+            <br><br>
+            <a style="color:#911137;" href="#"><i style="margin-right: 10px;" class="fa fa-ban" aria-hidden="true"></i>Blokkeer</a>
             </section>
         </div>
-    <div style="float: right; width: 60%; margin-right: 50px; color: #677578;">
-        <form action="/action_page.php">
-            <h1>Ik ben</h1> <br>
-            Voornaam:<br>
-            <input type="text" name="firstname" value="Mickey"><br>
-            Familienaam:<br>
-            <input type="text" name="lastname" value="Mouse"><br><br>
-            Geslacht: <br>
-            <input type="radio" name="gender" value="male" checked> Man
-            <input type="radio" name="gender" value="female"> Vrouw<br>
 
-            <h1>Ik woon in</h1> <br>
-            Straat:<br>
-            <input type="text" name="street" value="Disney Avenue"><br>
-            Huisnummer:<br>
-            <input type="text" name="housenumber" value="69"><br>
-            Postcode:<br>
-            <input type="text" name="postcode" value="3000"><br>
-            Gemeente:<br>
-            <input type="text" name="city" value="Paris"><br>
-            Land:<br>
-            <input type="text" name="street" value="France"><br>
-            Dit is ook mijn wettelijk adres: <br>
-            <input type="radio" name="gender" value="" checked>
 
-            <input style="float: right; font-size: 20px;" class="btn" type="submit" value="OPSLAAN">
-        </form>
+
+    <div style="float: left; width: 60%; margin-right: 20px; margin-left: 40px; color: #677578;">
+
+        <div class="profiel-one">
+            <a style="background-image: url(../assets/img/default_profilepic.png);"  class="project-block-user-image"></a>
+
+            <h1>Samuel Sieben</h1>
+
+            <p>20 jaar, Leuven</p>
+
+            <section style="float: right;">
+                <a class="animationout"><img class="animationout" src="../assets/img/like.png">32 likes</a>
+                <a class="animationout"><img class="animationout" src="../assets/img/dislike.png">24 dislikes</a>
+            </section>
+
+            <section style="width: 100%">
+                <a><img class="animationout" style="height: 30px;" src="../assets/img/chat.png">Contacteer mij</a>
+            </section>
+
         </div>
+
+        </div>
+    <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
+
+
+    <div class="profiel-two">
+        <h1 style="float: left; padding: 15px;"> Uitgevoerde Klusjes </h1>
+        <a href="#">
+            <div class="notification-box addboxshadow animationout">
+
+                <h1 style="float: left; font-size: 20px; padding-left: 30px; color: grey;">Grote afwas</h1>
+
+                <p style="float: right;">door Thomas Albertio</p>
+
+                <p style="float: left; display: inline; font-size: 15px; padding-left: 30px;">Afwassen vn metalen potten en pannen en afschrapen van verbrandingslaag</p>
+
+                <p style="float: right;">5 dagen geleden</p>
+            </div>
+        </a>
+
+
+        <a href="#">
+            <div class="notification-box addboxshadow animationout">
+
+                <h1 style="float: left; font-size: 20px; padding-left: 30px; color: grey;">Grote afwas</h1>
+
+                <p style="float: right;">door Thomas Albertio</p>
+
+                <p style="float: left; display: inline; font-size: 15px; padding-left: 30px;">Afwassen vn metalen potten en pannen en afschrapen van verbrandingslaag</p>
+
+                <p style="float: right;">5 dagen geleden</p>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="profiel-three">
+        <h1 style="float: left; padding: 15px; width: 100%;"> Reviews </h1>
+        <a href="#">
+            <div class="notification-box addboxshadow animationout">
+
+                <h1 style="font-size: 20px;">Review<i style="margin-left: 10px;" class="fa fa-pencil" aria-hidden="true"></i></h1>
+
+                <h1 style="float: left; font-size: 20px; padding-left: 30px; color: grey;">Erg Matige Shit</h1>
+
+                <p style="float: right;">door Lolbroekje 8000</p>
+
+                <p style="float: left; display: inline; font-size: 15px; padding-left: 30px;">Het was allemaal kutteslecht gedaan, wtf is dit voor service? Volgende keer vraag ik geld terug!</p>
+
+                <p style="float: right;">5 dagen geleden</p>
+            </div>
+        </a>
+
+    </div>
+
+    <div class="profiel-four">
+        <h1 style="float: left; padding: 15px; width: 100%;"> Openstaande Klusjes </h1>
+        <a href="#">
+            <div class="notification-box addboxshadow animationout">
+
+                <h1 style="font-size: 20px;">Openstaand<i style="margin-left: 10px;" class="fa fa-eye" aria-hidden="true"></i></h1>
+
+                <h1 style="float: left; font-size: 20px; padding-left: 30px; color: grey;">Hulp met grasmaaien</h1>
+
+                <p style="float: right;">door Miranda Swings</p>
+
+                <p style="float: left; display: inline; font-size: 15px; padding-left: 30px;">Wie wilt even op mijn boerderij het gras komen maaien? Ik geef een goede vergoeding!</p>
+
+                <p style="float: right;">1 maand geleden</p>
+            </div>
+        </a>
+
+    </div>
 
 </div>
 
 
-
-
-<footer>
-    <div class="footer-content container">
-        <section>
-            <p>KLUSS</p>
-            <ul>
-                <li><a style="color: #FFFFFF !important;" href="#">Home</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Team</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Algemene Voorwaarden</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">FAQ</a></li>
-
-            </ul>
-        </section>
-        <section style="margin-right:0px !important;">
-            <p>CONTACT</p>
-            <ul>
-                <li><a style="color: #FFFFFF !important;" href="#">Contact</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Facebook</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Twitter</a></li>
-
-            </ul>
-
-        </section>
-    </div>
-    <div style="clear:both;text-align:center;font-size:10px;position:relative;bottom:-20px;">
-        &copy; KLUSS 2017 - Made with &#10084; by our team
-    </div>
-</footer>
-    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
@@ -197,6 +236,40 @@
 
         });
     })(jQuery);
+</script>
+
+
+<script>
+    $('.persoonlijkeinformatie').click(function() {
+        $('.profiel-two').css('display','none');
+        $('.profiel-three').css('display','none');
+        $('.profiel-four').css('display','none');
+        $('.profiel-one').css('display', 'block');
+    });
+</script>
+<script>
+    $('.uitgevoerdeklusjes').click(function() {
+        $('.profiel-three').css('display', 'none');
+        $('.profiel-four').css('display', 'none');
+        $('.profiel-one').css('display', 'block');
+        $('.profiel-two').css('display', 'block');
+    });
+</script>
+<script>
+    $('.reviews').click(function() {
+        $('.profiel-two').css('display', 'none');
+        $('.profiel-four').css('display', 'none');
+        $('.profiel-one').css('display', 'block');
+        $('.profiel-three').css('display', 'block');
+    });
+</script>
+<script>
+    $('.openstaandeklusjes').click(function() {
+        $('.profiel-three').css('display', 'none');
+        $('.profiel--two').css('display', 'none');
+        $('.profiel-one').css('display', 'block');
+        $('.profiel-four').css('display', 'block');
+    });
 </script>
 </body>
 </html>
