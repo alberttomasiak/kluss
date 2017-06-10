@@ -10,6 +10,9 @@ use App\Message;
 use App\Conversation;
 use App\UserBlocks;
 use App\GlobalSettings;
+use Mail;
+use App\Mail\TaskApproved;
+use App\Mail\TaskDenied;
 
 class AdminController extends Controller
 {
@@ -88,11 +91,32 @@ class AdminController extends Controller
     // Klusjes
     public function taskOverview(){
         $tasks = Kluss::getOpenTasks();
-        return view('admin.tasks.overview', ['tasks' => $tasks]);
+        $approval = Kluss::getTasksForApproval();
+        return view('admin.tasks.overview', ['tasks' => $tasks, 'approval' => $approval]);
     }
     public function taskClosed(){
         $tasks = Kluss::getClosedTasks();
         return view('admin.tasks.closed', ['tasks' => $tasks]);
+    }
+    public function approveTask($id){
+        $task = Kluss::approveTask($id);
+        $taskTitle = Kluss::getSingleTitle($id);
+        $userData = Kluss::getUserMailForTaskID($id);
+        $userMail = $userData->email;
+        $userName = $userData->name;
+        Mail::to($userMail)->send(new TaskApproved($taskTitle, $userName));
+        return redirect()->back();
+    }
+    public function denyTask(Request $request){
+        $id = $request->taskID;
+        $taskTitle = Kluss::getSingleTitle($id);
+        $userData = Kluss::getUserMailForTaskID($id);
+        $task = Kluss::denyTask($id);
+        $userMail = $userData->email;
+        $userName = $userData->name;
+        $reason = $request->denyReason;
+        Mail::to($userMail)->send(new TaskDenied($taskTitle, $userName, $reason));
+        return redirect()->back();
     }
     // settings
     public function settingsIndex(){

@@ -48,6 +48,7 @@ class KlussController extends Controller
         $address = $request->address;
         $time = $request->kluss_time;
         $category = $request->kluss_category;
+        $categoryName = KlussCategories::IDToName($category);
 
         if(Input::hasFile('kluss_image')){
             $file = Input::file('kluss_image');
@@ -61,19 +62,21 @@ class KlussController extends Controller
                 }
                 $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
                 $id = Kluss::getLatestID($user_id);
-                $kluss = [
-                    'id' => $id,
-                    'title' => $title,
-                    'description' => $description,
-                    'kluss_image' => $destinationPath,
-                    'price' => $price,
-                    'address' => $address,
-                    'date' => $date,
-                    'latitude' => $latitude,
-                    'longitude' => $longitude,
-                    'user_id' => $user_id
-                ];
-                $this->pusher->trigger("kluss-map", "new-task", $kluss);
+                if($categoryName != "Overige"){
+                    $kluss = [
+                        'id' => $id,
+                        'title' => $title,
+                        'description' => $description,
+                        'kluss_image' => $destinationPath,
+                        'price' => $price,
+                        'address' => $address,
+                        'date' => $date,
+                        'latitude' => $latitude,
+                        'longitude' => $longitude,
+                        'user_id' => $user_id
+                    ];
+                    $this->pusher->trigger("kluss-map", "new-task", $kluss);
+                }
                 if($task){
                     return redirect('/home');
                 }
@@ -85,19 +88,21 @@ class KlussController extends Controller
             $image = "/img/klussjes/geen-image.png";
             $task = Kluss::createTask($title, $description, $image, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
             $id = Kluss::getLatestID($user_id);
-            $kluss = [
-                'id' => $id,
-                'title' => $title,
-                'description' => $description,
-                'kluss_image' => "/img/klussjes/geen-image.png",
-                'price' => $price,
-                'address' => $address,
-                'date' => $date,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-                'user_id' => $user_id
-            ];
-            $this->pusher->trigger("kluss-map", "new-task", $kluss);
+            if($categoryName != "Overige"){
+                $kluss = [
+                    'id' => $id,
+                    'title' => $title,
+                    'description' => $description,
+                    'kluss_image' => "/img/klussjes/geen-image.png",
+                    'price' => $price,
+                    'address' => $address,
+                    'date' => $date,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'user_id' => $user_id
+                ];
+                $this->pusher->trigger("kluss-map", "new-task", $kluss);
+            }
             if($task){
                 return redirect('/home');
             }

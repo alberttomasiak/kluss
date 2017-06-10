@@ -83,6 +83,8 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('klusjes', 'AdminController@taskOverview');
         Route::get('klusjes/overzicht','AdminController@taskOverview');
         Route::get('klusjes/afgesloten','AdminController@taskClosed');
+        Route::get('klusje/{id}/goedkeuren', 'AdminController@approveTask');
+        Route::post('klusje/{id}/afwijzen', 'AdminController@denyTask');
         // Settings
         Route::get('globale_instellingen', 'AdminController@settingsIndex');
         Route::post('setting/add', 'AdminController@settingsAdd');

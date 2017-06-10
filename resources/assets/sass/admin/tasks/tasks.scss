@@ -7,6 +7,7 @@
         display: block;
         width: 100%;
         padding-bottom: 1em;
+        max-height: 300px;
     }
     .task-text{
         padding-left: 1em;
@@ -23,12 +24,12 @@
         text-transform: uppercase;
         margin-bottom: .5em;
     }
-    .report__btns a{
+    .report__btns a, .approval__btns a{
         text-decoration: none;
         display: block;
         width: 100%;
         text-align: center;
-        height: 30px;
+        height: 45px;
         padding-top: 15px;
         color: white;
         font-size: .8em;
@@ -37,6 +38,18 @@
         background-color: $washington;
         position: absolute;
         bottom: 0;
+    }
+    .approval__btns{
+        display: flex;
+        flex-direction: row;
+    }
+    .approval__btns a{
+        width: 50%;
+    }
+    .approval__btns a:nth-child(2){
+        position: absolute;
+        right: 0;
+        background-color: #fc2f2a;
     }
 }
 
