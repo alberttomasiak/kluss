@@ -13,4 +13,7 @@ if(!function_exists("spillvalue")){
     function areWeCool($user_1, $user_2){
         return \App\UserBlocks::areWeCool($user_1, $user_2);
     }
+    function ChatParticipators($channel){
+        return \App\Conversation::getSingleConversationByChatname($channel);
+    }
 }

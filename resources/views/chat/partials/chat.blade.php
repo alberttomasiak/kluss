@@ -41,6 +41,9 @@
     </script>
 </head>
 <body>
+    {{-- Let's get our users to check if we're gucci or not --}}
+    <?php $users = ChatParticipators($chatChannel); ?>
+
 <section class="" style="display: block; margin-bottom: 2em;">
     <div class="container">
         <div class="row light-grey-blue-background chat-app">
@@ -66,6 +69,7 @@
                 @endforeach
             </div>
             <div class="action-bar">
+                @if(areWeCool($users->user_one, $users->user_two) == "")
                 <textarea class="input-message col-xs-10" placeholder="Your message"></textarea>
                 <div class="option col-xs-1 white-background">
                     <span class="fa fa-smile-o light-grey"></span>
@@ -73,6 +77,9 @@
                 <div class="option col-xs-1 green-background send-message">
                     <span class="white light fa fa-paper-plane-o"></span>
                 </div>
+                @else
+                    <p>Je bent of hebt de andere gebruiker geblokkeerd. Chatten is niet mogelijk.</p>
+                @endif
             </div>
 
         </div>
