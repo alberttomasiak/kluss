@@ -179,7 +179,11 @@
                                 @if($kluss_applicant->first())
                                     <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
                                 @else
-                                    <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                    @if(areWeCool(\Auth::user()->id, $kl->user_id) != "")
+                                        <p>Je hebt of bent door de gebruiker geblokkeerd. Solliciteren voor dit klusje is niet mogelijk.</p>
+                                    @else
+                                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                    @endif
                                 @endif
                             </div>
                         @endif

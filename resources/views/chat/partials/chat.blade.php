@@ -65,7 +65,6 @@
                     </div>
                 @endforeach
             </div>
-
             <div class="action-bar">
                 <textarea class="input-message col-xs-10" placeholder="Your message"></textarea>
                 <div class="option col-xs-1 white-background">
