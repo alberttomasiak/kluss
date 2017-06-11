@@ -1,3 +1,5 @@
+// General
+@import "general";
 // Vendor shit
 @import "vendor-sass/all";
 // Front-end Pages
@@ -9,3 +11,4 @@
 @import "pages/individual-kluss";
 @import "pages/profile";
 @import "pages/verification";
+@import "pages/settings";

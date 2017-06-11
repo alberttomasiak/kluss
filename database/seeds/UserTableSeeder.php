@@ -25,6 +25,8 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('klussadmin'),
             'account_type' => 'admin',
             'activated' => '1',
+            'verified' => '1',
+            'notifications_channel' => str_random(35),
         ]);
 
         // Onzen chat maaafk
@@ -36,6 +38,7 @@ class UserTableSeeder extends Seeder
             'verified' => '1',
             'blocked' => '0',
             'activated' => '1',
+            'notifications_channel' => str_random(35),
         ]);
 
         // Den Albert eh ;)
@@ -47,6 +50,8 @@ class UserTableSeeder extends Seeder
             'bio' => 'Watch your back, but more importantly when you get out the shower, dry your back. It’s a cold world out there. Bless up! Another one!',
             'profile_pic' => '/img/dj-khaledicious.png',
             'activated' => '1',
+            'verified' => '1',
+            'notifications_channel' => str_random(35),
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

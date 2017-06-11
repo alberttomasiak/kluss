@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        view()->composer('layouts.app', function($view){
+            $channel = User::getUserNotificationsChannel(\Auth::user()->id);
+            $view->with('data', array('channel' => $channel));
+        });
     }
 
     /**

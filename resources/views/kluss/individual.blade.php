@@ -2,7 +2,6 @@
 @section('content')
     @foreach($kluss as $kl)
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback=load" async deter></script>
-    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
     <script type="text/javascript">
       var map;
       var kluss = {!! json_encode($kluss) !!};
@@ -150,16 +149,6 @@
         $('.kluss-data').append('<div class="selected--applicant"><h3>Gekozen klusser:</h3><div class="applicant--info"><img class="applicant-image" src="/assets'+data.userImage+'" alt="'+data.userName+'s profile pic"> <a href="/profiel/'+data.userID+'/'+data.userName+'">'+data.userName+'</a></div></div>');
     }
 
-    var pusher = new Pusher('1a329a7dd69a92834d4d', {
-      cluster: 'eu',
-      encrypted: true,
-      authEndpoint: '/map/auth',
-      auth: {
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }
-    });
     var channel = pusher.subscribe("kluss-map");
     // channel binds
     channel.bind('applicant-selected-task', selectedApplicant);
@@ -190,7 +179,11 @@
                                 @if($kluss_applicant->first())
                                     <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
                                 @else
-                                    <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                    @if(areWeCool(\Auth::user()->id, $kl->user_id) != "")
+                                        <p>Je hebt of bent door de gebruiker geblokkeerd. Solliciteren voor dit klusje is niet mogelijk.</p>
+                                    @else
+                                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                    @endif
                                 @endif
                             </div>
                         @endif

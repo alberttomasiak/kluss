@@ -57,12 +57,15 @@ Route::group(['middleware' => ['auth']], function(){
     // Chat routes
     Route::get('/chat', 'ChatController@index');
     Route::post('/chat/message', 'ChatController@postMessage');
-    // // Chat testing routes
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
     Route::get('/klussgold', 'KlussGoldController@index');
     Route::get('/bestel', 'KlussGoldController@bestel');
     Route::get('/review', 'ReviewController@index');
+    // meldingen
+    Route::get('/meldingen', 'HomeController@notificationsIndex');
+    // Settings
+    Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -92,6 +95,10 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('globale_instellingen', 'AdminController@settingsIndex');
         Route::post('setting/add', 'AdminController@settingsAdd');
         Route::post('setting/{id}/edit', 'AdminController@settingEdit');
+        // meldingen
+        Route::get('meldingen', 'AdminController@notificationsIndex');
+        Route::post('notification/add', 'AdminController@sendGlobalNotification');
+        Route::post('notify/user/{id}', 'AdminController@sendPersonalNotification');
     });
 });
 
@@ -108,7 +115,7 @@ Route::get('/what', function () {
 });
 
 Route::get('/settings', function () {
-    return view('/settings');
+    return view('settings.index');
 });
 
 Route::get('/FAQ', function () {
@@ -121,10 +128,6 @@ Route::get('/community', function () {
 
 Route::get('/landing', function () {
     return view('/landing');
-});
-
-Route::get('/meldingen', function () {
-    return view('/meldingen');
 });
 
 Route::get('/plaatsklusje', function () {

@@ -25,7 +25,6 @@
 
     <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://cdn.rawgit.com/samsonjs/strftime/master/strftime-min.js"></script>
-    <script src="//js.pusher.com/3.0/pusher.min.js"></script>
 
     <script>
         // Ensure CSRF token is sent with AJAX requests
@@ -42,6 +41,9 @@
     </script>
 </head>
 <body>
+    {{-- Let's get our users to check if we're gucci or not --}}
+    <?php $users = ChatParticipators($chatChannel); ?>
+
 <section class="" style="display: block; margin-bottom: 2em;">
     <div class="container">
         <div class="row light-grey-blue-background chat-app">
@@ -66,8 +68,8 @@
                     </div>
                 @endforeach
             </div>
-
             <div class="action-bar">
+                @if(areWeCool($users->user_one, $users->user_two) == "")
                 <textarea class="input-message col-xs-10" placeholder="Your message"></textarea>
                 <div class="option col-xs-1 white-background">
                     <span class="fa fa-smile-o light-grey"></span>
@@ -75,6 +77,9 @@
                 <div class="option col-xs-1 green-background send-message">
                     <span class="white light fa fa-paper-plane-o"></span>
                 </div>
+                @else
+                    <p>Je bent of hebt de andere gebruiker geblokkeerd. Chatten is niet mogelijk.</p>
+                @endif
             </div>
 
         </div>
@@ -162,17 +167,6 @@
     $(init);
 
     /***********************************************/
-
-    var pusher = new Pusher('1a329a7dd69a92834d4d', {
-      cluster: 'eu',
-      encrypted: true,
-      authEndpoint: '/chat/auth',
-      auth: {
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        }
-    });
     var channel = pusher.subscribe("{{$chatChannel}}");
     // console.log(channel);
     channel.bind('new-message', addMessage);

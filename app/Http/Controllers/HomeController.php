@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Location;
 use App\Kluss;
+use App\User;
 use DB;
 use App\Conversation;
 use App\Message;
+use App;
+use App\Notifications;
 
 class HomeController extends Controller
 {
@@ -39,5 +42,10 @@ class HomeController extends Controller
         $lng = $request->get('lng');
         $klusjes = Kluss::getTasksInNeighborhood($lat, $lng);
         return [$klusjes];
+    }
+
+    public function notificationsIndex(){
+        $notifications = Notifications::getUserNotifications(\Auth::user()->id);
+        return view('meldingen', compact('notifications', $notifications));
     }
 }

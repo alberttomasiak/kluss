@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="assets/css/edits.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/app.css">
+    <link href="/assets/css/edits.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/6caa87bbb8.js"></script>
 </head>
 <body>
@@ -51,40 +52,15 @@
             <br><br>
             <a href="#">Kluss Gold <i class="fa fa-chevron-right" aria-hidden="true"></i></a>
             </section>
-        </div>
-    <div style="float: right; width: 60%; margin-right: 50px; color: #677578;">
-        <form action="/action_page.php">
-            <h1>Ik ben</h1> <br>
-            Voornaam:<br>
-            <input type="text" name="firstname" value="Mickey"><br>
-            Familienaam:<br>
-            <input type="text" name="lastname" value="Mouse"><br><br>
-            Geslacht: <br>
-            <input type="radio" name="gender" value="male" checked> Man
-            <input type="radio" name="gender" value="female"> Vrouw<br>
+    </div>
 
-            <h1>Ik woon in</h1> <br>
-            Straat:<br>
-            <input type="text" name="street" value="Disney Avenue"><br>
-            Huisnummer:<br>
-            <input type="text" name="housenumber" value="69"><br>
-            Postcode:<br>
-            <input type="text" name="postcode" value="3000"><br>
-            Gemeente:<br>
-            <input type="text" name="city" value="Paris"><br>
-            Land:<br>
-            <input type="text" name="street" value="France"><br>
-            Dit is ook mijn wettelijk adres: <br>
-            <input type="radio" name="gender" value="" checked>
-
-            <input style="float: right; font-size: 20px;" class="btn" type="submit" value="OPSLAAN">
-        </form>
+    <div class="page">
+        <div class="page-content">
+            @yield('content')
         </div>
+    </div>
 
 </div>
-
-
-
 
 <footer>
     <div class="footer-content container">
@@ -116,7 +92,7 @@
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="assets/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
     <script>
         $(".landing_body").css("height", window.innerHeight-60 + "px");
 
