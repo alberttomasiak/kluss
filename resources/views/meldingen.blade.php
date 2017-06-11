@@ -123,5 +123,19 @@
                     });
                 });
             })(jQuery);
+
+            // Pusher time familia
+            // function createNotification(data){
+            //     if(data.type == "task"){
+            //
+            //     }else if(data.type == "chat"){
+            //
+            //     }else{
+            //
+            //     }
+            // }
+            //
+            // globalNotifications.bind("full-notification", createNotification);
+            // privateNotifications.bind("full-notification", createNotification);
         </script>
     @endsection
