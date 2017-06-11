@@ -124,3 +124,11 @@ Route::get('/community', function () {
 Route::get('/landing', function () {
     return view('/landing');
 });
+
+Route::get('/plaatsklusje', function () {
+    return view('/plaatsklusje');
+});
+
+Route::get('/userprofiel', function () {
+    return view('/userprofiel');
+});

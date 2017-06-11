@@ -65,7 +65,7 @@
         <div style="margin-left: 25px; margin-right: 25px;">
             <div class="row">
                 <!-- MAP MET KLUSSJES -->
-                <div id="map"></div>
+                <div class="addboxshadow" id="map"></div>
                 <!-- KLUSSJES IN DE BUURT -->
                 <hr style="background-color: #8BC53F; height: 0.2px; width: 100%; ">
                 <h1>Actieve klusjes in de omgeving:</h1>
@@ -148,7 +148,15 @@
                 </div>
             </a>
 
-            <section style="margin-top: 40px !important;">
+
+            <a href="#">
+            <div class="klussgoldinfo bannerprojects-bottom animationout">
+
+            </div>
+            </a>
+
+
+            <section style="margin-top: 40px !important; width: 100%">
             <h1 style="text-align: center;">Geen andere klusjes in je buurt.</h1>
             </section>
 
