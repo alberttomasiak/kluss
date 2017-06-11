@@ -7,6 +7,7 @@ use App\Http\Requests;
 use DB;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use App\Kluss;
 use App\User;
@@ -15,6 +16,7 @@ use App\KlussCategories;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Http\RedirectResponse;
 
 class KlussController extends Controller
 {
@@ -174,6 +176,23 @@ class KlussController extends Controller
     public function update($id){
         $kluss = Kluss::getSingle($id);
         return view('kluss/bewerken', compact('kluss'))->with('title', 'Kluss bewerken');
+    }
+
+    public function finishTask(Request $request){
+        $id = $request->get('id');
+        $kluss = Kluss::getSingle($id);
+        $query = DB::table('kluss')->where('id', '=', $id)->update(
+            [
+                'closed' => 1
+            ]
+        );
+        return redirect()->back();
+    }
+
+    public function payTask(Request $request){
+        $id = $request->get('id');
+        $kluss = Kluss::getSingle($id);
+        return Redirect::to("https://www.paypal.com/signin?country.x=BE&locale.x=en_BE");
     }
 
     public function edit(Request $request, $id){

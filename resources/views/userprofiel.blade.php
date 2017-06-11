@@ -93,6 +93,9 @@
                 <p style="float: left; display: inline; font-size: 15px; padding-left: 30px;">Afwassen vn metalen potten en pannen en afschrapen van verbrandingslaag</p>
 
                 <p style="float: right;">5 dagen geleden</p>
+                <!--Als eigen profiel is, en klus is nog niet geclosed-->
+                <a href="/finishklus?id=1">Klus afronden</a>
+                <a href="https://www.paypal.com/signin?country.x=BE&locale.x=en_BE">Betaal via PayPal</a>
             </div>
         </a>
 
@@ -107,6 +110,9 @@
                 <p style="float: left; display: inline; font-size: 15px; padding-left: 30px;">Afwassen vn metalen potten en pannen en afschrapen van verbrandingslaag</p>
 
                 <p style="float: right;">5 dagen geleden</p>
+                <!--Als eigen profiel is, en klus is nog niet geclosed-->
+                <a href="/finishklus?id=2">Klus afronden</a>
+                <a href="https://www.paypal.com/signin?country.x=BE&locale.x=en_BE">Betaal via PayPal</a>
             </div>
         </a>
 

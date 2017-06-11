@@ -14,7 +14,7 @@ class Review extends Model
 {
     //
     protected $fillable = [
-        'user_id', 'otheruser_id', 'score', 'message'
+        'kluss_id', 'user_id', 'otheruser_id', 'score', 'message'
     ];
 
     public $table = "kluss";

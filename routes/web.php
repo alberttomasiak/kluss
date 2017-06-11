@@ -62,6 +62,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
     Route::get('/klussgold', 'KlussGoldController@index');
     Route::get('/bestel', 'KlussGoldController@bestel');
+    Route::get('/finishklus', 'KlussController@finishTask');
+    Route::get('/betaalklus', 'KlussController@payTask');
     Route::get('/review', 'ReviewController@index');
 });
 
