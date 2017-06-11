@@ -131,3 +131,8 @@ Route::get('/plaatsklusje', function () {
 Route::get('/userprofiel', function () {
     return view('/userprofiel');
 });
+
+Route::get('/klusje', function () {
+    return view('/klusje');
+});
+
