@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('bio')->default("Vul me in!");
             $table->integer('user_rating')->default('0');
             $table->string('account_type')->default('normal');
+            $table->integer('gold_status_fk')->nullable()->unsigned();
             $table->integer('verified')->default('0');
             $table->integer('blocked')->default('0');
             $table->integer('activated')->default('0');

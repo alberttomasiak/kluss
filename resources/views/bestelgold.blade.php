@@ -39,7 +39,15 @@
         <p>Opgelet! u staat op het punt om Kluss Gold te bestellen voor</p>
         <h1>{{$months}} maanden</h1><br>
         <p>Bent u zeker?</p>
-        <a href="#">ja, bevestig mijn betaling</a><a href="#">Nee, annuleer mijn bestelling</a>
+        <?php
+            preg_match_all('!\d+!', $months, $matches);
+            $duration = implode('', $matches[0]);
+        ?>
+        <form action="/bestel/{{\Auth::user()->id}}/{{$duration}}" id="purchaseGold" name="purchaseGold" method="post">
+            {{csrf_field()}}
+            <input type="submit" form="purchaseGold" name="purchase--btn" value="Ja, bevestig mijn betaling">
+        </form>
+        <a href="#">Nee, annuleer mijn bestelling</a>
         <p>Meer details over Kluss Gold vindt u in de <a href="#">algemene voorwaarden</a>.</p>
 
         <br>

@@ -133,6 +133,14 @@ class User extends Authenticatable
         return self::count();
     }
 
+    public static function AddGoldToUser($user, $fk){
+        return self::where('id', $user)->update(["account_type" => "gold", "gold_status_fk" => $fk]);
+    }
+
+    public static function removeGoldFromUser($id){
+        return self::where('id', $id)->update(["account_type" => "normal", "gold_status_fk" => null]);
+    }
+
 
     // Ban related functions
     public static function BANHAMMER($foolsID){
