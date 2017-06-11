@@ -60,6 +60,9 @@ Route::group(['middleware' => ['auth']], function(){
     // // Chat testing routes
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
+    Route::get('/klussgold', 'KlussGoldController@index');
+    Route::get('/bestel', 'KlussGoldController@bestel');
+    Route::get('/review', 'ReviewController@index');
 });
 
 Route::group(['prefix' => 'admin'], function () {
