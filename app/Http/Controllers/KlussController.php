@@ -12,6 +12,7 @@ use App\Kluss;
 use App\User;
 use App\Kluss_applicant;
 use App\KlussCategories;
+use App\Notifications;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -142,7 +143,22 @@ class KlussController extends Controller
             'userImage' => $userImage
         ];
         $this->pusher->trigger("kluss-map", "applicant-selected-task", $selected);
-        // 7. Return after everything is handled
+        // 7. make a notification, send it to the right user + redirect back
+
+        // about ==> denier, for ==> accepted, message = Uw applicatie voor klusje X werd goedgekeurd!, url = /kluss/ID, channel = accepted
+        $taskTitle = Kluss::getSingleTitle($taskID);
+        $about_user = \Auth::user()->id;
+        $for_user = $acceptedID;
+        $message = "Uw applicatie voor klusje '".$taskTitle."' werd goedgekeurd!";
+        $url = "/kluss/".$taskID;
+        $channel = User::getUserNotificationsChannel($acceptedID);
+        $type = "task";
+
+        // push notification + save in database
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, $taskID);
+
+
         return redirect()->back();
     }
 
@@ -150,6 +166,19 @@ class KlussController extends Controller
         $taskID = $request->kluss_id;
         $refusedID = $request->user_id;
         $removeApplier = Kluss_applicant::removeApplicant($taskID, $refusedID);
+
+        $taskTitle = Kluss::getSingleTitle($taskID);
+
+        // about ==> denier, for ==> refused, message = Uw applicatie voor klusje X werd geweigerd, url = /kluss/ID, channel = refused
+        $about_user = \Auth::user()->id;
+        $for_user = $refusedID;
+        $message = "Uw applicatie voor klusje '".$taskTitle."' werd geweigerd.";
+        $url = "/kluss/".$taskID;
+        $channel = User::getUserNotificationsChannel($refusedID);
+        $type = "task";
+        // push notification + save in database
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, $taskID);
 
         if($removeApplier == true){
             return redirect()->back();
@@ -161,11 +190,29 @@ class KlussController extends Controller
         $title = Kluss::getSingleTitle($id);
         $kluss_applicant = Kluss_applicant::getApplicant($id);
 
+        // Notification
+        $userID = $kluss[0]->user_id;
+        $channel = User::getUserNotificationsChannel($userID);
+        $type = "task";
+
+        $applicant = User::getTargetInfo(\Auth::user()->id);
+        $applicantName = $applicant[0]->name;
+        $applicantID = $applicant[0]->id;
+
         if($kluss_applicant->first()){
             Kluss_applicant::removeApplication($id);
+            $data = $applicantName . " verwijderde net zijn sollicitatie.";
         }else{
             Kluss_applicant::insertApplicant($id);
+            $data = $applicantName . " sollicteerde net voor uw klusje!";
         }
+
+        // We are the maker of this task so let's get a notification that someone applied to it!
+        $this->pusher->trigger($channel, "new-notification", $data);
+        // let's also store the notification in our Database so the user can review it, in case he's not online ;)
+        // The fields we need are: user_id, message, url and channel. We'll make the date in our model
+        $notification = Notifications::createNotification($applicantID, $userID, $data, "/kluss/".$id, $channel, $type, $id);
+
         return redirect()->back()->with('title', $title, compact('kluss','kluss_applicant'));
         //return redirect('/kluss/'.$kluss->id);
         //return redirect()->back(compact('kluss','kluss_applicant'))->with('title', $title);

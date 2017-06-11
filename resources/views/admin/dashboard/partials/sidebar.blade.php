@@ -21,5 +21,6 @@
                 <li><a href="#">Test</a></li>
             </ul> --}}
         </li>
+        <li><a href="/admin/meldingen">Meldingen</a></li>
     </ul>
 </section>

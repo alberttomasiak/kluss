@@ -32,9 +32,11 @@
                     {{ csrf_field() }}
                     <input type="submit" name="chatstart" class="btn btn--form" value="contact">
                 </form>
-                <a href="/admin/block/{{$goldUser->id}}/block">BLOKKEER</a>
+                <a href="#notify-user-{{$goldUser->id}}" data-toggle="modal" role="button" class="btn btn--form">Notificatie</a>
+                <a href="/admin/block/{{$goldUser->id}}/block" class="btn btn--form">BLOKKEER</a>
             </div>
         </div>
+        @include('admin.users.modals.notify', ['id' => $goldUser->id])
     @endforeach
     {{$goldUsers->links()}}
 
@@ -50,9 +52,11 @@
                     {{ csrf_field() }}
                     <input type="submit" name="chatstart" class="btn btn--form" value="contact">
                 </form>
-                <a href="/admin/block/{{$regularUser->id}}/block">BLOKKEER</a>
+                <a href="#notify-user-{{$regularUser->id}}" data-toggle="modal" role="button" class="btn btn--form">Notificatie</a>
+                <a href="/admin/block/{{$regularUser->id}}/block" class="btn btn--form">BLOKKEER</a>
             </div>
         </div>
+        @include('admin.users.modals.notify', ['id' => $regularUser->id])
     @endforeach
     {{$regularUsers->links()}}
 </div>

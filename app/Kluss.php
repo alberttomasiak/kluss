@@ -9,6 +9,7 @@ use App\KlussCategories;
 use Mail;
 use App\Mail\TaskForApproval;
 use App\Mail\TaskApprovalAdmin;
+use DateTime;
 
 class Kluss extends Model
 {
@@ -153,4 +154,28 @@ class Kluss extends Model
                     ->where('kluss.id', $id)
                     ->first();
     }
+
+    public static function convertToTimeAgo($datetime, $full = false){
+        $timeago = strtotime($datetime);
+        $currentTime = time();
+        $diff = $currentTime - $timeago;
+        $seconds = $diff;
+
+        $minutes = round($seconds / 60); 		// 60 seconden
+        $hours = round($seconds / 3600);		// 60 x 60
+        $days = round($seconds / 86400);		// 24 x 60 x 60
+        $weeks = round($seconds / 604800);		// 7 x 24 x 60 x 60
+        $months = round($seconds / 2629440);	// ((365+365+365+365+366))/5/12) x 24 x 60 x 60
+        $years = round($seconds / 31553280);	// (365+365+365+365+366)/5 x 24 x 60 x 60
+
+        if($seconds <= 60){ return "Minder dan een minuut geleden."; }
+        else if ($minutes <= 60){ if($minutes==1){ return "1 minuut geleden"; }
+        else{ return "$minutes minuten geleden"; } }
+        else if($hours <= 24){ if($hours == 1){ return "1 uur geleden"; } else { return "$hours uur geleden"; } }
+        else if($days <= 7){ if($days == 1){ return "Gisteren"; } else { return "$days dagen geleden"; } }
+        else if ($weeks <= 4.3){ if($weeks == 1){ return "Vorige week"; } else { return "$weeks weken geleden"; } }
+        else if($months <= 12){ if($months == 1){ return "Vorige maand"; } else { return "$months maanden geleden"; } }
+        else{ if($years == 1){ return "Vorig jaar"; } else { return "$years jaren geleden"; } }
+    }
+
 }

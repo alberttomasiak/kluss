@@ -20,7 +20,8 @@ class Message extends Model
                         ->select('users.*', 'messages.*')
                         ->where([
                             ["messages.conversation_id", '=',  $conversationID]
-                        ])->get();
+                        ])
+                        ->orderBy('messages.created_at', 'asc')->get();
     }
 
     public static function getLastConversationMessages(){

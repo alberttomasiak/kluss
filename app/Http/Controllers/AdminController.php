@@ -13,9 +13,17 @@ use App\GlobalSettings;
 use Mail;
 use App\Mail\TaskApproved;
 use App\Mail\TaskDenied;
+use App\Notifications;
+use App;
 
 class AdminController extends Controller
 {
+    var $pusher;
+
+    public function __construct(){
+        $this->pusher = App::make('pusher');
+    }
+
     public function index(){
         return view('admin.login');
     }
@@ -142,5 +150,33 @@ class AdminController extends Controller
         if($update == true){
             return redirect()->back();
         }
+    }
+    // Notifications
+    public function notificationsIndex(){
+        $notifications = Notifications::getAllAdminNotifications();
+        return view('admin.notifications.index', ['notifications' => $notifications]);
+    }
+    public function sendGlobalnotification(Request $request){
+        $user = $request->notification_user;
+        $message = $request->notification_msg;
+        $channel = $request->notification_channel;
+        $url = $request->notification_url;
+        $type = "global";
+
+        $this->pusher->trigger($channel, "global-notification", $message);
+        $notification = Notifications::createNotification($user, $user, $message, $url, $channel, $type, null);
+        return redirect()->back();
+    }
+    public function sendPersonalNotification(Request $request, $id){
+        $about_user = \Auth::user()->id;
+        $for_user = $request->notification_user;
+        $channel = User::getUserNotificationsChannel($for_user);
+        $message = $request->notification_msg;
+        $url = $request->notification_url;
+        $type = "global";
+
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, null);
+        return redirect()->back();
     }
 }

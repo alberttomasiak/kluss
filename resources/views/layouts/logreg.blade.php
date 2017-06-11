@@ -37,27 +37,6 @@
   ga('create', 'UA-89370521-1', 'auto');
   ga('send', 'pageview');
 
-  var pusher = new Pusher('1a329a7dd69a92834d4d', {
-    cluster: 'eu',
-    encrypted: true,
-    authEndpoint: '/map/auth',
-    auth: {
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-      }
-  });
-
-  function notifyUser(data){
-      toastr.options.progressBar = true;
-      toastr.info(data);
-  }
-
-  var globalNotifications = pusher.subscribe("global-notifications");
-  var privateNotifications = pusher.subscribe("{{$data["channel"]}}");
-  globalNotifications.bind("global-notification", notifyUser);
-  privateNotifications.bind("new-notification", notifyUser);
-
 </script>
     <div class="page">
         @include('layouts.header')

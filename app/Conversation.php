@@ -83,7 +83,7 @@ class Conversation extends Model
             ["user_one", '=', $chatUserID],
             ["user_two", '=', $userID],
         ])->first();
-        
+
         return $gesprek == "" ? self::insert(["user_one" => $chatUserID, "user_two" => $userID, "chatname" => Hashids::encode($chatUserID, $userID), "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]) : true;
     }
 }

@@ -68,8 +68,21 @@ class User extends Authenticatable
         return self::where('email', $email)->pluck('verified')->first();
     }
 
+    public static function amIActivated($email){
+        return self::where('email', $email)->pluck('activated')->first();
+    }
+
     public static function generateVerificationCode($email){
         return self::where('email', $email)->update(['activation_code' => str_random(45)]);
+    }
+
+    public static function generateNotificationsChannel($email){
+        $userID = User::getIdByMail($email);
+        return self::where('email', $email)->update(['notifications_channel' => $userID."-".str_random(35)]);
+    }
+
+    public static function getUserNotificationsChannel($id){
+        return self::where('id', $id)->pluck('notifications_channel')->first();
     }
 
     public static function getVerificationCode($email){
@@ -159,10 +172,10 @@ class User extends Authenticatable
         return self::where('account_type', 'admin')->paginate(5);
     }
     public static function getRegularUsers(){
-        return self::where('account_type', '==', 'normal')->paginate(5);
+        return self::where('account_type', 'normal')->paginate(5);
     }
     public static function getGoldUsers(){
-        return self::where('account_type', '==', 'gold')->paginate(5);
+        return self::where('account_type', 'gold')->paginate(5);
     }
     public static function getBlockedUsers(){
         return self::where('blocked', '=', '1')->paginate(5);

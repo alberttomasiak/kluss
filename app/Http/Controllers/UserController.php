@@ -14,8 +14,8 @@ class UserController extends Controller
             'password' => 'required',
         ]);
         $AmIBanned = User::amIBanned($request->email);
-        $amIVerified = User::amIVerified($request->email);
-        if($amIVerified == 1){
+        $amIActivated = User::amIActivated($request->email);
+        if($amIActivated == 1){
             if($AmIBanned == 0){
                 if(Auth::attempt([
                     'email' => $request->email,
@@ -60,6 +60,7 @@ class UserController extends Controller
         ]);
 
         $generateCode = User::generateVerificationCode($request['email']);
+        $generateChannel = User::generateNotificationsChannel($request['email']);
         $verification = User::sendVerificationMail($request['email']);
         return $verification ? redirect()->back()->with('verificationMail', "Uw verificatie mail werd verstuurd. Om uw account te activeren klik op de link in de mail.") : "Er is iets misgelopen.";
     }

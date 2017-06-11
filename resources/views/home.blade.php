@@ -15,7 +15,6 @@
         </div>
     </div>
 </div>
-<script src="//js.pusher.com/3.0/pusher.min.js"></script>
 <script type="text/javascript">
   var map;
   var klussjes = {!! json_encode($klussjes) !!};
@@ -168,20 +167,17 @@ function applicantSelected(data){
     markers[data.taskID].setIcon("/assets/img/marker_2-klein.png");
 }
 
-var pusher = new Pusher('1a329a7dd69a92834d4d', {
-  cluster: 'eu',
-  encrypted: true,
-  authEndpoint: '/map/auth',
-  auth: {
-    headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    }
-});
+function notifyUser(data){
+    alert(data);
+}
+
+// channel subscriptions
 var channel = pusher.subscribe("kluss-map");
 // channel binds
+channel.bind("test", notifyUser);
 channel.bind('new-task', appendMarker);
 channel.bind('deleted-task', deleteMarker);
 channel.bind('applicant-selected-task', applicantSelected);
+channel.bind('new-notification', notifyUser);
 </script>
 @endsection
