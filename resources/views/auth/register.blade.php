@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.logreg')
 
 @section('content')
 <div class="container page-wrap">
@@ -7,9 +7,11 @@
             <div class="logreg--logo"></div>
             <div class="panel logreg--form">
                 <div class="logreg-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/registreren') }}">
                         {{ csrf_field() }}
-
+                        @if(session('VerificationMail'))
+                            <p>{{session('VerificationMail')}}</p>
+                        @endif
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <!--<label for="name" class="col-md-4 control-label">Name</label>-->
 

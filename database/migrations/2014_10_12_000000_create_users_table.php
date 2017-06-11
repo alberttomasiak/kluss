@@ -24,6 +24,9 @@ class CreateUsersTable extends Migration
             $table->string('account_type')->default('normal');
             $table->integer('verified')->default('0');
             $table->integer('blocked')->default('0');
+            $table->integer('activated')->default('0');
+            $table->string('activation_code');
+            $table->string('notifications_channel');
             $table->rememberToken();
             $table->timestamps();
         });

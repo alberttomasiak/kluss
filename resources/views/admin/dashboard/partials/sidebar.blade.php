@@ -14,12 +14,13 @@
                 <li><a href="/admin/klusjes/afgesloten">Afgesloten klusjes</a></li>
             </ul>
         </li>
-        <li><a href="/admin/settings">Globale instellingen</a>
+        <li><a href="/admin/globale_instellingen">Globale instellingen</a>
             {{-- <ul>
                 <li><a href="#">Test</a></li>
                 <li><a href="#">Test</a></li>
                 <li><a href="#">Test</a></li>
             </ul> --}}
         </li>
+        <li><a href="/admin/meldingen">Meldingen</a></li>
     </ul>
 </section>

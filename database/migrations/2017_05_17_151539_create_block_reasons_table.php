@@ -27,6 +27,6 @@ class CreateBlockReasonsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('block_reasons');
     }
 }

@@ -9,9 +9,21 @@ use App\Kluss;
 use App\Message;
 use App\Conversation;
 use App\UserBlocks;
+use App\GlobalSettings;
+use Mail;
+use App\Mail\TaskApproved;
+use App\Mail\TaskDenied;
+use App\Notifications;
+use App;
 
 class AdminController extends Controller
 {
+    var $pusher;
+
+    public function __construct(){
+        $this->pusher = App::make('pusher');
+    }
+
     public function index(){
         return view('admin.login');
     }
@@ -87,14 +99,84 @@ class AdminController extends Controller
     // Klusjes
     public function taskOverview(){
         $tasks = Kluss::getOpenTasks();
-        return view('admin.tasks.overview', ['tasks' => $tasks]);
+        $approval = Kluss::getTasksForApproval();
+        return view('admin.tasks.overview', ['tasks' => $tasks, 'approval' => $approval]);
     }
     public function taskClosed(){
         $tasks = Kluss::getClosedTasks();
         return view('admin.tasks.closed', ['tasks' => $tasks]);
     }
+    public function approveTask($id){
+        $task = Kluss::approveTask($id);
+        $taskTitle = Kluss::getSingleTitle($id);
+        $userData = Kluss::getUserMailForTaskID($id);
+        $userMail = $userData->email;
+        $userName = $userData->name;
+        Mail::to($userMail)->send(new TaskApproved($taskTitle, $userName));
+        return redirect()->back();
+    }
+    public function denyTask(Request $request){
+        $id = $request->taskID;
+        $taskTitle = Kluss::getSingleTitle($id);
+        $userData = Kluss::getUserMailForTaskID($id);
+        $task = Kluss::denyTask($id);
+        $userMail = $userData->email;
+        $userName = $userData->name;
+        $reason = $request->denyReason;
+        Mail::to($userMail)->send(new TaskDenied($taskTitle, $userName, $reason));
+        return redirect()->back();
+    }
     // settings
     public function settingsIndex(){
-        return view('admin.settings.index');
+        $settings = GlobalSettings::getSettings();
+        return view('admin.settings.index', ['settings' => $settings]);
+    }
+    public function settingsAdd(Request $request){
+        $key = $request->settingKey;
+        $value = $request->settingValue;
+
+        $setting = new GlobalSettings;
+        $setting->key = $key;
+        $setting->value = $value;
+        $setting->save();
+        return redirect()->back();
+    }
+    public function settingEdit(Request $request){
+        $settingID = $request->settingID;
+        $key = $request->settingKey;
+        $value = $request->settingValue;
+
+        $update = GlobalSettings::updateSetting($settingID, $key, $value);
+        if($update == true){
+            return redirect()->back();
+        }
+    }
+    // Notifications
+    public function notificationsIndex(){
+        $notifications = Notifications::getAllAdminNotifications();
+        return view('admin.notifications.index', ['notifications' => $notifications]);
+    }
+    public function sendGlobalnotification(Request $request){
+        $user = $request->notification_user;
+        $message = $request->notification_msg;
+        $channel = $request->notification_channel;
+        $url = $request->notification_url;
+        $type = "global";
+
+        $this->pusher->trigger($channel, "global-notification", $message);
+        $notification = Notifications::createNotification($user, $user, $message, $url, $channel, $type, null);
+        return redirect()->back();
+    }
+    public function sendPersonalNotification(Request $request, $id){
+        $about_user = \Auth::user()->id;
+        $for_user = $request->notification_user;
+        $channel = User::getUserNotificationsChannel($for_user);
+        $message = $request->notification_msg;
+        $url = $request->notification_url;
+        $type = "global";
+
+        $this->pusher->trigger($channel, "new-notification", $message);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, null);
+        return redirect()->back();
     }
 }

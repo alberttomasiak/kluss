@@ -1,5 +1,7 @@
 <?php
 
+use App\Mail\TestMail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +18,21 @@ Auth::routes();
 Route::get('/login', function(){ return redirect('/aanmelden'); });
 Route::get('/aanmelden', function(){ return view('auth/login')->with('title', 'Aanmelden'); });
 Route::post('/aanmelden', 'UserController@login');
-Route::get('/register', function(){ return view('auth/register')->with('title', 'Registreer'); });
+Route::get('/register', function(){ return redirect('/registreren'); });
+Route::get('/registreren', function(){ return view('auth/register')->with('title', 'Registreer'); });
+Route::post('/registreren', 'UserController@register');
+Route::get('/verificatie/{code}', 'UserController@verifyAccount');
+Route::get('/verificatie_hersturen', 'UserController@verificationIndex');
+Route::post('/verificatie_hersturen', 'UserController@resendVerification');
 
 Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
 });
+
+// test routes --> to be deleted
+
+// end test routes
 
 Route::group(['middleware' => ['auth']], function(){
     // home routes
@@ -37,15 +48,19 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/kluss/{id}/bewerken', 'KlussController@update');
     Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
+    Route::post('/kluss/{id}/sollicitant/{userid}/accepteren', 'KlussController@acceptUser');
+    Route::post('/kluss/{id}/sollicitant/{userid}/weigeren', 'KlussController@refuseUser');
+    Route::get('/kluss/{id}/verwijderen', 'KlussController@delete');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
     Route::get('/chat', 'ChatController@index');
     Route::post('/chat/message', 'ChatController@postMessage');
-    // // Chat testing routes
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
+    // meldingen
+    Route::get('/meldingen', 'HomeController@notificationsIndex');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -69,8 +84,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('klusjes', 'AdminController@taskOverview');
         Route::get('klusjes/overzicht','AdminController@taskOverview');
         Route::get('klusjes/afgesloten','AdminController@taskClosed');
+        Route::get('klusje/{id}/goedkeuren', 'AdminController@approveTask');
+        Route::post('klusje/{id}/afwijzen', 'AdminController@denyTask');
         // Settings
-        Route::get('settings', 'AdminController@settingsIndex');
+        Route::get('globale_instellingen', 'AdminController@settingsIndex');
+        Route::post('setting/add', 'AdminController@settingsAdd');
+        Route::post('setting/{id}/edit', 'AdminController@settingEdit');
+        // meldingen
+        Route::get('meldingen', 'AdminController@notificationsIndex');
+        Route::post('notification/add', 'AdminController@sendGlobalNotification');
+        Route::post('notify/user/{id}', 'AdminController@sendPersonalNotification');
     });
 });
 
@@ -96,4 +119,16 @@ Route::get('/FAQ', function () {
 
 Route::get('/community', function () {
     return view('/community');
+});
+
+Route::get('/landing', function () {
+    return view('/landing');
+});
+
+Route::get('/plaatsklusje', function () {
+    return view('/plaatsklusje');
+});
+
+Route::get('/userprofiel', function () {
+    return view('/userprofiel');
 });

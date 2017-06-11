@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Location;
 use App\Kluss;
+use App\User;
 use DB;
 use App\Conversation;
 use App\Message;
+use App;
+use App\Notifications;
 
 class HomeController extends Controller
 {
@@ -28,7 +31,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $klussjes = \App\Kluss::getPublished();
+        $klussjes = Kluss::getPublished();
         Conversation::createConversation(\Auth::user()->email);
         Message::sendDefaultMessage(\Auth::user()->email);
         return view('home', compact('klussjes', $klussjes));
@@ -37,7 +40,12 @@ class HomeController extends Controller
     public function getTasks(Request $request){
         $lat = $request->get('lat');
         $lng = $request->get('lng');
-        $klusjes = \App\Kluss::getTasksInNeighborhood($lat, $lng);
+        $klusjes = Kluss::getTasksInNeighborhood($lat, $lng);
         return [$klusjes];
+    }
+
+    public function notificationsIndex(){
+        $notifications = Notifications::getUserNotifications(\Auth::user()->id);
+        return view('meldingen', compact('notifications', $notifications));
     }
 }
