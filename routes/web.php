@@ -61,6 +61,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
     // meldingen
     Route::get('/meldingen', 'HomeController@notificationsIndex');
+    // Settings
+    Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
+
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -110,7 +113,7 @@ Route::get('/what', function () {
 });
 
 Route::get('/settings', function () {
-    return view('/settings');
+    return view('settings.index');
 });
 
 Route::get('/FAQ', function () {

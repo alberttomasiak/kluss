@@ -62,7 +62,7 @@
     <div class="page">
         @include('layouts.header')
         <div class="page-content">
-                @yield('content')
+            @yield('content')
         </div>
         @include('layouts.footer')
     </div>
