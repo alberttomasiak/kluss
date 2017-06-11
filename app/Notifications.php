@@ -34,6 +34,7 @@ class Notifications extends Model
         return self::join('users', 'user_notifications.for_user', '=', 'users.id')
                     ->select('user_notifications.*', 'users.name', 'users.profile_pic')
                     ->where('user_notifications.for_user', $user_id)
+                    ->orderBy('user_notifications.date', 'desc')
                     ->paginate(5);
     }
 }
