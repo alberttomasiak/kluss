@@ -41,38 +41,42 @@
         <div style="width: 80%; display: block; margin-left: auto; margin-right: auto;"><img src="/assets/img/prices.png" alt="prijzentabel" style="width: 100%;"></div>
         <br>
         <div>
-            <p>Overtuigd? Bestel dan hier je premiumformule! Probeer één enkele maand of bestel ineens voor enkele maanden!</p>
-            <div class="pricetable">
-                <div class="pricetable_header">
-                    <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                        <div>Periode</div>
-                        <div>Prijs</div>
-                        <div>Bestel hier!</div>
+                @if($gold == true)
+                    <p>Je bent nog geabonneerd voor KLUSS Gold tot: {{substr(goldEnd(\Auth::user()->id), 0, 10)}}</p>
+                @else
+                <p>Overtuigd? Bestel dan hier je premiumformule! Probeer één enkele maand of bestel ineens voor enkele maanden!</p>
+                <div class="pricetable">
+                    <div class="pricetable_header">
+                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
+                            <div>Periode</div>
+                            <div>Prijs</div>
+                            <div>Bestel hier!</div>
+                        </div>
+                    </div>
+                    <div class="pricetable_content">
+                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
+                            <div>1 maand</div>
+                            <div>€ 3.99/maand = € 3.99</div>
+                            <div><a href="/bestel?months=1">Bestel</a></div>
+                        </div>
+                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
+                            <div>3 maanden</div>
+                            <div>€ 3.99/maand = € 11.97</div>
+                            <div><a href="/bestel?months=3">Bestel</a></div>
+                        </div>
+                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
+                            <div>6 maanden</div>
+                            <div><strike>€ 3.99</strike> € 2.99/maand = € 17.94</div>
+                            <div><a href="/bestel?months=6">Bestel</a></div>
+                        </div>
+                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
+                            <div>12 maanden</div>
+                            <div><strike>€ 3.99</strike> € 2.99/maand = € 35.88</div>
+                            <div><a href="/bestel?months=12">Bestel</a></div>
+                        </div>
                     </div>
                 </div>
-                <div class="pricetable_content">
-                    <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                        <div>1 maand</div>
-                        <div>€ 3.99/maand = € 3.99</div>
-                        <div><a href="/bestel?months=1">Bestel</a></div>
-                    </div>
-                    <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                        <div>3 maanden</div>
-                        <div>€ 3.99/maand = € 11.97</div>
-                        <div><a href="/bestel?months=3">Bestel</a></div>
-                    </div>
-                    <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                        <div>6 maanden</div>
-                        <div><strike>€ 3.99</strike> € 2.99/maand = € 17.94</div>
-                        <div><a href="/bestel?months=6">Bestel</a></div>
-                    </div>
-                    <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                        <div>12 maanden</div>
-                        <div><strike>€ 3.99</strike> € 2.99/maand = € 35.88</div>
-                        <div><a href="/bestel?months=12">Bestel</a></div>
-                    </div>
-                </div>
-            </div>
+            @endif
         </div>
         <br>
         <br>

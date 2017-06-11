@@ -16,4 +16,7 @@ if(!function_exists("spillvalue")){
     function ChatParticipators($channel){
         return \App\Conversation::getSingleConversationByChatname($channel);
     }
+    function goldEnd($user_id){
+        return \App\GoldStatus::getGoldEnd($user_id);
+    }
 }
