@@ -59,11 +59,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/chat/message', 'ChatController@postMessage');
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
+    Route::get('/klussgold', 'KlussGoldController@index');
+    Route::get('/bestel', 'KlussGoldController@bestel');
+    Route::get('/review', 'ReviewController@index');
     // meldingen
     Route::get('/meldingen', 'HomeController@notificationsIndex');
     // Settings
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
-
 });
 
 Route::group(['prefix' => 'admin'], function () {
