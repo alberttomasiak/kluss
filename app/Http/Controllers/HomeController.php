@@ -11,6 +11,10 @@ use App\Conversation;
 use App\Message;
 use App;
 use App\Notifications;
+use App\GoldStatus;
+use Carbon\Carbon;
+use Mail;
+use App\Mail\ExpirationGold;
 
 class HomeController extends Controller
 {
@@ -19,9 +23,13 @@ class HomeController extends Controller
      *
      * @return void
      */
+
+     var $pusher;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->pusher = App::make('pusher');
     }
 
     /**
@@ -34,6 +42,21 @@ class HomeController extends Controller
         $klussjes = Kluss::getPublished();
         Conversation::createConversation(\Auth::user()->email);
         Message::sendDefaultMessage(\Auth::user()->email);
+        $gold_end = GoldStatus::getGoldEnd(\Auth::user()->id);
+        $goldie = Carbon::parse($gold_end);
+        $date1 = new Carbon();
+        $diff = $date1->diffInDays($goldie);
+        if($diff <= 10){
+            // send notification to user + mail
+            $user = \Auth::user()->id;
+            $channel = User::getUserNotificationsChannel($user);
+            $message = "Uw KLUSS Gold subscriptie verloopt in ".$diff." dagen.";
+            $this->pusher->trigger($channel, "new-notification", $message);
+            $notification = Notifications::createNotification($user, $user, $message, null, $channel, "global", null);
+            // Mail
+            $userMail = User::getUserMail($user);
+            Mail::to($userMail)->send(new ExpirationGold($user->name, $diff));
+        }
         return view('home', compact('klussjes', $klussjes));
     }
 
