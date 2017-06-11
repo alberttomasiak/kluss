@@ -1,0 +1,48 @@
+// Personal blocks page begin
+div.user-block{
+    display: block;
+    width: 100%;
+    background-color: #eee;
+    padding-left: 1em;
+    padding-top: .5em;
+    padding-bottom: 1em;
+    position: relative;
+    margin-bottom: 1em;
+    h4{
+        color: $washington;
+        font-size: 1em;
+        text-transform: uppercase;
+        font-weight: bold;
+        margin-bottom: .5em;
+        padding-bottom: 0;
+    }
+
+    .block--time{
+        position: absolute;
+        right: 1em;
+        top: 1em;
+    }
+
+    a{
+        position: absolute;
+        display: block;
+        right: 1em;
+        top: 4em;
+        background-color: $washington;
+        color: white;
+        width: 100px;
+        text-align: center;
+        padding-top: .75em;
+        padding-bottom: .75em;
+        transition: all .3s;
+        font-size: .8em;
+        font-weight: bold;
+        text-transform: uppercase;
+        &:hover{
+            text-decoration: none;
+            color: $washington;
+            background-color: white;
+        }
+    }
+}
+// Personal blocks page end

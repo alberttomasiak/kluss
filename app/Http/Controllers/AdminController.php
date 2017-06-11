@@ -93,6 +93,7 @@ class AdminController extends Controller
     }
     public function unblockUser($userID){
         $unblock = User::unblockUser($userID);
+        $archiveBlock = UserBlocks::archiveBlock(\Auth::user()->id, $userID);
         return redirect()->back();
     }
 

@@ -175,7 +175,7 @@ class Kluss extends Model
         else if($days <= 7){ if($days == 1){ return "Gisteren"; } else { return "$days dagen geleden"; } }
         else if ($weeks <= 4.3){ if($weeks == 1){ return "Vorige week"; } else { return "$weeks weken geleden"; } }
         else if($months <= 12){ if($months == 1){ return "Vorige maand"; } else { return "$months maanden geleden"; } }
-        else{ if($years == 1){ return "Vorig jaar"; } else { return "$years jaren geleden"; } }
+        else{ if($years == 1){ return "Vorig jaar"; } else { return "$years jaar geleden"; } }
     }
 
 }

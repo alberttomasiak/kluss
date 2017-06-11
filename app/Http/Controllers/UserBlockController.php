@@ -8,6 +8,10 @@ use App\User;
 
 class UserBlockController extends Controller
 {
+    public function index(){
+        $myblocks = UserBlocks::getUserBlocks(\Auth::user()->id);
+        return view('profile.blocks', compact('myblocks', $myblocks));
+    }
     public function blockUser(Request $request){
         $blockedID = $request->blocked_id;
         $blockerID = $request->blocker_id;
