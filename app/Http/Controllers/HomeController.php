@@ -43,19 +43,31 @@ class HomeController extends Controller
         Conversation::createConversation(\Auth::user()->email);
         Message::sendDefaultMessage(\Auth::user()->email);
         $gold_end = GoldStatus::getGoldEnd(\Auth::user()->id);
-        $goldie = Carbon::parse($gold_end);
-        $date1 = new Carbon();
-        $diff = $date1->diffInDays($goldie);
-        if($diff <= 10){
-            // send notification to user + mail
-            $user = \Auth::user()->id;
-            $channel = User::getUserNotificationsChannel($user);
-            $message = "Uw KLUSS Gold subscriptie verloopt in ".$diff." dagen.";
-            $this->pusher->trigger($channel, "new-notification", $message);
-            $notification = Notifications::createNotification($user, $user, $message, null, $channel, "global", null);
-            // Mail
-            $userMail = User::getUserMail($user);
-            Mail::to($userMail)->send(new ExpirationGold($user->name, $diff));
+        if($gold_end != null){
+            $goldie = Carbon::parse($gold_end);
+            $date1 = new Carbon();
+            $diff = $date1->diffInDays($goldie);
+
+            if($diff <= 10 && $diff > 0){
+                // send notification to user + mail
+                $user = \Auth::user()->id;
+                $channel = User::getUserNotificationsChannel($user);
+                $message = "Uw KLUSS Gold subscriptie verloopt in ".$diff." dagen.";
+                $this->pusher->trigger($channel, "new-notification", $message);
+                $notification = Notifications::createNotification($user, $user, $message, null, $channel, "global", null);
+                // Mail
+                $userMail = User::getUserMail($user);
+                Mail::to($userMail)->send(new ExpirationGold($user->name, $diff));
+            }
+            if($diff <= 0){
+                $user = \Auth::user()->id;
+                $unGoldify = User::removeGoldFromUser($user);
+
+                $channel = User::getUserNotificationsChannel($user);
+                $message = "Uw KLUSS Gold subscriptie is verlopen.";
+                $this->pusher->trigger($channel, "new-notification", $message);
+                $notification = Notifications::createNotification($user, $user, $message, null, $channel, "global", null);
+            }
         }
         return view('home', compact('klussjes', $klussjes));
     }
