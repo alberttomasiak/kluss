@@ -15,6 +15,7 @@ use App\GoldStatus;
 use Carbon\Carbon;
 use Mail;
 use App\Mail\ExpirationGold;
+use App\Mail\ReviewMail;
 
 class HomeController extends Controller
 {
@@ -77,6 +78,46 @@ class HomeController extends Controller
         $lng = $request->get('lng');
         $klusjes = Kluss::getTasksInNeighborhood($lat, $lng);
         return [$klusjes];
+    }
+
+    public function testIndex(){
+        $reviewtasks = Kluss::getTasksForReview();
+        return view('test', compact('reviewtasks', $reviewtasks));
+    }
+
+    public function test(){
+        $reviewtasks = Kluss::getTasksForReview();
+        //$about_user, $for_user, $message, $url, $channel, $type, $kluss_id
+        foreach($reviewtasks as $reviewtask){
+            // notification to maker
+            $channelMaker = User::getUserNotificationsChannel($reviewtask->user_id);
+            $fixerName = User::get($reviewtask->accepted_applicant_id);
+            $aboutMaker = $reviewtask->accepted_applicant_id;
+            $forMaker = $reviewtask->user_id;
+            $messageMaker = "Uw klusje werd gisteren uitgevoerd door ".$fixerName.". Gelieve deze persoon een review te geven.";
+            $urlMaker = "/review/".$reviewtask->id;
+            $typeMaker = "global";
+            $klussID = $reviewtask->id;
+            $this->pusher->trigger($channelMaker, "new-notification", $messageMaker);
+            // notification to fixer
+            $channelFixer = User::getUserNotificationsChannel($reviewtask->accepted_applicant_id);
+            $makerName = User::get($reviewtask->user_id);
+            $aboutFixer = $reviewtask->user_id;
+            $forFixer = $reviewtask->accepted_applicant_id;
+            $messageFixer = "Je hebt gisteren een klusje uitgevoerd voor ".$makerName.". Gelieve over deze persoon een review te schrijven.";
+            $this->pusher->trigger($channelFixer, "new-notification", $messageFixer);
+            // Database notifications for both
+            $notificationMaker = Notifications::createNotification($aboutMaker, $forMaker, $messageMaker, $urlMaker, $channelMaker, $typeMaker, $klussID);
+            $notificationFixer = Notifications::createNotification($aboutFixer, $forFixer, $messageFixer, $urlMaker, $channelFixer, $typeMaker, $klussID);
+            // Emails to both
+            $addressMaker = User::getUserMail($reviewtask->user_id);
+            $addressFixer = User::getUserMail($reviewtask->accepted_applicant_id);
+            $mailMaker = Mail::to($addressMaker)->send(new ReviewMail($makerName, $fixerName));;
+            $mailFixer = Mail::to($addressFixer)->send(new ReviewMail($fixerName, $makerName));;
+            // Closing the task
+            $close = Kluss::closeTask($reviewtask->id);
+        }
+        return view('test', compact('reviewtasks', $reviewtasks));
     }
 
     public function notificationsIndex(){
