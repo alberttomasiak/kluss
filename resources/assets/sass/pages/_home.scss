@@ -52,9 +52,37 @@ body{
    border-radius: 2px 2px 0 0;
 }
 
-#iw-container{
+#iw-container {
     display: block;
     width: 350px;
+    padding: 5px;
+}
+
+.markerinfo {
+    font-size: 1.0em;
+    padding: 8px;
+}
+
+.markertitle {
+     font-size: 1.4em;
+     color: #2E9C4E;
+     font-weight: bold;
+ }
+
+.markeraddress {
+    text-align: center;
+}
+
+.markercta {
+    color: white;
+    background-color: #2E9C4E;
+    font-weight: bold;
+    padding: 2%;
+    border-radius: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 
 .card-image-wrap{
