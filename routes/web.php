@@ -31,8 +31,8 @@ Route::get('/logout', function(){
 });
 
 // test routes --> to be deleted
-Route::get('/test', 'HomeController@testIndex');
-Route::post('/test', 'HomeController@test');
+// Route::get('/test', 'HomeController@testIndex');
+// Route::post('/test', 'HomeController@test');
 // end test routes
 
 Route::group(['middleware' => ['auth']], function(){
