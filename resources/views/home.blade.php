@@ -106,9 +106,10 @@
     var id = kluss.id;
     var accepted = kluss.accepted_applicant_id;
     var account_type = kluss.account_type;
-    var html = "<div id='iw-container task-"+id+"'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='/assets"+image+"'></div>"+ "<b>" + title + "</b> <br>" +  description.substring(0, 100) + "... <br><br>" + "<b>" + address + "</b> <br>" + "<b>"+ price +" credits </b><br>"+
-    "<div class='card-action'><a href='/kluss/"+id+"'>Ga naar de kluss</a></div></div>";
+    var html = "<div id='iw-container task-"+id+"'><div class='map-image-wrap'><img class='map-image' alt='klussje' src='/assets"+image+"'></div>"+ "<div class='markerinfo'><p class='markertitle'>" + title + "</p>" +  description.substring(0, 100) + "... <br><br>" + "<div class='markeraddress'><b>" + address + "</b> <br>" + "<b>"+ price +" credits </b></div><br></div>"+
+    "<div class='card-action'><a href='/kluss/"+id+"' class='markercta'>Ga naar de kluss</a></div></div>";
     var klussLatlng = new google.maps.LatLng(parseFloat(kluss.latitude),parseFloat(kluss.longitude));
+      var open = false;
     if(accepted == null){
         if(account_type == "normal"){
             var mark = new google.maps.Marker({
@@ -136,15 +137,24 @@
 
     var infoWindow = new google.maps.InfoWindow({
         content: html,
-        maxWidth: 350
+        maxWidth: 400
     });
     google.maps.event.addListener(mark, 'click', function(){
-        infoWindow.setContent(html);
-        infoWindow.open(map, mark);
-        var iwOuter = $('.gm-style-iw');
-        var iwBackground = iwOuter.prev();
-        iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-        iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+        if(open == true){
+            console.log(open);
+            infoWindow.close();
+            open = false;
+        } else {
+            console.log(open);
+            infoWindow.setContent(html);
+            infoWindow.open(map, mark);
+            var iwOuter = $('.gm-style-iw');
+            var iwBackground = iwOuter.prev();
+            iwBackground.children(':nth-child(2)').css({'display' : 'none'});
+            iwBackground.children(':nth-child(4)').css({'display' : 'none'});
+            open = true;
+        }
+
     });
     return mark;
 }
