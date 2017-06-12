@@ -24,7 +24,7 @@ class ReviewController extends Controller
         $this->middleware('auth');
     }
 
-    public function index($task_id, $user_id){
+    public function index($task_id){
         $task = Kluss::get($task_id);
         $review = UserReview::reviewExists($task_id, \Auth::user()->id);
         if($task->user_id == \Auth::user()->id){
@@ -35,7 +35,7 @@ class ReviewController extends Controller
         return view('schrijfreview', compact('task', $task, 'review', $review, 'for', $for));
     }
 
-    public function add(Request $request, $task_id, $user_id){
+    public function add(Request $request, $task_id){
         $task_id = $request->task_id;
         $maker_id = $request->maker_id;
         $fixer_id = $request->fixer_id;

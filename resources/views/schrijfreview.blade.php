@@ -38,7 +38,7 @@
             <p>Je schrijft nu een review voor <b>{{$for}}</b>. Bij Kluss willen we een betrouwbare omgeving; wees daarom eerlijk en correct in je beoordeling.</p>
             <br>
             <div class="review_form">
-                <form action="/review/{{$task->id}}/{{\Auth::user()->id}}" id="write-review" method="post">
+                <form action="/review/{{$task->id}}" id="write-review" method="post">
                     {{csrf_field()}}
                     <input type="hidden" id="task_id" name="task_id" value="{{$task->id}}">
                     <input type="hidden" id="maker_id" name="maker_id" value="{{$task->user_id}}">

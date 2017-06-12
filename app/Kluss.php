@@ -182,4 +182,21 @@ class Kluss extends Model
         else{ if($years == 1){ return "Vorig jaar"; } else { return "$years jaar geleden"; } }
     }
 
+    // CRON JOB FUNCTIONS
+    public static function getTasksForReview(){
+        $dataE = Carbon::yesterday();
+        $yesterday = $dataE->format('Y-m-d')." 00:00:00";
+        $now = $dataE->format('Y-m-d')." 23:59:59";
+        // return $yesterday . " " . $now;
+        return $tasks = self::where([
+            ['closed', '0']])
+            ->whereBetween('date', [$yesterday, $now])
+            ->whereNotNull('accepted_applicant_id')
+            ->get();
+    }
+
+    public static function closeTask($id){
+        return self::where('id', $id)->update(['closed' => '1']);
+    }
+
 }
