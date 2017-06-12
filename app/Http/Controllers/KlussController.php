@@ -129,7 +129,7 @@ class KlussController extends Controller
         $deleteApplicants = Kluss_applicant::deleteNotAcceptedApplicants($taskID);
         // 4. Set the task to accepted in the kluss table
         $applicantTableID = Kluss_applicant::getApplicantTableID($taskID, $acceptedID);
-        $taskStatus = Kluss::acceptUser($taskID, $applicantTableID);
+        $taskStatus = Kluss::acceptUser($taskID, $acceptedID);
         // 5. Remove the apply btn on the task
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($taskID);
         $userImage = $accepted_applicant->profile_pic;
