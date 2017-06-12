@@ -41,6 +41,10 @@ class Kluss extends Model
                     ->get();
     }
 
+    public static function get($id){
+        return self::where('id', $id)->first();
+    }
+
     public static function getUserHistory($user_id){
         $creator = self::where([
                         ['date', '>=', Carbon::now()->subMonth()],

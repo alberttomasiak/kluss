@@ -69,6 +69,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/bestel/{user_id}/{duration}', 'KlussGoldController@purchaseGold');
     // Reviews
     Route::get('/review/{task_id}/{user_id}', 'ReviewController@index')->middleware('reviewpermission');
+    Route::post('/review/{task_id}/{user_id}', 'ReviewController@add');
 });
 
 Route::group(['prefix' => 'admin'], function () {

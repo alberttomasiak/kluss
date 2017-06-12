@@ -3,16 +3,16 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
-    <link href="assets/css/edits.css" rel="stylesheet">
+    <link href="/assets/css/edits.css" rel="stylesheet">
 
     <div class="addboxshadow" id='cssmenu'>
         <ul>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/logo-kluss.png"></a></li>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/home-logo.png">Home</a></li>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/plaats-logo.png">Plaats een klusje</a></li>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/bell-logo.png">Meldingen</a></li>
-            <li><a href='#'><img class="animationout" style="height: 25px; padding-right: 15px;" src="../assets/img/berichten-logo.png">Berichten</a></li>
-            <li class='active'><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/settings-logo.png">Instellingen</a>
+            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/logo-kluss.png"></a></li>
+            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/home-logo.png">Home</a></li>
+            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/plaats-logo.png">Plaats een klusje</a></li>
+            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/bell-logo.png">Meldingen</a></li>
+            <li><a href='#'><img class="animationout" style="height: 25px; padding-right: 15px;" src="/assets/img/berichten-logo.png">Berichten</a></li>
+            <li class='active'><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/settings-logo.png">Instellingen</a>
                 <ul>
                     <li><a href='#'>Profiel</a>
                         <ul>
@@ -31,20 +31,26 @@
         </ul>
     </div>
 
-
     <div class="addboxshadow container" style="display:block; overflow:auto;">
         <h1 style="float: left; padding: 15px;">Schrijf een review</h1>
         <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-
-        <p>Je schrijft nu een review voor je klusser of opdrachtgever. Bij Kluss willen we een betrouwbare omgeving; wees daarom eerlijk en correct in je beoordeling.</p>
-        <br>
-        <div class="review_form">
-            <form action="">
-                <label for="score">Score:</label><input name="score" type="number" value="3" min="1" max="5">
-                <label for="reviewmsg">Boodschap:</label><textarea name="reviewmsg" id="review_msg" cols="30" rows="10"></textarea>
-                <a href="#">Verstuur</a>
-            </form>
-        </div>
+        @if($review == "")
+            <p>Je schrijft nu een review voor <b>{{$for}}</b>. Bij Kluss willen we een betrouwbare omgeving; wees daarom eerlijk en correct in je beoordeling.</p>
+            <br>
+            <div class="review_form">
+                <form action="/review/{{$task->id}}/{{\Auth::user()->id}}" id="write-review" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" id="task_id" name="task_id" value="{{$task->id}}">
+                    <input type="hidden" id="maker_id" name="maker_id" value="{{$task->user_id}}">
+                    <input type="hidden" id="fixer_id" name="fixer_id" value="{{$task->accepted_applicant_id}}">
+                    <label for="score">Score:</label><input name="score" type="number" id="review_score" name="review_score" placeholder="Score tussen 1 en 5" min="1" max="5">
+                    <label for="reviewmsg">Boodschap:</label><textarea class="form-control" name="review_msg" id="review_msg" cols="30" rows="10"></textarea>
+                    <input type="submit" name="submit" form="write-review" value="Verzenden">
+                </form>
+            </div>
+        @else
+            <p>Je hebt al een review voor dit klusje geschreven. Hartelijk bedankt daarvoor.</p>
+        @endif
         <br>
         <br>
 

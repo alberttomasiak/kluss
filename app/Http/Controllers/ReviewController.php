@@ -15,6 +15,7 @@ use App\KlussCategories;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
+use App\UserReview;
 
 class ReviewController extends Controller
 {
@@ -23,65 +24,25 @@ class ReviewController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(){
-        return view('schrijfreview');
-    }
-
-    public function add(Request $request){
-
-    }
-
-    public function update($id){
-        /*$kluss = Kluss::getSingle($id);
-        return view('kluss/bewerken', compact('kluss'))->with('title', 'Kluss bewerken');*/
-    }
-
-    public function edit(Request $request, $id){
-        /*$title = $request->title;
-        $description = $request->description;
-        $price = $request->price;
-        $latitude = $request->latitude;
-        $longitude = $request->longitude;
-        $user_id = \Auth::user()->id;
-        $address = $request->address;
-
-        if($description == ""){
-            $description = "Geen beschrijving beschikbaar.";
+    public function index($task_id, $user_id){
+        $task = Kluss::get($task_id);
+        $review = UserReview::reviewExists($task_id, \Auth::user()->id);
+        if($task->user_id == \Auth::user()->id){
+            $for = User::get($task->accepted_applicant_id);
+        }else{
+            $for = User::get($task->user_id);
         }
-
-        $query = DB::table('kluss')->where('id', '=', $id)->update(
-            ['title' => $title,
-                'description' => $description,
-                'price' => $price,
-                'latitude' => $latitude,
-                'longitude' => $longitude,
-                'address' => $address]
-        );
-
-        if(Input::hasFile('kluss_image')){
-            $file = Input::file('kluss_image');
-            if(substr($file->getMimeType(), 0, 5) == 'image'){
-                $extension = Input::file('kluss_image')->getClientOriginalExtension();
-                $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
-
-                $destinationPath = "/img/klussjes/". $fileName;
-                $file->move('img/klussjes', $fileName);
-
-                $queryImage = DB::table('kluss')->where('id', '=', $id)->update([
-                    'kluss_image' => $destinationPath
-                ]);
-
-            }
-        }
-        return redirect()->back();*/
+        return view('schrijfreview', compact('task', $task, 'review', $review, 'for', $for));
     }
 
-    public function delete($id){
-        /*$delete = Kluss::deleteTask($id);
-        $deleted = [
-            'taskID' => $id
-        ];
-        $this->pusher->trigger("kluss-map", "deleted-task", $deleted);
-        return redirect('/home');*/
+    public function add(Request $request, $task_id, $user_id){
+        $task_id = $request->task_id;
+        $maker_id = $request->maker_id;
+        $fixer_id = $request->fixer_id;
+        $score = $request->score;
+        $review_msg = $request->review_msg;
+        $writer = \Auth::user()->id;
+        $review = UserReview::writeReview($maker_id, $fixer_id, $task_id, $review_msg, $score, $writer);
+        return redirect()->back();
     }
 }
