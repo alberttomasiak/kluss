@@ -18,11 +18,14 @@ class KlussFinished extends Model
         if($getMarker == ""){
             return self::insert(['user_id' => $user_id, 'kluss_id' => $task_id]);
         }else{
-            return true; 
+            return true;
         }
     }
     public static function getTaskMarks($task_id){
         return self::where('kluss_id', $task_id)->count();
+    }
+    public static function getTaskMarksFull($task_id){
+        return self::where('kluss_id', $task_id)->get();
     }
     public static function getUserTaskMarker($user_id, $task_id){
         return self::where([

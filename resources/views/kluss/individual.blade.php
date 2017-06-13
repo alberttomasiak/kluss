@@ -206,7 +206,8 @@
                                     {{csrf_field()}}
                                     <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" ? '' : 'disabled'}}>
                                     @if(didIMark(\Auth::user()->id, $kl->id))
-                                        <p>Je hebt dit klusje al gemarkeerd als afgesloten.</p>
+                                        <p>Je hebt dit klusje al gemarkeerd als afgesloten. Je kan een review over de gebruiker hier schrijven:</p>
+                                        <a href="/review/{{$kl->id}}" class="btn btn-success">Review schrijven</a>
                                     @endif
                                     @if(session('thanksfam'))
                                         <p>{{session('thanksfam')}}</p>

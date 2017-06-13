@@ -298,7 +298,7 @@ class KlussController extends Controller
         $mark = KlussFinished::markAsFinished($user_id, $task_id);
         $marks = KlussFinished::getTaskMarks($task_id);
 
-        $task = Kluss::getSIngle($task_id);
+        $task = Kluss::getSingle($task_id);
         $maker = $task[0]->user_id;
         $fixer = $task[0]->accepted_applicant_id;
 
