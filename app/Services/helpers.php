@@ -19,4 +19,7 @@ if(!function_exists("spillvalue")){
     function goldEnd($user_id){
         return \App\GoldStatus::getGoldEnd($user_id);
     }
+    function didIMark($user_id, $task_id){
+        return \App\KlussFinished::getUserTaskMarker($user_id, $task_id);
+    }
 }
