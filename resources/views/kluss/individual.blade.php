@@ -136,9 +136,6 @@
         });
 
         return mark;
-        google.maps.event.addListener(infoWindow, 'domready', function() {
-            console.log('eyo');
-        });
     }
     initGeolocation();
     @endforeach
@@ -193,13 +190,23 @@
                             <div class="applicant--info">
                                 <img class="applicant-image" src="/assets{{$accepted_applicant->profile_pic}}" alt="{{$accepted_applicant->name}}'s profile pic'">
                                 <a href="/profiel/{{$accepted_applicant->id}}/{{$accepted_applicant->name}}">{{$accepted_applicant->name}}</a>
-                                @if($kl->user_id == \Auth::user()->id)
-                                    <form action="/chat/{{$accepted_applicant->id}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
-                                    </form>
-                                @endif
+                                <div class="applicant--btn-tab">
+                                    @if($kl->user_id == \Auth::user()->id)
+                                        <form action="/chat/{{$accepted_applicant->id}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
+                        </div>
+                        <div class="selected--applicant-close">
+                            @if(\Auth::user()->id == $kl->user_id || \Auth::user()->id == $kl->accepted_applicant_id)
+                                <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
+                                    {{csrf_field()}}
+                                    <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen">
+                                </form>
+                            @endif
                         </div>
                     @endif
                 </div>
