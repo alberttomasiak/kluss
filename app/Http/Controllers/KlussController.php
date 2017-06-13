@@ -291,4 +291,9 @@ class KlussController extends Controller
         $this->pusher->trigger("kluss-map", "deleted-task", $deleted);
         return redirect('/home');
     }
+
+    // finishing / closing tasks
+    public function markFinished($task_id, $user_id){
+        dd($task_id . " " . $user_id);
+    }
 }

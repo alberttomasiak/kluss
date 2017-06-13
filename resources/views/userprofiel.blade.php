@@ -62,7 +62,7 @@
         <div class="profiel-one">
             <a style="background-image: url(../assets/img/default_profilepic.png);"  class="project-block-user-image"></a>
 
-            <h1>Samuel Sieben</h1>
+            <h1>Samuel Sieben <img src="/assets/img/verified-icon.png" alt="verified" class="verified-icon" style="width: 20px;"></h1>
 
             <p>20 jaar, Leuven</p>
 

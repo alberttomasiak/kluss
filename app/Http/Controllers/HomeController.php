@@ -80,12 +80,7 @@ class HomeController extends Controller
         return [$klusjes];
     }
 
-    public function testIndex(){
-        $reviewtasks = Kluss::getTasksForReview();
-        return view('test', compact('reviewtasks', $reviewtasks));
-    }
-
-    public function test(){
+    public function taskReviews(){
         $reviewtasks = Kluss::getTasksForReview();
         //$about_user, $for_user, $message, $url, $channel, $type, $kluss_id
         foreach($reviewtasks as $reviewtask){
