@@ -14,6 +14,7 @@ use App\Kluss_applicant;
 use App\KlussCategories;
 use App\Notifications;
 use App\KlussFinished;
+use App\KlussPay;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -122,7 +123,8 @@ class KlussController extends Controller
         $kluss_applicant = Kluss_applicant::getApplicant($id);
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant'))->with('title', $title);
+        $paid = KlussPay::getPaidStatus($id);
+        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $title);
     }
 
     public function acceptUser(Request $request){
@@ -349,5 +351,15 @@ class KlussController extends Controller
             }
             return redirect()->back()->with('thanksfam', 'Het werd geregistreerd. Voor dat het definitief afgesloten wordt moet de andere persoon deze ook afvinken. Er werd een melding verstuurd om de persoon te herinneren.');
         }
+    }
+
+    public function paypalPage($id){
+        $task = Kluss::getSingle($id);
+        return view('kluss.paypal', compact('task'));
+    }
+
+    public function processPayment($id){
+        $pay = KlussPay::addPayment($id);
+        return redirect('/kluss'.$id);
     }
 }

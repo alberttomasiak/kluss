@@ -4,7 +4,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
     <link href="assets/css/edits.css" rel="stylesheet">
-
     <div class="addboxshadow" id='cssmenu'>
         <ul>
             <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/logo-kluss.png"></a></li>
@@ -30,12 +29,9 @@
             </li>
         </ul>
     </div>
-
-
     <div class="addboxshadow container" style="display:block; overflow:auto;">
         <h1 style="float: left; padding: 15px;">Kluss Gold</h1>
         <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-
         <p>Klaar om nog meer te klussen en je beleving naar een hoger niveau te tillen? Maak dan kennis met Kluss Gold, een premium formule die je toelaat om ongelimiteerd te klussen of te laten klussen, je zoekradius vergroot, en nog veel meer! Ontdek hier alle voordelen van Kluss Gold en bestel meteen!</p>
         <p>Meer details over Kluss Gold vindt u in de <a href="#">algemene voorwaarden</a>.</p>
         <div style="width: 80%; display: block; margin-left: auto; margin-right: auto;"><img src="/assets/img/prices.png" alt="prijzentabel" style="width: 100%;"></div>
@@ -85,20 +81,15 @@
         </div>
         <br>
         <br>
-
     </div>
-
     <script>
         (function($) {
-
             $.fn.menumaker = function(options) {
-
                 var cssmenu = $(this), settings = $.extend({
                     title: "Menu",
                     format: "dropdown",
                     sticky: false
                 }, options);
-
                 return this.each(function() {
                     cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
                     $(this).find("#menu-button").on('click', function(){
@@ -114,9 +105,7 @@
                             }
                         }
                     });
-
                     cssmenu.find('li ul').parent().addClass('has-sub');
-
                     multiTg = function() {
                         cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
                         cssmenu.find('.submenu-button').on('click', function() {
@@ -129,36 +118,28 @@
                             }
                         });
                     };
-
                     if (settings.format === 'multitoggle') multiTg();
                     else cssmenu.addClass('dropdown');
-
                     if (settings.sticky === true) cssmenu.css('position', 'fixed');
-
                     resizeFix = function() {
                         if ($( window ).width() > 768) {
                             cssmenu.find('ul').show();
                         }
-
                         if ($(window).width() <= 768) {
                             cssmenu.find('ul').hide().removeClass('open');
                         }
                     };
                     resizeFix();
                     return $(window).on('resize', resizeFix);
-
                 });
             };
         })(jQuery);
-
         (function($){
             $(document).ready(function(){
-
                 $("#cssmenu").menumaker({
                     title: "Menu",
                     format: "multitoggle"
                 });
-
             });
         })(jQuery);
     </script>
