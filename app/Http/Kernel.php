@@ -55,5 +55,6 @@ class Kernel extends HttpKernel
         'chatusers'=> \App\Http\Middleware\ChatUserMiddleware::class,
         'AdminAccess' => \App\Http\Middleware\AdminAccess::class,
         'reviewpermission' => \App\Http\Middleware\TaskReviewPermissionMiddleware::class,
+        'taskChecker' => \App\Http\Middleware\TaskCheckerMiddleware::class,
     ];
 }

@@ -85,6 +85,7 @@
       if(lat != poslatDefault && lng != poslngDefault){
       var mark = new google.maps.Marker({
           map: map,
+          icon: "/assets/img/currentposition2.png",
           position: new google.maps.LatLng(parseFloat(lat),parseFloat(lng))
       });
       }
