@@ -36,6 +36,13 @@ class KlussController extends Controller
     }
 
     public function add(Request $request){
+        $this->validate($request, [
+            'title' => 'required',
+            'price' => 'integer',
+            'address' => 'required',
+            'kluss_image' => 'image',
+        ]);
+
         $title = $request->title;
         $description = $request->description;
         $kluss_image = $request->kluss_image;
@@ -54,34 +61,32 @@ class KlussController extends Controller
 
         if(Input::hasFile('kluss_image')){
             $file = Input::file('kluss_image');
-            if(substr($file->getMimeType(), 0, 5) == 'image'){
-                $extension = Input::file('kluss_image')->getClientOriginalExtension();
-                $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
-                $destinationPath = "/img/klussjes/". $fileName;
-                $file->move('assets/img/klussjes', $fileName);
-                if($description == ""){
-                    $description = "Geen beschrijving beschikbaar.";
-                }
-                $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
-                $id = Kluss::getLatestID($user_id);
-                if($categoryName != "Overige"){
-                    $kluss = [
-                        'id' => $id,
-                        'title' => $title,
-                        'description' => $description,
-                        'kluss_image' => $destinationPath,
-                        'price' => $price,
-                        'address' => $address,
-                        'date' => $date,
-                        'latitude' => $latitude,
-                        'longitude' => $longitude,
-                        'user_id' => $user_id
-                    ];
-                    $this->pusher->trigger("kluss-map", "new-task", $kluss);
-                }
-                if($task){
-                    return redirect('/home');
-                }
+            $extension = Input::file('kluss_image')->getClientOriginalExtension();
+            $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
+            $destinationPath = "/img/klussjes/". $fileName;
+            $file->move('assets/img/klussjes', $fileName);
+            if($description == ""){
+                $description = "Geen beschrijving beschikbaar.";
+            }
+            $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
+            $id = Kluss::getLatestID($user_id);
+            if($categoryName != "Overige"){
+                $kluss = [
+                    'id' => $id,
+                    'title' => $title,
+                    'description' => $description,
+                    'kluss_image' => $destinationPath,
+                    'price' => $price,
+                    'address' => $address,
+                    'date' => $date,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'user_id' => $user_id
+                ];
+                $this->pusher->trigger("kluss-map", "new-task", $kluss);
+            }
+            if($task){
+                return redirect('/home');
             }
         }else{
             if($description == ""){

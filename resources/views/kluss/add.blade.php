@@ -11,15 +11,25 @@
                 @else
                     <div class="kluss-left">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <div class="form-group title-group">
+                        <div class="form-group title-group {{ $errors->has('title') ? ' has-error' : '' }}">
                             {{-- <label for="title">Titel</label> --}}
-                            <input type="text" name="title" class="form-control kluss--title" value="" placeholder="Titel:" required>
+                            <input type="text" name="title" class="form-control kluss--title" value="" placeholder="Titel:">
+                            @if ($errors->has('title'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('title') }}</strong>
+                                </span>
+                            @endif
                         </div>
 
-                        @if($account_type != "admin")
+                        @if($account_type == "gold")
                             <div class="form-group price-group">
                                 {{-- <label for="price">Prijs</label> --}}
-                                <input type="number" name="price" class="kluss--price form-control" value="" placeholder="Prijs (PayPal):" required>
+                                <input type="number" name="price" class="kluss--price form-control {{ $errors->has('price') ? ' has-error' : '' }}" value="" placeholder="Prijs (PayPal):">
+                                @if ($errors->has('price'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('price') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         @endif
 
@@ -44,10 +54,15 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('address') ? ' has-error' : '' }}">
                             {{-- <label for="address">Adres</label> --}}
                             <input id="autocomplete" name="address" class="form-control" placeholder="Adres:"
-                                   onFocus="geolocate()" type="text" required></input>
+                                   onFocus="geolocate()" type="text"></input>
+                           @if ($errors->has('address'))
+                               <span class="help-block">
+                                   <strong>{{ $errors->first('address') }}</strong>
+                               </span>
+                           @endif
                         </div>
 
                         <div class="form-group">
@@ -57,10 +72,15 @@
                     </div>
 
                     <div class="kluss-right">
-                        <div class="form-group">
+                        <div class="form-group {{ $errors->has('kluss_image') ? ' has-error' : '' }}">
                             <label for="kluss--input" class="kluss-file-upload">Drag &amp; drop uw foto of klik hier.</label>
                             <input type="file" class="kluss--image" name="kluss_image" id="kluss--input">
                             <img id="preview--kluss" src="" alt="">
+                            @if ($errors->has('kluss_image'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('kluss_image') }}</strong>
+                                </span>
+                            @endif    
                         </div>
                     </div>
 
