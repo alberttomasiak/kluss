@@ -11,7 +11,26 @@
         <!-- KLUSSJES IN DE BUURT -->
         <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
         <div class="klussjes-wrap">
-        {{-- Our tasks will be appended here. --}}
+        @foreach($cards as $card)
+            <a href="/kluss/{{$card->id}}">
+                <div class="task-card">
+                    <div class="task-image" style="background-image: url('/assets{{$card->kluss_image}}');"></div>
+                    <div class="task-details">
+                        <div class="task-title-time">
+                            <p class="task-title">{{$card->title}}</p>
+                            <p class="task-time">- max {{$card->time}}u.</p>
+                        </div>
+                        <div class="task-price">
+                            <p>€ {{$card->price}}</p>
+                        </div>
+                        <div class="task-description">
+                            <p>{{substr($card->description, 0, 100)}} ...</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        @endforeach
+        {{$cards->links()}}
         </div>
     </div>
 </div>
@@ -34,37 +53,11 @@
      var poslng = position.coords.longitude;
      var poslat = position.coords.latitude;
      load(poslat, poslng);
-     sendCoords(poslat, poslng);
  }
  function fail(){
     // geolocation doesn't work with this browser / not a secure request
     // perform the load with the coordinates for Mechelen -> our HQ
     load(poslatDefault, poslngDefault);
-    sendCoords(poslatDefault, poslngDefault);
- }
- function sendCoords(lat, lng){
-     $.ajaxSetup({
-         headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
-     });
-     jQuery.ajax({
-         url:'/getTasks',
-         type: 'POST',
-         data: {
-             lat: lat,
-             lng: lng
-         },
-         success: function( data ){
-             $.each(data, function() {
-                 $.each(this, function(k, v) {
-                     // We found tasks in a radius of 2.5km, so we append them to our list here :)
-                     $('.klussjes-wrap').append('<div class="col s12 m6 card-wrap"><div class="card"><div class="card-image"><div class="card-image-wrap"><img src="/assets'+this.kluss_image+'" class="card--image" alt="Klussje"> </div> <span class="card-title">@if('this.image' == "assets/img/klussjes/geen-image.png")<h4 class="card--title-black">'+this.title+'</h4>@else<h4>'+this.title+'</h4>@endif</span></div><div class="card-content"><p class="card--description">'+this.description.substring(0, 120)+'...</p><p><b>'+this.address.replace(/\d+/g, "")+'</b></p><p class="card--price"><b>'+this.price+' credits</b></p></div><div class="card-action"><a href="/kluss/'+this.id+'">Ga naar de kluss</a></div></div></div>');
-                 });
-             });
-         },
-         error: function (xhr, b, c) {
-             // Something went wrong brosephino
-         }
-     });
  }
 
   function load(lat, lng) {

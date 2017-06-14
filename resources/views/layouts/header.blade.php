@@ -1,15 +1,29 @@
 <div class="header">
-	<div class="left-icons">
-		@if(\Auth::user())
-			<a class="kluss--logo" href="/home"></a>
-		@endif
+	<div class="mobile-nav">
+		<div class="menu menu-1">
+			  <span class="menu-item"></span>
+			  <span class="menu-item"></span>
+			  <span class="menu-item"></span>
+	    </div>
+		<a class="hamburger-logo" href="/home"><img src="/assets/img/K-logo.png" alt=""></a>
 	</div>
-	<div class="middle-icons"><h5>{{ $title or 'Home' }}</h5></div>
-	<div class="right-icons">
-		@if(\Auth::user())
-			<a href="/profiel/{{\Auth::user()->id}}/{{str_slug(\Auth::user()->name)}}"><i class="glyphicon glyphicon-user"></i></a>
-			<a href="/kluss_toevoegen"><i class="glyphicon glyphicon-plus"></i></a>
-			<a href="/logout"><i class="glyphicon glyphicon-log-out"></i></a>
-		@endif
+	<div class="header-nav">
+		<div class="left-icons">
+			 <a href='/home'><img class="animationout" src="/assets/img/home-logo.png"><p>Home</p></a>
+			 <a href='/meldingen'><img class="animationout notif-img" src="/assets/img/bell-logo.png"><p>Meldingen</p></a>
+			 <a href='/chat'><img class="animationout mail-img" src="/assets/img/berichten-logo.png"><p>Berichten</p></a>
+		</div>
+		<div class="middle-icons">
+			<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
+		</div>
+		<div class="right-icons">
+	       <a href='/klussje_toevoegen'><img class="animationout" src="/assets/img/plaats-logo.png"><p>Plaats een klusje</p></a>
+		   <a href='#' class="settings-dropdown"><img class="animationout" src="/assets/img/settings-logo.png"><p>Instellingen</p></a>
+		   <ul class="dropdown-toggle">
+			<li><a href="/settings"><span>Algemene instellingen</span></a></li>
+		   	<li><a href="/profiel/{{\Auth::user()->id}}/{{str_slug(\Auth::user()->name)}}"><span>Profiel</span></a></li>
+			<li><a href="/logout"><span>Afmelden</span></a></li>
+		   </ul>
+		</div>
 	</div>
 </div>

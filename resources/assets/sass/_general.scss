@@ -1,3 +1,13 @@
 $washington: #2e9c4e;
 $darkWashington: #1f6834;
 $androidgreen: #8bc53f;
+$primaryWhite: #FFFFFA;
+$generalbg: #f3f3f3;
+
+body, html{
+    background-color: $generalbg !important;
+}
+
+.page-content{
+    padding-top: 55px;
+}
