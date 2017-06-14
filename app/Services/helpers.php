@@ -22,4 +22,7 @@ if(!function_exists("spillvalue")){
     function didIMark($user_id, $task_id){
         return \App\KlussFinished::getUserTaskMarker($user_id, $task_id);
     }
+    function userNameGet($id){
+        return \App\User::get($id);
+    }
 }

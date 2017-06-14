@@ -22,4 +22,36 @@ class UserReview extends Model
             ['writer', $user]
             ])->first();
     }
+
+    public static function getUserReviews($user_id){
+        return self::where([
+                ['maker_id', $user_id],
+                ['writer', '<>', $user_id]])
+            ->orWhere([
+                ['fixer_id', $user_id],
+                ['writer', '<>', $user_id]])
+            ->paginate(5);
+    }
+
+    public static function getUserReviewCount($user_id){
+        return self::where([
+                ['maker_id', $user_id],
+                ['writer', '<>', $user_id]])
+            ->orWhere([
+                ['fixer_id', $user_id],
+                ['writer', '<>', $user_id]])
+            ->count();
+    }
+
+    public static function getUserReviewScore($user_id){
+        $avg =  self::where([
+                ['maker_id', $user_id],
+                ['writer', '<>', $user_id]])
+            ->orWhere([
+                ['fixer_id', $user_id],
+                ['writer', '<>', $user_id]])
+            ->avg('score');
+
+        return round($avg, 1);
+    }
 }
