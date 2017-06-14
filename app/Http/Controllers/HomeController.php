@@ -16,6 +16,7 @@ use Carbon\Carbon;
 use Mail;
 use App\Mail\ExpirationGold;
 use App\Mail\ReviewMail;
+use App\KlussFinished;
 
 class HomeController extends Controller
 {
@@ -84,35 +85,41 @@ class HomeController extends Controller
         $reviewtasks = Kluss::getTasksForReview();
         //$about_user, $for_user, $message, $url, $channel, $type, $kluss_id
         foreach($reviewtasks as $reviewtask){
-            // notification to maker
-            $channelMaker = User::getUserNotificationsChannel($reviewtask->user_id);
-            $fixerName = User::get($reviewtask->accepted_applicant_id);
-            $aboutMaker = $reviewtask->accepted_applicant_id;
-            $forMaker = $reviewtask->user_id;
-            $messageMaker = "Uw klusje werd gisteren uitgevoerd door ".$fixerName.". Gelieve deze persoon een review te geven.";
-            $urlMaker = "/review/".$reviewtask->id;
-            $typeMaker = "global";
+            $marks = KlussFinished::getTaskmarks($reviewtask->id);
+            $marksFull = KlussFinished::getTaskMarksFull($reviewtask->id);
+            $maker = $reviewtask->user_id;
+            $channelMaker = User::getUserNotificationsChannel($maker);
+            $nameMaker = User::get($maker);
+
+            $fixer = $reviewtask->accepted_applicant_id;
+            $channelFixer = User::getUserNotificationsChannel($fixer);
+            $nameFixer = User::get($fixer);
+            // contact info for notifications
+            $type = "global";
+            $url = "/kluss/".$reviewtask->id;
             $klussID = $reviewtask->id;
-            $this->pusher->trigger($channelMaker, "new-notification", $messageMaker);
-            // notification to fixer
-            $channelFixer = User::getUserNotificationsChannel($reviewtask->accepted_applicant_id);
-            $makerName = User::get($reviewtask->user_id);
-            $aboutFixer = $reviewtask->user_id;
-            $forFixer = $reviewtask->accepted_applicant_id;
-            $messageFixer = "Je hebt gisteren een klusje uitgevoerd voor ".$makerName.". Gelieve over deze persoon een review te schrijven.";
-            $this->pusher->trigger($channelFixer, "new-notification", $messageFixer);
-            // Database notifications for both
-            $notificationMaker = Notifications::createNotification($aboutMaker, $forMaker, $messageMaker, $urlMaker, $channelMaker, $typeMaker, $klussID);
-            $notificationFixer = Notifications::createNotification($aboutFixer, $forFixer, $messageFixer, $urlMaker, $channelFixer, $typeMaker, $klussID);
-            // Emails to both
-            $addressMaker = User::getUserMail($reviewtask->user_id);
-            $addressFixer = User::getUserMail($reviewtask->accepted_applicant_id);
-            $mailMaker = Mail::to($addressMaker)->send(new ReviewMail($makerName, $fixerName));;
-            $mailFixer = Mail::to($addressFixer)->send(new ReviewMail($fixerName, $makerName));;
-            // Closing the task
-            $close = Kluss::closeTask($reviewtask->id);
+            if($marks > 0){
+                foreach($marksFull as $markF){
+                    $user = $markF->user_id;
+                    if($user == $maker){
+                        // the maker has marked the task as finished so we need to contact the fixer
+                        $messageForFixer = $nameMaker." heeft het klusje '".$reviewtask->title."' sinds haar ontstaan gemarkeerd als afgesloten. Om het klusje definitief af te ronden moet deze nog afgesloten worden door jou. Klik op deze melding, of ga naar de pagina van het klusje om het klusje af te ronden.";
+                        $notificationMaker = Notifications::createNotification($maker, $fixer, $messageForFixer, $url, $channelFixer, $type, $klussID);
+                    }else{
+                        // the fixer has marked --> let's contact the maker
+                        $messageForMaker = $nameFixer." heeft het klusje '".$reviewtask->title."' sinds haar ontstaan gemarkeerd als afgesloten. Om het klusje definitief af te ronden moet deze nog afgesloten worden door jou. Klik op deze melding, of ga naar de pagina van het klusje om het klusje af te ronden.";
+                        $notificationFixer = Notifications::createNotification($fixer, $maker, $messageForMaker, $url, $channelMaker, $type, $klussID);
+                    }
+                }
+            }else{
+                // no marks yet familia
+                $message = "Het klusje '".$reviewtask->title."' werd nog niet gemarkeerd als afgesloten, terwijl dat deze al een tijdje opgevuld werd door een klusser. Ben je dit misschien vergeten? Of werd het klusje nog niet uitgevoerd? Door op deze melding te klikken kan je naar de pagina van het klusje om het daar te markeren als afgehandeld.";
+                $notificationMaker = Notifications::createNotification($maker, $fixer, $message, $url, $channelFixer, $type, $klussID);
+                $notificationFixer = Notifications::createNotification($fixer, $maker, $message, $url, $channelMaker, $type, $klussID);
+            }
+            // return true;
         }
-        return view('test', compact('reviewtasks', $reviewtasks));
+        // return true;
     }
 
     public function notificationsIndex(){

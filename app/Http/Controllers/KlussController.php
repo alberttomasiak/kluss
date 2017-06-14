@@ -13,6 +13,7 @@ use App\User;
 use App\Kluss_applicant;
 use App\KlussCategories;
 use App\Notifications;
+use App\KlussFinished;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -294,6 +295,54 @@ class KlussController extends Controller
 
     // finishing / closing tasks
     public function markFinished($task_id, $user_id){
-        dd($task_id . " " . $user_id);
+        $mark = KlussFinished::markAsFinished($user_id, $task_id);
+        $marks = KlussFinished::getTaskMarks($task_id);
+
+        $task = Kluss::getSingle($task_id);
+        $maker = $task[0]->user_id;
+        $fixer = $task[0]->accepted_applicant_id;
+
+        // Data both users for notifications
+        // Requirements for a Notification --> $about_user, $for_user, $message, $url, $channel, $type, $kluss_id
+        $type = "global";
+        $urlMakeMark = "/kluss/".$task_id;
+        $urlReview = "/review/".$task_id;
+        $klussID = $task_id;
+        // Data maker
+        $nameMaker = User::get($maker);
+        $channelMaker = User::getUserNotificationsChannel($maker);
+        // Data fixer
+        $nameFixer = User::get($fixer);
+        $channelFixer = User::getUserNotificationsChannel($fixer);
+
+        if($marks == 2){
+            if($user_id == $maker){
+                // notify fixer that the task is closed + /meldingen to both users that the task has been closed correctly.
+                $messageForFixer = $nameMaker." heeft het klusje '". $task[0]->title. "' zojuist afgesloten. Je kan hem/haar nu een review geven door naar de meldingen pagina te gaan of door naar de pagina van het klusje te gaan.";
+                $this->pusher->trigger($channelFixer, "new-notification", $messageForFixer);
+            }else{
+                // notify user ...
+                $messageForMaker = $nameFixer." heeft het klusje '". $task[0]->title. "' zojuist afgesloten. Je kan hem/haar nu een review geven door naar de meldingen pagina te gaan of door naar de pagina van het klusje te gaan.";
+                $this->pusher->trigger($channelMaker, "new-notification", $messageForMaker);
+            }
+            $messageNotifications = $task[0]->title . " werd door beide gebruikers gemarkeerd als afgesloten. Jullie kunnen elkaar nu reviews geven.";
+            $notificationMaker = Notifications::createNotification($maker, $fixer, $messageNotifications, $urlReview, $channelFixer, $type, $klussID);
+            $notificationFixer = Notifications::createNotification($fixer, $maker, $messageNotifications, $urlReview, $channelMaker, $type, $klussID);
+            $close = Kluss::closeTask($task_id);
+            return redirect('/review/'.$task_id);
+        }else{
+            if($user_id == $maker){
+                // notify fixer that the other person marked the task as finished
+                $messageForFixer = $nameMaker." heeft het klusje '". $task[0]->title. "' zojuist gemarkeerd als afgesloten. Voordat deze definitief afgesloten kan worden, moet jij deze ook markeren. Je kan dit doen door naar de pagina van het klusje of naar de meldingen pagina te gaan.";
+                $this->pusher->trigger($channelFixer, "new-notification", $messageForFixer);
+                $notificationMaker = Notifications::createNotification($maker, $fixer, $messageForFixer, $urlMakeMark, $channelFixer, $type, $klussID);
+            }else{
+                // notify user
+                $messageForMaker = $nameFixer." heeft het klusje '". $task[0]->title. "' zojuist gemarkeerd als afgesloten. Voordat deze definitief afgesloten kan worden, moet jij deze ook markeren. Je kan dit doen door naar de pagina van het klusje of naar de meldingen pagina te gaan.";
+                $this->pusher->trigger($channelMaker, "new-notification", $messageForMaker);
+                $notificationFixer = Notifications::createNotification($fixer, $maker, $messageForMaker, $urlMakeMark, $channelMaker, $type, $klussID);
+            }
+            return redirect()->back()->with('thanksfam', 'Het werd geregistreerd. Voor dat het definitief afgesloten wordt moet de andere persoon deze ook afvinken. Er werd een melding verstuurd om de persoon te herinneren.');
+        }
     }
 }

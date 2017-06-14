@@ -31,7 +31,7 @@ Route::get('/logout', function(){
 });
 
 // test routes --> to be deleted
-// Route::get('/test', 'HomeController@testIndex');
+Route::get('/test', 'HomeController@taskReviews');
 // Route::post('/test', 'HomeController@test');
 // end test routes
 
