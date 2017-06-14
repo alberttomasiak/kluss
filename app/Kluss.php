@@ -22,8 +22,7 @@ class Kluss extends Model
 
     public static function getPublished(){
         //return self::where('closed', '=', '0')->get();
-        return DB::table('kluss')
-                    ->join('users', 'kluss.user_id', '=', 'users.id')
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
                     ->where([
                         ['kluss.closed', '=', 0],
@@ -34,8 +33,7 @@ class Kluss extends Model
 
     public static function getSingle($id){
         //return self::where('id', '=', $id)->get();
-        return DB::table('kluss')
-                    ->join('users', 'kluss.user_id', '=', 'users.id')
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
                     ->where('kluss.id', '=', $id)
                     ->get();

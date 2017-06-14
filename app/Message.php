@@ -42,10 +42,9 @@ class Message extends Model
         return self::count();
     }
 
-    public static function sendDefaultMessage($email){
-        $userID = User::getIdByMail($email);
-        $chatUserID = User::getIdByMail("chat@kluss.be");
-        $chatID = Conversation::getConversationForDefaultUser($chatUserID, $userID);
+    public static function sendDefaultMessage($id){
+        $chatUserID = 2;
+        $chatID = Conversation::getConversationForDefaultUser($chatUserID, $id);
         $messageExists = self::where([
             ["user_id", "=", $chatUserID],
             ["conversation_id", "=", $chatID],

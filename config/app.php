@@ -169,7 +169,7 @@ return [
          * Package Service Providers...
          */
 
-        //
+        Barryvdh\Debugbar\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -232,6 +232,7 @@ return [
         'Notify' => Codecourse\Notify\Facades\Notify::class,
         'Tiny' => 'ZackKitzmiller\Facades\Tiny',
         'Hashids' => Vinkla\Hashids\Facades\Hashids::class,
+        'Debugbar' => Barryvdh\Debugbar\Facade::class,
     ],
 
 ];

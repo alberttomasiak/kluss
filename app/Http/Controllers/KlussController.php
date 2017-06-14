@@ -119,12 +119,11 @@ class KlussController extends Controller
 
     public function SingleKluss($id){
         $kluss = Kluss::getSingle($id);
-        $title = Kluss::getSingleTitle($id);
         $kluss_applicant = Kluss_applicant::getApplicant($id);
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
         $paid = KlussPay::getPaidStatus($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $title);
+        return view('kluss.individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $kluss[0]->title);
     }
 
     public function acceptUser(Request $request){

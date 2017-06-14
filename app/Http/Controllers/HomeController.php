@@ -42,8 +42,8 @@ class HomeController extends Controller
     public function index()
     {
         $klussjes = Kluss::getPublished();
-        Conversation::createConversation(\Auth::user()->email);
-        Message::sendDefaultMessage(\Auth::user()->email);
+        Conversation::createConversation(\Auth::user()->id);
+        Message::sendDefaultMessage(\Auth::user()->id);
         $gold_end = GoldStatus::getGoldEnd(\Auth::user()->id);
         if($gold_end != null){
             $goldie = Carbon::parse($gold_end);
