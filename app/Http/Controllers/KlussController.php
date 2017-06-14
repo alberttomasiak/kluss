@@ -354,12 +354,14 @@ class KlussController extends Controller
     }
 
     public function paypalPage($id){
+        $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
         $task = Kluss::getSingle($id);
-        return view('kluss.paypal', compact('task'));
+        $paid = KlussPay::getPaidStatus($id);
+        return view('kluss.paypal', compact('task', 'accepted_applicant', 'paid'));
     }
 
     public function processPayment($id){
         $pay = KlussPay::addPayment($id);
-        return redirect('/kluss'.$id);
+        return redirect('/kluss/'.$id);
     }
 }
