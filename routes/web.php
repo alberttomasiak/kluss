@@ -67,7 +67,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
     // Gold
     Route::get('/klussgold', 'KlussGoldController@index');
-    Route::get('/bestel', 'KlussGoldController@bestel');
+    Route::post('/klussgold/bestellen/{duration}', 'KlussGoldController@bestel');
+    Route::get('/klussgold/bestellen/{duration}', 'KlussGoldController@Indexify');
     Route::post('/bestel/{user_id}/{duration}', 'KlussGoldController@purchaseGold');
     // Reviews
     Route::get('/review/{task_id}', 'ReviewController@index')->middleware('reviewpermission');
