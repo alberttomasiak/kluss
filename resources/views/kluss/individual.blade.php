@@ -84,6 +84,11 @@
           for(var i = 0; i < kluss.length; i++){
               marks[i] = addMarker(kluss[i]);
           }
+          center = map.getCenter();
+          google.maps.event.addDomListener(window, 'resize', function() {
+
+              map.setCenter(center);
+          });
       }
 
       function addMarker(kluss){
