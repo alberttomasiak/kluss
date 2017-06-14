@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/sollicitant/{userid}/weigeren', 'KlussController@refuseUser');
     Route::get('/kluss/{id}/verwijderen', 'KlussController@delete');
     Route::post('/kluss/{task_id}/{user_id}/finished', 'KlussController@markFinished');
+    Route::get('/kluss/{id}/betalen', 'KlussController@paypalPage');
+    Route::post('/kluss/{id}/betalen', 'KlussController@processPayment');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
@@ -67,7 +69,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
     // Gold
     Route::get('/klussgold', 'KlussGoldController@index');
-    Route::get('/bestel', 'KlussGoldController@bestel');
+    Route::post('/klussgold/bestellen/{duration}', 'KlussGoldController@bestel');
+    Route::get('/klussgold/bestellen/{duration}', 'KlussGoldController@Indexify');
     Route::post('/bestel/{user_id}/{duration}', 'KlussGoldController@purchaseGold');
     // Reviews
     Route::get('/review/{task_id}', 'ReviewController@index')->middleware('reviewpermission');

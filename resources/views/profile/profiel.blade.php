@@ -2,6 +2,7 @@
 @section('content')
     <!-- voor de cards -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/css/mdb.min.css">
+<link rel="stylesheet" href="/assets/css/edits.css">
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.2.0/js/mdb.min.js"></script>
 <div class="container">
     <div class="row">
@@ -94,8 +95,19 @@
             <div class="col-sm-8">
                 <h2 class="profile-history">Historiek klussjes</h2>
             </div>
-            <div class="col-sm-4">
-                <h2 class="profile-reviews">Reviews</h2>
+            <div class="col-sm-4 profile-revs">
+                <h2 class="profile-reviews">Reviews ({{$reviewCount}})</h2>
+                <div class="star-ratings-sprite"><span style="width:calc({{$reviewScore}} * 20%)" class="star-ratings-sprite-rating"></span></div>
+                @foreach($reviews as $review)
+                    <div class="notification-box addboxshadow animationout">
+                        <h1 style="">{{userNameGet($review->writer)}}</h1>
+                        <div class="star-small">
+                            <div class="star-ratings-sprite"><span style="width:calc({{$review->score}} * 20%)" class="star-ratings-sprite-rating"></span></div>
+                        </div>
+                        <p style="">{{$review->review}}</p>
+                    </div>
+                @endforeach
+                {{$reviews->links()}}
             </div>
         </div>
         @endforeach

@@ -42,9 +42,15 @@ class KlussGoldController extends Controller
         return view('klussgold', compact('gold', $gold));
     }
 
-    public function bestel(Request $request){
-        $months = $request->get('months');
-        return view('bestelgold', compact('months', $months));
+    public function Indexify(){
+        // The user can get to our confirm page via a POST request, not a GET
+        // So we send him back to the klussgold index where he can choose his package.
+        // Won't trick us, no way ;)
+        return redirect('/klussgold');
+    }
+
+    public function bestel($duration){
+        return view('bestelgold', compact('duration', $duration));
     }
 
     public function purchaseGold($user_id, $duration){
@@ -72,7 +78,7 @@ class KlussGoldController extends Controller
         $userName = User::get($user);
         $mailDate = substr($end_date, 0, 10);
         Mail::to($userMail)->send(new KlussGoldPurchase($userName, $mailDate));
-        return redirect()->back();
+        return redirect('/home');
 
     }
 

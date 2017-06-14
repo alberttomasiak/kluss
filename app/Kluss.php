@@ -115,7 +115,7 @@ class Kluss extends Model
             		)
                ) AS distance
                FROM kluss
-               WHERE approved = 1
+               WHERE approved = 1 AND closed = 0
                HAVING distance < 2
                ORDER BY distance;"));
     }

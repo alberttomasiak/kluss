@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use App\Kluss;
 use App\User;
 use App\BlockReasons;
+use App\UserReview;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -28,7 +29,10 @@ class ProfielController extends Controller
         $block_categories = BlockReasons::getCategories();
         // historiek van uitgevoerde klussjes
         // reviews gebruikers
-        return view('/profile/profiel', compact('personalData', 'klussjes', 'sollicitanten', 'block_categories'))->with('title', 'Profiel');
+        $reviews = UserReview::getUserReviews($id);
+        $reviewCount = UserReview::getUserReviewCount($id);
+        $reviewScore = UserReview::getUserReviewScore($id);
+        return view('/profile/profiel', compact('personalData', 'klussjes', 'sollicitanten', 'block_categories', 'reviewCount', 'reviewScore', 'reviews'))->with('title', 'Profiel');
     }
 
     public function show($id)

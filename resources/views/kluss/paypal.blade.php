@@ -4,7 +4,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
     <link href="/assets/css/edits.css" rel="stylesheet">
-
     <div class="addboxshadow" id='cssmenu'>
         <ul>
             <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/logo-kluss.png"></a></li>
@@ -30,41 +29,22 @@
             </li>
         </ul>
     </div>
-
-
     <div class="addboxshadow container" style="display:block; overflow:auto;">
-        <h1 style="float: left; padding: 15px;">Kluss Gold</h1>
+        <h1 style="float: left; padding: 15px;">Kluss: "{{$task[0]->title}}" afbetalen.</h1>
         <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-
-        <p>Opgelet! u staat op het punt om Kluss Gold te bestellen voor</p>
-        <h1>{{$duration}} maanden</h1><br>
-        <p>Bent u zeker?</p>
-
-        <form action="/bestel/{{\Auth::user()->id}}/{{$duration}}" id="purchaseGold" name="purchaseGold" method="post">
-            {{csrf_field()}}
-            <input type="submit" form="purchaseGold" name="purchase--btn" value="Ja, bevestig mijn betaling">
+        <p>Je staat op het punt om het klusje "{{$task[0]->title}}" af te betalen. Dit is nodig om het klusje te markeren als afgewerkt en de andere gebruiker te kunnen betalen.</p>
+        <form class="" action="/kluss/{{$task[0]->id}}/betalen" method="post">
+            <input type="submit" name="payment" value="Betaling bevestigen">
         </form>
-        <a href="#">Nee, annuleer mijn bestelling</a>
-        <p>Meer details over Kluss Gold vindt u in de <a href="#">algemene voorwaarden</a>.</p>
-
-        <br>
-
-        <br>
-        <br>
-
     </div>
-
     <script>
         (function($) {
-
             $.fn.menumaker = function(options) {
-
                 var cssmenu = $(this), settings = $.extend({
                     title: "Menu",
                     format: "dropdown",
                     sticky: false
                 }, options);
-
                 return this.each(function() {
                     cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
                     $(this).find("#menu-button").on('click', function(){
@@ -80,9 +60,7 @@
                             }
                         }
                     });
-
                     cssmenu.find('li ul').parent().addClass('has-sub');
-
                     multiTg = function() {
                         cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
                         cssmenu.find('.submenu-button').on('click', function() {
@@ -95,36 +73,28 @@
                             }
                         });
                     };
-
                     if (settings.format === 'multitoggle') multiTg();
                     else cssmenu.addClass('dropdown');
-
                     if (settings.sticky === true) cssmenu.css('position', 'fixed');
-
                     resizeFix = function() {
                         if ($( window ).width() > 768) {
                             cssmenu.find('ul').show();
                         }
-
                         if ($(window).width() <= 768) {
                             cssmenu.find('ul').hide().removeClass('open');
                         }
                     };
                     resizeFix();
                     return $(window).on('resize', resizeFix);
-
                 });
             };
         })(jQuery);
-
         (function($){
             $(document).ready(function(){
-
                 $("#cssmenu").menumaker({
                     title: "Menu",
                     format: "multitoggle"
                 });
-
             });
         })(jQuery);
     </script>

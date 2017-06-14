@@ -4,7 +4,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
     <link href="assets/css/edits.css" rel="stylesheet">
-
     <div class="addboxshadow" id='cssmenu'>
         <ul>
             <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="../assets/img/logo-kluss.png"></a></li>
@@ -30,12 +29,9 @@
             </li>
         </ul>
     </div>
-
-
     <div class="addboxshadow container" style="display:block; overflow:auto;">
         <h1 style="float: left; padding: 15px;">Kluss Gold</h1>
         <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-
         <p>Klaar om nog meer te klussen en je beleving naar een hoger niveau te tillen? Maak dan kennis met Kluss Gold, een premium formule die je toelaat om ongelimiteerd te klussen of te laten klussen, je zoekradius vergroot, en nog veel meer! Ontdek hier alle voordelen van Kluss Gold en bestel meteen!</p>
         <p>Meer details over Kluss Gold vindt u in de <a href="#">algemene voorwaarden</a>.</p>
         <div style="width: 80%; display: block; margin-left: auto; margin-right: auto;"><img src="/assets/img/prices.png" alt="prijzentabel" style="width: 100%;"></div>
@@ -46,33 +42,38 @@
                 @else
                 <p>Overtuigd? Bestel dan hier je premiumformule! Probeer één enkele maand of bestel ineens voor enkele maanden!</p>
                 <div class="pricetable">
-                    <div class="pricetable_header">
-                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                            <div>Periode</div>
-                            <div>Prijs</div>
-                            <div>Bestel hier!</div>
-                        </div>
-                    </div>
                     <div class="pricetable_content">
-                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                            <div>1 maand</div>
+                        <div class="pricetable_row" style="">
+                            <div class="klussgold-duration"><span>1</span> <p>maand</p></div>
                             <div>€ 3.99/maand = € 3.99</div>
-                            <div><a href="/bestel?months=1">Bestel</a></div>
+                            <div><form action="/klussgold/bestellen/1" method="post">
+                                {{ csrf_field() }}
+                                <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
+                            </form></div>
                         </div>
-                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                            <div>3 maanden</div>
+                        <div class="pricetable_row" style="">
+                            <div class="klussgold-duration"><span>3</span> <p>maanden</p></div>
                             <div>€ 3.99/maand = € 11.97</div>
-                            <div><a href="/bestel?months=3">Bestel</a></div>
+                            <div><form action="/klussgold/bestellen/3" method="post">
+                                {{ csrf_field() }}
+                                <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
+                            </form></div>
                         </div>
-                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                            <div>6 maanden</div>
+                        <div class="pricetable_row" style="">
+                            <div class="klussgold-duration"><span>6</span> <p>maanden</p></div>
                             <div><strike>€ 3.99</strike> € 2.99/maand = € 17.94</div>
-                            <div><a href="/bestel?months=6">Bestel</a></div>
+                            <div><form action="/klussgold/bestellen/6" method="post">
+                                {{ csrf_field() }}
+                                <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
+                            </form></div>
                         </div>
-                        <div class="pricetable_row" style="display: flex; justify-content: space-around;">
-                            <div>12 maanden</div>
+                        <div class="pricetable_row" style="">
+                            <div class="klussgold-duration"><span>12</span> <p>maanden</p></div>
                             <div><strike>€ 3.99</strike> € 2.99/maand = € 35.88</div>
-                            <div><a href="/bestel?months=12">Bestel</a></div>
+                            <div><form action="/klussgold/bestellen/12" method="post">
+                                {{ csrf_field() }}
+                                <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
+                            </form></div>
                         </div>
                     </div>
                 </div>
@@ -80,20 +81,15 @@
         </div>
         <br>
         <br>
-
     </div>
-
     <script>
         (function($) {
-
             $.fn.menumaker = function(options) {
-
                 var cssmenu = $(this), settings = $.extend({
                     title: "Menu",
                     format: "dropdown",
                     sticky: false
                 }, options);
-
                 return this.each(function() {
                     cssmenu.prepend('<div id="menu-button">' + settings.title + '</div>');
                     $(this).find("#menu-button").on('click', function(){
@@ -109,9 +105,7 @@
                             }
                         }
                     });
-
                     cssmenu.find('li ul').parent().addClass('has-sub');
-
                     multiTg = function() {
                         cssmenu.find(".has-sub").prepend('<span class="submenu-button"></span>');
                         cssmenu.find('.submenu-button').on('click', function() {
@@ -124,36 +118,28 @@
                             }
                         });
                     };
-
                     if (settings.format === 'multitoggle') multiTg();
                     else cssmenu.addClass('dropdown');
-
                     if (settings.sticky === true) cssmenu.css('position', 'fixed');
-
                     resizeFix = function() {
                         if ($( window ).width() > 768) {
                             cssmenu.find('ul').show();
                         }
-
                         if ($(window).width() <= 768) {
                             cssmenu.find('ul').hide().removeClass('open');
                         }
                     };
                     resizeFix();
                     return $(window).on('resize', resizeFix);
-
                 });
             };
         })(jQuery);
-
         (function($){
             $(document).ready(function(){
-
                 $("#cssmenu").menumaker({
                     title: "Menu",
                     format: "multitoggle"
                 });
-
             });
         })(jQuery);
     </script>

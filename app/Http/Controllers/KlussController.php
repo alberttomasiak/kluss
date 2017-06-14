@@ -14,6 +14,7 @@ use App\Kluss_applicant;
 use App\KlussCategories;
 use App\Notifications;
 use App\KlussFinished;
+use App\KlussPay;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -36,6 +37,13 @@ class KlussController extends Controller
     }
 
     public function add(Request $request){
+        $this->validate($request, [
+            'title' => 'required',
+            'price' => 'integer',
+            'address' => 'required',
+            'kluss_image' => 'image',
+        ]);
+
         $title = $request->title;
         $description = $request->description;
         $kluss_image = $request->kluss_image;
@@ -54,34 +62,32 @@ class KlussController extends Controller
 
         if(Input::hasFile('kluss_image')){
             $file = Input::file('kluss_image');
-            if(substr($file->getMimeType(), 0, 5) == 'image'){
-                $extension = Input::file('kluss_image')->getClientOriginalExtension();
-                $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
-                $destinationPath = "/img/klussjes/". $fileName;
-                $file->move('assets/img/klussjes', $fileName);
-                if($description == ""){
-                    $description = "Geen beschrijving beschikbaar.";
-                }
-                $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
-                $id = Kluss::getLatestID($user_id);
-                if($categoryName != "Overige"){
-                    $kluss = [
-                        'id' => $id,
-                        'title' => $title,
-                        'description' => $description,
-                        'kluss_image' => $destinationPath,
-                        'price' => $price,
-                        'address' => $address,
-                        'date' => $date,
-                        'latitude' => $latitude,
-                        'longitude' => $longitude,
-                        'user_id' => $user_id
-                    ];
-                    $this->pusher->trigger("kluss-map", "new-task", $kluss);
-                }
-                if($task){
-                    return redirect('/home');
-                }
+            $extension = Input::file('kluss_image')->getClientOriginalExtension();
+            $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
+            $destinationPath = "/img/klussjes/". $fileName;
+            $file->move('assets/img/klussjes', $fileName);
+            if($description == ""){
+                $description = "Geen beschrijving beschikbaar.";
+            }
+            $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
+            $id = Kluss::getLatestID($user_id);
+            if($categoryName != "Overige"){
+                $kluss = [
+                    'id' => $id,
+                    'title' => $title,
+                    'description' => $description,
+                    'kluss_image' => $destinationPath,
+                    'price' => $price,
+                    'address' => $address,
+                    'date' => $date,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'user_id' => $user_id
+                ];
+                $this->pusher->trigger("kluss-map", "new-task", $kluss);
+            }
+            if($task){
+                return redirect('/home');
             }
         }else{
             if($description == ""){
@@ -117,7 +123,8 @@ class KlussController extends Controller
         $kluss_applicant = Kluss_applicant::getApplicant($id);
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant'))->with('title', $title);
+        $paid = KlussPay::getPaidStatus($id);
+        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $title);
     }
 
     public function acceptUser(Request $request){
@@ -344,5 +351,15 @@ class KlussController extends Controller
             }
             return redirect()->back()->with('thanksfam', 'Het werd geregistreerd. Voor dat het definitief afgesloten wordt moet de andere persoon deze ook afvinken. Er werd een melding verstuurd om de persoon te herinneren.');
         }
+    }
+
+    public function paypalPage($id){
+        $task = Kluss::getSingle($id);
+        return view('kluss.paypal', compact('task'));
+    }
+
+    public function processPayment($id){
+        $pay = KlussPay::addPayment($id);
+        return redirect('/kluss'.$id);
     }
 }
