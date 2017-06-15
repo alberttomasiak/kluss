@@ -16,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('layouts.app', function($view){
             $channel = User::getUserNotificationsChannel(\Auth::user()->id);
-            $view->with('data', array('channel' => $channel));
+            $notifications = Notifications::getUserUnreadNotifications(\Auth::user()->id);
+            $messages = Message::getUserUnreadMessages(\Auth::user()->id);
+            $view->with('data', array('channel' => $channel, 'notifications' => $notifications, 'messages' => $messages));
         });
     }
 
