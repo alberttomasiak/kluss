@@ -1,0 +1,59 @@
+$unchecked-star: url('../img/review-sterretje-leeg.png');
+$checked-star: url('../img/review-sterretje-vol.png');
+.star-cb-group {
+    display: flex;
+    font-size: 0;
+    direction: rtl;
+    position: absolute;
+    overflow: hidden;
+  & > input {
+    display: none;
+    & + label {
+      text-indent: 9999px;
+      width: 40px;
+      cursor: pointer;
+      &:before {
+          display: block;
+          text-indent: -9999px;
+          content: "";
+          width: 40px;
+          background: url("../img/review-sterretje-leeg.png");
+          background-size: 40px;
+          height: 40px;
+          background-repeat: no-repeat;
+      }
+    }
+    &:checked ~ label:before,
+      & + label:hover ~ label:before,
+      & + label:hover:before {
+          display: block;
+          text-indent: -9999px;
+          content: "";
+          width: 40px;
+          background: url("../img/review-sterretje-vol.png");
+          background-size: 40px;
+          height: 40px;
+          background-repeat: no-repeat;
+    }
+  }
+
+  &:hover > input + label:before {
+    content: $unchecked-star;
+    text-shadow: none;
+  }
+  &:hover > input + label:hover ~ label:before,
+  &:hover > input + label:hover:before {
+    content: $checked-star;
+  }
+}
+
+:root {
+  font-size: 2em;
+  font-family: Helvetica, arial, sans-serif;
+}
+fieldset {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 50px;
+}
