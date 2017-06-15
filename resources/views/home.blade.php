@@ -1,17 +1,55 @@
 @extends('layouts.app')
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script> --}}
 <script type="text/javascript" src="/assets/js/jquery-paginate.min.js"></script>
-<div class="container">
-    <div class="row">
+<div class="main-content-wrap">
+    <div class="">
+        <h1>Klusjes in de buurt</h1>
         <!-- MAP MET KLUSSJES -->
         <div id="map"></div>
         <!-- KLUSSJES IN DE BUURT -->
         <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
+        <form action="/home/task/filter" method="post">
+            {{csrf_field()}}
+            <h3>Filtreer klusjes:</h3>
+            <input type="text" name="kluss_price" placeholder="Prijs" value="">
+            <select class="form-control" name="kluss_time" id="kluss_time">
+                <option value="0:30">30 min.</option>
+                <option value="1:00">1 uur</option>
+                <option value="1:30">1 uur 30 min.</option>
+                <option value="2:00">2 uur</option>
+                <option value="2:30">2 uur 30 min.</option>
+                <option value="3:00">3 uur</option>
+                <option value="3:30">3 uur 30 min.</option>
+                <option value="4:00">4 uur</option>
+            </select>
+            <input id="autocomplete" name="address" class="form-control" placeholder="Adres:"
+                   onFocus="geolocate()" type="text"></input>
+            <input type="hidden" name="latitude" id="kluss__lat" value="">
+            <input type="hidden" name="longitude" id="kluss__lng" value="">
+            <input type="submit" name="form-send" value="Zoek">
+        </form>
         <div class="klussjes-wrap">
-        {{-- Our tasks will be appended here. --}}
+        @foreach($cards as $card)
+            <a href="/kluss/{{$card->id}}">
+                <div class="task-card">
+                    <div class="task-image" style="background-image: url('/assets{{$card->kluss_image}}');"></div>
+                    <div class="task-details">
+                        <div class="task-title-time">
+                            <p class="task-title">{{$card->title}}</p>
+                            <p class="task-time">- max {{$card->time}}u.</p>
+                        </div>
+                        <div class="task-price">
+                            <p>€ {{$card->price}}</p>
+                        </div>
+                        <div class="task-description">
+                            <p>{{substr($card->description, 0, 100)}} ...</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        @endforeach
+        {{$cards->links()}}
         </div>
     </div>
 </div>
@@ -23,6 +61,47 @@
   var poslng;
   var poslatDefault = 51.022636;
   var poslngDefault = 4.486062;
+   var placeSearch, autocomplete;
+   var componentForm = {
+     street_number: 'short_name',
+     route: 'long_name',
+     locality: 'long_name',
+     administrative_area_level_1: 'short_name',
+     country: 'long_name',
+     postal_code: 'short_name'
+   };
+
+   function initAutocomplete() {
+     autocomplete = new google.maps.places.Autocomplete(
+         /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+         {types: ['geocode'],
+         componentRestrictions: {country: "be"}});
+     autocomplete.addListener('place_changed', fillInAddress);
+   }
+
+   function fillInAddress() {
+     var place = autocomplete.getPlace();
+     //console.log(place.geometry.location.lat());
+     $('#kluss__lat').val(place.geometry.location.lat());
+     $('#kluss__lng').val(place.geometry.location.lng());
+   }
+
+   function geolocate() {
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(function(position) {
+         var geolocation = {
+           lat: position.coords.latitude,
+           lng: position.coords.longitude
+         };
+         var circle = new google.maps.Circle({
+           center: geolocation,
+           radius: position.coords.accuracy
+         });
+         autocomplete.setBounds(circle.getBounds());
+       });
+     }
+   }
+
 
   function initGeolocation(){
     if( navigator.geolocation ){
@@ -34,37 +113,11 @@
      var poslng = position.coords.longitude;
      var poslat = position.coords.latitude;
      load(poslat, poslng);
-     sendCoords(poslat, poslng);
  }
  function fail(){
     // geolocation doesn't work with this browser / not a secure request
     // perform the load with the coordinates for Mechelen -> our HQ
     load(poslatDefault, poslngDefault);
-    sendCoords(poslatDefault, poslngDefault);
- }
- function sendCoords(lat, lng){
-     $.ajaxSetup({
-         headers: { 'X-CSRF-Token' : $('meta[name=csrf-token]').attr('content') }
-     });
-     jQuery.ajax({
-         url:'/getTasks',
-         type: 'POST',
-         data: {
-             lat: lat,
-             lng: lng
-         },
-         success: function( data ){
-             $.each(data, function() {
-                 $.each(this, function(k, v) {
-                     // We found tasks in a radius of 2.5km, so we append them to our list here :)
-                     $('.klussjes-wrap').append('<div class="col s12 m6 card-wrap"><div class="card"><div class="card-image"><div class="card-image-wrap"><img src="/assets'+this.kluss_image+'" class="card--image" alt="Klussje"> </div> <span class="card-title">@if('this.image' == "assets/img/klussjes/geen-image.png")<h4 class="card--title-black">'+this.title+'</h4>@else<h4>'+this.title+'</h4>@endif</span></div><div class="card-content"><p class="card--description">'+this.description.substring(0, 120)+'...</p><p><b>'+this.address.replace(/\d+/g, "")+'</b></p><p class="card--price"><b>'+this.price+' credits</b></p></div><div class="card-action"><a href="/kluss/'+this.id+'">Ga naar de kluss</a></div></div></div>');
-                 });
-             });
-         },
-         error: function (xhr, b, c) {
-             // Something went wrong brosephino
-         }
-     });
  }
 
   function load(lat, lng) {
@@ -85,6 +138,7 @@
       if(lat != poslatDefault && lng != poslngDefault){
       var mark = new google.maps.Marker({
           map: map,
+          icon: "/assets/img/currentposition2.png",
           position: new google.maps.LatLng(parseFloat(lat),parseFloat(lng))
       });
       }
@@ -190,4 +244,5 @@ channel.bind('deleted-task', deleteMarker);
 channel.bind('applicant-selected-task', applicantSelected);
 channel.bind('new-notification', notifyUser);
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places&callback=initAutocomplete"></script>
 @endsection

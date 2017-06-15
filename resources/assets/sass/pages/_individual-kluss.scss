@@ -20,6 +20,20 @@
     }
 }
 
+.task-details-payment{
+    display: block;
+    height: auto;
+    margin-bottom: 2em;
+    img{
+        margin-bottom: 0;
+    }
+}
+
+.confirm-payment{
+    display: block;
+    margin-top: 2em;
+}
+
 .selected--applicant{
     background-color: #eee;
     display: block;

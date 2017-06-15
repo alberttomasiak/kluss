@@ -213,7 +213,11 @@
                             @if(\Auth::user()->id == $kl->user_id || \Auth::user()->id == $kl->accepted_applicant_id)
                                 <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
                                     {{csrf_field()}}
-                                    <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" || $paid != "" ? '' : 'disabled'}}>
+                                    @if(\Auth::user()->id == $kl->user_id)
+                                        <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" && $paid != "" ? '' : 'disabled'}}>
+                                    @else
+                                        <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" ? '' : 'disabled'}}>
+                                    @endif
                                     @if(didIMark(\Auth::user()->id, $kl->id))
                                         <p>Je hebt dit klusje al gemarkeerd als afgesloten. Je kan een review over de gebruiker hier schrijven:</p>
                                         <a href="/review/{{$kl->id}}" class="btn btn-success">Review schrijven</a>

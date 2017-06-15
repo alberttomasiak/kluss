@@ -1,3 +1,54 @@
 $washington: #2e9c4e;
 $darkWashington: #1f6834;
 $androidgreen: #8bc53f;
+$primaryWhite: #FFFFFA;
+$generalbg: #f3f3f3;
+
+// FONTS INLADEN HIER,
+
+// HIERBOVEN DUS
+
+body, html{
+    background-color: $generalbg !important;
+}
+
+.page-content{
+    padding-top: 55px;
+}
+.main-content-wrap{
+    display: block;
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #FFFFFA;
+    margin-top: 3em !important;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+h1{ font-size: 2em; color: $washington !important; padding-top: .5em;}
+h2{ font-size: 1.8em; color: $washington !important;}
+h3{ }
+h4{ }
+h5{ }
+h6{ }
+
+.pagination>.active>a, .pagination>.active>a:hover, .pagination>.active>a:focus, .pagination>.active>span, .pagination>.active>span:hover, .pagination>.active>span:focus{
+    color: white !important;
+    background-color: $washington !important;
+    border-color: $washington !important;
+    cursor: default;
+}
+
+.pagination>li>a, .pagination>li>span{
+    color: $washington !important;
+}
+
+.pagination{
+    display: flex !important;
+    flex-direction: row;
+    li a{
+        width: 100%;
+    }
+}

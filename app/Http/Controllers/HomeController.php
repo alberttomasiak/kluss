@@ -42,8 +42,9 @@ class HomeController extends Controller
     public function index()
     {
         $klussjes = Kluss::getPublished();
-        Conversation::createConversation(\Auth::user()->email);
-        Message::sendDefaultMessage(\Auth::user()->email);
+        $cards = Kluss::paginatePublished();
+        Conversation::createConversation(\Auth::user()->id);
+        Message::sendDefaultMessage(\Auth::user()->id);
         $gold_end = GoldStatus::getGoldEnd(\Auth::user()->id);
         if($gold_end != null){
             $goldie = Carbon::parse($gold_end);
@@ -71,7 +72,7 @@ class HomeController extends Controller
                 $notification = Notifications::createNotification($user, $user, $message, null, $channel, "global", null);
             }
         }
-        return view('home', compact('klussjes', $klussjes));
+        return view('home', compact('klussjes', 'cards'));
     }
 
     public function getTasks(Request $request){

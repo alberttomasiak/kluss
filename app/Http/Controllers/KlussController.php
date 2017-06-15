@@ -119,12 +119,11 @@ class KlussController extends Controller
 
     public function SingleKluss($id){
         $kluss = Kluss::getSingle($id);
-        $title = Kluss::getSingleTitle($id);
         $kluss_applicant = Kluss_applicant::getApplicant($id);
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
         $paid = KlussPay::getPaidStatus($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $title);
+        return view('kluss.individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $kluss[0]->title);
     }
 
     public function acceptUser(Request $request){
@@ -354,12 +353,14 @@ class KlussController extends Controller
     }
 
     public function paypalPage($id){
+        $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
         $task = Kluss::getSingle($id);
-        return view('kluss.paypal', compact('task'));
+        $paid = KlussPay::getPaidStatus($id);
+        return view('kluss.paypal', compact('task', 'accepted_applicant', 'paid'));
     }
 
     public function processPayment($id){
         $pay = KlussPay::addPayment($id);
-        return redirect('/kluss'.$id);
+        return redirect('/kluss/'.$id);
     }
 }

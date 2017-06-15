@@ -22,8 +22,7 @@ class Kluss extends Model
 
     public static function getPublished(){
         //return self::where('closed', '=', '0')->get();
-        return DB::table('kluss')
-                    ->join('users', 'kluss.user_id', '=', 'users.id')
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
                     ->where([
                         ['kluss.closed', '=', 0],
@@ -32,10 +31,18 @@ class Kluss extends Model
                     ->get();
     }
 
+    public static function paginatePublished(){
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('kluss.*', 'users.account_type', 'users.verified')
+                    ->where([ ['kluss.closed', '=', 0], ['kluss.approved', '=', 1] ])
+                    ->orderBy('users.account_type', 'asc')
+                    ->orderBy('kluss.date', 'DESC')
+                    ->paginate(12);
+    }
+
     public static function getSingle($id){
         //return self::where('id', '=', $id)->get();
-        return DB::table('kluss')
-                    ->join('users', 'kluss.user_id', '=', 'users.id')
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
                     ->where('kluss.id', '=', $id)
                     ->get();
