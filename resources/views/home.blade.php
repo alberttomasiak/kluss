@@ -2,6 +2,7 @@
 @section('content')
 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script> --}}
 <script type="text/javascript" src="/assets/js/jquery-paginate.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
 <div class="main-content-wrap">
     <div class="">
         <h1>Klusjes in de buurt</h1>
@@ -244,5 +245,4 @@ channel.bind('deleted-task', deleteMarker);
 channel.bind('applicant-selected-task', applicantSelected);
 channel.bind('new-notification', notifyUser);
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places&callback=initAutocomplete"></script>
 @endsection

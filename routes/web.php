@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{task_id}/{user_id}/finished', 'KlussController@markFinished');
     Route::get('/kluss/{id}/betalen', 'KlussController@paypalPage');
     Route::post('/kluss/{id}/betalen', 'KlussController@processPayment');
+    Route::post('/kluss/{id}/rapporteren', 'KlussController@blockKluss');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');

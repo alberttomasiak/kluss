@@ -206,4 +206,31 @@ class Kluss extends Model
         return self::where('id', $id)->update(['closed' => '1']);
     }
 
+    public static function applyFilters($price, $time, $address, $lat, $lng){
+        $base = Kluss::getPublished();
+        // WORK IN PROGRESS
+
+        if($price != null){
+            $price_filtered = $base->where('price', '>=', $price);
+        }
+
+        if($time != null && !empty($price_filtered)){
+            $time_filtered_price = $price_filtered->where('time', '=', $time);
+        }elseif($time != null){
+            $time_filtered_noprice = $base->where('time', '=', $time);
+        }
+
+        if($address != null && $time != null && $price != null){
+            // $full_filter = $time_filtered_price->where()
+        }
+    }
+
+    public static function BlockKluss($task_id){
+        $kluss = Kluss::getSingle($task_id);
+        $message = 'Door een grote hoeveelheid aan rapporteringen werden we verplicht uw klusje "'.$kluss[0]->title.'" te verwijderen.';
+        $channel = User::getUserNotificationsChannel($kluss[0]->user_id);
+        $notification = Notifications::createNotification($kluss[0]->user_id, $kluss[0]->user_id, $message, null, $channel, "global", $task_id);
+        return self::where('id', $task_id)->delete();
+    }
+
 }
