@@ -11,8 +11,8 @@
 	<div class="header-nav">
 		<div class="left-icons">
 			 <a href='/home'><img class="animationout" src="/assets/img/home-logo.png"><p>Home</p></a>
-			 <a href='/meldingen'><span class=""></span><img class="animationout notif-img" src="/assets/img/bell-logo.png"><p>Meldingen</p></a>
-			 <a href='/chat'><span class=""></span><img class="animationout mail-img" src="/assets/img/berichten-logo.png"><p>Berichten</p></a>
+			 <a href='/meldingen'><span class="add-notif-here {{$data["notifications"] > 0 ? 'new-notif' : ''}}"></span><img class="animationout notif-img" src="/assets/img/bell-logo.png"><p>Meldingen</p></a>
+			 <a href='/chat'><span class="add-msg-here {{$data["messages"] > 0 ? 'new-msg' : ''}}"></span><img class="animationout mail-img" src="/assets/img/berichten-logo.png"><p>Berichten</p></a>
 		</div>
 		<div class="middle-icons">
 			<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
@@ -30,6 +30,10 @@
 </div>
 @else
 	<div class="header">
-		<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
+		<div class="header-nav">
+			<div class="middle-icons">
+				<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
+			</div>
+		</div>
 	</div>
 @endif

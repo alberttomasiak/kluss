@@ -50,6 +50,18 @@
   function notifyUser(data){
       toastr.options.progressBar = true;
       toastr.info(data);
+      checkStatus();
+  }
+
+  function checkStatus(){
+      var messages = "{{checkMsgs(\Auth::user()->id)}}";
+      var notifs = "{{checkNtfs(\Auth::user()->id)}}";
+      if(messages > 0){
+          $('.add-msg-here').addClass('new-msg');
+      }
+      if(notifs > 0){
+          $('.add-notif-here').addClass('new-notif');
+      }
   }
 
   var globalNotifications = pusher.subscribe("global-notifications");

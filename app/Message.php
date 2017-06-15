@@ -53,4 +53,26 @@ class Message extends Model
         return $messageExists == "" ? self::insert(["message" => "Hey! Ik ben de contactpersoon van Kluss. Als je vragen hebt, kan je die gerust aan mij stellen.", "user_id" => $chatUserID, "conversation_id" => $chatID, "created_at" => Carbon\Carbon::now(), "updated_at" => Carbon\Carbon::now()]) : true;
     }
 
+    public static function getUserUnreadMessages($user_id){
+        return self::join('conversations', 'messages.conversation_id', '=', 'conversations.id')
+                    ->select('messages.*')
+                    ->where([
+                        ['conversations.user_one', $user_id],
+                        ['messages.is_seen', 0],
+                        ['messages.user_id', '<>', $user_id]
+                    ])
+                    ->orWHere([
+                        ['conversations.user_two', $user_id],
+                        ['messages.is_seen', 0],
+                        ['messages.user_id', '<>', $user_id]
+                    ])->count();
+    }
+
+    public static function readUserMessages($user_id, $chat){
+        $conversationID = Conversation::get($chat);
+        return self::where([
+            ['conversation_id', $conversationID],
+            ['user_id', '<>', $user_id]])->update(['is_seen' => 1]);
+    }
+
 }

@@ -124,6 +124,7 @@ class HomeController extends Controller
     }
 
     public function notificationsIndex(){
+        $read = Notifications::readUserNotifications(\Auth::user()->id);
         $notifications = Notifications::getUserNotifications(\Auth::user()->id);
         return view('meldingen', compact('notifications', $notifications));
     }

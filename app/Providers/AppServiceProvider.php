@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use App\User;
+use App\Notifications;
+use App\Message;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
             $channel = User::getUserNotificationsChannel(\Auth::user()->id);
             $notifications = Notifications::getUserUnreadNotifications(\Auth::user()->id);
             $messages = Message::getUserUnreadMessages(\Auth::user()->id);
-            $view->with('data', array('channel' => $channel, 'notifications' => $notifications, 'messages' => $messages));
+        $view->with('data', array('channel' => $channel, 'notifications' => $notifications, 'messages' => $messages));
         });
     }
 
@@ -29,6 +31,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        if($this->app->environment('development')){
+            $this->app->register('Barryvdh\Debugbar\ServiceProvider');
+        }
     }
 }

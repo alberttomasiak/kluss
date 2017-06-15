@@ -28,4 +28,10 @@ if(!function_exists("spillvalue")){
     function blockChecker($task_id, $user_id){
         return \App\KlussBlocks::getUserBlock($task_id, $user_id);
     }
+    function checkMsgs($user_id){
+        return \App\Message::getUserUnreadMessages($user_id);
+    }
+    function checkNtfs($user_id){
+        return \App\Notifications::getUserUnreadNotifications($user_id);
+    }
 }
