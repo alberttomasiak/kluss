@@ -16,7 +16,7 @@ class CreateKlussBlocksTable extends Migration
         Schema::create('kluss_blocks', function(Blueprint $table){
             $table->increments('id');
             $table->integer('kluss_id')->unsigned();
-            $table->foreign('kluss_id')->references('id')->on('kluss')->onDelete('restrict');
+            $table->foreign('kluss_id')->references('id')->on('kluss')->onDelete('cascade');
             $table->integer('blocker_id')->unsigned();
             $table->foreign('blocker_id')->references('id')->on('users');
             $table->string('block_reason');

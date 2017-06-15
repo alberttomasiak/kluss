@@ -15,6 +15,7 @@ use App\KlussCategories;
 use App\Notifications;
 use App\KlussFinished;
 use App\KlussPay;
+use App\KlussBlocks;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -362,5 +363,12 @@ class KlussController extends Controller
     public function processPayment($id){
         $pay = KlussPay::addPayment($id);
         return redirect('/kluss/'.$id);
+    }
+
+    public function blockKluss(Request $request, $id){
+        $user = $request->blocker_id;
+        $reason = $request->reason;
+        $block = KlussBlocks::addBlock($id, $user, $reason);
+        return redirect()->back();
     }
 }
