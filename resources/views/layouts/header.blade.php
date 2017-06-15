@@ -18,7 +18,7 @@
 			<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
 		</div>
 		<div class="right-icons">
-	       <a href='/klussje_toevoegen'><img class="animationout" src="/assets/img/plaats-logo.png"><p>Plaats een klusje</p></a>
+	       <a href='/kluss_toevoegen'><img class="animationout" src="/assets/img/plaats-logo.png"><p>Plaats een klusje</p></a>
 		   <a href='#' class="settings-dropdown"><img class="animationout" src="/assets/img/settings-logo.png"><p>Instellingen</p></a>
 		   <ul class="dropdown-toggle">
 			<li><a href="/settings"><span>Algemene instellingen</span></a></li>

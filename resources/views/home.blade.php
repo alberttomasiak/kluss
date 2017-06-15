@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places"></script>
 <script type="text/javascript" src="/assets/js/jquery-paginate.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
 <div class="main-content-wrap">
     <div class="">
         <h1>Klusjes in de buurt</h1>
@@ -10,11 +9,11 @@
         <div id="map"></div>
         <!-- KLUSSJES IN DE BUURT -->
         <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
-        <form action="/home/task/filter" method="post">
-            {{csrf_field()}}
+        <form action="/home/filter" method="get">
             <h3>Filtreer klusjes:</h3>
-            <input type="text" name="kluss_price" placeholder="Prijs" value="">
-            <select class="form-control" name="kluss_time" id="kluss_time">
+            <input type="text" name="prijs" placeholder="Prijs" value="">
+            <select class="form-control" name="tijd" id="kluss_time">
+                <option value="null">Duur van het klusje</option>
                 <option value="0:30">30 min.</option>
                 <option value="1:00">1 uur</option>
                 <option value="1:30">1 uur 30 min.</option>
@@ -24,33 +23,56 @@
                 <option value="3:30">3 uur 30 min.</option>
                 <option value="4:00">4 uur</option>
             </select>
-            <input id="autocomplete" name="address" class="form-control" placeholder="Adres:"
+            <input id="autocomplete" name="locatie" class="form-control" placeholder="Adres:"
                    onFocus="geolocate()" type="text"></input>
-            <input type="hidden" name="latitude" id="kluss__lat" value="">
-            <input type="hidden" name="longitude" id="kluss__lng" value="">
-            <input type="submit" name="form-send" value="Zoek">
+            <input type="hidden" name="lat" id="kluss__lat" value="">
+            <input type="hidden" name="lng" id="kluss__lng" value="">
+            <input type="submit" value="Zoek">
         </form>
         <div class="klussjes-wrap">
-        @foreach($cards as $card)
-            <a href="/kluss/{{$card->id}}">
-                <div class="task-card">
-                    <div class="task-image" style="background-image: url('/assets{{$card->kluss_image}}');"></div>
-                    <div class="task-details">
-                        <div class="task-title-time">
-                            <p class="task-title">{{$card->title}}</p>
-                            <p class="task-time">- max {{$card->time}}u.</p>
-                        </div>
-                        <div class="task-price">
-                            <p>€ {{$card->price}}</p>
-                        </div>
-                        <div class="task-description">
-                            <p>{{substr($card->description, 0, 100)}} ...</p>
+        @if(!isset($filtered))
+            @foreach($cards as $card)
+                <a href="/kluss/{{$card->id}}">
+                    <div class="task-card">
+                        <div class="task-image" style="background-image: url('/assets{{$card->kluss_image}}');"></div>
+                        <div class="task-details">
+                            <div class="task-title-time">
+                                <p class="task-title">{{$card->title}}</p>
+                                <p class="task-time">- max {{$card->time}}u.</p>
+                            </div>
+                            <div class="task-price">
+                                <p>€ {{$card->price}}</p>
+                            </div>
+                            <div class="task-description">
+                                <p>{{substr($card->description, 0, 100)}} ...</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
-        @endforeach
-        {{$cards->links()}}
+                </a>
+            @endforeach
+            {{$cards->links()}}
+        @else
+            @foreach($filtered as $fil)
+                <a href="/kluss/{{$fil->id}}">
+                    <div class="task-card">
+                        <div class="task-image" style="background-image: url('/assets{{$fil->kluss_image}}');"></div>
+                        <div class="task-details">
+                            <div class="task-title-time">
+                                <p class="task-title">{{$fil->title}}</p>
+                                <p class="task-time">- max {{$fil->time}}u.</p>
+                            </div>
+                            <div class="task-price">
+                                <p>€ {{$fil->price}}</p>
+                            </div>
+                            <div class="task-description">
+                                <p>{{substr($fil->description, 0, 100)}} ...</p>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+            {{$filtered->links()}}
+        @endif
         </div>
     </div>
 </div>
@@ -103,7 +125,7 @@
      }
    }
 
-
+initAutocomplete();
   function initGeolocation(){
     if( navigator.geolocation ){
        // Call getCurrentPosition with success and failure callbacks
@@ -245,4 +267,6 @@ channel.bind('deleted-task', deleteMarker);
 channel.bind('applicant-selected-task', applicantSelected);
 channel.bind('new-notification', notifyUser);
 </script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places&callback=initAutocomplete"
+  async defer></script> --}}
 @endsection
