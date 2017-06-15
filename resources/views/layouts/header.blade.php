@@ -30,6 +30,6 @@
 </div>
 @else
 	<div class="header">
-		<h3 style="display:block; margin-left:auto; margin-right:auto;">Aanmelden</h3>
+		<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
 	</div>
 @endif

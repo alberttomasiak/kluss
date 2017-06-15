@@ -10,6 +10,7 @@ use Mail;
 use App\Mail\TaskForApproval;
 use App\Mail\TaskApprovalAdmin;
 use DateTime;
+use App;
 
 class Kluss extends Model
 {
@@ -26,7 +27,8 @@ class Kluss extends Model
                     ->select('kluss.*', 'users.account_type')
                     ->where([
                         ['kluss.closed', '=', 0],
-                        ['kluss.approved', '=', 1]
+                        ['kluss.approved', '=', 1],
+                        ['kluss.blocked', '=', 0]
                     ])
                     ->get();
     }
@@ -34,7 +36,7 @@ class Kluss extends Model
     public static function paginatePublished(){
         return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type', 'users.verified')
-                    ->where([ ['kluss.closed', '=', 0], ['kluss.approved', '=', 1] ])
+                    ->where([ ['kluss.closed', '=', 0], ['kluss.approved', '=', 1], ['kluss.blocked', '=', 0] ])
                     ->orderBy('users.account_type', 'asc')
                     ->orderBy('kluss.date', 'DESC')
                     ->paginate(12);
@@ -230,7 +232,12 @@ class Kluss extends Model
         $message = 'Door een grote hoeveelheid aan rapporteringen werden we verplicht uw klusje "'.$kluss[0]->title.'" te verwijderen.';
         $channel = User::getUserNotificationsChannel($kluss[0]->user_id);
         $notification = Notifications::createNotification($kluss[0]->user_id, $kluss[0]->user_id, $message, null, $channel, "global", $task_id);
-        return self::where('id', $task_id)->delete();
+        $deleted = [
+            'taskID' => $task_id
+        ];
+        $pusher = App::make('pusher');
+        $pusher->trigger("kluss-map", "deleted-task", $deleted);
+        return self::where('id', $task_id)->update(['blocked' => 1]);
     }
 
 }
