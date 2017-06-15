@@ -1,4 +1,5 @@
-<div class="header">
+@if(\Auth::user())
+	<div class="header">
 	<div class="mobile-nav">
 		<div class="menu menu-1">
 			  <span class="menu-item"></span>
@@ -27,3 +28,8 @@
 		</div>
 	</div>
 </div>
+@else
+	<div class="header">
+		<h3 style="display:block; margin-left:auto; margin-right:auto;">Aanmelden</h3>
+	</div>
+@endif

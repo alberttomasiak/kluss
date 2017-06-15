@@ -1,15 +1,34 @@
 @extends('layouts.app')
 @section('content')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script> --}}
 <script type="text/javascript" src="/assets/js/jquery-paginate.min.js"></script>
-<div class="container">
-    <div class="row">
+<div class="main-content-wrap">
+    <div class="">
+        <h1>Klusjes in de buurt</h1>
         <!-- MAP MET KLUSSJES -->
         <div id="map"></div>
         <!-- KLUSSJES IN DE BUURT -->
         <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
+        <form action="/home/task/filter" method="post">
+            {{csrf_field()}}
+            <h3>Filtreer klusjes:</h3>
+            <input type="text" name="kluss_price" placeholder="Prijs" value="">
+            <select class="form-control" name="kluss_time" id="kluss_time">
+                <option value="0:30">30 min.</option>
+                <option value="1:00">1 uur</option>
+                <option value="1:30">1 uur 30 min.</option>
+                <option value="2:00">2 uur</option>
+                <option value="2:30">2 uur 30 min.</option>
+                <option value="3:00">3 uur</option>
+                <option value="3:30">3 uur 30 min.</option>
+                <option value="4:00">4 uur</option>
+            </select>
+            <input id="autocomplete" name="address" class="form-control" placeholder="Adres:"
+                   onFocus="geolocate()" type="text"></input>
+            <input type="hidden" name="latitude" id="kluss__lat" value="">
+            <input type="hidden" name="longitude" id="kluss__lng" value="">
+            <input type="submit" name="form-send" value="Zoek">
+        </form>
         <div class="klussjes-wrap">
         @foreach($cards as $card)
             <a href="/kluss/{{$card->id}}">
@@ -42,6 +61,47 @@
   var poslng;
   var poslatDefault = 51.022636;
   var poslngDefault = 4.486062;
+   var placeSearch, autocomplete;
+   var componentForm = {
+     street_number: 'short_name',
+     route: 'long_name',
+     locality: 'long_name',
+     administrative_area_level_1: 'short_name',
+     country: 'long_name',
+     postal_code: 'short_name'
+   };
+
+   function initAutocomplete() {
+     autocomplete = new google.maps.places.Autocomplete(
+         /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+         {types: ['geocode'],
+         componentRestrictions: {country: "be"}});
+     autocomplete.addListener('place_changed', fillInAddress);
+   }
+
+   function fillInAddress() {
+     var place = autocomplete.getPlace();
+     //console.log(place.geometry.location.lat());
+     $('#kluss__lat').val(place.geometry.location.lat());
+     $('#kluss__lng').val(place.geometry.location.lng());
+   }
+
+   function geolocate() {
+     if (navigator.geolocation) {
+       navigator.geolocation.getCurrentPosition(function(position) {
+         var geolocation = {
+           lat: position.coords.latitude,
+           lng: position.coords.longitude
+         };
+         var circle = new google.maps.Circle({
+           center: geolocation,
+           radius: position.coords.accuracy
+         });
+         autocomplete.setBounds(circle.getBounds());
+       });
+     }
+   }
+
 
   function initGeolocation(){
     if( navigator.geolocation ){
@@ -184,4 +244,5 @@ channel.bind('deleted-task', deleteMarker);
 channel.bind('applicant-selected-task', applicantSelected);
 channel.bind('new-notification', notifyUser);
 </script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places&callback=initAutocomplete"></script>
 @endsection

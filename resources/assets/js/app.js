@@ -6,6 +6,7 @@ $(".menu").click(function(e){
 
 $('.settings-dropdown').click(function(e){
     e.preventDefault();
+    console.log('I get here');
     $('.dropdown-toggle').stop().slideToggle();
 });
 
