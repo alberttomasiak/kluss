@@ -20,7 +20,12 @@
                 @else
                     <form class="" action="/chat/{{$pd->id}}" method="post">
                         {{ csrf_field() }}
+                        @if(areWeCool(\Auth::user()->id, $pd->id) != "")
+                        <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij" disabled>
+                        <p>Contact opnemen met deze gebruiker is niet mogelijk.</p>
+                        @else
                         <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
+                        @endif
                     </form>
                     <a href="#blockModal" data-toggle="modal" role="button" class="btn blockModal btn-danger">Rapporteer gebruiker</a>
                     @include('profile.modals.block')

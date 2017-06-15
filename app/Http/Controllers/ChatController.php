@@ -10,6 +10,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use App\User;
 use App\Conversation;
 use App\Message;
+use App\Notifications;
 use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Str;
 
@@ -49,7 +50,7 @@ class ChatController extends Controller
     {
         date_default_timezone_set('Europe/Brussels');
         // getting user information and the channel name from our blade
-        $user = \App\User::getCurrentUser();
+        $user = User::getCurrentUser();
         $chatChannel = e($request->chatChannel);
         // creating the message, that we will send back to the view
         $message = [
@@ -66,6 +67,20 @@ class ChatController extends Controller
         $sent_message->save();
         // pushing the message back to our view
         $this->pusher->trigger($chatChannel, 'new-message', $message);
+        // notifying the user of an incoming message
+        // about ==> sender, for ==> receiver, message = Naam: bericht, url = /kluss/ID, channel = accepted
+        $conversation = Conversation::getSingleConversationByChatname($chatChannel);
+        $conversation->user_one == \Auth::user()->id ? $for_user = $conversation->user_two : $for_user = $conversation->user_one;
+        $partnerName = User::get($for_user);
+        $about_user = \Auth::user()->id;
+        $message = $sent_message->message;
+        $messageWithName = $partnerName . ": ". $message;
+        $url = "/chat/".$chatChannel."/".str_slug($partnerName);
+        $channel = User::getUserNotificationsChannel($for_user);
+        $type = "chat";
+        // push notification + save in database
+        $this->pusher->trigger($channel, "new-notification", $messageWithName);
+        $notification = Notifications::createNotification($about_user, $for_user, $message, $url, $channel, $type, null);
     }
 
     public function requestChat($id){

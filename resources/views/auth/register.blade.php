@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.logreg')
 
 @section('content')
 <div class="container page-wrap">

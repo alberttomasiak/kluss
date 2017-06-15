@@ -5,25 +5,23 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Location;
 use App\Kluss;
-use App\User;
 use DB;
 use App\Conversation;
 use App\Message;
-use App;
-use App\Notifications;
 
-class HomeController extends Controller
+class KlussGoldController extends Controller
 {
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
     public function __construct()
     {
         $this->middleware('auth');
     }
-
+    
     /**
      * Show the application dashboard.
      *
@@ -31,21 +29,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $klussjes = Kluss::getPublished();
-        Conversation::createConversation(\Auth::user()->email);
-        Message::sendDefaultMessage(\Auth::user()->email);
-        return view('home', compact('klussjes', $klussjes));
+        return view('klussgold');
     }
 
-    public function getTasks(Request $request){
+    public function bestel(Request $request){
+        $months = $request->get('months');
+
+        return view('bestelgold', compact('months', $months));
+    }
+
+    /*public function getTasks(Request $request){
         $lat = $request->get('lat');
         $lng = $request->get('lng');
         $klusjes = Kluss::getTasksInNeighborhood($lat, $lng);
         return [$klusjes];
-    }
-
-    public function notificationsIndex(){
-        $notifications = Notifications::getUserNotifications(\Auth::user()->id);
-        return view('meldingen', compact('notifications', $notifications));
-    }
+    }*/
 }
