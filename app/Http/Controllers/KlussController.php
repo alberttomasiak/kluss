@@ -13,6 +13,8 @@ use App\User;
 use App\Kluss_applicant;
 use App\KlussCategories;
 use App\Notifications;
+use App\KlussFinished;
+use App\KlussPay;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -35,6 +37,13 @@ class KlussController extends Controller
     }
 
     public function add(Request $request){
+        $this->validate($request, [
+            'title' => 'required',
+            'price' => 'integer',
+            'address' => 'required',
+            'kluss_image' => 'image',
+        ]);
+
         $title = $request->title;
         $description = $request->description;
         $kluss_image = $request->kluss_image;
@@ -53,34 +62,32 @@ class KlussController extends Controller
 
         if(Input::hasFile('kluss_image')){
             $file = Input::file('kluss_image');
-            if(substr($file->getMimeType(), 0, 5) == 'image'){
-                $extension = Input::file('kluss_image')->getClientOriginalExtension();
-                $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
-                $destinationPath = "/img/klussjes/". $fileName;
-                $file->move('assets/img/klussjes', $fileName);
-                if($description == ""){
-                    $description = "Geen beschrijving beschikbaar.";
-                }
-                $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
-                $id = Kluss::getLatestID($user_id);
-                if($categoryName != "Overige"){
-                    $kluss = [
-                        'id' => $id,
-                        'title' => $title,
-                        'description' => $description,
-                        'kluss_image' => $destinationPath,
-                        'price' => $price,
-                        'address' => $address,
-                        'date' => $date,
-                        'latitude' => $latitude,
-                        'longitude' => $longitude,
-                        'user_id' => $user_id
-                    ];
-                    $this->pusher->trigger("kluss-map", "new-task", $kluss);
-                }
-                if($task){
-                    return redirect('/home');
-                }
+            $extension = Input::file('kluss_image')->getClientOriginalExtension();
+            $fileName = "kluss-". \Auth::user()->id . time() . "." . $extension;
+            $destinationPath = "/img/klussjes/". $fileName;
+            $file->move('assets/img/klussjes', $fileName);
+            if($description == ""){
+                $description = "Geen beschrijving beschikbaar.";
+            }
+            $task = Kluss::createTask($title, $description, $destinationPath, $price, $address, $date, $latitude, $longitude, $user_id, $category, $time);
+            $id = Kluss::getLatestID($user_id);
+            if($categoryName != "Overige"){
+                $kluss = [
+                    'id' => $id,
+                    'title' => $title,
+                    'description' => $description,
+                    'kluss_image' => $destinationPath,
+                    'price' => $price,
+                    'address' => $address,
+                    'date' => $date,
+                    'latitude' => $latitude,
+                    'longitude' => $longitude,
+                    'user_id' => $user_id
+                ];
+                $this->pusher->trigger("kluss-map", "new-task", $kluss);
+            }
+            if($task){
+                return redirect('/home');
             }
         }else{
             if($description == ""){
@@ -112,11 +119,11 @@ class KlussController extends Controller
 
     public function SingleKluss($id){
         $kluss = Kluss::getSingle($id);
-        $title = Kluss::getSingleTitle($id);
         $kluss_applicant = Kluss_applicant::getApplicant($id);
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
-        return view('kluss/individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant'))->with('title', $title);
+        $paid = KlussPay::getPaidStatus($id);
+        return view('kluss.individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $kluss[0]->title);
     }
 
     public function acceptUser(Request $request){
@@ -129,7 +136,7 @@ class KlussController extends Controller
         $deleteApplicants = Kluss_applicant::deleteNotAcceptedApplicants($taskID);
         // 4. Set the task to accepted in the kluss table
         $applicantTableID = Kluss_applicant::getApplicantTableID($taskID, $acceptedID);
-        $taskStatus = Kluss::acceptUser($taskID, $applicantTableID);
+        $taskStatus = Kluss::acceptUser($taskID, $acceptedID);
         // 5. Remove the apply btn on the task
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($taskID);
         $userImage = $accepted_applicant->profile_pic;
@@ -290,5 +297,70 @@ class KlussController extends Controller
         ];
         $this->pusher->trigger("kluss-map", "deleted-task", $deleted);
         return redirect('/home');
+    }
+
+    // finishing / closing tasks
+    public function markFinished($task_id, $user_id){
+        $mark = KlussFinished::markAsFinished($user_id, $task_id);
+        $marks = KlussFinished::getTaskMarks($task_id);
+
+        $task = Kluss::getSingle($task_id);
+        $maker = $task[0]->user_id;
+        $fixer = $task[0]->accepted_applicant_id;
+
+        // Data both users for notifications
+        // Requirements for a Notification --> $about_user, $for_user, $message, $url, $channel, $type, $kluss_id
+        $type = "global";
+        $urlMakeMark = "/kluss/".$task_id;
+        $urlReview = "/review/".$task_id;
+        $klussID = $task_id;
+        // Data maker
+        $nameMaker = User::get($maker);
+        $channelMaker = User::getUserNotificationsChannel($maker);
+        // Data fixer
+        $nameFixer = User::get($fixer);
+        $channelFixer = User::getUserNotificationsChannel($fixer);
+
+        if($marks == 2){
+            if($user_id == $maker){
+                // notify fixer that the task is closed + /meldingen to both users that the task has been closed correctly.
+                $messageForFixer = $nameMaker." heeft het klusje '". $task[0]->title. "' zojuist afgesloten. Je kan hem/haar nu een review geven door naar de meldingen pagina te gaan of door naar de pagina van het klusje te gaan.";
+                $this->pusher->trigger($channelFixer, "new-notification", $messageForFixer);
+            }else{
+                // notify user ...
+                $messageForMaker = $nameFixer." heeft het klusje '". $task[0]->title. "' zojuist afgesloten. Je kan hem/haar nu een review geven door naar de meldingen pagina te gaan of door naar de pagina van het klusje te gaan.";
+                $this->pusher->trigger($channelMaker, "new-notification", $messageForMaker);
+            }
+            $messageNotifications = $task[0]->title . " werd door beide gebruikers gemarkeerd als afgesloten. Jullie kunnen elkaar nu reviews geven.";
+            $notificationMaker = Notifications::createNotification($maker, $fixer, $messageNotifications, $urlReview, $channelFixer, $type, $klussID);
+            $notificationFixer = Notifications::createNotification($fixer, $maker, $messageNotifications, $urlReview, $channelMaker, $type, $klussID);
+            $close = Kluss::closeTask($task_id);
+            return redirect('/review/'.$task_id);
+        }else{
+            if($user_id == $maker){
+                // notify fixer that the other person marked the task as finished
+                $messageForFixer = $nameMaker." heeft het klusje '". $task[0]->title. "' zojuist gemarkeerd als afgesloten. Voordat deze definitief afgesloten kan worden, moet jij deze ook markeren. Je kan dit doen door naar de pagina van het klusje of naar de meldingen pagina te gaan.";
+                $this->pusher->trigger($channelFixer, "new-notification", $messageForFixer);
+                $notificationMaker = Notifications::createNotification($maker, $fixer, $messageForFixer, $urlMakeMark, $channelFixer, $type, $klussID);
+            }else{
+                // notify user
+                $messageForMaker = $nameFixer." heeft het klusje '". $task[0]->title. "' zojuist gemarkeerd als afgesloten. Voordat deze definitief afgesloten kan worden, moet jij deze ook markeren. Je kan dit doen door naar de pagina van het klusje of naar de meldingen pagina te gaan.";
+                $this->pusher->trigger($channelMaker, "new-notification", $messageForMaker);
+                $notificationFixer = Notifications::createNotification($fixer, $maker, $messageForMaker, $urlMakeMark, $channelMaker, $type, $klussID);
+            }
+            return redirect()->back()->with('thanksfam', 'Het werd geregistreerd. Voor dat het definitief afgesloten wordt moet de andere persoon deze ook afvinken. Er werd een melding verstuurd om de persoon te herinneren.');
+        }
+    }
+
+    public function paypalPage($id){
+        $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
+        $task = Kluss::getSingle($id);
+        $paid = KlussPay::getPaidStatus($id);
+        return view('kluss.paypal', compact('task', 'accepted_applicant', 'paid'));
+    }
+
+    public function processPayment($id){
+        $pay = KlussPay::addPayment($id);
+        return redirect('/kluss/'.$id);
     }
 }

@@ -22,8 +22,7 @@ class Kluss extends Model
 
     public static function getPublished(){
         //return self::where('closed', '=', '0')->get();
-        return DB::table('kluss')
-                    ->join('users', 'kluss.user_id', '=', 'users.id')
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
                     ->where([
                         ['kluss.closed', '=', 0],
@@ -32,13 +31,25 @@ class Kluss extends Model
                     ->get();
     }
 
+    public static function paginatePublished(){
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('kluss.*', 'users.account_type', 'users.verified')
+                    ->where([ ['kluss.closed', '=', 0], ['kluss.approved', '=', 1] ])
+                    ->orderBy('users.account_type', 'asc')
+                    ->orderBy('kluss.date', 'DESC')
+                    ->paginate(12);
+    }
+
     public static function getSingle($id){
         //return self::where('id', '=', $id)->get();
-        return DB::table('kluss')
-                    ->join('users', 'kluss.user_id', '=', 'users.id')
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type')
                     ->where('kluss.id', '=', $id)
                     ->get();
+    }
+
+    public static function get($id){
+        return self::where('id', $id)->first();
     }
 
     public static function getUserHistory($user_id){
@@ -111,7 +122,7 @@ class Kluss extends Model
             		)
                ) AS distance
                FROM kluss
-               WHERE approved = 1
+               WHERE approved = 1 AND closed = 0
                HAVING distance < 2
                ORDER BY distance;"));
     }
@@ -176,6 +187,23 @@ class Kluss extends Model
         else if ($weeks <= 4.3){ if($weeks == 1){ return "Vorige week"; } else { return "$weeks weken geleden"; } }
         else if($months <= 12){ if($months == 1){ return "Vorige maand"; } else { return "$months maanden geleden"; } }
         else{ if($years == 1){ return "Vorig jaar"; } else { return "$years jaar geleden"; } }
+    }
+
+    // CRON JOB FUNCTIONS
+    public static function getTasksForReview(){
+        $dataE = Carbon::yesterday();
+        $yesterday = $dataE->format('Y-m-d')." 00:00:00";
+        $now = $dataE->format('Y-m-d')." 23:59:59";
+        // return $yesterday . " " . $now;
+        return $tasks = self::where([
+            ['closed', '0']])
+            ->whereBetween('date', [$yesterday, $now])
+            ->whereNotNull('accepted_applicant_id')
+            ->get();
+    }
+
+    public static function closeTask($id){
+        return self::where('id', $id)->update(['closed' => '1']);
     }
 
 }

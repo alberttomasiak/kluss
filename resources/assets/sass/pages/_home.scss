@@ -1,47 +1,14 @@
 body{
     overflow-x: hidden;
 }
-
-.card--title-black{
-    color: black;
-}
-
-.home-h2{
-    font-size: 3em;
-}
-
-.card-wrap{
-    display: block;
-    max-height: 650px;
-}
-
-.card--description{
-    display: block;
-    padding-top: 30px;
-    margin-bottom: 25px;
-}
-
-.klussjes-wrap{
-    display: block;
-    height: auto;
-    margin-bottom: 40px;
-}
-
 #map{
     display: block;
     width: 100%;
-    height: 600px;
+    height: 300px;
     margin: 0;
     margin-top: 30px;
     padding: 0;
 }
-
-.card{
-    display: block;
-    max-height: 600px;
-    overflow:hidden;
-}
-
 .gm-style-iw{
     width: 350px !important;
    top: 0 !important;
@@ -51,16 +18,33 @@ body{
    border: 1px solid rgba(72, 181, 233, 0.6);
    border-radius: 2px 2px 0 0;
 }
-
-#iw-container{
+#iw-container {
     display: block;
     width: 350px;
+    padding: 5px;
 }
-
-.card-image-wrap{
+.markerinfo {
+    font-size: 1.0em;
+    padding: 8px;
+}
+.markertitle {
+     font-size: 1.4em;
+     color: #2E9C4E;
+     font-weight: bold;
+ }
+.markeraddress {
+    text-align: center;
+}
+.markercta {
+    color: white;
+    background-color: #2E9C4E;
+    font-weight: bold;
+    padding: 2%;
+    border-radius: 50px;
     display: block;
-    max-height: 200px;
-    overflow: hidden;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
 }
 .map-image-wrap{
     display: block;
@@ -73,15 +57,135 @@ body{
     max-height: 300px;
 }
 
-@media screen and (min-width: 1000px){
-    .card-wrap{
+// let's style the cards
+.klussjes-wrap{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: auto;
+    margin-bottom: 40px;
+    a{
+        width: 100%;
+        text-decoration: none;
+        color: #677578;
+        margin-bottom: 1em;
+        &:hover{
+            text-decoration: none;
+        }
+    }
+}
+.task-card{
+    width: 100%;
+    box-shadow: 0 2px 3px rgba(0,0,0,.16);
+    position: relative;
+    .task-image{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
         display: block;
+        width: 100%;
+        height: 200px;
+    }
+    .task-details{
+        padding-left: 1em;
+        padding-right: 1em;
+        position: relative;
+        min-height: 100px;
+        padding-bottom: 1em;
+    }
+    .task-title-time{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        padding-top: .75em;
+        width: 85%;
+        .task-title{
+            font-size: .9em;
+            margin-right: .5em;
+            text-transform: uppercase;
+            max-width: calc(100% - 85px);
+        }
+        .task-time{
+            margin-top: -.2em;
+            color: $washington;
+            width: 85px;
+        }
+    }
+    .task-price{
+        display: block;
+        font-size: 1.5em;
+        position: absolute;
+        right: .75em;
+        top: .1em;
+        color: $washington;
+    }
+}
+
+.main-content-wrap {
+    h1, h2{
+        &::after{
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #eee;
+            margin-top: .5em;
+            margin-bottom: 1em;
+        }
+    }
+}
+
+@media only screen and(min-width: 480px){
+    .task-card .task-image{
+        height: 250px;
+    }
+}
+
+@media only screen and(min-width: 768px){
+    #map{
+        height: 300px;
+    }
+    .klussjes-wrap{
+        justify-content: flex-start;
+    }
+    .klussjes-wrap a{
+        width: 48%;
+        margin-left: 1%;
+        margin-right: 1%;
+    }
+    .task-card .task-details{
+        height: 125px;
+    }
+}
+
+@media screen and (min-width: 1000px){
+    #map{
         height: 600px;
     }
+}
 
-    .card-image-wrap{
-        display: block;
-        max-height: 365px;
-        overflow: hidden;
+@media only screen and (min-width: 1365px){
+    .klussjes-wrap a{
+        width: 32%;
+        margin-left: .66%;
+        margin-right: .66%;
+    }
+    .task-card .task-image{
+        height: 200px;
+    }
+    .task-card .task-title-time{
+        .task-title{ width: calc(100% - 90px); }
+        .task-time{ width: 90px; }
+    }
+}
+
+@media only screen and (min-width: 1520px){
+    .klussjes-wrap a{
+        width: 23.5%;
+        margin-left: .75%;
+        margin-right: .75%;
+    }
+    .task-card .task-details{
+        height: 150px;
     }
 }

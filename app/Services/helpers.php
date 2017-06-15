@@ -16,4 +16,13 @@ if(!function_exists("spillvalue")){
     function ChatParticipators($channel){
         return \App\Conversation::getSingleConversationByChatname($channel);
     }
+    function goldEnd($user_id){
+        return \App\GoldStatus::getGoldEnd($user_id);
+    }
+    function didIMark($user_id, $task_id){
+        return \App\KlussFinished::getUserTaskMarker($user_id, $task_id);
+    }
+    function userNameGet($id){
+        return \App\User::get($id);
+    }
 }

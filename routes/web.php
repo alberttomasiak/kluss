@@ -31,7 +31,8 @@ Route::get('/logout', function(){
 });
 
 // test routes --> to be deleted
-
+Route::get('/test', 'HomeController@taskReviews');
+// Route::post('/test', 'HomeController@test');
 // end test routes
 
 Route::group(['middleware' => ['auth']], function(){
@@ -43,7 +44,7 @@ Route::group(['middleware' => ['auth']], function(){
     // kluss routes
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
-    Route::get('/kluss/{id}', 'KlussController@singleKluss');
+    Route::get('/kluss/{id}', 'KlussController@singleKluss')->middleware('taskChecker');
     // kluss solliciteren / bewerken routes
     Route::get('/kluss/{id}/bewerken', 'KlussController@update');
     Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
@@ -51,6 +52,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/sollicitant/{userid}/accepteren', 'KlussController@acceptUser');
     Route::post('/kluss/{id}/sollicitant/{userid}/weigeren', 'KlussController@refuseUser');
     Route::get('/kluss/{id}/verwijderen', 'KlussController@delete');
+    Route::post('/kluss/{task_id}/{user_id}/finished', 'KlussController@markFinished');
+    Route::get('/kluss/{id}/betalen', 'KlussController@paypalPage');
+    Route::post('/kluss/{id}/betalen', 'KlussController@processPayment');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
@@ -59,13 +63,18 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/chat/message', 'ChatController@postMessage');
     Route::post('/chat/{id}', 'ChatController@requestChat');
     Route::get('/chat/{chatname}/{user}', 'ChatController@startChat')->middleware('chatusers');
-    Route::get('/klussgold', 'KlussGoldController@index');
-    Route::get('/bestel', 'KlussGoldController@bestel');
-    Route::get('/review', 'ReviewController@index');
     // meldingen
     Route::get('/meldingen', 'HomeController@notificationsIndex');
     // Settings
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
+    // Gold
+    Route::get('/klussgold', 'KlussGoldController@index');
+    Route::post('/klussgold/bestellen/{duration}', 'KlussGoldController@bestel');
+    Route::get('/klussgold/bestellen/{duration}', 'KlussGoldController@Indexify');
+    Route::post('/bestel/{user_id}/{duration}', 'KlussGoldController@purchaseGold');
+    // Reviews
+    Route::get('/review/{task_id}', 'ReviewController@index')->middleware('reviewpermission');
+    Route::post('/review/{task_id}', 'ReviewController@add');
 });
 
 Route::group(['prefix' => 'admin'], function () {

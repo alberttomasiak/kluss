@@ -1,54 +1,202 @@
 .header {
+    width: 100%;
+    height: 60px;
+    box-shadow: 0 3px 2px -2px gray;
+    background-color: $primaryWhite;
+    color: $washington;
     display: flex;
-    flex: 0 0 auto;
-    background-color: #2e9c4e;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    font-size: 16px;
-    color: #FFF;
-    font-weight: bold;
-    text-align: center;
-    text-transform: uppercase;
-    flex-direction: row;
-    -webkit-flex-direction: row;
-    .kluss--logo{
+    flex-direction: column;
+    position: fixed;
+    z-index: 10;
+    .mobile-nav {
+        width: 100%;
         display: block;
-        width: 60px;
-        height: 40px;
-        background-image: url('../img/logo-klusswit.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size:contain;
-    }
-    .left-icons {
-        display: flex;
-        justify-content: flex-start;
-        flex: 1;
-        align-items: center;
-        padding-left: 20px;
-    }
-    .middle-icons {
-        display: flex;
-        justify-content: center;
-        flex: 2;
-        align-items: center;
-    }
-    h5 {
-        margin-bottom: 0px;
-    }
-    .right-icons {
-        display: flex;
-        justify-content: flex-end;
-        flex: 1;
-        align-items: center;
-        padding-right: 20px;
-        a {
-            display: flex;
-            margin-right: 15px;
-            width: 20px;
-            height: 20px;
-            color: white;
-
+        margin-top: .5em;
+        $menu-width: 30px;
+        $menu-height: 20px;
+        .menu {
+            width: $menu-width;
+            height: $menu-height;
+            margin-left: -($menu-width / 2);
+            margin-top: -($menu-height / 2);
+            &:hover { cursor: pointer; }
+        }
+        .menu-1 {
+            position: absolute;
+            top: 1em;
+            left: 1em;
+            margin-left: .1em;
+            margin-top: .5em;
+            &.open {
+                .menu-item {
+                    background: $washington;
+                    &:first-child {
+                        -webkit-transform: rotate(45deg);
+                          -ms-transform: rotate(45deg); // IE9 only
+                          transform: rotate(45deg);
+                          -webkit-transform-origin: 5px;
+                           -moz-transform-origin: 5px;
+                            -ms-transform-origin: 5px; // IE9 only
+                            transform-origin: 5px
+                    }
+                    &:nth-child(2) { opacity: 0; }
+                    &:nth-child(3) {
+                        -webkit-transform: rotate(-45deg);
+                          -ms-transform: rotate(-45deg); // IE9 only
+                          transform: rotate(-45deg);
+                          -webkit-transform-origin: 3px;
+                           -moz-transform-origin: 3px;
+                            -ms-transform-origin: 3px; // IE9 only
+                            transform-origin: 3px
+                    }
+                }
+            }
+        }
+        .menu-item {
+            transition: all .2s;
+            display: block;
+            width: $menu-width;
+            height: 3px;
+            margin: 0 0 5px;
+            background: $washington;
+        }
+        .hamburger-logo {
+            display: block;
+            width: 40px;
+            height: 45px;
+            position: absolute;
+            top: .5em;
+            left: calc(50% - 20px);
+            img { display: block; width: 100%; }
         }
     }
+    .header-nav {
+        display: none;
+        background-color: $primaryWhite;
+        width: 100%;
+        z-index: -10;
+        height: 100vh;
+        margin-top: 62px;
+        position: absolute;
+        a {
+            display: block;
+            width: 100%;
+            height: 50px;
+            border-bottom: 1px solid #eee;
+            color: $washington;
+            margin-top: 1em;
+            font-size: .9em;
+            text-transform: uppercase;
+            padding-left: 1.5em;
+            text-decoration: none;
+            &:active { text-decoration: none; }
+            img { display: block; width: 30px; margin-right: 1.25em; float: left; }
+            p { padding-top: 1em; }
+            .mail-img { padding-top: .75em; }
+        }
+        .right-icons {
+            .dropdown-toggle {
+                display: none;
+                li {
+                    list-style-type: none;
+                    font-size: .9em;
+                    height: 30px;
+                    background-color: #eee;
+                    border-bottom: 1px solid #d5d5d5;
+                    margin-left: -40px;
+                    a { margin: 0; padding-top: 10px; height: 20px; border-bottom: none; }
+                    span { padding-left: 4em; }
+                }
+            }
+        }
+    }
+    .visible { display: block; }
+    .middle-icons { order: 1; display: none; }
+}
+@media only screen and (min-width: 768px) {
+    .header {
+        position: absolute;
+        .mobile-nav { display: none; }
+        .header-nav {
+            display: block;
+            height: 55px;
+            position: absolute;
+            top: 0;
+            margin-top: 0;
+            padding-top: 0;
+            .left-icons {
+                display: flex;
+                flex-direction: row;
+                width: 300px;
+                position: absolute;
+                left: 4em;
+                order: 1;
+                font-size: .8em;
+                a:first-child() { width: 190px; }
+            }
+            .middle-icons {
+                display: block;
+                order: 2;
+                position: absolute;
+                left: calc(50% - 20px);
+            }
+            .right-icons {
+                display: flex;
+                flex-direction: row;
+                order: 3;
+                font-size: .8em;
+                position: absolute;
+                width: 300px;
+                right: 1em;
+            }
+            a {
+                border: none;
+                padding-left: 0;
+                img { margin-right: .5em; }
+            }
+        }
+    }
+    .header .header-nav .right-icons .dropdown-toggle {
+        position: absolute;
+        display: none;
+        width: 200px;
+        text-align: center;
+        background-color: #FFFFFA;
+        border: 1px solid $washington;
+        top: 6em;
+        right: .5em;
+        &::before {
+            content: "";
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 1em solid transparent;
+            border-right: 1em solid transparent;
+            border-bottom: 1em solid $washington;
+            position: absolute;
+            right: calc(50% - 1em);
+            top: -1em;
+        }
+        li {
+            background-color: transparent;
+            span { padding-left: 0; }
+        }
+    }
+}
+@media only screen and (min-width: 1024px) {
+    .header .header-nav .left-icons {
+        width: 450px;
+        a { width: 200px; }
+    }
+    .header .header-nav .right-icons { width: 350px; }
+    .header .header-nav .right-icons a:first-child { margin-right: 2em; width: 360px; }
+    .header .header-nav .right-icons .dropdown-toggle li a { width: 100%;}
+}
+@media only screen and (min-width: 1365px) {
+    .header .header-nav .left-icons,
+    .header .header-nav .right-icons {
+        font-size: .9em;
+        img { margin-right: 1.5em; }
+    }
+    .notif-img { margin-top: .2em; }
 }

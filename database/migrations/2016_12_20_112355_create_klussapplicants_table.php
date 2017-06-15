@@ -26,7 +26,7 @@ class CreateKlussapplicantsTable extends Migration
         });
 
         Schema::table('kluss', function(Blueprint $table){
-            $table->foreign('accepted_applicant_id')->references('id')->on('kluss_applicants')->onDelete('cascade');
+            $table->foreign('accepted_applicant_id')->references('user_id')->on('kluss_applicants')->onDelete('cascade');
         });
 
     }

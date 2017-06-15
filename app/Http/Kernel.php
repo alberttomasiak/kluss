@@ -53,6 +53,8 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'chatusers'=> \App\Http\Middleware\ChatUserMiddleware::class,
-        'AdminAccess' => \App\Http\Middleware\AdminAccess::class
+        'AdminAccess' => \App\Http\Middleware\AdminAccess::class,
+        'reviewpermission' => \App\Http\Middleware\TaskReviewPermissionMiddleware::class,
+        'taskChecker' => \App\Http\Middleware\TaskCheckerMiddleware::class,
     ];
 }

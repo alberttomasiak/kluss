@@ -84,6 +84,11 @@
           for(var i = 0; i < kluss.length; i++){
               marks[i] = addMarker(kluss[i]);
           }
+          center = map.getCenter();
+          google.maps.event.addDomListener(window, 'resize', function() {
+
+              map.setCenter(center);
+          });
       }
 
       function addMarker(kluss){
@@ -136,9 +141,6 @@
         });
 
         return mark;
-        google.maps.event.addListener(infoWindow, 'domready', function() {
-            console.log('eyo');
-        });
     }
     initGeolocation();
     @endforeach
@@ -188,18 +190,43 @@
                             </div>
                         @endif
                     @else
+                        @if(\Auth::user()->id == $kl->user_id && $paid == "")
+                            <p>Er moet nog betaald worden voor het klusje. Je kan dit doen door op de knop hieronder te klikken.</p>
+                            <a href="/kluss/{{$kl->id}}/betalen">Kluss betalen</a>
+                        @endif
                         <div class="selected--applicant">
                             <h3>Gekozen klusser:</h3>
                             <div class="applicant--info">
                                 <img class="applicant-image" src="/assets{{$accepted_applicant->profile_pic}}" alt="{{$accepted_applicant->name}}'s profile pic'">
                                 <a href="/profiel/{{$accepted_applicant->id}}/{{$accepted_applicant->name}}">{{$accepted_applicant->name}}</a>
-                                @if($kl->user_id == \Auth::user()->id)
-                                    <form action="/chat/{{$accepted_applicant->id}}" method="post">
-                                        {{csrf_field()}}
-                                        <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
-                                    </form>
-                                @endif
+                                <div class="applicant--btn-tab">
+                                    @if($kl->user_id == \Auth::user()->id)
+                                        <form action="/chat/{{$accepted_applicant->id}}" method="post">
+                                            {{csrf_field()}}
+                                            <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
+                                        </form>
+                                    @endif
+                                </div>
                             </div>
+                        </div>
+                        <div class="selected--applicant-close">
+                            @if(\Auth::user()->id == $kl->user_id || \Auth::user()->id == $kl->accepted_applicant_id)
+                                <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
+                                    {{csrf_field()}}
+                                    @if(\Auth::user()->id == $kl->user_id)
+                                        <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" && $paid != "" ? '' : 'disabled'}}>
+                                    @else
+                                        <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" ? '' : 'disabled'}}>
+                                    @endif
+                                    @if(didIMark(\Auth::user()->id, $kl->id))
+                                        <p>Je hebt dit klusje al gemarkeerd als afgesloten. Je kan een review over de gebruiker hier schrijven:</p>
+                                        <a href="/review/{{$kl->id}}" class="btn btn-success">Review schrijven</a>
+                                    @endif
+                                    @if(session('thanksfam'))
+                                        <p>{{session('thanksfam')}}</p>
+                                    @endif
+                                </form>
+                            @endif
                         </div>
                     @endif
                 </div>
