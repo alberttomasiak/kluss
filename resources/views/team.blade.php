@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.logreg')
 @section('content')
     <div class="main-content-wrap">
-        <div class="addboxshadow">
             <h1 class="contentpage_pagetitle">Wie zijn we?</h1>
             <!--<hr class="contentpage_ruler">-->
             <div>
@@ -29,7 +28,5 @@
                 </p>
                 <a href="/contact" class="staff_cta">Contacteer ons!</a>
             </div>
-
-        </div>
     </div>
 @endsection

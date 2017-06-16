@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.logreg')
 @section('content')
     <div class="main-content-wrap">
-        <div class="addboxshadow">
             <h1 class="contentpage_pagetitle">Contact</h1>
             <div class="contact_wrapper">
                 <p class="contentpage_paragraph">
@@ -31,7 +30,6 @@
                     </form>
                 </div>
             </div>
-        </div>
     </div>
 
 @endsection

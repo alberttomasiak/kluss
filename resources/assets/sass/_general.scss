@@ -4,6 +4,7 @@ $androidgreen: #8bc53f;
 $primaryWhite: #FFFFFA;
 $generalbg: #f3f3f3;
 $raspberry: #911137;
+$notificationsgreen: #EAFDD1;
 
 // FONTS INLADEN HIER,
 @font-face { font-family: "Coolvetica"; src: url('../fonts/coolvetica_rg.ttf'); }
@@ -51,6 +52,20 @@ h6{ }
     flex-direction: row;
     flex-wrap: wrap;
     li a{ width: 100%; }
+}
+
+.addboxshadow {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -o-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+}
+
+
+// Viewports
+
+@media only screen and (min-width: 768px){
+    .page-content{min-height: calc(100vh - 215px);}
 }
 
 @media only screen and (min-width: 1365px){

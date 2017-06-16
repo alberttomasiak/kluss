@@ -61,7 +61,7 @@ class Message extends Model
                         ['messages.is_seen', 0],
                         ['messages.user_id', '<>', $user_id]
                     ])
-                    ->orWHere([
+                    ->orWhere([
                         ['conversations.user_two', $user_id],
                         ['messages.is_seen', 0],
                         ['messages.user_id', '<>', $user_id]

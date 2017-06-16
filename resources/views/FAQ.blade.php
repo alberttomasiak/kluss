@@ -1,7 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.logreg')
 @section('content')
     <div class="main-content-wrap">
-        <div class="addboxshadow">
             <h1 class="contentpage_pagetitle">FAQ</h1>
             <div class="faqtable">
                 <div class="faq_question">
@@ -58,8 +57,6 @@
                     <p class="answer">Voor vragen kan je altijd terecht bij <a href="mailto:contact@kluss.be.">contact@kluss.be.</a></p>
                 </div>
             </div>
-        </div>
     </div>
 
 @endsection
-
