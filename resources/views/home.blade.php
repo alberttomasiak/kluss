@@ -3,6 +3,7 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places"></script>
 <script type="text/javascript" src="/assets/js/jquery-paginate.min.js"></script>
 <div class="main-content-wrap">
+    <div class="goldad">Zo te zien heb je nog geen Kluss Gold... Ontdek het <a href="/klussgold">hier</a>!</div>
     <div class="">
         <h1>Klusjes in de buurt</h1>
         <!-- MAP MET KLUSSJES -->
@@ -32,7 +33,7 @@
         <div class="klussjes-wrap">
         @if(!isset($filtered))
             @foreach($cards as $card)
-                <a href="/kluss/{{$card->id}}">
+                <a href="/kluss/{{$card->id}}" class="animationout">
                     <div class="task-card">
                         <div class="task-image" style="background-image: url('/assets{{$card->kluss_image}}');"></div>
                         <div class="task-details">
@@ -79,6 +80,7 @@
         @endif
         </div>
     </div>
+    <div class="goldad">Wil je meer uit je Kluss-belevenis halen? Ontdek het <a href="/klussgold">hier</a>!</div>
 </div>
 <script type="text/javascript">
   var map;

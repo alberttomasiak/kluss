@@ -9,38 +9,84 @@
 </head>
 <body id="landing-body">
 
-    <div class="landing_container">
-        <div class="col-sm-12">
-        <div class="col-sm-5 col-sm-offset-1">
-            <div class="landing_intro_map">
-                <img src="assets/img/Map2.jpg" alt="logo" class="landing-image-map">
-            </div>
+    <div class="landing_header">
+        <div class="landing_logo"><img src="/assets/img/logo-klusswit.png" alt="Logo kluss"></div>
+        <div class="landing_headerbtns">
+            <a href="/register" class="landing_headerbtn"><div class="landing_btngreen">Registreer</div></a>
+            <a href="/login" class="landing_headerbtn"><div class="landing_btnwhite">Log in</div></a>
         </div>
-            <div class="col-sm-5">
-                <img src="assets/img/logo-klusswit.png" alt="logo" class="landing_intro_logo">
-                <br>
-                <p class="landing_intro_welcometxt col-sm-12">KLUSS laat je toe om alle overblijvende klusjes open te stellen aan klussers uit de buurt, of om zelf klusjes uit de buurt te vinden en op te knappen voor een beloning. Vanaf nu hoeven er nooit meer klusjes te blijven liggen tot later!    Get KLUSS'ing!</p>
-                <div class="landing_intro_ctas col-sm-12">
-                    <a href="{{ url('/register') }}" class="btn btn--form landing_cta">REGISTREER</a>
-                    <a href="{{ url('/login') }}" class="btn btn--form landing_cta">LOG IN</a>
+    </div>
+
+    <div class="landing_container">
+        <div class="landing_content_intro">
+            <div class="intro_wrapper">
+                <h1 class="landing_title">Betrouwbaar klussen voor en door buurtbewoners</h1>
+                <hr class="intro_ruler">
+                <p class="intro_headtxt">
+                    KLUSS is een betrouwbaar online platform dat je toelaat om klusjes in de buurt kunt aannemen en zo bijklussen om wat bij te verdienen.
+                    <br><br>
+                    Zo brengen we mensen dichter bij elkaar, en lossen we elkaars problemen op! 
+                    Voor de fanatieke klussers hebben we ook een speciaal premiumpakket waarmee je gemakkelijker klusjes vindt en meer kunt gaan klussen.
+                </p>
+                <div class="landing_map">
+                    <img src="/assets/img/landingkaart.png" alt="mappie">
                 </div>
             </div>
         </div>
-        <footer class="landing_footer">
-            <div class="footer_list">
-                <a href="#" class="landing_footer_link">Wat is KLUSS</a>
-                &#124;
-                <a href="#" class="landing_footer_link">Team</a>
-                &#124;
-                <a href="#" class="landing_footer_link">Partners</a>
-                &#124;
-                <a href="#" class="landing_footer_link">Privacy</a>
-                &#124;
-                <a href="#" class="landing_footer_link">Contact</a>
+        <div class="landing_content_traits">
+            <div class="landing_trait">
+                <img src="/assets/img/betrouwbaar.png" alt="betrouwbaar" class="landing_traitimg">
+                <h1 class="landing_title">Betrouwbaar</h1>
+                <p class="trait_headtxt">Op ons platorm werken we aan de veiligheid van de omgeving, om je een optimale ervaring te bieden.</p>
             </div>
-        </footer>
+            <div class="landing_trait">
+                <img src="/assets/img/snel.png" alt="snel" class="landing_traitimg">
+                <h1 class="landing_title">Snel</h1>
+                <p class="trait_headtxt">Kluss is vliegensvlug en efficiënt. Vind binnen enkele kliks klusjes op maat in de buurt.</p>
+            </div>
+            <div class="landing_trait">
+                <img src="/assets/img/uniek.png" alt="uniek" class="landing_traitimg">
+                <h1 class="landing_title">Uniek</h1>
+                <p class="trait_headtxt">Een unieke ervaring; we zijn de eersten op de markt die op deze manier klusjes aanbieden.</p>
+            </div>
+        </div>
+        <div class="landing_content_actions">
+            <div class="intro_wrapper">
+                <h1 class="landing_title">KLUSS proberen? Het is GRATIS!</h1>
+                <hr class="intro_ruler">
+                <div class="landing_ctas">
+                    <div class="landing_ctabox ctabox1">
+                        <p class="landing_ctatitle">Ik wil bijklussen in de buurt!</p>
+                        <a href="/register"><div class="landing_ctabtn btngreen">Start!</div></a>
+                    </div>
+                    <div class="landing_ctabox ctabox2">
+                        <p class="landing_ctatitle ctatitle2">Ik zoek een klusser!</p>
+                        <a href="/register"><div class="landing_ctabtn btnwhite">Zoek!</div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <footer class="main--footer">
+        <div class="footer_list">
+            <a href="/" class="landing_footer_link">KLUSS</a>
+            <a href="/team" class="landing_footer_link">Team</a>
+            <a href="/terms" class="landing_footer_link">Algemene Voorwaarden</a>
+            <a href="/FAQ" class="landing_footer_link">FAQ</a>
+            <a href="/contact" class="landing_footer_link">Contact</a>
+            <a href="/klussgold" class="landing_footer_link">Kluss Gold</a>
+            <a href="https://www.facebook.com/klussapp/" class="landing_footer_link">Facebook</a>
+            <a href="https://twitter.com/Klussapp" class="landing_footer_link">Twitter</a>
+        </div>
+        <div class="extra--info">
+            <a href="mailto:hi@kluss.be">hi@kluss.be</a>
+            <p>&copy; Kluss - All Rights Reserved</p>
+            <p>Lange Ridderstraat 44, 2800 Mechelen</p>
+        </div>
+    </footer>
+
+    <!--
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="assets/js/app.js"></script>
     <script>
@@ -49,6 +95,6 @@
         window.onresize=function(){
             $(".landing_body").css("height", window.innerHeight-60 + "px");
         };
-    </script>
+    </script>-->
 </body>
 </html>
