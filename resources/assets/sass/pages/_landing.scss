@@ -30,6 +30,9 @@
     justify-content: space-around;
     .landing_headerbtn {
         width: 40%;
+        &:hover{
+            text-decoration: none;
+        }
     }
     .landing_btngreen {
         display: block;
@@ -41,6 +44,8 @@
         padding: 1%;
         text-align: center;
         border-radius: 100px;
+        transition: all .3s;
+        &:hover{ background-color: $darkWashington; }
     }
     .landing_btnwhite {
         display: block;
@@ -52,6 +57,8 @@
         padding: 1%;
         text-align: center;
         border-radius: 100px;
+        transition: all .3s;
+        &:hover{ background-color: #ffffd8; }
     }
 
 }
@@ -176,13 +183,17 @@
     }
 
     .landing_headerbtns {
-        width: 35%;
+        width: 400px;
         margin-left: 30%;
         margin-right: 0%;
         display: flex;
+        height: 55px;
+        position: absolute;
+        right: 5em;
+        // top: 3em;
         .landing_headerbtn {
-            width: 49%;
-            padding: 2%;
+            width: 175px;
+            height: 65px;
         }
         .landing_btngreen {
             background-color: $washington;
@@ -191,9 +202,11 @@
             font-size: 1.2em;
             text-align: center;
             border-radius: 100px;
-            width: 70%;
+            width: 100%;
             margin-top: 8%;
-            padding: 4%;
+            // padding: 4%;
+            padding-top: .5em;
+            padding-bottom: .5em;
         }
         .landing_btnwhite {
             font-size: 1em;
@@ -202,9 +215,11 @@
             font-size: 1.2em;
             text-align: center;
             border-radius: 100px;
-            width: 70%;
+            width: 100%;
             margin-top: 8%;
-            padding: 4%;
+            // padding: 4%;
+            padding-top: .5em;
+            padding-bottom: .5em;
         }
     }
 
@@ -240,4 +255,8 @@
     .landing_trait {
         width: 32%;
     }
+}
+
+@media only screen and (min-width: 1365px){
+    .landing_headerbtns{top: 1em;}
 }
