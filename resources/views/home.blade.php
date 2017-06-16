@@ -258,10 +258,6 @@ function applicantSelected(data){
     markers[data.taskID].setIcon("/assets/img/marker_2-klein.png");
 }
 
-function notifyUser(data){
-    alert(data);
-}
-
 // channel subscriptions
 var channel = pusher.subscribe("kluss-map");
 // channel binds
@@ -269,7 +265,6 @@ channel.bind("test", notifyUser);
 channel.bind('new-task', appendMarker);
 channel.bind('deleted-task', deleteMarker);
 channel.bind('applicant-selected-task', applicantSelected);
-channel.bind('new-notification', notifyUser);
 </script>
 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places&callback=initAutocomplete"
   async defer></script> --}}

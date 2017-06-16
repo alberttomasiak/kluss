@@ -54,8 +54,9 @@
   }
 
   function checkStatus(){
-      var messages = "{{checkMsgs(\Auth::user()->id)}}";
-      var notifs = "{{checkNtfs(\Auth::user()->id)}}";
+      var messages = "{{ checkMsgs(\Auth::user()->id) }}";
+      var notifs = "{{ checkNtfs(\Auth::user()->id) }}";
+      console.log(messages + " " + notifs);
       if(messages > 0){
           $('.add-msg-here').addClass('new-msg');
       }
