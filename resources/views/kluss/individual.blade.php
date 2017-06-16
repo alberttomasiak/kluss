@@ -49,7 +49,7 @@
                      if($distance > {{ spillvalue("limit_starter")}} ){
                          // 2 km for standard users
                          $('.apply-btn a').remove();
-                         $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="#">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
+                         $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="/klussgold">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
                      }
                  }else{
                      // Distance of 5KM for all Gold Users + admins
@@ -168,6 +168,14 @@
                 <div class="col-md-6 kluss-data">
                     <h1>{{$kl->title}}</h1>
                     <p>{{$kl->description}}</p></br></br>
+                    @if(blockChecker($kl->id, \Auth::user()->id) == "" && \Auth::user()->id != $kl->user_id)
+                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger">Rapporteren</a>
+                        @include('kluss.modals.report', ['id' => $kl->id])
+                    @elseif(blockChecker($kl->id, \Auth::user()->id) != "" && \Auth::user()->id != $kl->user_id)
+                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger" disabled>Rapporteren</a>
+                        @include('kluss.modals.report', ['id' => $kl->id])
+                        <p>Dit klusje werd door u al gerapporteerd. De beheerders zijn dit aan het onderzoeken.</p>
+                    @endif
                     <b>{{preg_replace('/[0-9]+/', '', $kl->address)}}</b></br>
                     <b>{{$kl->price}} Credits</b></br></br>
                     @if($accepted_applicant == null)

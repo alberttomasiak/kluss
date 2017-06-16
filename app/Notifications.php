@@ -37,4 +37,15 @@ class Notifications extends Model
                     ->orderBy('user_notifications.date', 'desc')
                     ->paginate(5);
     }
+
+    public static function readUserNotifications($user_id){
+        return self::where('for_user', $user_id)->update(['read' => 1]);
+    }
+
+    public static function getUserUnreadNotifications($user_id){
+        return self::where([
+            ['for_user', $user_id],
+            ['read', 0]
+        ])->count();
+    }
 }

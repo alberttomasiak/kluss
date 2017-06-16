@@ -94,6 +94,9 @@
             p { padding-top: 1em; }
             .mail-img { padding-top: .75em; }
         }
+        .left-icons a{
+            position: relative;
+        }
         .right-icons {
             .dropdown-toggle {
                 display: none;
@@ -113,6 +116,18 @@
     .visible { display: block; }
     .middle-icons { order: 1; display: none; }
 }
+
+.new-notif, .new-msg{
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    background-color: red;
+    position: absolute;
+}
+.new-msg{ left: 3.4em; top: .6em; }
+.new-notif{ left: 3.3em; top: .5em; }
+
 @media only screen and (min-width: 768px) {
     .header {
         position: absolute;
@@ -182,6 +197,8 @@
             span { padding-left: 0; }
         }
     }
+    .new-msg{ left: 2.5em; top: .6em; }
+    .new-notif{ left: 2.2em; top: .5em; }
 }
 @media only screen and (min-width: 1024px) {
     .header .header-nav .left-icons {
@@ -199,4 +216,6 @@
         img { margin-right: 1.5em; }
     }
     .notif-img { margin-top: .2em; }
+    .new-msg{ left: 2.3em; top: .6em; }
+    .new-notif{ left: 2em; top: .5em; }
 }
