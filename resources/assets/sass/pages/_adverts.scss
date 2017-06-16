@@ -1,0 +1,11 @@
+.goldad {
+  background: -moz-linear-gradient(left, #d69b2f 0%, #fccd4d 20%, #edd865 48%, #f8b500 80%, #ce923d 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #d69b2f 0%,#fccd4d 20%,#edd865 48%,#f8b500 80%,#ce923d 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #d69b2f 0%,#fccd4d 20%,#edd865 48%,#f8b500 80%,#ce923d 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d69b2f', endColorstr='#ce923d',GradientType=1 );
+  text-align: center;
+  font-family: 'Coolvetica', sans-serif;
+  padding: 2%;
+  font-size: 2em;
+}
+
