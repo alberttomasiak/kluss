@@ -1,0 +1,49 @@
+.contact_wrapper {
+  margin-bottom: 50px;
+}
+
+.contact_form {
+  width: 90%;
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  font-family: 'Lato', Helvetica;
+  padding-bottom: 50px;
+}
+
+.contact_textinput {
+  background-color: #FFFFFA;
+  width: 100%;
+  border: none;
+  border-bottom: 2px solid $washington;
+  margin-bottom: 30px;
+  font-size: 1.4em;
+  padding: 1%;
+  border-radius: 0px;
+}
+
+.contact_textfield {
+  background-color: #FFFFFA;
+  width: 100%;
+  border: 2px dashed $washington;
+  margin-bottom: 30px;
+  font-size: 1.4em;
+  padding: 1%;
+  border-radius: 0px;
+}
+
+.contact_send {
+  background-color: $washington;
+  color: #FFFFFA;
+  width: 100%;
+  padding: 2%;
+  border: none;
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 2em;
+}
+
+@media only screen and(min-width: 768px){
+  .contact_form {
+    width: 70%;
+  }
+}
