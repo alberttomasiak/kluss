@@ -8,11 +8,11 @@
         <!-- MAP MET KLUSSJES -->
         <div id="map"></div>
         <!-- KLUSSJES IN DE BUURT -->
-        <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
-        <form action="/home/filter" method="get">
+        <h2 class="home-h2">Beschikbare Klusjes:</h2>
+        <form class="home--filter" action="/home/filter" method="get">
             <h3>Filtreer klusjes:</h3>
             <input type="text" name="prijs" placeholder="Prijs" value="">
-            <select class="form-control" name="tijd" id="kluss_time">
+            <select name="tijd" id="kluss_time">
                 <option value="null">Duur van het klusje</option>
                 <option value="0:30">30 min.</option>
                 <option value="1:00">1 uur</option>
@@ -23,11 +23,11 @@
                 <option value="3:30">3 uur 30 min.</option>
                 <option value="4:00">4 uur</option>
             </select>
-            <input id="autocomplete" name="locatie" class="form-control" placeholder="Adres:"
+            <input id="autocomplete" name="locatie" placeholder="Adres:"
                    onFocus="geolocate()" type="text"></input>
             <input type="hidden" name="lat" id="kluss__lat" value="">
             <input type="hidden" name="lng" id="kluss__lng" value="">
-            <input type="submit" value="Zoek">
+            <input type="submit" class="filter-btn" value="Zoek">
         </form>
         <div class="klussjes-wrap">
         @if(!isset($filtered))
@@ -52,26 +52,30 @@
             @endforeach
             {{$cards->links()}}
         @else
-            @foreach($filtered as $fil)
-                <a href="/kluss/{{$fil->id}}">
-                    <div class="task-card">
-                        <div class="task-image" style="background-image: url('/assets{{$fil->kluss_image}}');"></div>
-                        <div class="task-details">
-                            <div class="task-title-time">
-                                <p class="task-title">{{$fil->title}}</p>
-                                <p class="task-time">- max {{$fil->time}}u.</p>
-                            </div>
-                            <div class="task-price">
-                                <p>€ {{$fil->price}}</p>
-                            </div>
-                            <div class="task-description">
-                                <p>{{substr($fil->description, 0, 100)}} ...</p>
+            @if(count($filtered) == 0)
+                <h2>Er werden geen klusjes gevonden voor je zoekcriteria.</h2>
+            @else
+                @foreach($filtered as $fil)
+                    <a href="/kluss/{{$fil->id}}">
+                        <div class="task-card">
+                            <div class="task-image" style="background-image: url('/assets{{$fil->kluss_image}}');"></div>
+                            <div class="task-details">
+                                <div class="task-title-time">
+                                    <p class="task-title">{{$fil->title}}</p>
+                                    <p class="task-time">- max {{$fil->time}}u.</p>
+                                </div>
+                                <div class="task-price">
+                                    <p>€ {{$fil->price}}</p>
+                                </div>
+                                <div class="task-description">
+                                    <p>{{substr($fil->description, 0, 100)}} ...</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            @endforeach
-            {{$filtered->links()}}
+                    </a>
+                @endforeach
+                {{$filtered->links()}}
+            @endif
         @endif
         </div>
     </div>
