@@ -369,7 +369,7 @@ class KlussController extends Controller
         $block = KlussBlocks::addBlock($id, $user);
     }
     public function filterTasks(Request $request){
-        $prijs = $request->prijs;
+        preg_match_all('!\d+!', $request->prijs, $prijs);
         $tijd = $request->tijd;
         $locatie = $request->locatie;
         $lat = $request->lat;
@@ -401,7 +401,7 @@ class KlussController extends Controller
         if($request->has('lat')){
             $query->whereRaw('(6371 * acos(cos(radians('. $lat .')) * cos(radians(latitude)) * cos(radians(longitude) - radians(' . $lng . ')) + sin(radians('. $lat .')) * sin(radians(latitude)))) <= '.$maxD.'');
         }
-        
+
         return view("home", ['filtered' => $query->paginate(12), 'klussjes' => $klussjes, 'cards' => $cards]);
     }
 }
