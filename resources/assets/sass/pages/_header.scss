@@ -96,7 +96,7 @@
         }
         .left-icons a{ position: relative;}
         .right-icons {
-            .post-btn{
+            .post-btn, .post-btn-anon{
                 display: none;
                 padding-left: 0;
                 height: 25px;
@@ -165,6 +165,15 @@
 
 .header p{
     font-family: "Lato Bold";
+}
+
+.header-nav-wrap{
+    width: 85%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 55px;
+    position: relative;
 }
 
 @media only screen and (min-width: 768px) {
@@ -250,6 +259,8 @@
     .new-msg{ left: 3.5em; top: 1.3em; }
     .new-notif{ left: 3.2em; top: .9em; }
     .header .header-nav .right-icons .post-btn{ display: block;}
+    .header .header-nav .right-icons-anon{ position: absolute; right: 0;}
+    .header .header-nav .right-icons .post-btn-anon{display: block; width: 100px; position: absolute; right: 0;}
     .header .header-nav .left-icons a img, .header .header-nav .right-icons a img{ position: absolute; bottom: 1.5em; left: 1em; }
     .header .header-nav .left-icons a p, .header .header-nav .right-icons a p{ margin-left: 4.5em; margin-top: 1em;}
     .header .header-nav .left-icons a:hover, .header .header-nav .right-icons .settings-dropdown:hover{ border-bottom: 7px solid $washington; }
@@ -291,4 +302,6 @@
     .new-notif{ left: 4.5em; top: .7em; }
     .header .header-nav .left-icons a p, .header .header-nav .right-icons a p{ margin-top: .7em; }
     .header .header-nav .right-icons .post-btn{ padding-top: .4em;}
+    .header-nav-wrap{ width: 75%;}
+    .header .header-nav .right-icons .post-btn-anon{padding-top: .4em;}
 }
