@@ -8,7 +8,7 @@
         <!-- MAP MET KLUSSJES -->
         <div id="map"></div>
         <!-- KLUSSJES IN DE BUURT -->
-        <h2 class="home-h2">Actieve klussjes in de omgeving:</h2>
+        <h2 class="home-h2">Beschikbare Klusjes:</h2>
         <form action="/home/filter" method="get">
             <h3>Filtreer klusjes:</h3>
             <input type="text" name="prijs" placeholder="Prijs" value="">
