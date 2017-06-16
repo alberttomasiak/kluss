@@ -1,8 +1,6 @@
-
-@extends('layouts.app')
+@extends('layouts.logreg')
 @section('content')
     <div class="main-content-wrap">
-        <div class="addboxshadow">
             <h1 class="contentpage_pagetitle">Algemene Voorwaarden & Terms of Use</h1>
             <div>
                 <p class="contentpage_paragraph">
@@ -209,11 +207,8 @@
                     (ii) uw breuk of schending van een van deze Voorwaarden; (iii) het gebruik van uw Gebruikersinhoud door KLUSS; of (iv) uw schending van de rechten van derden,
                     inclusief een Externe leverancier.
                 </p>
-
             </div>
-        </div>
     </div>
 
 
 @endsection
-

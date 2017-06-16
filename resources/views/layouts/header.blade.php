@@ -31,9 +31,18 @@
 </div>
 @else
 	<div class="header">
+		<div class="mobile-nav">
+			<a class="hamburger-logo" href="/home"><img src="/assets/img/K-logo.png" alt=""></a>
+			<a class="post-btn-mobile-anon" href='/aanmelden'><p>Aanmelden</p></a>
+		</div>
 		<div class="header-nav">
-			<div class="middle-icons">
-				<a href="/home"><img src="/assets/img/K-logo.png" class="kluss--logo" alt="Kluss Logo"></a>
+			<div class="header-nav-wrap">
+				<div class="middle-icons">
+					<a class="hamburger-logo" href="/home"><img src="/assets/img/K-logo.png" alt=""></a>
+				</div>
+				<div class="right-icons right-icons-anon">
+					<a class="post-btn-anon" href='/aanmelden'>Aanmelden</a>
+				</div>
 			</div>
 		</div>
 	</div>

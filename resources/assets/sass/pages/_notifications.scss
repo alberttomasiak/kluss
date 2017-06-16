@@ -1,0 +1,67 @@
+.notifications-wrap a{
+    text-decoration: none;
+    color: $washington;
+}
+.notification{
+    padding-left: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    position: relative;
+    transition: all .3s;
+    &:hover{
+        -webkit-transform: scale(.97);
+        -moz-transform: scale(.97);
+        transform: scale(.97);
+    }
+    h6{
+        font-size: 1.4em;
+        padding-top: .5em;
+        &::after{
+            content: "";
+            display: block;
+            width: 100%;
+            height: 1px;
+            background-color: #eee;
+            margin-top: .5em;
+        }
+    }
+    .notification-msg{
+        line-height: 1.4em;
+        color: grey;
+        margin-bottom: 1.5em;
+    }
+    .notification-date{
+        position: absolute;
+        bottom: 0;
+        right: 1.2em;
+        font-size: 0.9em;
+        color: $washington;
+    }
+}
+.new-notification{
+    background-color: $notificationsgreen;
+}
+
+@media only screen and (min-width: 480px){
+    .notifications-wrap{
+        display: block;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .notifications-wrap{ margin-bottom: 2em; }
+}
+
+@media only screen and (min-width: 768px){
+    .notifications-wrap{margin-bottom: 5em;}
+    .notification h6{ padding-top: .75em; &::after{margin-bottom: .75em;}}
+    .notification{margin-bottom: 1.5em;}
+}
+
+@media only screen and (min-width: 1024px){
+    .notifications-wrap{ width: 70%; }
+}
+
+@media only screen and (min-width: 1365px){
+    .notifications-wrap{width: 60%;}
+}

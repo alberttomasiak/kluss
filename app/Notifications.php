@@ -45,7 +45,7 @@ class Notifications extends Model
     public static function getUserUnreadNotifications($user_id){
         return self::where([
             ['for_user', $user_id],
-            ['read', 0]
+            ['read', '0']
         ])->count();
     }
 }
