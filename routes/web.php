@@ -133,6 +133,10 @@ Route::get('/FAQ', function () {
     return view('/FAQ');
 });
 
+Route::get('/contact', function () {
+    return view('/contact');
+});
+
 Route::get('/community', function () {
     return view('/community');
 });

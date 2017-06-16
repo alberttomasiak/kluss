@@ -1,95 +1,65 @@
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>KLUSS</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="assets/css/edits.css" rel="stylesheet">
-</head>
-<body>
-
-<nav class="primary-nav addboxshadow">
-<div class="primary-nav-left">
-    <a href="#"><img style="height: 35px; padding-right: 15px;" src="../assets/img/home-logo.png">HOME</a>
-    <a href="#"><img style="height: 35px; padding-right: 15px;" src="../assets/img/bell-logo.png">MELDINGEN</a>
-    <a href="#"><img style="height: 25px; padding-right: 15px;" src="../assets/img/berichten-logo.png">BERICHTEN</a>
-</div>
-    <div class="primary-nav-center">
-    <a href="#"><img style="height: 40px; margin-top: 7px;" src="../assets/img/logo-kluss.png"></a>
-    </div>
-    <div class="primary-nav-right">
-        <a href="#"> ACCOUNT </a>
-        <a href="#" class="btn">POST</a>
-    </div>
-</nav>
-
-<div class="addboxshadow container" style="height: 700px;">
-    <h1 style="float: left; padding: 15px;">FAQ</h1>
-    <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-    <div style="height: 605px; float: left; width: 20%; margin-left: 30px; margin-top: -10px; border-right: 1px solid #677578;">
-        <section style="margin-top: 30px;">
-        <a href="#">Vraag 1</a>
-        <br><br>
-        <a href="#">Vraag 2</a>
-            <br><br>
-            <a href="#">Vraag 3</a>
-            <br><br>
-            <a href="#">Vraag 4</a>
-            <br><br>
-            <a href="#">Vraag 5</a>
-            </section>
+@extends('layouts.app')
+@section('content')
+    <div class="main-content-wrap">
+        <div class="addboxshadow">
+            <h1 class="contentpage_pagetitle">FAQ</h1>
+            <div class="faqtable">
+                <div class="faq_question">
+                    <p class="question">“Wat voor klusjes kan ik op KLUSS aanbieden?”</p>
+                    <p class="answer">Alles waar je hulp mee nodig hebt en waarvoor je iemand uit de buurt wil aannemen. Of je nu iemand nodig hebt om je gras te maaien of te stofzuigen, zolang er een klusser uit de buurt welkom is, ben je vrij om te kiezen welke klusjes je aanbiedt.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Welke klusjes kan ik aannemen?”</p>
+                    <p class="answer">Alle klusjes in je buurt. We werken momenteel per (grote) stad, dus krijg je enkel de klusjes te zien in de omgeving van de stad waarin je je bevindt.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Wat kan ik doen als mijn klusje niet aangenomen wordt?”</p>
+                    <p class="answer">KLUSS geeft je ook een lijst van alle klussers in de buurt. Als er niemand reageert op je klus, kan je proberen om klussers zelf aan te spreken en te onderhandelen over je klus. Je kan ook kiezen om voor KLUSS Gold te gaan, dan staan jouw klusjes sowieso bovenaan in de lijst en krijgen ze een opvallende marker.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Hoe betaal ik mijn klusser?”</p>
+                    <p class="answer">Je betaalt de klusser hoeveel en hoe je zelf wil. Indien je wil werken met een contract, kan je dat zelf regelen zonder tussenkomst van KLUSS. Je kan de betaling wel via KLUSS doen via credits die je kan aankopen en die de klusser later kan incasseren.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Wat doe ik als mijn klusser niet komt opdagen?”</p>
+                    <p class="answer">Je kan andere KLUSS-gebruikers een privébericht sturen indien je iets wil vragen of laten weten. Je hebt ook de optie om de klusser te rapporteren indien hij/zij niet komt opdagen en niet reageert op je verzoeken.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Waarom kan ik me niet inloggen?”</p>
+                    <p class="answer">Heb je de juiste e-mail en wachtwoord ingevoerd? Indien je zeker bent van je logingegevens en je nog steeds niet kan inloggen, gelieve ons dan te contacteren via contact@kluss.be.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Hoe krijg ik een KLUSS Gold profiel?”</p>
+                    <p class="answer">Ga naar kluss.be/klussgold en volg de instructies. Alle info, inclusief de stappen van de betaling, vind je daar.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Hoe kan ik mijn KLUSS Gold opzeggen?”</p>
+                    <p class="answer">Je kan je KLUSS Gold abonnement op elk moment afzeggen door een mail te sturen naar contact@kluss.be met als onderwerp “opzegging KLUSS Gold abonnement”. Binnen de komende 2 weken krijg je een bevestigingsemail dat je abonnement succesvol is opgezegd. Let wel: het bedrag van de huidige maand wordt niet teruggestort!</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Wanneer ik mijn kluss GOLD opzeg, krijg ik dan mijn geld terug? of kan ik het tot het einde van de maand nog gebruiken?”</p>
+                    <p class="answer">Wanneer je je abonnement opzegt, blijft je account nog geldig tot het einde van de maand. Het betaalde geld van die maand wordt niet teruggestort. Indien je al betaald hebt voor de maanden erna, wordt dat wel teruggestort.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Ik wil mijn account verwijderen, hoe doe ik dat?”</p>
+                    <p class="answer">Je kan je account op elk moment deactiveren, maar wordt dan nog altijd bewaard. Indien je je account volledig wilt laten verwijderen, kan je een mail sturen naar contact@kluss.be met als onderwerp “Account verwijderen”. Binnen de komende 2 weken krijg je een bevestigingsemail. Let op, dit kan je niet ongedaan maken!</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Ik wil een foto toevoegen aan mijn klusje, maar het wordt niet geaccepteerd. wat kan ik doen?”</p>
+                    <p class="answer">Bepaalde formaten worden niet geaccepteerd, zoals GIFs, TIFFs en bmp. Als KLUSS de afbeelding niet accepteert, probeer deze dan om te zetten in een ander formaat, zoals jpeg of png.</p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">“Hoe blokkeer/rapporteer ik een gebruiker?”</p>
+                    <p class="answer">Je kan een gebruiker blokkeren of rapporteren door naar hun profiel te gaan en bij opties te kiezen voor “blokkeer gebruiker” of “rapporteer gebruiker”. Geblokkeerde gebruikers kan je terugvinden onder de instellingen.
+                    </p>
+                </div>
+                <div class="faq_question">
+                    <p class="question">Staat jouw vraag niet tussen de lijst?</p>
+                    <p class="answer">Voor vragen kan je altijd terecht bij <a href="mailto:contact@kluss.be.">contact@kluss.be.</a></p>
+                </div>
+            </div>
         </div>
-    <div style="float: right; width: 60%; margin-right: 50px; color: #677578;">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam velit enim, eleifend non finibus convallis, hendrerit ut diam. Praesent accumsan facilisis elit, ut volutpat lectus. Nulla vestibulum lobortis efficitur. Aliquam ut imperdiet turpis, vel consequat nibh. Phasellus sed eleifend turpis. Pellentesque luctus elementum magna, vitae placerat odio consectetur ut. Nam vehicula lacinia arcu. Donec porttitor odio leo, rhoncus tempus mi dictum non.
-
-            Etiam posuere ex in magna laoreet, vitae malesuada quam ultricies. Duis dignissim scelerisque mollis. Nam dapibus aliquet leo, ut bibendum orci consectetur et. Suspendisse potenti. Integer ultricies tellus dui, in sodales neque molestie ac. Morbi blandit, nisi in cursus vestibulum, lectus erat commodo nisi, sed molestie augue erat et nibh. Morbi ornare ultrices tellus, sed efficitur magna aliquet eu. Praesent faucibus magna sit amet augue egestas, quis porta leo suscipit. Aenean tincidunt, purus at dignissim sodales, tellus lectus rutrum leo, eu consectetur metus nulla non neque. Nulla blandit eleifend vehicula. Curabitur ornare magna sed augue laoreet vulputate. Quisque elementum, velit vel lacinia fringilla, orci tortor suscipit purus, id dignissim ligula justo vel ex. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec placerat, mi nec pulvinar venenatis, turpis lorem rhoncus felis, non aliquet ligula leo sed mi. Suspendisse porta massa eleifend, euismod velit id, laoreet sem. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-
-        </p>
-        </div>
-
-</div>
-
-
-
-
-<footer>
-    <div class="footer-content container">
-        <section>
-            <p>KLUSS</p>
-            <ul>
-                <li><a style="color: #FFFFFF !important;" href="#">Home</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Team</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Algemene Voorwaarden</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">FAQ</a></li>
-
-            </ul>
-        </section>
-        <section style="margin-right:0px !important;">
-            <p>CONTACT</p>
-            <ul>
-                <li><a style="color: #FFFFFF !important;" href="#">Contact</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Facebook</a></li>
-                <li><a style="color: #FFFFFF !important;" href="#">Twitter</a></li>
-
-            </ul>
-
-        </section>
-    </div>
-    <div style="clear:both;text-align:center;font-size:10px;position:relative;bottom:-20px;">
-        &copy; KLUSS 2017 - Made with &#10084; by our team
-    </div>
-</footer>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script>
-        $(".landing_body").css("height", window.innerHeight-60 + "px");
+@endsection
 
-        window.onresize=function(){
-            $(".landing_body").css("height", window.innerHeight-60 + "px");
-        };
-    </script>
-</body>
-</html>

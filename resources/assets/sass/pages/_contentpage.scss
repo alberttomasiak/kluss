@@ -1,0 +1,80 @@
+.contentpage_container {
+  width: 100%;
+  background-color: #FFFFFA;
+  display: block;
+  margin-bottom: 50px;
+}
+
+.contentpage_pagetitle {
+  font-family: 'Coolvetica', sans-serif;
+}
+
+.contentpage_ruler {
+  background-color: #677578;
+  height: 0.2px;
+  width: 100%;
+}
+
+.contentpage_paragraph {
+  font-family: 'Lato', sans-serif;
+  padding-bottom: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.staff_table {
+  width: 80%;
+  display: block;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.staff_picture {
+  width: 48%;
+  margin-bottom: 5px;
+}
+
+.staff_cta {
+  display: block;
+  padding-left: 30px;
+  background-color: $washington;
+  color: white;
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 2em;
+  text-align: center;
+  padding: 1%;
+  margin-top: 20px;
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.faqtable {
+  padding: 10px 30px 10px 30px;
+}
+
+.faq_question {
+  margin-bottom: 30px;
+}
+
+.question {
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 1.3em;
+}
+
+.answer {
+  font-family: 'Lato', sans-serif;
+}
+
+@media only screen and(min-width: 768px){
+  .contentpage_container {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .staff_table {
+    width: 60%;
+  }
+}
