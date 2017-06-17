@@ -45,7 +45,7 @@ class ProfielController extends Controller
         $activities = Kluss::getUserActivities($id);
         $activityCounter = Kluss::countUserActivities($id);
         // tasks
-        $tasks = Kluss::getAllOpenActivities($id, 5);
+        $tasks = Kluss::getAllOpenActivities($id, 2);
         $openTaskCounter = Kluss::countUserTasks($id);
         // ...
         return view('profile.index', compact('userInfo', 'reviewCount', 'reviewScore', 'reviews', 'activities', 'activityCounter', 'tasks', 'openTaskCounter'));
