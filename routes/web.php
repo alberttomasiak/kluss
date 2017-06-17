@@ -58,8 +58,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/rapporteren', 'KlussController@blockKluss');
     Route::get('/home/filter', 'KlussController@filterTasks');
     // profile routes
-    Route::get('/profiel/test/{id}', 'ProfielController@testIndex');
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
+    // Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
     Route::get('/chat', 'ChatController@index');
