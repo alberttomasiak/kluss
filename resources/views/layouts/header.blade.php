@@ -1,4 +1,4 @@
-@if(\Auth::user())
+@if($AuthUser != null)
 	<div class="header">
 	<div class="mobile-nav">
 		<div class="menu menu-1">

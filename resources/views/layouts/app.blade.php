@@ -47,32 +47,34 @@
       }
   });
 
-  function notifyUser(data){
-      toastr.options.progressBar = true;
-      toastr.info(data);
-      checkStatus();
-  }
-
-  function checkStatus(){
-      var messages = "{{ checkMsgs(\Auth::user()->id) }}";
-      var notifs = "{{ checkNtfs(\Auth::user()->id) }}";
-      console.log(messages + " " + notifs);
-      if(messages > 0){
-          $('.add-msg-here').addClass('new-msg');
-      }
-      if(notifs > 0){
-          $('.add-notif-here').addClass('new-notif');
+  @if($AuthUser != null)
+      function notifyUser(data){
+          toastr.options.progressBar = true;
+          toastr.info(data);
+          checkStatus();
       }
 
-      if(messages > 0 || notifs > 0){
-          $('#favicon').attr('href', '/assets/img/favicon-notification.png');
-      }
-  }
+      function checkStatus(){
+          var messages = "{{ checkMsgs(\Auth::user()->id) }}";
+          var notifs = "{{ checkNtfs(\Auth::user()->id) }}";
+          console.log(messages + " " + notifs);
+          if(messages > 0){
+              $('.add-msg-here').addClass('new-msg');
+          }
+          if(notifs > 0){
+              $('.add-notif-here').addClass('new-notif');
+          }
 
-  var globalNotifications = pusher.subscribe("global-notifications");
-  var privateNotifications = pusher.subscribe("{{$data["channel"]}}");
-  globalNotifications.bind("global-notification", notifyUser);
-  privateNotifications.bind("new-notification", notifyUser);
+          if(messages > 0 || notifs > 0){
+              $('#favicon').attr('href', '/assets/img/favicon-notification.png');
+          }
+      }
+
+      var globalNotifications = pusher.subscribe("global-notifications");
+      var privateNotifications = pusher.subscribe("{{$data["channel"]}}");
+      globalNotifications.bind("global-notification", notifyUser);
+      privateNotifications.bind("new-notification", notifyUser);
+  @endif
 
 </script>
     <div class="page">

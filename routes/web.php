@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/rapporteren', 'KlussController@blockKluss');
     Route::get('/home/filter', 'KlussController@filterTasks');
     // profile routes
+    Route::get('/profiel/test/{id}', 'ProfielController@testIndex');
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
@@ -68,6 +69,7 @@ Route::group(['middleware' => ['auth']], function(){
     // meldingen
     Route::get('/meldingen', 'HomeController@notificationsIndex');
     // Settings
+    Route::get('/settings', 'ProfielController@settingsIndex');
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
     // Gold
     Route::get('/klussgold', 'KlussGoldController@index');
@@ -113,42 +115,24 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::get('/terms', function () {
-    return view('/terms');
-});
+// No login required my dudes
+Route::get('/terms', function () { return view('/terms'); });
+Route::get('/team', function () { return view('/team'); });
+Route::get('/FAQ', function () { return view('/FAQ'); });
+Route::get('/contact', function () { return view('/contact'); });
 
-Route::get('/team', function () {
-    return view('/team');
-});
+// Route::get('/community', function () {
+//     return view('/community');
+// });
 
-Route::get('/what', function () {
-    return view('/what');
-});
+// Route::get('/landing', function () {
+//     return view('/landing');
+// });
 
-Route::get('/settings', function () {
-    return view('settings.index');
-});
+// Route::get('/plaatsklusje', function () {
+//     return view('/plaatsklusje');
+// });
 
-Route::get('/FAQ', function () {
-    return view('/FAQ');
-});
-
-Route::get('/contact', function () {
-    return view('/contact');
-});
-
-Route::get('/community', function () {
-    return view('/community');
-});
-
-Route::get('/landing', function () {
-    return view('/landing');
-});
-
-Route::get('/plaatsklusje', function () {
-    return view('/plaatsklusje');
-});
-
-Route::get('/userprofiel', function () {
-    return view('/userprofiel');
-});
+// Route::get('/userprofiel', function () {
+//     return view('/userprofiel');
+// });
