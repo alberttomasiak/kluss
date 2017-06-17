@@ -1,4 +1,4 @@
-@extends('layouts.logreg')
+@extends('layouts.app')
 @section('content')
     <div class="bodyimg">
         <div class="container page-wrap">

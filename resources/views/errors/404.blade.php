@@ -1,4 +1,4 @@
-@extends('layouts.logreg')
+@extends('layouts.app')
 @section('content')
     <div class="addboxshadow contentpage_container">
         <h1 class="contentpage_pagetitle">404: Pagina niet gevonden</h1>

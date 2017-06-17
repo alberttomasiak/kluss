@@ -33,13 +33,13 @@ class Kluss extends Model
                     ->get();
     }
 
-    public static function paginatePublished(){
+    public static function paginatePublished($paginator = 12){
         return self::join('users', 'kluss.user_id', '=', 'users.id')
                     ->select('kluss.*', 'users.account_type', 'users.verified')
                     ->where([ ['kluss.closed', '=', 0], ['kluss.approved', '=', 1], ['kluss.blocked', '=', 0] ])
                     ->orderBy('users.account_type', 'asc')
                     ->orderBy('kluss.date', 'DESC')
-                    ->paginate(12);
+                    ->paginate($paginator);
     }
 
     public static function getSingle($id){
@@ -102,11 +102,13 @@ class Kluss extends Model
         return self::where('id', '=', $id)->value('title');
     }
 
-    public static function getUserKluss($id){
+    public static function getUserKluss($id, $paginator = 6){
         return self::where([
             ['user_id', '=', $id],
-            ['approved', '=', '1']
-            ])->paginate(6);
+            ['approved', '=', '1'],
+            ['blocked', '=', '0'],
+            ['closed', '=', '0']
+            ])->paginate($paginator);
     }
 
     public static function deleteTask($id){
@@ -238,6 +240,49 @@ class Kluss extends Model
         $pusher = App::make('pusher');
         $pusher->trigger("kluss-map", "deleted-task", $deleted);
         return self::where('id', $task_id)->update(['blocked' => 1]);
+    }
+
+    public static function getUserActivities($id){
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('kluss.*', 'users.name as ownerName')
+                    ->where([
+                        ['kluss.accepted_applicant_id', $id],
+                        ['kluss.closed', '1'],
+                        ['kluss.blocked', '0']
+                    ])->paginate(5);
+    }
+    public static function countUserActivities($id){
+        return self::join('users', 'kluss.user_id', '=', 'users.id')
+                    ->select('kluss.*', 'users.name as ownerName')
+                    ->where([
+                        ['kluss.accepted_applicant_id', $id],
+                        ['kluss.closed', '1'],
+                        ['kluss.blocked', '0']
+                    ])->count();
+    }
+
+    public static function getAllOpenActivities($id, $limit = 5){
+        return self::where([
+            ['user_id', $id],
+            ['closed', '0'],
+            ['blocked', '0']
+        ])->orWhere([
+            ['accepted_applicant_id', $id],
+            ['closed', '0'],
+            ['blocked', '0']
+        ])->paginate($limit);
+    }
+
+    public static function countUserTasks($id){
+        return self::where([
+            ['user_id', $id],
+            ['closed', '0'],
+            ['blocked', '0']
+        ])->orWhere([
+            ['accepted_applicant_id', $id],
+            ['closed', '0'],
+            ['blocked', '0']
+        ])->count();
     }
 
 }

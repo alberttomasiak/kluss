@@ -1,4 +1,4 @@
-@extends('layouts.logreg')
+@extends('layouts.app')
 @section('content')
     <div class="main-content-wrap">
             <h1 class="contentpage_pagetitle">Wie zijn we?</h1>
