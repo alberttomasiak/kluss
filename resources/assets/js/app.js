@@ -19,7 +19,9 @@ $(window).on("resize", function(){
 });
 
 $('.tabgroup > div').hide();
-$('.tabgroup > div:first-of-type').show();
+var rightTab = $('.profile--tabs .active').attr('data-tabID');
+$('.tabgroup #tab'+rightTab).show();
+
 $('.tabs a').click(function(e){
   e.preventDefault();
     var $this = $(this),

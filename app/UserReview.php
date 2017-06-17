@@ -32,7 +32,7 @@ class UserReview extends Model
             ->orWhere([
                 ['fixer_id', $user_id],
                 ['writer', '<>', $user_id]])
-            ->paginate(5);
+            ->paginate(5, ['*'], 'reviews');
     }
 
     public static function getUserReviewCount($user_id){
