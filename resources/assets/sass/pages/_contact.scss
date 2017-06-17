@@ -15,17 +15,22 @@
   background-color: #FFFFFA;
   width: 100%;
   border: none;
-  border-bottom: 2px solid $washington;
+  border-bottom: 4px solid $washington;
   margin-bottom: 30px;
   font-size: 1.4em;
   padding: 1%;
   border-radius: 0px;
 }
 
+.contact_textinput:focus {
+  transition: 1s;
+  border-bottom: 4px solid $androidgreen;
+}
+
 .contact_textfield {
   background-color: #FFFFFA;
   width: 100%;
-  border: 2px dashed $washington;
+  border: 4px dashed $washington;
   margin-bottom: 30px;
   font-size: 1.4em;
   padding: 1%;
