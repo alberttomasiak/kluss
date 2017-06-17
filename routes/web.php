@@ -42,6 +42,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/getTasks', 'HomeController@getTasks');
     Route::post('/calculateDistance', 'KlussController@calculateUserDistance');
     // kluss routes
+    // Route::get('/kluss/new', 'KlussController@newIndex');
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
     Route::get('/kluss/{id}', 'KlussController@singleKluss')->middleware('taskChecker');
