@@ -16,8 +16,11 @@
                     <input type="submit" id="start-chat" name="start-chat" value="Contacteer mij">
                 </form>
             @endif
+            @if(\Auth::user()->id != $user->id)
+                <a href="#blockModal" data-toggle="modal" role="button" class="blockModal ">Rapporteer gebruiker</a>
+                @include('profile.modals.block')
+            @endif
         </div>
-        {{-- Rapporteer gebruiker knop --}}
     @endforeach
     <div class="tabs--content">
     <ul class="tabs profile--tabs" data-tabgroup="tab-group">
@@ -80,7 +83,37 @@
                             @endif
                         </div>
                         <img src="/assets{{$task->kluss_image}}" alt="{{$task->title}} afbeelding">
-                        {{-- Btn om kluss af te sloate --}}
+                        @if(\Auth::user()->id == $task->user_id)
+                            <div class="close-pay-task">
+                                <div class="left-side">
+                                    @if(didIPay($task->id) == "")
+                                        <p>Voor dat het klusje afgesloten kan worden moet er nog betaald worden.</p>
+                                        <a href="/kluss/{{$task->id}}/betalen">Kluss betalen</a>
+                                    @else
+                                        <p>Je hebt al voor dit klusje betaald. Deze kan je nu afsluiten.</p>
+                                        <a href="/kluss/{{$task->id}}/betalen" disabled>Reeds betaald</a>
+                                    @endif
+                                </div>
+                                <div class="right-side">
+                                    @if(didIPay($task->id) == "")
+                                        <p>Je kan de andere gebruiker een review geven nadat het klusje afgesloten werd.</p>
+                                        <form action="/kluss/{{$task->id}}/{{\Auth::user()->id}}/finished" method="post">
+                                            {{csrf_field()}}
+                                            <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" disabled>
+                                        </form>
+                                    @elseif(didIPay($task->id) != "" && didIMark(\Auth::user()->id, $task->id) == "")
+                                        <p>Je kan de andere gebruiker een review geven nadat het klusje afgesloten werd.</p>
+                                        <form action="/kluss/{{$task->id}}/{{\Auth::user()->id}}/finished" method="post">
+                                            {{csrf_field()}}
+                                            <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen">
+                                        </form>
+                                    @elseif(didIPay($task->id) != "" && didIMark(\Auth::user()->id, $task->id) != "")
+                                        <p>Je hebt het klusje gemarkeerd als afgewerkt en je hebt er al voor betaald. Je kan de gebruiker nu een review geven.</p>
+                                        <a href="/review/{{$task->id}}" class="review-btn">Review schrijven</a>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 @endforeach
                 {{$tasks->links()}}

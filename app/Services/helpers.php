@@ -77,3 +77,9 @@ if(!function_exists('checkAccountType')){
         return \App\User::checkAccountType($id);
     }
 }
+
+if(!function_exists('didIPay')){
+    function didIPay($id){
+        return \App\KlussPay::getPaidStatus($id);
+    }
+}

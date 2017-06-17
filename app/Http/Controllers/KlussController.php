@@ -361,7 +361,7 @@ class KlussController extends Controller
 
     public function processPayment($id){
         $pay = KlussPay::addPayment($id);
-        return redirect('/kluss/'.$id);
+        return redirect()->back();
     }
 
     public function blockKluss(Request $request, $id){

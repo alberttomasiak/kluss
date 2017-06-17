@@ -35,7 +35,8 @@ class ProfielController extends Controller
         $tasks = Kluss::getAllOpenActivities($id, 2);
         $openTaskCounter = Kluss::countUserTasks($id);
         // ...
-        return view('profile.index', compact('userInfo', 'reviewCount', 'reviewScore', 'reviews', 'activities', 'activityCounter', 'tasks', 'openTaskCounter'));
+        $block_categories = BlockReasons::getCategories();
+        return view('profile.index', compact('userInfo', 'reviewCount', 'reviewScore', 'reviews', 'activities', 'activityCounter', 'tasks', 'openTaskCounter', 'block_categories'));
     }
 
     public function testIndex($id){
