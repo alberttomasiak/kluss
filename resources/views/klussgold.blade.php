@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
     <div class="main-content-wrap">
-        <div class="addboxshadow">
+        <div class="addboxshadow1">
             <h1 class="contentpage_pagetitle">KLUSS Gold</h1>
             <div>
                 <p class="contentpage_paragraph">
