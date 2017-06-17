@@ -33,6 +33,7 @@ class ChatController extends Controller
         $user = \Auth::user()->id;
         $firstConversation = Conversation::getFirstConversation($user);
         $chatName = $firstConversation["chatname"];
+        $read = Message::readUserMessages($user, $chatName);
         $firstConversation["user_one"] == $user ? $chatPartner = \App\User::get($firstConversation["user_two"]) : $chatPartner = \App\User::get($firstConversation["user_one"]);
         // checking if the conversation exists
         $match = Conversation::matchConversationName($chatName);
@@ -74,7 +75,7 @@ class ChatController extends Controller
         $partnerName = User::get($for_user);
         $about_user = \Auth::user()->id;
         $message = $sent_message->message;
-        $messageWithName = $partnerName . ": ". $message;
+        $messageWithName = \Auth::user()->name . ": ". $message;
         $url = "/chat/".$chatChannel."/".str_slug($partnerName);
         $channel = User::getUserNotificationsChannel($for_user);
         $type = "chat";
@@ -105,6 +106,7 @@ class ChatController extends Controller
 
     public function startChat($chatName, $chatPartner){
         $user = \Auth::user()->id;
+        $read = Message::readUserMessages(\Auth::user()->id, $chatName);
         $match = Conversation::matchConversationName($chatName);
         $messages = Message::getMessages($chatName);
         $conversationsLeft = Conversation::getUserConversationsLeft($user);

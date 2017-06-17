@@ -24,12 +24,17 @@ class TaskCheckerMiddleware
         $maker = $task[0]->user_id;
         $fixer = $task[0]->accepted_applicant_id;
         $closed = $task[0]->closed;
+        $blocked = $task[0]->blocked;
 
-        $allowed_users = [$task[0]->user_id, $task[0]->accepted_applicant_id];
-        if($closed == 1){
-            return in_array($user, $allowed_users) ? $next($request) : redirect('/home');
+        if($blocked == 1){
+            return redirect('/home');
         }else{
-            return $next($request);
+            $allowed_users = [$task[0]->user_id, $task[0]->accepted_applicant_id];
+            if($closed == 1){
+                return in_array($user, $allowed_users) ? $next($request) : redirect('/home');
+            }else{
+                return $next($request);
+            }
         }
     }
 }

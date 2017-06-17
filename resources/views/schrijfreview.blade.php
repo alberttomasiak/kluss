@@ -1,35 +1,9 @@
-{{--@extends('layouts.app')--}}
+@extends('layouts.app')
 @section('content')
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> --}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
     <link href="/assets/css/edits.css" rel="stylesheet">
-
-    <div class="addboxshadow" id='cssmenu'>
-        <ul>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/logo-kluss.png"></a></li>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/home-logo.png">Home</a></li>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/plaats-logo.png">Plaats een klusje</a></li>
-            <li><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/bell-logo.png">Meldingen</a></li>
-            <li><a href='#'><img class="animationout" style="height: 25px; padding-right: 15px;" src="/assets/img/berichten-logo.png">Berichten</a></li>
-            <li class='active'><a href='#'><img class="animationout" style="height: 35px; padding-right: 15px;" src="/assets/img/settings-logo.png">Instellingen</a>
-                <ul>
-                    <li><a href='#'>Profiel</a>
-                        <ul>
-                            <li><a href='#'>Bewerk Profiel</a></li>
-                            <li><a href='#'>Kluss Gold</a></li>
-                        </ul>
-                    </li>
-                    <li><a href='#'>Meldingen en gebruikers</a>
-                        <ul>
-                            <li><a href='#'>Demp meldingen</a></li>
-                            <li><a href='#'>Geblokkeerde gebruikers</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-    </div>
 
     <div class="addboxshadow container" style="display:block; overflow:auto;">
         <h1 style="float: left; padding: 15px;">Schrijf een review</h1>
@@ -43,7 +17,19 @@
                     <input type="hidden" id="task_id" name="task_id" value="{{$task->id}}">
                     <input type="hidden" id="maker_id" name="maker_id" value="{{$task->user_id}}">
                     <input type="hidden" id="fixer_id" name="fixer_id" value="{{$task->accepted_applicant_id}}">
-                    <label for="score">Score:</label><input name="score" type="number" id="review_score" name="review_score" placeholder="Score tussen 1 en 5" min="1" max="5">
+                    {{-- <label for="score">Score:</label><input name="score" type="number" id="review_score" name="review_score" placeholder="Score tussen 1 en 5" min="1" max="5"> --}}
+
+                    <fieldset>
+                      <span class="star-cb-group">
+                        <input type="radio" id="rating-5" name="score" value="5"  /><label for="rating-5">5</label>
+                        <input type="radio" id="rating-4" name="score" value="4" /><label for="rating-4">4</label>
+                        <input type="radio" id="rating-3" name="score" value="3" /><label for="rating-3">3</label>
+                        <input type="radio" id="rating-2" name="score" value="2" /><label for="rating-2">2</label>
+                        <input type="radio" id="rating-1" name="score" value="1" checked="checked" /><label for="rating-1">1</label>
+                        {{-- <input type="radio" id="rating-0" name="score" value="0" class="star-cb-clear" /><label for="rating-0">0</label> --}}
+                      </span>
+                    </fieldset>
+
                     <label for="reviewmsg">Boodschap:</label><textarea class="form-control" name="review_msg" id="review_msg" cols="30" rows="10"></textarea>
                     <input type="submit" name="submit" form="write-review" value="Verzenden">
                 </form>

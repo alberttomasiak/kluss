@@ -55,7 +55,10 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{task_id}/{user_id}/finished', 'KlussController@markFinished');
     Route::get('/kluss/{id}/betalen', 'KlussController@paypalPage');
     Route::post('/kluss/{id}/betalen', 'KlussController@processPayment');
+    Route::post('/kluss/{id}/rapporteren', 'KlussController@blockKluss');
+    Route::get('/home/filter', 'KlussController@filterTasks');
     // profile routes
+    Route::get('/profiel/test/{id}', 'ProfielController@testIndex');
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
@@ -66,6 +69,7 @@ Route::group(['middleware' => ['auth']], function(){
     // meldingen
     Route::get('/meldingen', 'HomeController@notificationsIndex');
     // Settings
+    Route::get('/settings', 'ProfielController@settingsIndex');
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
     // Gold
     Route::get('/klussgold', 'KlussGoldController@index');
@@ -111,22 +115,25 @@ Route::group(['prefix' => 'admin'], function () {
     });
 });
 
-Route::get('/terms', function () {
-    return view('/terms');
-});
+// No login required my dudes
+Route::get('/terms', function () { return view('/terms'); });
+Route::get('/team', function () { return view('/team'); });
+Route::get('/FAQ', function () { return view('/FAQ'); });
+Route::get('/contact', function () { return view('/contact'); });
 
-Route::get('/team', function () {
-    return view('/team');
-});
+// Route::get('/community', function () {
+//     return view('/community');
+// });
 
-Route::get('/what', function () {
-    return view('/what');
-});
+// Route::get('/landing', function () {
+//     return view('/landing');
+// });
 
-Route::get('/settings', function () {
-    return view('settings.index');
-});
+// Route::get('/plaatsklusje', function () {
+//     return view('/plaatsklusje');
+// });
 
+<<<<<<< HEAD
 Route::get('/FAQ', function () {
     return view('/FAQ');
 });
@@ -151,3 +158,8 @@ Route::get('/klusje', function () {
     return view('/klusje');
 });
 
+=======
+// Route::get('/userprofiel', function () {
+//     return view('/userprofiel');
+// });
+>>>>>>> development

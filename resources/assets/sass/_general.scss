@@ -3,18 +3,20 @@ $darkWashington: #1f6834;
 $androidgreen: #8bc53f;
 $primaryWhite: #FFFFFA;
 $generalbg: #f3f3f3;
+$raspberry: #911137;
+$notificationsgreen: #EAFDD1;
 
 // FONTS INLADEN HIER,
+@font-face { font-family: "Coolvetica"; src: url('../fonts/coolvetica_rg.ttf'); }
+@font-face { font-family: "Lato Bold"; src: url('../fonts/Lato-Bold.ttf'); }
+@font-face { font-family: "Lato Italic"; src: url('../fonts/Lato-Italic.ttf'); }
+@font-face { font-family: "Lato Light"; src: url('../fonts/Lato-Light.ttf'); }
+@font-face { font-family: "Lato Regular"; src: url('../fonts/Lato-Regular.ttf'); }
 
 // HIERBOVEN DUS
 
-body, html{
-    background-color: $generalbg !important;
-}
-
-.page-content{
-    padding-top: 55px;
-}
+body, html{ background-color: $generalbg !important; }
+.page-content{ padding-top: 55px; }
 .main-content-wrap{
     display: block;
     width: 85%;
@@ -25,10 +27,14 @@ body, html{
     box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
     padding-left: 1em;
     padding-right: 1em;
+    margin-bottom: 10em;
+    padding-bottom: 1em;
 }
 
-h1{ font-size: 2em; color: $washington !important; padding-top: .5em;}
-h2{ font-size: 1.8em; color: $washington !important;}
+h1, h2, h3, h4, h5, h6{ font-family: "Coolvetica" !important; }
+
+h1{ font-size: 2em; color: $washington !important; padding-top: .5em; }
+h2{ font-size: 1.8em; color: $washington !important; }
 h3{ }
 h4{ }
 h5{ }
@@ -40,15 +46,28 @@ h6{ }
     border-color: $washington !important;
     cursor: default;
 }
-
-.pagination>li>a, .pagination>li>span{
-    color: $washington !important;
-}
-
+.pagination>li>a, .pagination>li>span{ color: $washington !important; }
 .pagination{
     display: flex !important;
     flex-direction: row;
-    li a{
-        width: 100%;
-    }
+    flex-wrap: wrap;
+    li a{ width: 100%; }
+}
+
+.addboxshadow {
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -webkit-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    -o-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+}
+
+
+// Viewports
+
+@media only screen and (min-width: 768px){
+    .page-content{min-height: calc(100vh - 215px);}
+}
+
+@media only screen and (min-width: 1365px){
+    .main-content-wrap{ width: 75%; padding-left: 3em; padding-right: 3em;}
 }

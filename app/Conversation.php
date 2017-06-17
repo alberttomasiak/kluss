@@ -69,6 +69,10 @@ class Conversation extends Model
         return self::count();
     }
 
+    public static function getConversationID($chatname){
+        return self::where('chatname', $chatname)->pluck('id')->first();
+    }
+
     public static function getConversationForDefaultUser($chat, $realUser){
         return self::where([
             ["user_one", "=", $chat],

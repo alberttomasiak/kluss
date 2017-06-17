@@ -363,4 +363,45 @@ class KlussController extends Controller
         $pay = KlussPay::addPayment($id);
         return redirect('/kluss/'.$id);
     }
+
+    public function blockKluss(Request $request, $id){
+        $user = $request->blocker_id;
+        $block = KlussBlocks::addBlock($id, $user);
+    }
+    public function filterTasks(Request $request){
+        preg_match_all('!\d+!', $request->prijs, $prijs);
+        $tijd = $request->tijd;
+        $locatie = $request->locatie;
+        $lat = $request->lat;
+        $lng = $request->lng;
+        $account_type = User::where('id', \Auth::user()->id)->pluck('account_type');
+        $klussjes = Kluss::getPublished();
+        $cards = Kluss::paginatePublished();
+
+        if($account_type[0] == "normal"){
+            $maxD = 2;
+        }else{
+            $maxD = 5;
+        }
+
+        $query = Kluss::join('users', 'kluss.user_id', '=', 'users.id')
+            ->select('kluss.*', 'users.account_type')
+            ->where([
+                ['kluss.closed', '=', 0],
+                ['kluss.approved', '=', 1],
+                ['kluss.blocked', '=', 0]
+            ]);
+
+        if($request->has('prijs')){
+            $query->where('price', '>=', $prijs);
+        }
+        if($tijd != "null"){
+            $query->where('time', 'LIKE', $tijd);
+        }
+        if($request->has('lat')){
+            $query->whereRaw('(6371 * acos(cos(radians('. $lat .')) * cos(radians(latitude)) * cos(radians(longitude) - radians(' . $lng . ')) + sin(radians('. $lat .')) * sin(radians(latitude)))) <= '.$maxD.'');
+        }
+
+        return view("home", ['filtered' => $query->paginate(12), 'klussjes' => $klussjes, 'cards' => $cards]);
+    }
 }

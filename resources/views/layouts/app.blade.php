@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="/assets/img/favicon.ico" sizes="48x48">
+    <link rel="icon" id="favicon" type="image/png" href="/assets/img/favicon.ico" sizes="48x48">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -47,15 +47,34 @@
       }
   });
 
-  function notifyUser(data){
-      toastr.options.progressBar = true;
-      toastr.info(data);
-  }
+  @if($AuthUser != null)
+      function notifyUser(data){
+          toastr.options.progressBar = true;
+          toastr.info(data);
+          checkStatus();
+      }
 
-  var globalNotifications = pusher.subscribe("global-notifications");
-  var privateNotifications = pusher.subscribe("{{$data["channel"]}}");
-  globalNotifications.bind("global-notification", notifyUser);
-  privateNotifications.bind("new-notification", notifyUser);
+      function checkStatus(){
+          var messages = "{{ checkMsgs(\Auth::user()->id) }}";
+          var notifs = "{{ checkNtfs(\Auth::user()->id) }}";
+          console.log(messages + " " + notifs);
+          if(messages > 0){
+              $('.add-msg-here').addClass('new-msg');
+          }
+          if(notifs > 0){
+              $('.add-notif-here').addClass('new-notif');
+          }
+
+          if(messages > 0 || notifs > 0){
+              $('#favicon').attr('href', '/assets/img/favicon-notification.png');
+          }
+      }
+
+      var globalNotifications = pusher.subscribe("global-notifications");
+      var privateNotifications = pusher.subscribe("{{$data["channel"]}}");
+      globalNotifications.bind("global-notification", notifyUser);
+      privateNotifications.bind("new-notification", notifyUser);
+  @endif
 
 </script>
     <div class="page">

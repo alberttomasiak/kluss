@@ -1,3 +1,10 @@
+.bodyimg {
+    display: block;
+    background-image: url("/assets/img/wasserette.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
 .logreg--heading h1{
     display: block;
     text-align: center;
@@ -8,7 +15,8 @@
 
 .logreg--form{
     display: block;
-    border-top: 5px solid #2e9c4e;
+    background-color: #FFFFFA;
+
 }
 
 .logreg--field{
@@ -23,10 +31,15 @@
     display: block;
     margin-top: 70px;
     margin-bottom: 15px;
-    background-image: url('../img/logo-kluss.png');
+    background-image: url('../img/logo-klusswit.png');
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
+}
+
+.logreg--body {
+    padding: 10px;
+
 }
 
 .container-logreg{
@@ -34,14 +47,25 @@
     min-height: 100%;
 }
 
+.logreg--label {
+    font-family: 'Coolvetica', sans-serif;
+    font-size: 1.2em;
+}
+
 .btn--form{
     background-color: #2e9c4e;
     color: white;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Coolvetica', sans-serif;
+    font-size: 1.4em;
 }
 
 .btn--form:hover{
     background-color: #1f6834;
     color: white;
+    transition: 1s;
 }
 
 #email, #password, #password-confirm, #name{
@@ -62,4 +86,34 @@
     left: 20px;
     width: 20px;
     height: 20px;
+}
+
+.form-control {
+    font-family: 'Lato', Helvetica;
+    box-shadow: inset 0px 0px 0px 0px #FFFFFA;
+    border: none;
+    background-color: #FFFFFA;
+    border-bottom: 4px solid $washington;
+    font-size: 1.2em;
+    border-radius: 0px;
+    margin-bottom: 30px;
+}
+
+.form-control:focus {
+    transition: 1s;
+    border-bottom: 4px solid $androidgreen;
+}
+
+@media only screen and(min-width: 768px){
+    .logreg--body {
+        padding: 30px;
+
+    }
+
+    .logreg--form {
+        width: 60%;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
