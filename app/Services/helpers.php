@@ -71,3 +71,9 @@ if(!function_exists('classActivePath')){
         return ' active';
     }
 }
+
+if(!function_exists('checkAccountType')){
+    function checkAccountType($id){
+        return \App\User::checkAccountType($id);
+    }
+}
