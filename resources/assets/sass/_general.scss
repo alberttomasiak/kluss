@@ -17,6 +17,12 @@ $darkLiver: #4C4C4B;
 
 // HIERBOVEN DUS
 
+a, input[type=submit], input[type=button]{
+    font-family: "Coolvetica" !important;
+    text-transform: uppercase !important;
+    font-weight: normal !important;
+}
+
 body, html{ background-color: $generalbg !important; }
 .page-content{ padding-top: 55px; }
 .main-content-wrap{

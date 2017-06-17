@@ -34,6 +34,8 @@
     h1{ color: $darkLiver !important; margin-bottom: .5em;}
     h1::first-letter{text-transform: uppercase;}
     .btn-main{ display: block; width: 125px; height: 30px; margin-left: auto; margin-right: auto; padding-top: .25em; margin-top: 1.5em; text-transform: uppercase; border-radius: 15px; background-color: $washington; color: $primaryWhite;}
+    .btn-main:hover, .btn-main:active, .btn-main:focus, .btn-main:visited{ text-decoration: none;}
+    .btn-main:hover{ background-color: $darkWashington;}
     p{margin-bottom: 1.5em; display: block; width: 85%; margin-left: auto; margin-right: auto; font-size: 1.2em;}
     .star-ratings-sprite{ display: block; margin-left: auto; margin-right: auto;}
     form{ position: relative; padding-bottom: 2em; width: 50%; display: block; margin-left: auto;
@@ -133,7 +135,7 @@
             margin-top: 1em;
             .left-side a, .right-side input{
                 display: block;
-                width: 125px;
+                width: 135px;
                 margin-left: auto;
                 margin-right: auto;
                 color: white;
@@ -151,7 +153,7 @@
                 }
             }
             .right-side input{
-                padding-bottom: 1em;
+                padding-bottom: .2em;
                 padding-top: 0;
             }
         }
