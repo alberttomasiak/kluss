@@ -27,7 +27,7 @@ class UserController extends Controller
                 return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
             }
         }else{
-            return redirect()->back()->with('ImBannedBro', "Dit account is nog niet geverifieërd.");
+            return redirect()->back()->with('activated', "Dit account is nog niet geactiveerd.");
         }
     }
 

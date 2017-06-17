@@ -10,10 +10,13 @@
                             <form class="form-horizontal" role="form" method="POST" action="{{ url('/aanmelden') }}">
                                 {{ csrf_field() }}
                                 @if(session('ImBannedBro'))
-                                    <p>{{session('ImBannedBro')}}</p>
+                                    <p class="form--message">{{session('ImBannedBro')}}</p>
+                                @endif
+                                @if(session('activated'))
+                                    <p class="form--message">{{session('activated')}}</p>
                                 @endif
                                 @if(session('verified'))
-                                    <p>{{session('verified')}}</p>
+                                    <p class="form--message">{{session('verified')}}</p>
                                 @endif
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <!--<label for="email" class="col-md-4 control-label">E-Mail Adres</label>-->
