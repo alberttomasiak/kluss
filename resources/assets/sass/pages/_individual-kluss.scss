@@ -24,6 +24,7 @@
     position: relative;
     margin-top: -4em;
     margin-bottom: 2em;
+    z-index: 1000;
 }
 
 .apply-btn p b{
@@ -189,6 +190,7 @@
 }
 
 #tab1{
+    min-height: 225px;
     position: relative;
     }
 .for--related{
@@ -520,14 +522,13 @@
         }
         .tabs--task{
             margin-top: 250px;
-            .task--tabs{
-                width: 67%;
-            }
+            .task--tabs{ width: 67%; }
             .task-tabs{
                 width: 90%;
                 display: block;
                 margin-left: auto;
                 margin-right: auto;
+                // height: 225px;
             }
         }
         .task--main-info h1{
