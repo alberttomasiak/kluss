@@ -1,5 +1,4 @@
 @foreach($kluss as $kl)
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback=initGeolocation" async deter></script>
 <script type="text/javascript">
   var map;
   var kluss = {!! json_encode($kluss) !!};
@@ -19,13 +18,11 @@
      var poslng = position.coords.longitude;
      var poslat = position.coords.latitude;
      calculateDistance(poslat, poslng, {!! json_encode($kl->latitude) !!}, {!! json_encode($kl->longitude) !!});
-     load();
  }
  function fail(){
     // geolocation doesn't work with this browser / not a secure request
     // perform the load with the coordinates for Mechelen -> our HQ
     calculateDistance(poslatDefault, poslngDefault, {!! json_encode($kl->latitude) !!}, {!! json_encode($kl->longitude) !!});
-    load();
  }
 
  function calculateDistance(userlat, userlng, tasklat, tasklng){
@@ -49,7 +46,8 @@
                  if($distance > {{ spillvalue("limit_starter")}} ){
                      // 2 km for standard users
                      $('.apply-btn a').remove();
-                     $('.apply-btn').append('<div class="notInRange"><p>Het spijt ons, maar je bent niet dicht genoeg bij het klusje om te solliciteren. <a href="/klussgold">Upgrade naar GOLD</a> om een groter bereik te hebben.</p></div>');
+                     // Je bent niet dicht genoeg bij het klusje om te solliciteren. Upgrade naar gold voor een groter bereik.
+                     $('.apply-btn').append('<div class="notInRange"><p>Je bent niet dicht genoeg bij het klusje om te solliciteren. Upgrade naar gold voor een groter bereik.</p><a href="/klussgold">Gold</a></div>');
                  }
              }else{
                  // Distance of 5KM for all Gold Users + admins
@@ -70,30 +68,41 @@
       var Plat = {!! json_encode($kl->latitude) !!};
       var Plng = {!! json_encode($kl->longitude)!!};
       var latiLngi = new google.maps.LatLng(Plat, Plng);
-      map = new google.maps.Map(document.getElementById('map-single'), {
+      map = new google.maps.Map(document.getElementById('map--individual'), {
           center: latiLngi,
           zoom: 15,
-          scrollwheel: false,
-          navigationControl: false,
+          scrollwheel: true,
+          navigationControl: true,
           mapTypeControl: false,
           scaleControl: false,
           streetViewControl: false,
           disableDefaultUI: true,
-          draggable: false,
+          draggable: true,
           setClickable: false,
           styles: [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}]
       });
-      console.log(map);
-      console.log($('#map-single'));
+
       for(var i = 0; i < kluss.length; i++){
           marks[i] = addMarker(kluss[i]);
       }
       center = map.getCenter();
       google.maps.event.addDomListener(window, 'resize', function() {
-
           map.setCenter(center);
       });
   }
+  $(document).ready(function(){
+      initGeolocation();
+  });
+
+
+ $('.tab2').click(function(e){
+     if($('.tab2').hasClass('loaded')){
+
+     }else{
+         load();
+         $('.tab2').addClass('loaded');
+     }
+ });
 
   function addMarker(kluss){
     var title = kluss.title;
@@ -157,6 +166,4 @@ function selectedApplicant(data){
 
 var channel = pusher.subscribe("kluss-map");
 // channel binds
-channel.bind('applicant-selected-task', selectedApplicant);
-
 </script>

@@ -25,6 +25,17 @@
     margin-bottom: 2em;
 }
 
+.apply-btn p b{
+    font-family: "Coolvetica" !important;
+    color: $darkLiver;
+    font-size: 1.1em;
+}
+
+.remove-appl{
+    background-color: $raspberry !important;
+    width: 160px !important;
+}
+
 .task--details{
     background-color: $primaryWhite;
     display: block;
@@ -130,27 +141,29 @@
     display: block;
     margin-top: 2em;
     text-align: center;
-    img{
-        display: block;
-        width: 100px;
-        border-radius: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        margin-bottom: 1em;
-    }
     p{
         font-family: "Coolvetica";
         font-size: 1.2em;
     }
 }
+
+.task--user-image{
+        display: block;
+        width: 100px !important;
+        border-radius: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1em;
+}
+
 #tab1{
     position: relative;
-
 .for--related{
     display: block;
     padding-top: 2em;
     margin-top: 2em;
     border-top: 1px solid $darkLiver;
+    margin-left: .5em;
     .left-side a, .right-side a{ width: 120px;}
     .left-side p, .right-side p{ margin-left: 0;}
     a{display: block;
@@ -162,7 +175,8 @@
     text-align: center;
     color: white;}
     .left-side{ margin-bottom: 1.5em;}
-    .right-side input{ display: block; width: 130px; margin-left: 0; border-radius: 15px; border: none; background-color: $washington; color: white; height: 30px;  &:hover{background-color: $darkWashington;}}
+    .right-side input{ display: block; margin-top: 1em; width: 130px; border-radius: 15px; border: none; margin-left: 0; background-color: $washington; color: white; height: 30px;  &:hover{background-color: $darkWashington;}}
+    .right-side .btn-finish{ margin-bottom: 2em; }
 }
 
 .first-app{
@@ -196,7 +210,7 @@
     }
     .btn-contact, .btn-accept, .btn-deny{
         display: block;
-        width: 80px;
+        width: 75px;
         border-radius: 15px;
         background-color: $washington;
         border: none;
@@ -246,6 +260,92 @@
     }
 }
 
-#map--individual{
-    height: 250px;
+.map--wrap{
+    display: absolute;
+    width: 90%;
+    margin-left: 5%;
+    height: 225px;
+    margin-bottom: 2em;
+    margin-top: 2em;
+    #map--individual{
+        width: 100%;
+        height: 225px;
+    }
+}
+
+.owner--wrap{
+    margin-left: .5em;
+    .owner--name{
+        font-family: "Coolvetica";
+        font-size: 1.3em;
+    }
+    .star-ratings-sprite{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .contact--owner{
+        img{
+            margin-top: 3em;
+            margin-bottom: 1em;
+        }
+        form{
+            position: relative;
+            display: block;
+            width: 215px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 5em;
+        }
+        form label{
+            display: block;
+            background-image: url(../img/chat.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 50px;
+            height: 50px;
+            background-position: center;
+            position: absolute;
+            top: -1em;
+        }
+        input{
+            position: absolute;
+            right: 0;
+            width: auto;
+            border: none;
+            background-color: transparent;
+            color: $washington;
+            font-family: "Coolvetica";
+            font-size: 1.2em;
+            text-transform: none !important;
+        }
+    }
+}
+.applicant--info{
+    text-align: center;
+    p{
+        font-family: "Coolvetica";
+        font-size: 1.2em;
+    }
+}
+.applicant--info a{
+    display: block;
+    width: auto;
+    padding-left: .5em;
+    padding-right: .5em;
+    border-radius: 15px;
+    height: 30px;
+    padding-top: 5px;
+    background-color: $washington;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    &:hover{
+        background-color: $darkWashington;
+    }
+    &:hover, &:focus, &:active, &:visited{
+        text-decoration: none;
+    }
 }
