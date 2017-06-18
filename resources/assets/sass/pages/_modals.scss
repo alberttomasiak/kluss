@@ -1,0 +1,74 @@
+.modals-box {
+  width: 90%;
+  margin: 30px auto;
+}
+
+.modals-close {
+  opacity: 1;
+}
+
+.modals-close img {
+  width: 50%;
+}
+
+.modals-header {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.modals-content {
+  border-radius: 0px;
+}
+
+.modals-title {
+  font-family: 'Coolvetica', sans-serif;
+  margin-bottom: 30px;
+  font-size: 1.6em;
+  color: $washington;
+}
+
+.modals-text {
+  font-family: 'Lato', Helvetica;
+}
+
+.modals-title_small {
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 1.2em;
+  color: $washington;
+}
+
+.modals-body {
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.modals-footer {
+  padding: 15px;
+  text-align: right;
+}
+
+.btn-sendreport{
+  background-color: #2e9c4e;
+  width: 50%;
+  color: white;
+  display: block;
+  margin-left: auto;
+  /*margin-right: auto;*/
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 100px;
+  padding: 1%;
+}
+
+@media only screen and(min-width: 768px){
+  .modals-box {
+    background-color: $androidgreen;
+    width: 60%;
+    margin: 30px auto;
+  }
+
+  .btn-sendreport {
+    width: 25%;
+  }
+}
