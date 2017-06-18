@@ -63,6 +63,10 @@ h6{ }
     li a{ width: 100%; }
 }
 
+a:hover, a:focus, a:active, a:visited{
+    text-decoration: none;
+}
+
 .addboxshadow {
     box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
     -moz-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
