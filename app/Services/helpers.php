@@ -83,3 +83,9 @@ if(!function_exists('didIPay')){
         return \App\KlussPay::getPaidStatus($id);
     }
 }
+
+if(!function_exists('klussCategory')){
+    function klussCategory($id){
+        return \App\KlussCategories::IDToName($id);
+    }
+}
