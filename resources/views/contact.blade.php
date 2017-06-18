@@ -13,7 +13,7 @@
                     U kan ook gebruik maken van onderstaand contactformulier.
                 </p>
                 <div class="contact_form">
-                    <form action="post">
+                    <form action="/contact/send" id="contact_form">
                         <input type="text" name="auteur" placeholder="Naam of bedrijf" class="contact_textinput">
                         <select name="contact_categorie" form="contact_form" class="contact_textinput">
                             <option value="select">Kies een categorie...</option>
