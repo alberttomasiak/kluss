@@ -13,19 +13,37 @@
                         {{csrf_field()}}
                         <input type="hidden" name="userID" value="{{$userData->id}}">
                         <h3>Persoonlijke gegevens</h3>
+                        @if(session('success'))
+                            <p>{{session('success')}}</p>
+                        @endif
                         <div class="logreg--field">
                             <label class="logreg--label" for="name">Naam</label>
-                            <input type="text" class="form-control" name="name" id="name" placeholder="name" value="{{$userData->name}}">
+                            <input type="text" class="form-control {{ $errors->has('name') ? ' has-error' : '' }}" name="name" id="name" placeholder="name" value="{{$userData->name}}">
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <p>{{ $errors->first('name') }}</p>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="logreg--field">
                             <label class="logreg--label" for="email">Email</label>
-                            <input type="text" class="form-control" name="email" id="email" placeholder="Email" value="{{$userData->email}}">
+                            <input type="text" class="form-control {{ $errors->has('email') ? ' has-error' : '' }}" name="email" id="email" placeholder="Email" value="{{$userData->email}}">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
+                                    <p>{{ $errors->first('email') }}</p>
+                                </span>
+                            @endif
                         </div>
 
                         <div class="logreg--field">
                             <label class="logreg--label" for="bio">Over mezelf</label>
-                            <textarea name="bio" class="form-control" id="bio" form="settings-form" rows="8" cols="30">{{$userData->bio}}</textarea>
+                            <textarea name="bio" class="form-control {{ $errors->has('bio') ? ' has-error' : '' }}" id="bio" form="settings-form" rows="8" cols="30">{{$userData->bio}}</textarea>
+                            @if ($errors->has('bio'))
+                                <span class="help-block">
+                                    <p>{{ $errors->first('bio') }}</p>
+                                </span>
+                            @endif
                         </div>
 
                             <div class="image-upload">
@@ -35,17 +53,32 @@
                                     <div class="user--img" style="background-image: url('/assets{{$userData->profile_pic}}');"></div>
                                     <input type="file" name="profile_pic" id="profile_pic" value="Kies bestand">
                                 </label>
+                                @if ($errors->has('profile_pic'))
+                                    <span class="help-block">
+                                        <p>{{ $errors->first('profile_pic') }}</p>
+                                    </span>
+                                @endif
                             </div>
 
                         <h3>Accountgegevens</h3>
 
                         <div class="logreg--field">
-                            <label class="logreg--label" for="password1">Nieuw wachtwoord</label>
-                            <input type="password"class="form-control"  name="password1" id="password1" placeholder="Laat leeg voor hetzelfde wachtwoord" value="">
+                            <label class="logreg--label" for="password">Nieuw wachtwoord</label>
+                            <input type="password" class="form-control {{ $errors->has('password') ? ' has-error' : '' }}"  name="password" id="password" placeholder="Laat leeg voor hetzelfde wachtwoord" value="">
+                            @if ($errors->has('password'))
+                                <span class="help-block">
+                                    <p>{{ $errors->first('password') }}</p>
+                                </span>
+                            @endif
                         </div>
                         <div class="logreg--field">
-                            <label class="logreg--label" for="password2">Herhaal wachtwoord</label>
-                            <input type="password" class="form-control" name="password2" id="password2" placeholder="Herhaal wachtwoord" value="">
+                            <label class="logreg--label" for="password-confirm">Herhaal wachtwoord</label>
+                            <input type="password" class="form-control {{ $errors->has('password_confirmation') ? ' has-error' : '' }}" name="password_confirmation" id="password-confirm" placeholder="Herhaal wachtwoord" value="">
+                            @if ($errors->has('password_confirmation'))
+                                <span class="help-block">
+                                    <p>{{ $errors->first('password_confirmation') }}</p>
+                                </span>
+                            @endif
                         </div>
                         <input type="submit" name="settings-send" value="Opslaan">
                     </form>

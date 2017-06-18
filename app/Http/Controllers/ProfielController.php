@@ -58,7 +58,45 @@ class ProfielController extends Controller
 
     public function update(Request $request)
     {
-        dd($request);
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users,id,'.$request->userID,
+            'bio' => 'required',
+            'password' => 'min:6|confirmed',
+            'profile_pic' => 'image',
+        ]);
+
+        $userID = $request->userID;
+        $name = $request->name;
+        $email = $request->email;
+        $bio = $request->bio;
+        $pass1 = $request->password == "" ? null : $request->password;
+        $pass2 = $request->password_confirm == "" ? null : $request->password_confirm;
+        $image = $request->profile_pic;
+
+        if(Input::hasFile('profile_pic')){
+            $file = Input::file('profile_pic');
+            $extension = Input::file('profile_pic')->getClientOriginalExtension();
+            $fileName = "profiel-".\Auth::user()->id . time() . "." . $extension;
+            $destinationPath = "/img/profile/".$fileName;
+            $file->move('assets/img/profile', $fileName);
+            // we've stored the profile pic on our server, so now let's store the path in our database, along other information.
+            if($pass1 != null){
+                $hashP1 = bcrypt($pass1);
+                $profile = User::updateProfile($userID, $name, $email, $bio, $hashP1, $destinationPath);
+            }else{
+                $profile = User::updateProfile($userID, $name, $email, $bio, null, $destinationPath);
+            }
+            return redirect()->back()->with('success', 'Uw profiel werd successvol aangepast.');
+        }else{
+            if($pass1 != null){
+                $hashP1 = bcrypt($pass1);
+                $profile = User::updateProfile($userID, $name, $email, $bio, $hashP1, null);
+            }else{
+                $profile = User::updateProfile($userID, $name, $email, $bio, null, null);
+            }
+            return redirect()->back()->with('success', 'Uw profiel werd successvol aangepast.');
+        }
     }
 
     public function unblockUser($id){
