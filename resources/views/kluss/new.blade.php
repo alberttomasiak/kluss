@@ -20,17 +20,16 @@
                                 </span>
                             @endif
                         </div>
-                        @if($account_type == "gold")
-                            <div class="price-group">
-                                {{-- <label for="price">Prijs</label> --}}
-                                <input type="number" name="price" class="kluss--price form-control {{ $errors->has('price') ? ' has-error' : '' }}" value="" placeholder="Prijs (PayPal):">
-                                @if ($errors->has('price'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('price') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        @endif
+
+                        <div class="price-group">
+                            {{-- <label for="price">Prijs</label> --}}
+                            <input type="number" name="price" class="kluss--price form-control {{ $errors->has('price') ? ' has-error' : '' }}" value="" placeholder="Prijs:">
+                            @if ($errors->has('price'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('price') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
                         <div class="form-group time-group">
                             <select class="form-control" name="kluss_time" id="kluss_time">
