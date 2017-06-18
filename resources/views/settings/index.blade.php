@@ -31,7 +31,8 @@
                             <div class="image-upload">
                                 <label for="file-input" class="logreg--label">
                                     <p>Klik op de afbeelding om een nieuwe te selecteren</p>
-                                    <img src="/assets{{$userData->profile_pic}}" class="user--img" alt="{{$userData->name}}'s profile pic">
+                                    {{-- <img src="/assets{{$userData->profile_pic}}" class="user--img" alt="{{$userData->name}}'s profile pic"> --}}
+                                    <div class="user--img" style="background-image: url('/assets{{$userData->profile_pic}}');"></div>
                                     <input type="file" name="profile_pic" id="profile_pic" value="Kies bestand">
                                 </label>
                             </div>

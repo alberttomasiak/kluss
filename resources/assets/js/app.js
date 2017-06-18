@@ -47,7 +47,7 @@ $("#profile_pic").on("change", function(){
     //    $('.kluss-file-upload').css('color', 'transparent');
        var reader = new FileReader();
        reader.onload = function(e){
-          $(".user--img").attr('src', e.target.result);
+          $(".user--img").css('background-image', "url('"+e.target.result+"')");
        };
        reader.readAsDataURL(this.files[0]);
    }
