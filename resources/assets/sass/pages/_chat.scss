@@ -99,6 +99,8 @@
   font-family: 'Lato', Helvetica;
   background-color: #FFFFFA;
   resize: none;
+  padding-left: 1.5em;
+  margin-bottom: 1em;
 }
 
 .message-sendbtn {
@@ -137,13 +139,29 @@
     width: 100%;
     border-radius: 20px 0px 0px 20px;
     padding: 1% 3% 1% 3%;
-
+    margin-bottom: 0;
   }
 
   .message-sendbtn {
     width: 15%;
     border-radius: 0px 20px 20px 0px;
     font-size: 1.2em;
-
+    padding: 0;
+    padding-top: 10px;
   }
+}
+
+@media only screen and (min-width: 1365px){
+    .message-sendbtn{
+        padding-top: 14px;
+    }
+    .chat-body{
+        height: 800px;
+    }
+    .my-chat-container{
+        height: 650px;
+    }
+    #messages{
+        height: 600px !important;
+    }
 }

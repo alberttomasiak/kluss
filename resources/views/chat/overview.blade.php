@@ -61,7 +61,7 @@
         border-left: 2px solid #2D2D2D;
     }
 </style>
-<div class="main-content-wrap">
+<div class="main-content-wrap chat-body">
     <h1>Chat</h1>
     <div class="my-chat-wrap">
         <div class="my-chat-overview" style="">
