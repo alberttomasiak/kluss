@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
     Route::get('/kluss/{id}', 'KlussController@singleKluss')->middleware('taskChecker');
-    Route::get('/kluss/test/{id}', 'KlussController@single')->middleware('taskChecker');
+    // Route::get('/kluss/test/{id}', 'KlussController@single')->middleware('taskChecker');
     // kluss solliciteren / bewerken routes
     Route::get('/kluss/{id}/bewerken', 'KlussController@update');
     Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');

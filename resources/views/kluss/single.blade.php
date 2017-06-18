@@ -37,10 +37,8 @@
                         <h1>{{$kl->title}}</h1>
                         @if(blockChecker($kl->id, \Auth::user()->id) == "" && \Auth::user()->id != $kl->user_id)
                             <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="">Rapporteer</a>
-                            @include('kluss.modals.report', ['id' => $kl->id])
                         @elseif(blockChecker($kl->id, \Auth::user()->id) != "" && \Auth::user()->id != $kl->user_id)
                             <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="" disabled>Rapporteer</a>
-                            @include('kluss.modals.report', ['id' => $kl->id])
                             <p>Dit klusje werd door u al gerapporteerd. De beheerders zijn dit aan het onderzoeken.</p>
                         @endif
                         <div class="task--maker-details">
@@ -100,4 +98,5 @@
         @endforeach
     </div>
 </div>
+@include('kluss.modals.report', ['id' => $kl->id])
 @endsection
