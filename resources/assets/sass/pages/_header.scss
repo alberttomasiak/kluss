@@ -194,7 +194,7 @@
                 position: absolute;
                 order: 1;
                 font-size: .8em;
-                a:first-child(){
+                a:first-child {
                     width: 100px;
                 }
                 a{
@@ -281,8 +281,8 @@
     .new-notif{ left: 4.7em; top: .9em; }
     .header .header-nav .left-icons a:first-child{ width: 33.3%; }
     .header .header-nav .left-icons a img, .header .header-nav .right-icons a img{ left: 2.5em;}
-    .header .header-nav .left-icons a:first-child() img{ left: 3em;}
-    .header .header-nav .left-icons a:first-child() p{ margin-left: 6.5em;}
+    .header .header-nav .left-icons a:first-child img{ left: 3em;}
+    .header .header-nav .left-icons a:first-child p{ margin-left: 6.5em;}
     .header .header-nav .left-icons a p, .header .header-nav .right-icons a p{ margin-left: 6em;}
     .header .header-nav .right-icons{ width: 300px; }
     .header .header-nav .left-icons a{ width: 33%; }
