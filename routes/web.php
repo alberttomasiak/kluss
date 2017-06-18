@@ -42,24 +42,26 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/getTasks', 'HomeController@getTasks');
     Route::post('/calculateDistance', 'KlussController@calculateUserDistance');
     // kluss routes
+    // Route::get('/kluss/new', 'KlussController@newIndex');
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
     Route::get('/kluss/{id}', 'KlussController@singleKluss')->middleware('taskChecker');
+    Route::get('/kluss/test/{id}', 'KlussController@single')->middleware('taskChecker');
     // kluss solliciteren / bewerken routes
     Route::get('/kluss/{id}/bewerken', 'KlussController@update');
     Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
     Route::post('/kluss/{id}/sollicitant/{userid}/accepteren', 'KlussController@acceptUser');
     Route::post('/kluss/{id}/sollicitant/{userid}/weigeren', 'KlussController@refuseUser');
-    Route::get('/kluss/{id}/verwijderen', 'KlussController@delete');
+    Route::post('/kluss/{id}/verwijderen', 'KlussController@delete');
     Route::post('/kluss/{task_id}/{user_id}/finished', 'KlussController@markFinished');
     Route::get('/kluss/{id}/betalen', 'KlussController@paypalPage');
     Route::post('/kluss/{id}/betalen', 'KlussController@processPayment');
     Route::post('/kluss/{id}/rapporteren', 'KlussController@blockKluss');
     Route::get('/home/filter', 'KlussController@filterTasks');
     // profile routes
-    Route::get('/profiel/test/{id}', 'ProfielController@testIndex');
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
+    // Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
     Route::get('/chat', 'ChatController@index');

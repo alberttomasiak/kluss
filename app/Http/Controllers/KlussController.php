@@ -15,6 +15,7 @@ use App\KlussCategories;
 use App\Notifications;
 use App\KlussFinished;
 use App\KlussPay;
+use App\UserReview;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -33,8 +34,15 @@ class KlussController extends Controller
         $task_history = Kluss::getUserHistory(\Auth::user()->id);
         $kluss_categories = KlussCategories::getCategories();
         $account_type = User::checkAccountType(\Auth::user()->id);
-        return view('kluss/add', compact('kluss_categories', 'account_type', 'task_history'))->with('title', 'Voeg een Kluss toe');
+        return view('kluss.new', compact('kluss_categories', 'account_type', 'task_history'));
     }
+
+    // public function newIndex(){
+    //     $task_history = Kluss::getUserHistory(\Auth::user()->id);
+    //     $kluss_categories = KlussCategories::getCategories();
+    //     $account_type = User::checkAccountType(\Auth::user()->id);
+    //     return view('kluss.new', compact('kluss_categories', 'account_type', 'task_history'));
+    // }
 
     public function add(Request $request){
         $this->validate($request, [
@@ -124,6 +132,16 @@ class KlussController extends Controller
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
         $paid = KlussPay::getPaidStatus($id);
         return view('kluss.individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $kluss[0]->title);
+    }
+
+    public function single($id){
+        $kluss = Kluss::getSingle($id);
+        $kluss_applicant = Kluss_applicant::getApplicant($id);
+        $kluss_applicants = Kluss_applicant::getAllApplicants($id);
+        $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
+        $paid = KlussPay::getPaidStatus($id);
+        $reviewScore = UserReview::getUserReviewScore($kluss[0]->user_id);
+        return view('kluss.single', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid', 'reviewScore'));
     }
 
     public function acceptUser(Request $request){
@@ -361,7 +379,7 @@ class KlussController extends Controller
 
     public function processPayment($id){
         $pay = KlussPay::addPayment($id);
-        return redirect('/kluss/'.$id);
+        return redirect()->back();
     }
 
     public function blockKluss(Request $request, $id){

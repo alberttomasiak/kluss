@@ -13,6 +13,9 @@
         -moz-transform: scale(.97);
         transform: scale(.97);
     }
+    &:hover, &:focus, &:active, &:visited{
+        text-decoration: none;
+    }
     h6{
         font-size: 1.4em;
         padding-top: .5em;

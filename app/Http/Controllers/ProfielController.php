@@ -23,19 +23,6 @@ class ProfielController extends Controller
      */
     public function index($id)
     {
-        $personalData = User::getTargetInfo($id);
-        $klussjes = Kluss::getUserKluss($id);
-        // $sollicitanten = \App\Kluss_applicant::getApplicants($id);
-        $block_categories = BlockReasons::getCategories();
-        // historiek van uitgevoerde klussjes
-        // reviews gebruikers
-        $reviews = UserReview::getUserReviews($id);
-        $reviewCount = UserReview::getUserReviewCount($id);
-        $reviewScore = UserReview::getUserReviewScore($id);
-        return view('profile.profiel', compact('personalData', 'klussjes', 'sollicitanten', 'block_categories', 'reviewCount', 'reviewScore', 'reviews'))->with('title', 'Profiel');
-    }
-
-    public function testIndex($id){
         $userInfo = User::getTargetInfo($id);
         // reviews
         $reviews = UserReview::getUserReviews($id);
@@ -48,7 +35,12 @@ class ProfielController extends Controller
         $tasks = Kluss::getAllOpenActivities($id, 2);
         $openTaskCounter = Kluss::countUserTasks($id);
         // ...
-        return view('profile.index', compact('userInfo', 'reviewCount', 'reviewScore', 'reviews', 'activities', 'activityCounter', 'tasks', 'openTaskCounter'));
+        $block_categories = BlockReasons::getCategories();
+        return view('profile.index', compact('userInfo', 'reviewCount', 'reviewScore', 'reviews', 'activities', 'activityCounter', 'tasks', 'openTaskCounter', 'block_categories'));
+    }
+
+    public function testIndex($id){
+
     }
 
     public function show($id)

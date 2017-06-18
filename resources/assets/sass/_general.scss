@@ -4,6 +4,7 @@ $androidgreen: #8bc53f;
 $primaryWhite: #FFFFFA;
 $generalbg: #f3f3f3;
 $raspberry: #911137;
+$darkRaspberry: #730d2b;
 $notificationsgreen: #EAFDD1;
 $darkLiver: #4C4C4B;
 
@@ -16,6 +17,12 @@ $darkLiver: #4C4C4B;
 
 // HIERBOVEN DUS
 
+a, input[type=submit], input[type=button]{
+    font-family: "Coolvetica" !important;
+    text-transform: uppercase !important;
+    font-weight: normal !important;
+}
+
 body, html{ background-color: $generalbg !important; }
 .page-content{ padding-top: 55px; }
 .main-content-wrap{
@@ -23,13 +30,14 @@ body, html{ background-color: $generalbg !important; }
     width: 85%;
     margin-left: auto;
     margin-right: auto;
-    background-color: #FFFFFA;
+    background-color: $primaryWhite;
     margin-top: 3em !important;
     box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
     padding-left: 1em;
     padding-right: 1em;
     margin-bottom: 10em;
     padding-bottom: 1em;
+    position: relative;
 }
 
 h1, h2, h3, h4, h5, h6{ font-family: "Coolvetica" !important; }

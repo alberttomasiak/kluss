@@ -77,3 +77,21 @@ if(!function_exists('checkAccountType')){
         return \App\User::checkAccountType($id);
     }
 }
+
+if(!function_exists('didIPay')){
+    function didIPay($id){
+        return \App\KlussPay::getPaidStatus($id);
+    }
+}
+
+if(!function_exists('klussCategory')){
+    function klussCategory($id){
+        return \App\KlussCategories::IDToName($id);
+    }
+}
+
+if(!function_exists('getUserReviewRating')){
+    function getUserReviewRating($id){
+        return \App\UserReview::getUserReviewScore($id);
+    }
+}
