@@ -40,7 +40,7 @@
         height: 75px;
         width: 100%;
         display: block;
-        border-bottom: 1px solid #eee;
+        /*border-bottom: 1px solid #eee;*/
     }
 
     .user img{
@@ -56,30 +56,33 @@
         margin-top: .5em;
     }
 
-    .active{
-        background-color: #f7f7f7;
+    .active-user{
+        background-color: #FFFFFA;
+        border-left: 2px solid #2D2D2D;
     }
 </style>
-<div class="chat-wrap">
-    <div class="chat-overview" style="">
-        <h3>Recente gesprekken</h3>
-        @foreach($conversationsLeft as $conversationLeft)
-                <div class="user {{$conversationLeft->chatname == $firstConversation->chatname ? 'active' : ''}}">
+<div class="main-content-wrap chat-body">
+    <h1>Chat</h1>
+    <div class="my-chat-wrap">
+        <div class="my-chat-overview" style="">
+            <h3 class="my-chat-title">Recente gesprekken</h3>
+            @foreach($conversationsLeft as $conversationLeft)
+                <div class="user {{$conversationLeft->chatname == $firstConversation->chatname ? 'active-user' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}">
                     </div>
                     <div class="text-display">
                         <div class="message-data">
-                            <span class="author">{{$conversationLeft->name}}</span>
+                            <span class="author my-chat-chatname">{{$conversationLeft->name}}</span>
                         </div>
                         <form class="" action="/chat/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}" method="post">
                             {{ csrf_field() }}
-                            <input type="submit" name="" value="Chat">
+                            <input type="submit" name="" value="Chat" class="chat-this-user-btn">
                         </form>
                     </div>
                 </div>
-        @endforeach
-        @foreach($conversationsRight as $conversationRight)
+            @endforeach
+            @foreach($conversationsRight as $conversationRight)
                 <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
@@ -94,10 +97,12 @@
                         </form>
                     </div>
                 </div>
-        @endforeach
-    </div>
-    <div class="chat-details" style="">
-        @include('chat.partials.chat', array('firstConversation', $firstConversation))
+            @endforeach
+        </div>
+        <div class="my-chat-details" style="">
+            @include('chat.partials.chat', array('firstConversation', $firstConversation))
+        </div>
     </div>
 </div>
+
 @endsection
