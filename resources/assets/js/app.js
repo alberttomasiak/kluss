@@ -20,7 +20,9 @@ $(window).on("resize", function(){
 
 $('.tabgroup > div').hide();
 var rightTab = $('.profile--tabs .active').attr('data-tabID');
+var solTab = $('.task--tabs .active').attr('data-tabID');
 $('.tabgroup #tab'+rightTab).show();
+$('.task-tabs #tab1').show();
 
 $('.tabs a').click(function(e){
   e.preventDefault();

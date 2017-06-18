@@ -162,13 +162,13 @@
 }
 
 .post-btn-mobile-anon{
-    width: 90px;
+    width: 100px;
+    p{ font-size: 1.2em !important; padding-top: .15em !important;}
 }
 
 .header p{
     font-family: "Coolvetica";
     text-transform: none;
-    font-size: 1.6em;
     font-size: 1.6em;
     padding-top: .35em !important;
 }
@@ -306,6 +306,7 @@
     .header .header-nav .right-icons .post-btn{transition: all .2s; width: 100px !important; position: absolute; right: -2em; margin-top: 1.8em;}
     .header .header-nav .right-icons .post-btn:hover{ background-color: $darkWashington; }
 }
+.header .header-nav .right-icons .post-btn-anon{ padding-right: 0 !important;}
 @media only screen and (min-width: 1024px) {
     .header .header-nav .left-icons {
         width: 450px;
