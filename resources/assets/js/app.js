@@ -23,6 +23,7 @@ var rightTab = $('.profile--tabs .active').attr('data-tabID');
 var solTab = $('.task--tabs .active').attr('data-tabID');
 $('.tabgroup #tab'+rightTab).show();
 $('.task-tabs #tab1').show();
+$('.settings-tabs #tab1').show();
 
 $('.tabs a').click(function(e){
   e.preventDefault();
@@ -35,3 +36,19 @@ $('.tabs a').click(function(e){
     $(tabgroup).children('div').hide();
     $(target).show();
 })
+
+$("#profile_pic").on("change", function(){
+   var file = this.files[0];
+   var fileType = file["type"];
+   var allowedFileTypes = ["image/jpeg", "image/png"];
+   if($.inArray(fileType, allowedFileTypes) < 0){
+       // invalid familia
+   }else{
+    //    $('.kluss-file-upload').css('color', 'transparent');
+       var reader = new FileReader();
+       reader.onload = function(e){
+          $(".user--img").css('background-image', "url('"+e.target.result+"')");
+       };
+       reader.readAsDataURL(this.files[0]);
+   }
+});

@@ -54,9 +54,9 @@ class UserBlocks extends Model
 
     public static function getUserBlocks($user_id){
         return self::join('users', 'user_blocks.blocked_id', '=', 'users.id')
-                    ->select('users.name', 'users.id AS userid', 'user_blocks.*')
+                    ->select('users.name', 'users.profile_pic' ,'users.id AS userid', 'user_blocks.*')
                     ->where([
-                        ['blocker_id', $user_id],
+                        ['user_blocks.blocker_id', $user_id],
                         ['archived', '0']])
                     ->paginate(10);
     }

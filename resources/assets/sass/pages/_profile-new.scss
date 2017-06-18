@@ -11,12 +11,12 @@
 .blockModal{
     display: block;
     width: 150px;
-    height: 35px;
+    height: 55px;
     background-color: $raspberry;
     color: white;
     text-decoration: none;
     padding-top: 7px;
-    border-radius: 15px;
+    border-radius: 30px;
     margin-left: auto;
     margin-right: auto;
     &:hover, &:active, &:visited, &:focus{text-decoration: none; background-color: $darkRaspberry; color:white;}
