@@ -405,7 +405,7 @@
             text-align: center;
             padding-bottom: 0;
             li{
-                width: 33.3%;
+                width: 33.3333%;
                 a{
                     width: 100%;
                     display: block;
@@ -600,6 +600,16 @@
         }
         .task--main-info{
             position: relative;
+            .owner--btns{
+                position: relative;
+                a{
+                    left: 1em;
+                    top: auto;
+                }
+                .deletebtn{
+                    left: 180px;
+                }
+            }
         }
         .task--main-info a{
             position: absolute;
@@ -615,9 +625,31 @@
         }
         .for--related{
             height: 200px;
+            .left-side a{
+                margin-top: 1em;
+                left: 0;
+            }
+            .right-side{
+                position: relative;
+                a{
+                    left: 0;
+                    top: auto;
+                    min-width: 135px;
+                }
+            }
         }
         .map--wrap{
             height: 540px;
+        }
+        .owner--wrap .contact--owner{
+            position: relative;
+        }
+        .owner--wrap .contact--owner a{
+            bottom: 0;
+            top: auto;
+            min-width: 175px;
+            left: 0;
+            right: 0;
         }
     }
 }
