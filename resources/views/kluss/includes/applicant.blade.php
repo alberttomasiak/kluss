@@ -1,18 +1,14 @@
 @if($accepted_applicant != "")
     <h2>Informatie over de uitvoerder</h2>
     <div class="owner--wrap">
-        <div class="applicant--info">
+        <div class="owner--wrap-left">
+            <p class="owner--name">{{$accepted_applicant->name}}</p>
+            <p class="owner--bio">{{$accepted_applicant->bio}}</p>
+            <div class="star-ratings-sprite"><span style="width:calc({{getUserReviewRating($accepted_applicant->id)}} * 20%)" class="star-ratings-sprite-rating"></span></div>
+        </div>
+        <div class="contact--owner applicant--info">
             <img class="task--user-image" src="/assets{{$accepted_applicant->profile_pic}}" alt="{{$accepted_applicant->name}}'s profile pic'">
-            <p>{{$accepted_applicant->name}}</p>
             <a href="/profiel/{{$accepted_applicant->id}}/{{$accepted_applicant->name}}">Profiel van {{$accepted_applicant->name}}</a>
-            <div class="applicant--btn-tab">
-                @if($kl->user_id == \Auth::user()->id)
-                    <form action="/chat/{{$accepted_applicant->id}}" method="post">
-                        {{csrf_field()}}
-                        <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
-                    </form>
-                @endif
-            </div>
         </div>
     </div>
 @endif

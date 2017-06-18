@@ -2,6 +2,7 @@
 @section('content')
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
     <div class="main-content-wrap">
+        <div class="wrapper-task-single">
         @foreach($kluss as $kl)
             <div class="individual-task">
                 <div class="task--main-image-wrap">
@@ -47,13 +48,21 @@
                             <p>{{$kl->userName}}</p>
                         </div>
                         <p class="category--task">Categorie: {{klussCategory($kl->kluss_category)}}</p>
+                        @if($kl->user_id == \Auth::user()->id)
+                            <div class="owner--btns">
+                                <a href="/kluss/{{$kl->id}}/bewerken">Kluss bewerken</a>
+                                <a href="#kluss-{{$kl->id}}-verwijderen" data-toggle="modal" role="button" class="deletebtn">Verwijderen</a>
+                                @include('kluss.modals.delete')
+                            </div>
+                        @endif
                     </div>
                     <section id="tab-group" class="task-tabs tabgroup">
                         <div id="tab1">
                             <h2>Over dit klusje</h2>
                             <p>{{$kl->description}}</p>
                             <form action="/chat/{{$kl->userID}}" method="post">
-                                <input type="submit" name="start--chat" value="Contacteer Maker">
+                                {{csrf_field()}}
+                                <input type="submit" name="start--chat" value="Contacteer {{$kl->userName}}">
                             </form>
                             @include('kluss.includes.related')
                         </div>
@@ -69,12 +78,15 @@
                         <div id="tab3">
                             <h2>Informatie over de Klusser</h2>
                             <div class="owner--wrap">
-                                <p class="owner--name">{{$kl->userName}}</p>
-                                <p class="owner--bio">{{$kl->userBio}}</p>
-                                <div class="star-ratings-sprite"><span style="width:calc({{$reviewScore}} * 20%)" class="star-ratings-sprite-rating"></span></div>
+                                <div class="owner--wrap-left">
+                                    <p class="owner--name">{{$kl->userName}}</p>
+                                    <p class="owner--bio">{{$kl->userBio}}</p>
+                                    <div class="star-ratings-sprite"><span style="width:calc({{$reviewScore}} * 20%)" class="star-ratings-sprite-rating"></span></div>
+                                </div>
                                 <div class="contact--owner">
                                     <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic">
                                     <form action="/chat/{{$kl->userID}}" method="post">
+                                        {{csrf_field()}}
                                         <label for="start--chat"></label>
                                         <input type="submit" id="start--chat" name="start--chat" value="Contacteer {{$kl->userName}}">
                                     </form>
@@ -87,4 +99,5 @@
             </div>
         @endforeach
     </div>
+</div>
 @endsection

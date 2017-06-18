@@ -89,3 +89,9 @@ if(!function_exists('klussCategory')){
         return \App\KlussCategories::IDToName($id);
     }
 }
+
+if(!function_exists('getUserReviewRating')){
+    function getUserReviewRating($id){
+        return \App\UserReview::getUserReviewScore($id);
+    }
+}
