@@ -9,6 +9,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use App\Kluss;
 use App\User;
 use App\BlockReasons;
+use App\UserBlocks;
 use App\UserReview;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
@@ -39,8 +40,10 @@ class ProfielController extends Controller
         return view('profile.index', compact('userInfo', 'reviewCount', 'reviewScore', 'reviews', 'activities', 'activityCounter', 'tasks', 'openTaskCounter', 'block_categories'));
     }
 
-    public function testIndex($id){
-
+    public function settingsIndex(){
+        $userData = User::getCurrentUser();
+        $myBlocks = UserBlocks::getUserBlocks(\Auth::user()->id);
+        return view('settings.index', compact('userData', 'myBlocks'));
     }
 
     public function show($id)
@@ -53,9 +56,15 @@ class ProfielController extends Controller
         //
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        dd($request);
+    }
+
+    public function unblockUser($id){
+        $unblock = User::unblockUser($userID);
+        $archiveBlock = UserBlocks::archiveBlock(\Auth::user()->id, $userID);
+        return redirect()->back()->with('unblocked', 'Deze gebruiker werd gedeblokkeerd.');
     }
 
     public function destroy($id)

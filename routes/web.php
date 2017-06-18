@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/meldingen', 'HomeController@notificationsIndex');
     // Settings
     Route::get('/settings', 'ProfielController@settingsIndex');
+    Route::post('/settings/gegevens', 'ProfielController@update');
+    Route::get('/gebruiker/{id}/deblokkeren', 'ProfielController@unblockUser');
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
     // Gold
     Route::get('/klussgold', 'KlussGoldController@index');

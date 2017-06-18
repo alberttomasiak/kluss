@@ -1,48 +1,186 @@
-// Personal blocks page begin
-div.user-block{
-    display: block;
-    width: 100%;
-    background-color: #eee;
-    padding-left: 1em;
-    padding-top: .5em;
-    padding-bottom: 1em;
-    position: relative;
-    margin-bottom: 1em;
-    h4{
-        color: $washington;
-        font-size: 1em;
-        text-transform: uppercase;
-        font-weight: bold;
-        margin-bottom: .5em;
-        padding-bottom: 0;
-    }
-
-    .block--time{
-        position: absolute;
-        right: 1em;
-        top: 1em;
-    }
-
-    a{
-        position: absolute;
+.settings-form{
+    padding-bottom: 75px;
+    .image-upload label{
         display: block;
-        right: 1em;
-        top: 4em;
+        position: relative;
+    }
+    .user--img{
+        display: block;
+        width: 150px;
+        height: 150px;
+        background-size: cover;
+    }
+    #profile_pic{
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 150px;
+        height: 150px;
+        z-index: 5 !important;
+        padding-top: 147px;
+    }
+    input[type=submit]{
+        display: block;
+        width: 125px;
+        height: 35px;
         background-color: $washington;
         color: white;
-        width: 100px;
-        text-align: center;
-        padding-top: .75em;
-        padding-bottom: .75em;
-        transition: all .3s;
-        font-size: .8em;
-        font-weight: bold;
-        text-transform: uppercase;
-        &:hover{
-            text-decoration: none;
-            color: $washington;
-            background-color: white;
+        border: none;
+        border-radius: 20px;
+        position: absolute;
+        right: 1em;
+        &:hover{ background-color: $darkWashington;}
+    }
+}
+.tabs--settings{
+    .settings-nav{
+        list-style-type: none;
+        padding-left: 0em;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        li{
+            height: 45px;
+            a{
+                display: block;
+                width: 100%;
+                height: 45px;
+                padding-top: 12px;
+                padding-left: 1em;
+                color: $darkLiver;
+                border-left: 7px solid transparent;
+                text-decoration: none;
+                &.active{
+                    border-color: $washington;
+                }
+            }
+        }
+    }
+    .settings-tabs{
+        padding-top: 100px;
+        #tab1, #tab2{
+            &::before{
+                content:"";
+                height: 1px;
+                background-color: #eee;
+                display: block;
+                width: 100%;
+            }
+        }
+        #tab2 p{
+            font-family: "Lato Regular";
+            line-height: 1.6em;
+        }
+        #tab2 .first-text{
+            margin-top: 2em;
+            display: block;
+            margin-bottom: 1em;
+        }
+        #tab2 .second-text{
+            margin-bottom: 3em;
         }
     }
 }
-// Personal blocks page end
+
+.personal--block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 1em;
+    margin-top: .5em;
+    img{
+        display: block;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: .5em;
+    }
+    .pic-name{
+        display: flex;
+        flex-direction: row;
+    }
+    p{
+        margin-top: .75em;
+    }
+    a{
+        color: $darkLiver;
+        display: block;
+        width: 100px;
+        text-align: center;
+    }
+}
+
+.settings-tabs #tab2{
+    padding-bottom: 50px;
+}
+
+@media only screen and (min-width: 480px){
+    .personal--block{
+        .pic-name{
+            width: 70%;
+            img{
+                margin-right: 1.5em;
+            }
+        }
+        a{
+            width: 30%;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .tabs--settings{
+        .settings-nav{
+            top: 75px;
+            height: calc(100% - 75px);
+            width: 215px;
+            border-right: 1px solid #eee;
+            &:first-child(){
+                padding-top: 25px;
+            }
+        }
+        .settings-tabs{
+            width: calc(100% - 215px);
+            margin-left: auto;
+            padding-top: 0;
+            #tab1, #tab2{
+                &::before{
+                    height: 0;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .tabs--settings .settings-tabs{
+        width: calc(100% - 280px);
+        margin-left: auto;
+        padding-top: 0;
+        margin-right: 32.5px;
+    }
+    .settings-form input[type=submit]{
+        right: 3em;
+    }
+    .personal--block a{
+        padding-top: 13px;
+    }
+}
+
+@media only screen and (min-width: 1365px){
+    .tabs--settings{
+        .settings-nav{
+            width: 250px;
+            li a{
+                padding-left: 2.8em;
+            }
+        }
+        .settings-tabs{
+            width: calc(100% - 330px);
+            margin-right: 40px;
+        }
+    }
+    .settings-form input[type=submit]{
+        right: 5.75em;
+    }
+}
