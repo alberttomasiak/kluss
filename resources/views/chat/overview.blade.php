@@ -83,7 +83,7 @@
                 </div>
             @endforeach
             @foreach($conversationsRight as $conversationRight)
-                <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active' : ''}}">
+                <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active-user' : ''}}">
                     <div class="avatar">
                         <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
                     </div>
@@ -93,7 +93,7 @@
                         </div>
                         <form class="" action="/chat/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}" method="post">
                             {{ csrf_field() }}
-                            <input type="submit" name="" value="Chat">
+                            <input type="submit" name="" value="Chat" class="chat-this-user-btn">
                         </form>
                     </div>
                 </div>
