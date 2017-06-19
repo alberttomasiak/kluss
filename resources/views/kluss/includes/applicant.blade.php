@@ -8,7 +8,7 @@
         </div>
         <div class="contact--owner applicant--info">
             <img class="task--user-image" src="/assets{{$accepted_applicant->profile_pic}}" alt="{{$accepted_applicant->name}}'s profile pic'">
-            <a href="/profiel/{{$accepted_applicant->id}}/{{$accepted_applicant->name}}">Profiel van {{$accepted_applicant->name}}</a>
+            <a href="/profiel/{{$accepted_applicant->id}}/{{$accepted_applicant->name}}">Profiel van gebruiker</a>
         </div>
     </div>
 @endif
