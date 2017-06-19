@@ -47,7 +47,15 @@
   height: 100%;
 }
 
-.my-chat-message {
+.my-chat-message-mine {
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 10px;
+  display: flex;
+
+}
+
+.my-chat-message-other {
   padding-left: 5px;
   padding-right: 5px;
   padding-bottom: 10px;
@@ -65,17 +73,30 @@
 }
 
 .my-message-text-display {
-  width: 90%;
+  width: 100%;
   margin-left: 2%;
 }
 
-.my-message-data {
-  color: $washington;
+.my-message-data-mine {
+   color: $washington;
+   font-family: 'Coolvetica', sans-serif;
+ }
+
+.my-message-data-other {
+  color: #2D2D2D;
   font-family: 'Coolvetica', sans-serif;
 }
 
-.my-message-body {
+.my-message-body-mine {
   border: 1px solid $washington;
+  background-color: #FFFFFA;
+  font-family: 'Lato', Helvetica;
+  padding: 1% 5% 1% 5%;
+  border-radius: 10px;
+}
+
+.my-message-body-other {
+  border: 1px solid #2D2D2D;
   background-color: #FFFFFA;
   font-family: 'Lato', Helvetica;
   padding: 1% 5% 1% 5%;
