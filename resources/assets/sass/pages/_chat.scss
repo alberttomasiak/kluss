@@ -153,6 +153,10 @@
     margin-right: 1%;
   }
 
+  // .my-message-avatar img {
+  //   height: 37px;
+  // }
+
   .my-chat-details {
     width: 75%;
   }
@@ -190,6 +194,12 @@
   }
 }
 
+// @media only screen and (min-width: 1024px){
+//     .my-message-avatar img {
+//       height: 50px;
+//     }
+// }
+
 @media only screen and (min-width: 1365px){
     .message-sendbtn{
         padding-top: 14px;
@@ -203,6 +213,13 @@
     #messages{
         height: 600px !important;
     }
-
-
+    // .my-message-avatar img {
+    //   height: 55px;
+    // }
 }
+//
+// @media only screen and (min-width: 1520px){
+//     .my-message-avatar img {
+//       height: 110%;
+//     }
+// }
