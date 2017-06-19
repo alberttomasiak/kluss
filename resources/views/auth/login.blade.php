@@ -67,8 +67,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-3">
-                                        <a class="btn--link" href="{{ url('/password/reset') }}">
+                                    <div class="">
+                                        <a style="width: 170px; margin-left: auto; margin-right: auto;" class="btn--link" href="{{ url('/password/reset') }}">
                                             Wachtwoord vergeten?
                                         </a>
                                     </div>

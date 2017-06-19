@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <!-- Scripts -->
+    <?php $url = Request::url(); ?>
+    {{-- {{$url != $_SERVER['SERVER_NAME']+"/aanmelden" || $url != $_SERVER['SERVER_NAME']+"/registreren" ? 'yes' : 'no'}} --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
     <script src="//js.pusher.com/3.0/pusher.min.js"></script>
