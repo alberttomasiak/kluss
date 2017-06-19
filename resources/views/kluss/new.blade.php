@@ -73,7 +73,8 @@
                         <div class="form-group {{ $errors->has('kluss_image') ? ' has-error' : '' }}">
                             <label for="kluss--input" class="kluss-file-upload">Drag &amp; drop uw foto of klik hier.</label>
                             <input type="file" class="kluss--image" name="kluss_image" id="kluss--input">
-                            <img id="preview--kluss" src="" alt="">
+                            {{-- <img id="preview--kluss" src="" alt=""> --}}
+                            <div class="user--img" id="preview--kluss"></div>
                             @if ($errors->has('kluss_image'))
                                 <span class="help-block">
                                     <strong>{{ $errors->first('kluss_image') }}</strong>
@@ -144,7 +145,7 @@
              $('.kluss-file-upload').css('color', 'transparent');
              var reader = new FileReader();
              reader.onload = function(e){
-                $("#preview--kluss").attr('src', e.target.result);
+                 $(".user--img").css('background-image', "url('"+e.target.result+"')");
              };
              reader.readAsDataURL(this.files[0]);
          }
