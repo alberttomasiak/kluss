@@ -135,4 +135,8 @@ class HomeController extends Controller
         $notifications = Notifications::getUserNotifications(\Auth::user()->id);
         return view('meldingen', compact('notifications', $notifications));
     }
+
+    public function shittest(){
+        return view('test');
+    }
 }

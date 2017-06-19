@@ -23,6 +23,13 @@ a, input[type=submit], input[type=button]{
     font-weight: normal !important;
 }
 
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
 body, html{ background-color: $generalbg !important; }
 .page-content{ padding-top: 55px; }
 .main-content-wrap{
