@@ -1,47 +1,11 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Be right back.</title>
-
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
-        <style>
-            html, body {
-                height: 100%;
-            }
-
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato', sans-serif;
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
-            </div>
+@extends('layouts.app')
+@section('content')
+    <div class="main-content-wrap error-page">
+        <h1>503: Service melding</h1>
+        <div class="not-found-main">
+            <img src="/assets/img/error.png" alt="404 Page Not Found">
+            <h2>We zijn binnenkort terug!</h2>
+            <p>Er wordt momenteel wat onderhoud gepleegd. Klik <a href="/">hier</a> om terug naar de homepagina van kluss.be te gaan</p>
         </div>
-    </body>
-</html>
+    </div>
+@endsection
