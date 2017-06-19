@@ -87,6 +87,8 @@ Route::group(['middleware' => ['auth']], function(){
     // Reviews
     Route::get('/review/{task_id}', 'ReviewController@index')->middleware('reviewpermission');
     Route::post('/review/{task_id}', 'ReviewController@add');
+    // Contact
+    Route::get('/contact/send', 'contactController@sendContact');
 });
 
 Route::group(['prefix' => 'admin'], function () {
