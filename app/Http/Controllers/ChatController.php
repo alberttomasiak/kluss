@@ -58,7 +58,8 @@ class ChatController extends Controller
             'text' => e($request->input('chat_text')),
             'username' => $user->name,
             'avatar' => $user->profile_pic,
-            'timestamp' => (time()*1000)
+            'timestamp' => (time()*1000),
+            'userID' => $user->id
         ];
         // saving the message to the DB
         $sent_message = new Message();

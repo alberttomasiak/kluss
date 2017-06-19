@@ -62,6 +62,11 @@ class UserController extends Controller
             'password' => 'required|min:6|confirmed',
         ]);
 
+        $terms = $request->terms;
+        if($terms == ""){
+            return redirect()->back()->with('terms', 'Om te registreren moet je akkoord gaan met de algemene voorwaarden.')->withInput;
+        }
+
         User::create([
             'name' => $request['name'],
             'email' => $request['email'],

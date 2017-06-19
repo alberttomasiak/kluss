@@ -7,7 +7,7 @@
                     <div class="logreg--logo"></div>
                     <div class="panel logreg--form">
                         <div class="logreg--body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/registreren') }}">
+                            <form class="form-horizontal form--reg" role="form" method="POST" action="{{ url('/registreren') }}">
                                 {{ csrf_field() }}
                                 @if(session('verificationMail'))
                                     <p class="form--message">{{session('verificationMail')}}</p>
@@ -21,8 +21,8 @@
                                         <!--<img src="/img/User-64.png" class="input_img" alt="">-->
                                         @if ($errors->has('name'))
                                             <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -66,7 +66,20 @@
                                         <!--<img src="/img/Password-64.png"  class="input_img" alt="">-->
                                     </div>
                                 </div>
-
+                                <div class="form-group terms-wrap">
+                                    <div class="col-md-10 col-md-offset-1">
+                                        <div class="terms-div-box"></div>
+                                        <input type="checkbox" class="terms-box" id="terms-box" name="terms" value="agreed"><label class="terms-checker" for="terms-box">Ik ga akkoord met de <a href="/terms">Algemene Voorwaarden</a></label>
+                                        @if(session('terms'))
+                                            <p>{{session('terms')}}</p>
+                                        @endif
+                                    </div>
+                                </div>
+                                <script type="text/javascript">
+                                    $('.terms-checker').on('click', function(){
+                                        $('.terms-div-box').toggleClass('terms-checked');
+                                    });
+                                </script>
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
                                         <button type="submit" class="btn btn--form col-md-12">
