@@ -20,6 +20,50 @@
     text-align: center;
 }
 
+.form--reg button{
+    border-radius: 20px;
+}
+
+.terms-wrap{
+    font-family: "Lato Regular";
+    margin-bottom: 3em;
+    margin-top: -2em;
+    a{
+        color: $androidgreen;
+    }
+    .terms-div-box{
+        display: block;
+        width: 15px;
+        height: 15px;
+        border: 1px solid $darkLiver;
+        display: block;
+        float: left;
+    }
+    .terms-checked{
+        &::after{
+            content: "";
+            display: block;
+            left: 8px;
+            top: 0px;
+            width: 8px;
+            height: 15px;
+            border: solid $androidgreen;
+            border-width: 0 4px 4px 0;
+            transform: rotate(45deg);
+            margin-left: 0.4em;
+            margin-top: -.3em;
+        }
+    }
+    .terms-box{
+        display: none;
+    }
+    label{
+        margin-left: 2em;
+        cursor: pointer;
+        margin-top: -1.25em;
+    }
+}
+
 .logreg--heading h1{
     display: block;
     text-align: center;
@@ -123,6 +167,10 @@
     .logreg--body {
         padding: 30px;
 
+    }
+
+    .terms-wrap label{
+        margin-left: 1em;
     }
 
     .logreg--form {

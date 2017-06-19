@@ -37,13 +37,6 @@ class KlussController extends Controller
         return view('kluss.new', compact('kluss_categories', 'account_type', 'task_history'));
     }
 
-    // public function newIndex(){
-    //     $task_history = Kluss::getUserHistory(\Auth::user()->id);
-    //     $kluss_categories = KlussCategories::getCategories();
-    //     $account_type = User::checkAccountType(\Auth::user()->id);
-    //     return view('kluss.new', compact('kluss_categories', 'account_type', 'task_history'));
-    // }
-
     public function add(Request $request){
         $this->validate($request, [
             'title' => 'required',
@@ -134,16 +127,6 @@ class KlussController extends Controller
         $reviewScore = UserReview::getUserReviewScore($kluss[0]->user_id);
         return view('kluss.single', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid', 'reviewScore'));
     }
-    //
-    // public function single($id){
-    //     $kluss = Kluss::getSingle($id);
-    //     $kluss_applicant = Kluss_applicant::getApplicant($id);
-    //     $kluss_applicants = Kluss_applicant::getAllApplicants($id);
-    //     $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
-    //     $paid = KlussPay::getPaidStatus($id);
-    //     $reviewScore = UserReview::getUserReviewScore($kluss[0]->user_id);
-    //     return view('kluss.single', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid', 'reviewScore'));
-    // }
 
     public function acceptUser(Request $request){
         // 1. Gather user information
@@ -390,13 +373,13 @@ class KlussController extends Controller
     public function filterTasks(Request $request){
         preg_match_all('!\d+!', $request->prijs, $prijs);
         $tijd = $request->tijd;
-        $locatie = $request->locatie;
+        $categorie = $request->category;
         $lat = $request->lat;
         $lng = $request->lng;
         $account_type = User::where('id', \Auth::user()->id)->pluck('account_type');
         $klussjes = Kluss::getPublished();
         $cards = Kluss::paginatePublished();
-
+        $categories = KlussCategories::getCategories();
         if($account_type[0] == "normal"){
             $maxD = 2;
         }else{
@@ -417,10 +400,13 @@ class KlussController extends Controller
         if($tijd != "null"){
             $query->where('time', 'LIKE', $tijd);
         }
+        if($categorie != "null"){
+            $query->where('kluss_category', 'LIKE', $categorie);
+        }
         if($request->has('lat')){
             $query->whereRaw('(6371 * acos(cos(radians('. $lat .')) * cos(radians(latitude)) * cos(radians(longitude) - radians(' . $lng . ')) + sin(radians('. $lat .')) * sin(radians(latitude)))) <= '.$maxD.'');
         }
 
-        return view("home", ['filtered' => $query->paginate(12), 'klussjes' => $klussjes, 'cards' => $cards]);
+        return view("home", ['filtered' => $query->paginate(12), 'klussjes' => $klussjes, 'cards' => $cards, 'category' => $categories]);
     }
 }

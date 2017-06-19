@@ -13,6 +13,7 @@ use App;
 use App\Notifications;
 use App\GoldStatus;
 use Carbon\Carbon;
+use App\KlussCategories;
 use Mail;
 use App\Mail\ExpirationGold;
 use App\Mail\ReviewMail;
@@ -46,6 +47,7 @@ class HomeController extends Controller
         Conversation::createConversation(\Auth::user()->id);
         Message::sendDefaultMessage(\Auth::user()->id);
         $gold_end = GoldStatus::getGoldEnd(\Auth::user()->id);
+        $category = KlussCategories::getCategories();
         if($gold_end != null){
             $goldie = Carbon::parse($gold_end);
             $date1 = new Carbon();
@@ -72,7 +74,7 @@ class HomeController extends Controller
                 $notification = Notifications::createNotification($user, $user, $message, null, $channel, "global", null);
             }
         }
-        return view('home', compact('klussjes', 'cards'));
+        return view('home', compact('klussjes', 'cards', 'category'));
     }
 
     public function welcome(){

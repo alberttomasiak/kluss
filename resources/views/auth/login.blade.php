@@ -7,7 +7,7 @@
                     <div class="logreg--logo"></div>
                     <div class="panel logreg--form">
                         <div class="logreg--body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/aanmelden') }}">
+                            <form class="form-horizontal form--reg" role="form" method="POST" action="{{ url('/aanmelden') }}">
                                 {{ csrf_field() }}
                                 @if(session('ImBannedBro'))
                                     <p class="form--message">{{session('ImBannedBro')}}</p>
