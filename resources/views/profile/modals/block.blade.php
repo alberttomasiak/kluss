@@ -1,9 +1,9 @@
 <div id="blockModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+  <div class="modals-box">
     <!-- Modal content-->
-    <div class="modal-content modals-content">
+    <div class="modal-content task-report-modal modals-content">
       <div class="modals-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close modals-close" data-dismiss="modal"><img src="/assets/img/close-dark.png" alt="" style="width: 50%; margin-left: auto"></button>
         <h4 class="modals-title">Rapporteer: {{$user->name}}</h4>
       </div>
       <div class="modal-body">
