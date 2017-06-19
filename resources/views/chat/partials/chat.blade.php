@@ -50,12 +50,12 @@
 
             <div id="messages">
                 @foreach($messages as $message)
-                    @if($message->user_id == \App\User::get()->id)
+                    @if($message->user_id == \Auth::User()->id)
                     <div class="my-chat-message-mine">
                         <div class="my-message-avatar">
                             <img src="/assets{{$message->profile_pic}}" alt="">
                         </div>
-                        <div class="my-message-text-display">
+                        <div class="my-message-text-display-mine">
                             <div class="my-message-data-mine">
                                 <span class="author">{{$message->name}}</span>
                                 <span class="timestamp">{{\App\Message::formatDate($message->created_at)}}</span>
@@ -69,7 +69,7 @@
                             <div class="my-message-avatar">
                                 <img src="/assets{{$message->profile_pic}}" alt="">
                             </div>
-                            <div class="my-message-text-display">
+                            <div class="my-message-text-display-other">
                                 <div class="my-message-data-other">
                                     <span class="author">{{$message->name}}</span>
                                     <span class="timestamp">{{\App\Message::formatDate($message->created_at)}}</span>
@@ -104,17 +104,17 @@
 </section>
 
 <script id="chat_message_template" type="text/template">
-    <div class="my-chat-message">
+    <div class="my-chat-message-mine">
         <div class="my-message-avatar">
             <img src="">
         </div>
-        <div class="my-message-text-display">
-            <div class="my-message-data">
+        <div class="my-message-text-display-mine">
+            <div class="my-message-data-mine">
                 <span class="author"></span>
                 <span class="timestamp"></span>
                 <span class="seen"></span>
             </div>
-            <p class="my-message-body"></p>
+            <p class="my-message-body-mine"></p>
         </div>
     </div>
 </script>
@@ -123,7 +123,7 @@
         <div class="my-message-avatar">
             <img src="">
         </div>
-        <div class="my-message-text-display">
+        <div class="my-message-text-display-other">
             <div class="my-message-data-other">
                 <span class="author"></span>
                 <span class="timestamp"></span>
@@ -176,13 +176,14 @@
     function addMessage(data) {
         // Create element from template and set values
         var userID = data.userID;
-        alert(userID);
+        //alert(userID);
         if(userID == "{{\Auth::user()->id}}"){
             var el = createMessageEl();
         }else{
             var el = createMessageOtherEl();
         }
-        el.find('.my-message-body').html(data.text);
+        el.find('.my-message-body-mine').html(data.text);
+        el.find('.my-message-body-other').html(data.text);
         el.find('.author').text(data.username);
         el.find('.my-message-avatar img').attr('src', '/assets'+data.avatar);
 

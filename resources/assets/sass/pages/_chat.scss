@@ -9,6 +9,7 @@
 .my-chat-overview {
   width: 100%;
   margin-bottom: 30px;
+  border-right: 1px solid #2D2D2D;
 }
 
 .my-chat-details {
@@ -39,7 +40,7 @@
 
 .my-chat-container {
   width: 100%;
-  border-top: 1px solid #ccc;
+  /*border-top: 1px solid #ccc;*/
 }
 
 .my-chat-messages {
@@ -52,7 +53,11 @@
   padding-right: 5px;
   padding-bottom: 10px;
   display: flex;
-
+  .my-message-avatar {
+    img {
+      display: none;
+    }
+  }
 }
 
 .my-chat-message-other {
@@ -72,8 +77,13 @@
   border-radius: 100%;
 }
 
-.my-message-text-display {
-  width: 100%;
+.my-message-text-display-mine {
+  width: 60%;
+  margin-left: auto;
+}
+
+.my-message-text-display-other {
+  width: 60%;
   margin-left: 2%;
 }
 
@@ -152,6 +162,14 @@
     border-radius: 10px;
   }
 
+  .my-message-body-mine {
+    padding: 1% 3% 1% 3%;
+  }
+
+  .my-message-body-other {
+    padding: 1% 3% 1% 3%;
+  }
+
   .my-chat-text {
     width: 85%;
   }
@@ -185,4 +203,6 @@
     #messages{
         height: 600px !important;
     }
+
+
 }
