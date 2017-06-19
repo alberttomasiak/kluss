@@ -102,6 +102,21 @@
         </div>
     </div>
 </script>
+<script id="chat_message_other_template" type="text/template">
+    <div class="my-chat-message-other">
+        <div class="my-message-avatar">
+            <img src="">
+        </div>
+        <div class="my-message-text-display">
+            <div class="my-message-data-other">
+                <span class="author"></span>
+                <span class="timestamp"></span>
+                <span class="seen"></span>
+            </div>
+            <p class="my-message-body-other"></p>
+        </div>
+    </div>
+</script>
 <script>
     function init() {
         // send button click handling
@@ -144,7 +159,13 @@
     // Build the UI for a new message and add to the DOM
     function addMessage(data) {
         // Create element from template and set values
-        var el = createMessageEl();
+        var userID = data.userID;
+        alert(userID);
+        if(userID == "{{\Auth::user()->id}}"){
+            var el = createMessageEl();
+        }else{
+            var el = createMessageOtherEl();
+        }
         el.find('.my-message-body').html(data.text);
         el.find('.author').text(data.username);
         el.find('.my-message-avatar img').attr('src', '/assets'+data.avatar);
@@ -162,6 +183,11 @@
     // Creates an activity element from the template
     function createMessageEl() {
         var text = $('#chat_message_template').text();
+        var el = $(text);
+        return el;
+    }
+    function createMessageOtherEl(){
+        var text = $('#chat_message_other_template').text();
         var el = $(text);
         return el;
     }
