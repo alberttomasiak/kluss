@@ -13,22 +13,31 @@ class UserController extends Controller
             'email' => 'required',
             'password' => 'required',
         ]);
+        $pass = $request->password;
+        $user = User::where('email', $request->email)->get();
         $AmIBanned = User::amIBanned($request->email);
         $amIActivated = User::amIActivated($request->email);
-        if($amIActivated == 1){
-            if($AmIBanned == 0){
-                if(Auth::attempt([
-                    'email' => $request->email,
-                    'password' => $request->password
-                ])){
-                    return redirect('/home');
+        if(count($user) != 0){
+            if($amIActivated == 1){
+                if($AmIBanned == 0){
+                    if(Auth::attempt([
+                        'email' => $request->email,
+                        'password' => $request->password
+                    ])){
+                        return redirect('/home');
+                    }else{
+                        return redirect()->back()->with('ImBannedBro', "Uw wachtwoord klopt niet.");
+                    }
+                }else{
+                    return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
                 }
             }else{
-                return redirect()->back()->with('ImBannedBro', "Dit account is geblokkeerd.");
+                return redirect()->back()->with('activated', "Dit account is nog niet geactiveerd.");
             }
         }else{
-            return redirect()->back()->with('activated', "Dit account is nog niet geactiveerd.");
+            return redirect()->back()->with('ImBannedBro', "Deze gegevens komen niet overeen met onze data.");
         }
+
     }
 
     public function verifyAccount($code){
@@ -37,7 +46,7 @@ class UserController extends Controller
     }
 
     public function verificationIndex(){
-        return view('/user/verification');
+        return view('user.verification');
     }
 
     public function resendVerification(Request $request){

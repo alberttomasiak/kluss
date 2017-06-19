@@ -74,6 +74,18 @@ a:hover, a:focus, a:active, a:visited{
     -o-box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
 }
 
+.reset--pass{
+    display: block;
+    width: 175px;
+    height: 30px;
+    border-radius: 15px;
+    border: none;
+    background-color: $washington;
+    &:hover{ background-color: $darkWashington;}
+    text-decoration: none;
+    color: white;
+}
+
 .map-wrapperino{
     width: 90%;
     display: block;
