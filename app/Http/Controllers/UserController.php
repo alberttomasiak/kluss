@@ -46,7 +46,7 @@ class UserController extends Controller
     }
 
     public function verificationIndex(){
-        return view('/user/verification');
+        return view('user.verification');
     }
 
     public function resendVerification(Request $request){
