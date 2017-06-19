@@ -75,6 +75,11 @@ class HomeController extends Controller
         return view('home', compact('klussjes', 'cards'));
     }
 
+    public function welcome(){
+        $klussjes = Kluss::getPublished();
+        return view('welcome', compact('klussjes'));
+    }
+
     public function getTasks(Request $request){
         $lat = $request->get('lat');
         $lng = $request->get('lng');

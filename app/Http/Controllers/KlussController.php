@@ -134,7 +134,7 @@ class KlussController extends Controller
         $reviewScore = UserReview::getUserReviewScore($kluss[0]->user_id);
         return view('kluss.single', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid', 'reviewScore'));
     }
-    // 
+    //
     // public function single($id){
     //     $kluss = Kluss::getSingle($id);
     //     $kluss_applicant = Kluss_applicant::getApplicant($id);
