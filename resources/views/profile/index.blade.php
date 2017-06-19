@@ -12,7 +12,6 @@
             @else
                 <form class="" action="/chat/{{$user->id}}" method="post">
                     {{csrf_field()}}
-                    <label for="start-chat"></label>
                     <input type="submit" id="start-chat" name="start-chat" value="Contacteer mij">
                 </form>
             @endif

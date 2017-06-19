@@ -370,7 +370,7 @@
 .applicant--info a{
     display: block;
     width: auto;
-    max-width: 250px;
+    max-width: 200px;
     padding-left: .5em;
     padding-right: .5em;
     border-radius: 15px;
@@ -389,6 +389,12 @@
     &:hover, &:focus, &:active, &:visited{
         text-decoration: none;
     }
+    }
+}
+
+.wrapper-task-single{
+    #tab1, #tab2, #tab3{
+        padding-bottom: 75px;
     }
 }
 
@@ -492,6 +498,7 @@
             img{
                 margin-top: 1.5em;
                 width: 75px !important;
+                height: 75px !important;
             }
         }
     }
