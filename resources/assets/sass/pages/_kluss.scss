@@ -59,6 +59,8 @@ input[type="file"]{
     height: 165px;
     overflow: hidden;
     position: absolute;
+    background-size: cover;
+    background-repeat: no-repeat;
     top: 0;
     border: none;
     z-index: 1;
