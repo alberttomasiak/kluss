@@ -24,6 +24,10 @@
     }
 }
 
+.landing_ctas{
+    margin-top: 3em;
+}
+
 .landing_headerbtns {
     width: 100%;
     display: flex;
@@ -65,7 +69,7 @@
 
 .landing_container {
     padding-top: 10px;
-    width: 100%;
+    width: 90%;
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -79,6 +83,15 @@
     img {
         width: 100%;
     }
+    .intro_wrapper{
+        display: block;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h1{
+        font-size: 3em;
+    }
 }
 
 .intro_ruler {
@@ -90,10 +103,11 @@
 }
 
 .intro_headtxt {
-    font-family: 'Lato', Helvetica;
+    font-family: 'Lato Regular', Helvetica;
     font-size: 1.3em;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 2em;
 }
 
 .landing_content_traits {
@@ -112,6 +126,7 @@
     margin-left: auto;
     margin-right: auto;
     font-size: 1.4em;
+    margin-bottom: 2em;
 }
 
 .landing_content_actions {
@@ -162,7 +177,7 @@
     font-size: 1.6em;
     border-radius: 100px;
     text-decoration: none;
-
+    margin-bottom: 1.5em;
 }
 
 .btngreen {
@@ -262,6 +277,23 @@
         width: 50%;
     }
 
+    .intro_headtxt{
+        margin-bottom: 3em;
+    }
+
+    .landing_content_intro .intro_wrapper{
+        width: 95%;
+    }
+
+    .landing_content_intro h1{
+        font-size: 3.5em;
+    }
+
+    .trait_headtxt{
+        line-height: 1.5em;
+        width: 50%;
+    }
+
 }
 
 @media only screen and(min-width: 800px){
@@ -275,6 +307,37 @@
     }
 }
 
+@media only screen and (min-width: 1024px){
+    .intro_headtxt{
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .landing_content_traits{
+        padding-top: 3em;
+    }
+
+    .trait_headtxt{
+        width: 85%;
+    }
+}
+
 @media only screen and (min-width: 1365px){
     .landing_headerbtns{top: 1em;}
+    .landing_content_actions{
+        padding-bottom: 75px;
+    }
+}
+
+@media only screen and (min-width: 1520px){
+    .intro_headtxt{
+        width: 650px;
+    }
+    .map-wrapperino{
+        width: 900px;
+        height: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
