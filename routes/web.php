@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\TestMail;
+use App\Kluss;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,10 @@ use App\Mail\TestMail;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () {
+    $klussjes = Kluss::getPublished();
+    return view('welcome', compact('klussjes'));
+});
 Auth::routes();
 Route::get('/login', function(){ return redirect('/aanmelden'); });
 Route::get('/aanmelden', function(){ return view('auth/login')->with('title', 'Aanmelden'); });
