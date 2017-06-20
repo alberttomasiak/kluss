@@ -62,13 +62,13 @@
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
                                         <button type="submit" class="btn btn--form col-md-12">
-                                            Log in
+                                            LOG IN
                                         </button>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <div class="">
-                                        <a style="width: 170px; margin-left: auto; margin-right: auto;" class="btn--link" href="{{ url('/password/reset') }}">
+                                        <a class="btn--link forgotpassword" href="{{ url('/password/reset') }}">
                                             Wachtwoord vergeten?
                                         </a>
                                     </div>

@@ -88,7 +88,7 @@
                         <input type="hidden" name="longitude" id="kluss--lng" value="">
                     </div>
 
-                    <input type="submit" name="submit" id="klussAdd_submit" value="Voeg kluss toe">
+                    <input type="submit" name="submit" id="klussAdd_submit" value="VOEG KLUSS TOE">
                 @endif
                 </form>
         </div>

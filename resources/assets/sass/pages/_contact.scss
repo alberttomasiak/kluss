@@ -15,26 +15,26 @@
   background-color: #FFFFFA;
   width: 100%;
   border: none;
-  border-bottom: 4px solid $washington;
+  /*border-bottom: 4px solid $washington;*/
+  border: 1px solid #2D2D2D;
   margin-bottom: 30px;
   font-size: 1.4em;
   padding: 1%;
-  border-radius: 0px;
-}
-
-.contact_textinput:focus {
-  transition: 1s;
-  border-bottom: 4px solid $androidgreen;
+  border-radius: 25px;
 }
 
 .contact_textfield {
   background-color: #FFFFFA;
   width: 100%;
-  border: 4px dashed $washington;
+  border: 1px solid #2D2D2D;
   margin-bottom: 30px;
   font-size: 1.4em;
   padding: 1%;
-  border-radius: 0px;
+  resize: none;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -o-border-radius: 25px;
 }
 
 .contact_send {
@@ -45,10 +45,21 @@
   border: none;
   font-family: 'Coolvetica', sans-serif;
   font-size: 2em;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  -o-border-radius: 25px;
 }
 
 @media only screen and(min-width: 768px){
   .contact_form {
     width: 70%;
+  }
+
+  .contact_send {
+    border-radius: 50px;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -o-border-radius: 50px;
   }
 }

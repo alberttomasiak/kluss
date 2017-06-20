@@ -15,7 +15,7 @@
     </div>
 
     <div style="float: right; width: 20%;">
-        <a href="#"><h1>Inloggen/Registreren</h1></a>
+        <a href="#"><h1>INLOGGEN/REGISTREREN</h1></a>
     </div>
 
 </div>

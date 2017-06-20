@@ -45,7 +45,7 @@
                             <input type="hidden" name="longitude" id="kluss--lngB" value="{{$kl->longitude}}">
                         </div>
                         @if($kl->accepted_applicant_id == null)
-                            <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="Opslaan">
+                            <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="OPSLAAN">
                         @endif
                     </form>
                 </div>
@@ -53,7 +53,7 @@
             @else
                 <div class="col-sm-12">
                     <h1>U hebt geen toegang tot deze pagina</h1>
-                    <a href="/home" class="btn btn--form">Terugkeren</a>
+                    <a href="/home" class="btn btn--form">TERUGKEREN</a>
                 </div>
             @endif
             @endforeach

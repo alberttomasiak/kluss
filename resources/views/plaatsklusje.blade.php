@@ -21,14 +21,14 @@
             <ul>
                 <li><a href='#'>Profiel</a>
                     <ul>
-                        <li><a href='#'>Bewerk Profiel</a></li>
-                        <li><a href='#'>Kluss Gold</a></li>
+                        <li><a href='#'>BEWERK PROFIEL</a></li>
+                        <li><a href='#'>KLUSS GOLD</a></li>
                     </ul>
                 </li>
                 <li><a href='#'>Meldingen en gebruikers</a>
                     <ul>
-                        <li><a href='#'>Demp meldingen</a></li>
-                        <li><a href='#'>Geblokkeerde gebruikers</a></li>
+                        <li><a href='#'>DEMP MELDINGEN</a></li>
+                        <li><a href='#'>GEBLOKKEERDE GEBRUIKERS</a></li>
                     </ul>
                 </li>
             </ul>
@@ -60,7 +60,7 @@
             <div class="box__input">
                 <input class="box__file" type="file" name="files[]" id="file" data-multiple-caption="{count} files selected" multiple />
                 <label for="file"><strong>Choose a file</strong><span class="box__dragndrop"> or drag it here</span>.</label>
-                <button class="box__button btn" type="submit">Upload</button>
+                <button class="box__button btn" type="submit">UPLOAD</button>
             </div>
             <div class="box__uploading">Uploading&hellip;</div>
             <div class="box__success">Done!</div>

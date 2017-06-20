@@ -87,7 +87,7 @@
                         <textarea class="input-message col-xs-10 my-chat-textbar" placeholder="Your message"></textarea>
                     </div>
 
-                <div class="message-sendbtn" id="msg-sendbtn">Verzend</div>
+                <div class="message-sendbtn" id="msg-sendbtn">VERZEND</div>
                 <!--<div class="option col-xs-1 white-background">
                     <span class="fa fa-smile-o light-grey"></span>
                 </div>

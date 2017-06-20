@@ -26,7 +26,7 @@
                 <p class="contentpage_paragraph">
                     Denk jij ons team te kunnen versterken? Of ben je op zoek naar werk bij een jong, enthousiast en gedreven team dat zich dagelijks wil inzetten voor alle klussers? Geef ons gerust een seintje! We zijn altijd op zoek naar gedreven designers, motion designers, developers, marketeers en dergelijke. Wees dus niet bang om je CV in te sturen!
                 </p>
-                <a href="/contact" class="staff_cta">Contacteer ons!</a>
+                <a href="/contact" class="staff_cta">CONTACTEER ONS!</a>
             </div>
     </div>
 @endsection

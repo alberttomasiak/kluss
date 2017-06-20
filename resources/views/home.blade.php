@@ -36,7 +36,7 @@
                    onFocus="geolocate()" type="text"></input> --}}
             <input type="hidden" name="lat" id="kluss__lat" value="">
             <input type="hidden" name="lng" id="kluss__lng" value="">
-            <input type="submit" class="filter-btn" value="Zoek">
+            <input type="submit" class="filter-btn" value="ZOEK">
         </form>
         <div class="klussjes-wrap">
         @if(!isset($filtered))

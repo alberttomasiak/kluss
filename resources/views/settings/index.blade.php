@@ -80,7 +80,7 @@
                                 </span>
                             @endif
                         </div>
-                        <input type="submit" name="settings-send" value="Opslaan">
+                        <input type="submit" name="settings-send" value="OPSLAAN">
                     </form>
                 </div>
                 <div id="tab2">
@@ -105,7 +105,7 @@
                                     <img src="/assets{{$block->profile_pic}}" alt="{{$block->name}}'s profile pic">
                                     <p>{{$block->name}}</p>
                                 </div>
-                                <a href="/gebruiker/{{$block->blocked_id}}/deblokkeren">Deblokkeer gebruiker</a>
+                                <a href="/gebruiker/{{$block->blocked_id}}/deblokkeren">DEBLOKKEER GEBRUIKER</a>
                             </div>
                         @endforeach
                     @endif
