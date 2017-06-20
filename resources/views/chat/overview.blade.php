@@ -90,7 +90,7 @@
                         </div>
                         <form class="" action="/chat/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}" method="post">
                             {!! csrf_field() !!}
-                            <input type="submit" name="" value="Chat" class="chat-this-user-btn">
+                            <input type="submit" name="" value="CHAT" class="chat-this-user-btn">
                         </form>
                     </div>
                 </div>
@@ -108,7 +108,7 @@
                         </div>
                         <form class="" action="/chat/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}" method="post">
                             {!! csrf_field() !!}
-                            <input type="submit" name="" value="Chat" class="chat-this-user-btn">
+                            <input type="submit" name="" value="CHAT" class="chat-this-user-btn">
                         </form>
                     </div>
                 </div>

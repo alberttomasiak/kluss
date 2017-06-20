@@ -17,18 +17,18 @@
             </div>
             <div class="col-sm-3">
                 @if($pd->id == \Auth::user()->id)
-                    <a href="/profiel/{{$pd->id}}/bewerken" class="btn btn--form">Profiel bewerken</a>
+                    <a href="/profiel/{{$pd->id}}/bewerken" class="btn btn--form">PROFIEL BEWERKEN</a>
                 @else
                     <form class="" action="/chat/{{$pd->id}}" method="post">
                         {!! csrf_field() !!}
                         @if(areWeCool(\Auth::user()->id, $pd->id) != "")
-                        <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij" disabled>
+                        <input type="submit" name="chatstart" class="btn btn--form" value="CONTACTEER MIJ" disabled>
                         <p>Contact opnemen met deze gebruiker is niet mogelijk.</p>
                         @else
-                        <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
+                        <input type="submit" name="chatstart" class="btn btn--form" value="CONTACTEER MIJ">
                         @endif
                     </form>
-                    <a href="#blockModal" data-toggle="modal" role="button" class="btn blockModal btn-danger">Rapporteer gebruiker</a>
+                    <a href="#blockModal" data-toggle="modal" role="button" class="btn blockModal btn-danger">RAPPORTEER GEBRUIKER</a>
                     @include('profile.modals.block')
                     @if(session('succesful_report'))
                         <div class="succesful_report">

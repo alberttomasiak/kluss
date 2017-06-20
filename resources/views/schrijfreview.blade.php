@@ -30,7 +30,7 @@
                         </fieldset>
 
                         <label class="reviewlabel" for="reviewmsg">Boodschap:</label><textarea class="review_txt"  name="review_msg" id="review_msg" cols="30" rows="10"></textarea>
-                        <input type="submit" name="submit" form="write-review" value="Verzenden" class="btn-sendreview">
+                        <input type="submit" name="submit" form="write-review" value="VERZENDEN" class="btn-sendreview">
                     </form>
                 </div>
             @else

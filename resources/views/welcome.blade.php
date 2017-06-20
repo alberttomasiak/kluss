@@ -15,8 +15,8 @@
     <div class="landing_header">
         <div class="landing_logo"><img src="/assets/img/logo-kluss.png" alt="Logo kluss"></div>
         <div class="landing_headerbtns">
-            <a href="/register" class="landing_headerbtn"><div class="landing_btngreen">Registreer</div></a>
-            <a href="/login" class="landing_headerbtn"><div class="landing_btnwhite">Log in</div></a>
+            <a href="/register" class="landing_headerbtn"><div class="landing_btngreen">REGISTREER</div></a>
+            <a href="/login" class="landing_headerbtn"><div class="landing_btnwhite">LOG IN</div></a>
         </div>
     </div>
 
@@ -63,11 +63,11 @@
                 <div class="landing_ctas">
                     <div class="landing_ctabox ctabox1">
                         <p class="landing_ctatitle">Ik wil bijklussen in de buurt!</p>
-                        <a href="/register"><div class="landing_ctabtn btngreen">Start!</div></a>
+                        <a href="/register"><div class="landing_ctabtn btngreen">START!</div></a>
                     </div>
                     <div class="landing_ctabox ctabox2">
                         <p class="landing_ctatitle ctatitle2">Ik zoek een klusser!</p>
-                        <a href="/register"><div class="landing_ctabtn btnwhite">Zoek!</div></a>
+                        <a href="/register"><div class="landing_ctabtn btnwhite">ZOEK!</div></a>
                     </div>
                 </div>
             </div>

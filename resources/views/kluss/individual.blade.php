@@ -170,10 +170,10 @@
                     <h1>{{$kl->title}}</h1>
                     <p>{{$kl->description}}</p></br></br>
                     @if(blockChecker($kl->id, \Auth::user()->id) == "" && \Auth::user()->id != $kl->user_id)
-                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger">Rapporteren</a>
+                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger">RAPPORTEREN</a>
                         @include('kluss.modals.report', ['id' => $kl->id])
                     @elseif(blockChecker($kl->id, \Auth::user()->id) != "" && \Auth::user()->id != $kl->user_id)
-                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger" disabled>Rapporteren</a>
+                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger" disabled>RAPPORTEREN</a>
                         @include('kluss.modals.report', ['id' => $kl->id])
                         <p>Dit klusje werd door u al gerapporteerd. De beheerders zijn dit aan het onderzoeken.</p>
                     @endif
@@ -182,18 +182,18 @@
                     @if($accepted_applicant == null)
                         @if(\Auth::user()->id == $kl->user_id)
                             <div class="master-btns">
-                                <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">Bewerk deze Kluss</a>
-                                <a href="/kluss/{{$kl->id}}/verwijderen" class="btn btn-danger">Deze kluss verwijderen</a>
+                                <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">BEWERK DEZE KLUSS</a>
+                                <a href="/kluss/{{$kl->id}}/verwijderen" class="btn btn-danger">DEZE KLUSS VERWIJDEREN</a>
                             </div>
                         @else
                             <div class="apply-btn">
                                 @if($kluss_applicant->first())
-                                    <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
+                                    <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">APPLICATIE VERWIJDEREN</a>
                                 @else
                                     @if(areWeCool(\Auth::user()->id, $kl->user_id) != "")
                                         <p>Je hebt of bent door de gebruiker geblokkeerd. Solliciteren voor dit klusje is niet mogelijk.</p>
                                     @else
-                                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">SOLLICITEER VOOR DEZE KLUSS</a>
                                     @endif
                                 @endif
                             </div>

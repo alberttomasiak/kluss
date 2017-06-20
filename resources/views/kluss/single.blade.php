@@ -36,9 +36,9 @@
                     <div class="task--main-info">
                         <h1>{{$kl->title}}</h1>
                         @if(blockChecker($kl->id, \Auth::user()->id) == "" && \Auth::user()->id != $kl->user_id)
-                            <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="">Rapporteer</a>
+                            <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="">RAPPORTEERr</a>
                         @elseif(blockChecker($kl->id, \Auth::user()->id) != "" && \Auth::user()->id != $kl->user_id)
-                            <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="" disabled>Rapporteer</a>
+                            <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="" disabled>RAPPORTEER</a>
                             <p>Dit klusje werd door u al gerapporteerd. De beheerders zijn dit aan het onderzoeken.</p>
                         @endif
                         <div class="task--maker-details">
@@ -50,7 +50,7 @@
                         @if($kl->user_id == \Auth::user()->id)
                             <div class="owner--btns">
                                 <a href="/kluss/{{$kl->id}}/bewerken">Kluss bewerken</a>
-                                <a href="#kluss-{{$kl->id}}-verwijderen" data-toggle="modal" role="button" class="deletebtn">Verwijderen</a>
+                                <a href="#kluss-{{$kl->id}}-verwijderen" data-toggle="modal" role="button" class="deletebtn">VERWIJDEREN</a>
                                 @include('kluss.modals.delete')
                             </div>
                         @endif

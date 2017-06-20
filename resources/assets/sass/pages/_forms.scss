@@ -150,6 +150,17 @@
     transition: 1s;
 }
 
+.forgotpassword {
+    width: 170px;
+    margin-left: auto;
+    margin-right: auto;
+    color: $washington;
+}
+
+.forgotpassword:hover {
+    color: $darkWashington;
+}
+
 #email, #password, #password-confirm, #name{
     padding-left: 10px;
 }
@@ -175,9 +186,13 @@
     box-shadow: inset 0px 0px 0px 0px #FFFFFA;
     border: none;
     background-color: #FFFFFA;
-    border-bottom: 4px solid $washington;
+    /*border-bottom: 4px solid $washington;*/
+    border: 1px solid #2D2D2D;
     font-size: 1.2em;
-    border-radius: 0px;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -o-border-radius: 25px;
     margin-bottom: 30px;
 }
 
