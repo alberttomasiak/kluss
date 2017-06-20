@@ -79,6 +79,9 @@
                                     $('.terms-checker').on('click', function(){
                                         $('.terms-div-box').toggleClass('terms-checked');
                                     });
+                                    $('.terms-div-box').click(function(){
+                                        $('.terms-checker').click();
+                                    });
                                 </script>
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">

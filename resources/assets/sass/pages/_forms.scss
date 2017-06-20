@@ -20,6 +20,29 @@
     text-align: center;
 }
 
+.centered{
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    margin-top: 1.5em;
+    span{
+        font-family: "Lato Regular";
+        display: block;
+        width: 160px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btn--link{
+        display: block;
+        width: 100px !important;
+    }
+}
+
 .form--reg button{
     border-radius: 20px;
 }
@@ -193,5 +216,11 @@
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .centered{
+        width: 265px;
     }
 }

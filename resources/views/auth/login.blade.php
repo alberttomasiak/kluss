@@ -66,6 +66,11 @@
                                         </button>
                                     </div>
                                 </div>
+                                <div class="centered">
+                                        <span>Heb je nog geen account?</span><a style="width: 170px; margin-left: auto; margin-right: auto;" class="btn--link" href="/registreren">
+                                            Registreren
+                                        </a>
+                                </div>
                                 <div class="form-group">
                                     <div class="">
                                         <a class="btn--link forgotpassword" href="{{ url('/password/reset') }}">

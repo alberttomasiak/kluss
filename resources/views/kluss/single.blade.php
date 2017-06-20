@@ -20,7 +20,7 @@
                                     <p>Je hebt of bent door de gebruiker geblokkeerd. Solliciteren voor dit klusje is niet mogelijk.</p>
                                 @elseif($kl->accepted_applicant_id != "")
                                     <p>De maker van het klusje heeft <b>{{userNameGet($kl->accepted_applicant_id)}}</b> gekozen voor zijn/haar klusje.</p>
-                                @else
+                                @elseif(\Auth::user()->id != $kl->user_id)
                                     <a href="/kluss/{{$kl->id}}/solliciteren">Apply</a>
                                 @endif
                             @endif
@@ -42,7 +42,8 @@
                             <p>Dit klusje werd door u al gerapporteerd. De beheerders zijn dit aan het onderzoeken.</p>
                         @endif
                         <div class="task--maker-details">
-                            <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic">
+                            <div class="task--user-image" style="background-image: url('/assets{{$kl->profile_pic}}')"></div>
+                            {{-- <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic"> --}}
                             <p>{{$kl->userName}}</p>
                         </div>
                         <p class="category--task">Categorie: {{klussCategory($kl->kluss_category)}}</p>
