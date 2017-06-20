@@ -9,7 +9,7 @@
             </ul>
             <section id="tab-group" class="settings-tabs tabgroup">
                 <div id="tab1">
-                    <form class="settings-form" id="settings-form" action="/settings/gegevens" enctype="multipart/form-data" files="true" method="post">
+                    <form class="settings-form" id="settings-form" action="/settings/gegevens" enctype="multipart/form-data" method="POST">
                         {!! csrf_field() !!}
                         <input type="hidden" name="userID" value="{{$userData->id}}">
                         <h3>Persoonlijke gegevens</h3>
