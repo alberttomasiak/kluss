@@ -58,7 +58,8 @@ class ChatController extends Controller
             'text' => e($request->input('chat_text')),
             'username' => $user->name,
             'avatar' => $user->profile_pic,
-            'timestamp' => (time()*1000)
+            'timestamp' => (time()*1000),
+            'userID' => $user->id
         ];
         // saving the message to the DB
         $sent_message = new Message();
@@ -75,7 +76,8 @@ class ChatController extends Controller
         $partnerName = User::get($for_user);
         $about_user = \Auth::user()->id;
         $message = $sent_message->message;
-        $messageWithName = \Auth::user()->name . ": ". $message;
+        $name = User::get($sent_message->user_id);
+        $messageWithName = $name . ": ". $message;
         $url = "/chat/".$chatChannel."/".str_slug($partnerName);
         $channel = User::getUserNotificationsChannel($for_user);
         $type = "chat";

@@ -45,7 +45,7 @@ class Kluss extends Model
     public static function getSingle($id){
         //return self::where('id', '=', $id)->get();
         return self::join('users', 'kluss.user_id', '=', 'users.id')
-                    ->select('kluss.*', 'users.account_type')
+                    ->select('kluss.*', 'users.account_type', 'users.bio as userBio', 'users.name as userName','users.profile_pic', 'users.id as userID')
                     ->where('kluss.id', '=', $id)
                     ->get();
     }
@@ -249,7 +249,7 @@ class Kluss extends Model
                         ['kluss.accepted_applicant_id', $id],
                         ['kluss.closed', '1'],
                         ['kluss.blocked', '0']
-                    ])->paginate(5);
+                    ])->paginate(5, ['*'], 'activiteiten');
     }
     public static function countUserActivities($id){
         return self::join('users', 'kluss.user_id', '=', 'users.id')
@@ -270,7 +270,7 @@ class Kluss extends Model
             ['accepted_applicant_id', $id],
             ['closed', '0'],
             ['blocked', '0']
-        ])->paginate($limit);
+        ])->paginate($limit, ['*'], 'klusjes');
     }
 
     public static function countUserTasks($id){

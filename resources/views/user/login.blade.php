@@ -8,7 +8,7 @@
             <div class="panel logreg--form">
                 <div class="logreg--body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/aanmelden') }}">
-                        {{ csrf_field() }}
+                        {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <!--<label for="email" class="col-md-4 control-label">E-Mail Adres</label>-->

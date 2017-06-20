@@ -12,7 +12,7 @@
             </div>
             <div class="user__btns">
                 <form class="" action="/chat/{{$adminUser->id}}" method="post">
-                    {{ csrf_field() }}
+                    {!! csrf_field() !!}
                     <input type="submit" name="chatstart" class="btn btn--form" value="contact">
                 </form>
             </div>
@@ -29,7 +29,7 @@
             </div>
             <div class="user__btns">
                 <form class="" action="/chat/{{$goldUser->id}}" method="post">
-                    {{ csrf_field() }}
+                    {!! csrf_field() !!}
                     <input type="submit" name="chatstart" class="btn btn--form" value="contact">
                 </form>
                 <a href="#notify-user-{{$goldUser->id}}" data-toggle="modal" role="button" class="btn btn--form">Notificatie</a>
@@ -49,7 +49,7 @@
             </div>
             <div class="user__btns">
                 <form class="" action="/chat/{{$regularUser->id}}" method="post">
-                    {{ csrf_field() }}
+                    {!! csrf_field() !!}
                     <input type="submit" name="chatstart" class="btn btn--form" value="contact">
                 </form>
                 <a href="#notify-user-{{$regularUser->id}}" data-toggle="modal" role="button" class="btn btn--form">Notificatie</a>

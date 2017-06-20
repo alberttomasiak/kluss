@@ -80,6 +80,7 @@
               setClickable: false,
               styles: [{"featureType":"landscape.man_made","elementType":"geometry","stylers":[{"color":"#f7f1df"}]},{"featureType":"landscape.natural","elementType":"geometry","stylers":[{"color":"#d0e3b4"}]},{"featureType":"landscape.natural.terrain","elementType":"geometry","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"poi.business","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.medical","elementType":"geometry","stylers":[{"color":"#fbd3da"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#bde6ab"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"on"}]},{"featureType":"road","elementType":"labels.icon","stylers":[{"visibility":"on"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#ffe15f"}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#efd151"}]},{"featureType":"road.arterial","elementType":"geometry.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"road.local","elementType":"geometry.fill","stylers":[{"color":"black"}]},{"featureType":"transit.station.airport","elementType":"geometry.fill","stylers":[{"color":"#cfb2db"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#a2daf2"}]}]
           });
+          console.log(map);
 
           for(var i = 0; i < kluss.length; i++){
               marks[i] = addMarker(kluss[i]);
@@ -169,10 +170,10 @@
                     <h1>{{$kl->title}}</h1>
                     <p>{{$kl->description}}</p></br></br>
                     @if(blockChecker($kl->id, \Auth::user()->id) == "" && \Auth::user()->id != $kl->user_id)
-                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger">Rapporteren</a>
+                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger">RAPPORTEREN</a>
                         @include('kluss.modals.report', ['id' => $kl->id])
                     @elseif(blockChecker($kl->id, \Auth::user()->id) != "" && \Auth::user()->id != $kl->user_id)
-                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger" disabled>Rapporteren</a>
+                        <a href="#kluss-{{$kl->id}}-report" data-toggle="modal" role="button" data-id="{{$kl->id}}" class="btn btn-danger" disabled>RAPPORTEREN</a>
                         @include('kluss.modals.report', ['id' => $kl->id])
                         <p>Dit klusje werd door u al gerapporteerd. De beheerders zijn dit aan het onderzoeken.</p>
                     @endif
@@ -181,18 +182,18 @@
                     @if($accepted_applicant == null)
                         @if(\Auth::user()->id == $kl->user_id)
                             <div class="master-btns">
-                                <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">Bewerk deze Kluss</a>
-                                <a href="/kluss/{{$kl->id}}/verwijderen" class="btn btn-danger">Deze kluss verwijderen</a>
+                                <a class="btn btn--form" href="/kluss/{{$kl->id}}/bewerken">BEWERK DEZE KLUSS</a>
+                                <a href="/kluss/{{$kl->id}}/verwijderen" class="btn btn-danger">DEZE KLUSS VERWIJDEREN</a>
                             </div>
                         @else
                             <div class="apply-btn">
                                 @if($kluss_applicant->first())
-                                    <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">Applicatie verwijderen</a>
+                                    <a class="btn btn-danger" href="/kluss/{{$kl->id}}/solliciteren">APPLICATIE VERWIJDEREN</a>
                                 @else
                                     @if(areWeCool(\Auth::user()->id, $kl->user_id) != "")
                                         <p>Je hebt of bent door de gebruiker geblokkeerd. Solliciteren voor dit klusje is niet mogelijk.</p>
                                     @else
-                                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">Solliciteer voor deze kluss</a>
+                                        <a class="btn btn--form" href="/kluss/{{$kl->id}}/solliciteren">SOLLICITEER VOOR DEZE KLUSS</a>
                                     @endif
                                 @endif
                             </div>
@@ -210,7 +211,7 @@
                                 <div class="applicant--btn-tab">
                                     @if($kl->user_id == \Auth::user()->id)
                                         <form action="/chat/{{$accepted_applicant->id}}" method="post">
-                                            {{csrf_field()}}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
                                         </form>
                                     @endif
@@ -220,7 +221,7 @@
                         <div class="selected--applicant-close">
                             @if(\Auth::user()->id == $kl->user_id || \Auth::user()->id == $kl->accepted_applicant_id)
                                 <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
-                                    {{csrf_field()}}
+                                    {!! csrf_field() !!}
                                     @if(\Auth::user()->id == $kl->user_id)
                                         <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" && $paid != "" ? '' : 'disabled'}}>
                                     @else
@@ -258,20 +259,20 @@
                                         <th scope="row"><img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture"></th>
                                         <td><a href="/profiel/{{$sol->id}}/{{$sol->name}}">{{$sol->name}}</a></td>
                                         <td><form action="/chat/{{$sol->id}}" method="post">
-                                            {{csrf_field()}}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
                                         </form></td>
                                         <td>
                                             {{-- Gebruiker accepteren --}}
                                             <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/accepteren" method="post">
-                                                {{csrf_field()}}
+                                                {!! csrf_field() !!}
                                                 <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
                                                 <input type="submit" name="" class="btn btn-success" value="Accepteren">
                                             </form>
                                             {{-- Gebruiker weigeren --}}
                                             <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/weigeren" method="post">
-                                                {{csrf_field()}}
+                                                {!! csrf_field() !!}
                                                 <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
                                                 <input type="submit" name="" class="btn btn-danger" value="Weigeren">

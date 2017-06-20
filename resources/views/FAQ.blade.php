@@ -54,7 +54,7 @@
                 </div>
                 <div class="faq_question">
                     <p class="question">Staat jouw vraag niet tussen de lijst?</p>
-                    <p class="answer">Voor vragen kan je altijd terecht bij <a href="mailto:contact@kluss.be.">contact@kluss.be.</a></p>
+                    <p class="answer">Voor vragen kan je altijd terecht bij <a class="emaillink" href="mailto:contact@kluss.be.">contact@kluss.be.</a></p>
                 </div>
             </div>
     </div>

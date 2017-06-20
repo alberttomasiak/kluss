@@ -19,6 +19,9 @@
                 @foreach($conversationsLeft as $conversationLeft)
                     <div class="message">
                         <div class="avatar col-sm-4 col-md-3 col-lg-2">
+                            <div class="img-circle">
+
+                            </div>
                             <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}">
                         </div>
                         <div class="text-display">
@@ -37,7 +40,7 @@
                                 @endforeach
                             </div>
                             <form class="" action="/chat/{{$conversationLeft->id}}" method="post">
-                                {{ csrf_field() }}
+                                {!! csrf_field() !!}
                                 <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
                             </form>
                         </div>
@@ -46,6 +49,9 @@
                 @foreach($conversationsRight as $conversationRight)
                     <div class="message">
                         <div class="avatar col-sm-4 col-md-3 col-lg-2">
+                            <div class="img-circle">
+
+                            </div>
                             <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
                         </div>
                         <div class="text-display">
@@ -65,7 +71,7 @@
                                 @endforeach
                             </div>
                             <form class="" action="/chat/{{$conversationRight->id}}" method="post">
-                                {{ csrf_field() }}
+                                {!! csrf_field() !!}
                                 <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
                             </form>
                         </div>

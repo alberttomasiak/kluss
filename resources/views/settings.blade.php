@@ -22,14 +22,14 @@
             <ul>
                 <li><a href='#'>Profiel</a>
                     <ul>
-                        <li><a href='#'>Bewerk Profiel</a></li>
-                        <li><a href='#'>Kluss Gold</a></li>
+                        <li><a href='#'>BEWERK PROFIEL</a></li>
+                        <li><a href='#'>KLUSS GOLD</a></li>
                     </ul>
                 </li>
                 <li><a href='#'>Meldingen en gebruikers</a>
                     <ul>
-                        <li><a href='#'>Demp meldingen</a></li>
-                        <li><a href='#'>Geblokkeerde gebruikers</a></li>
+                        <li><a href='#'>DEMP MELDINGEN</a></li>
+                        <li><a href='#'>GEBLOKKEERDE GEBRUIKERS</a></li>
                     </ul>
                 </li>
             </ul>

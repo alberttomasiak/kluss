@@ -36,7 +36,6 @@ class ReviewController extends Controller
     }
 
     public function add(Request $request, $task_id){
-        dd($request);
         $task_id = $request->task_id;
         $maker_id = $request->maker_id;
         $fixer_id = $request->fixer_id;

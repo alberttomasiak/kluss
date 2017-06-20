@@ -39,7 +39,7 @@
                 <p>Gebruiker: {{$user}}</p>
                 <p>Titel: {{$title}}</p>
                 <p>Beschrijving: {{$description}}</p>
-                <a href="http://kluss.dev/admin">Admin Paneel</a>
+                <a href="http://kluss.be/admin">Admin Paneel</a>
             </div>
             <footer>
                 <p>&copy; KLUSS</p>

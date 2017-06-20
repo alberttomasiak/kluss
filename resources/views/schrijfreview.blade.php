@@ -3,44 +3,45 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> --}}
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&callback"></script>
-    <link href="/assets/css/edits.css" rel="stylesheet">
+    <!--<link href="/assets/css/edits.css" rel="stylesheet">-->
+    <div class="main-content-wrap">
+        <div class="">
+            <h1>Schrijf een review</h1>
+            @if($review == "")
+                <p class="reviewguide">Je schrijft nu een review voor <b>{{$for}}</b>. Bij Kluss willen we een betrouwbare omgeving; wees daarom eerlijk en correct in je beoordeling!</p>
+                <br>
+                <div class="review_form">
+                    <form action="/review/{{$task->id}}" id="write-review" method="post" class="reviewform">
+                        {!! csrf_field() !!}
+                        <input type="hidden" id="task_id" name="task_id" value="{{$task->id}}">
+                        <input type="hidden" id="maker_id" name="maker_id" value="{{$task->user_id}}">
+                        <input type="hidden" id="fixer_id" name="fixer_id" value="{{$task->accepted_applicant_id}}">
+                        {{-- <label for="score">Score:</label><input name="score" type="number" id="review_score" name="review_score" placeholder="Score tussen 1 en 5" min="1" max="5"> --}}
 
-    <div class="addboxshadow container" style="display:block; overflow:auto;">
-        <h1 style="float: left; padding: 15px;">Schrijf een review</h1>
-        <hr style="background-color: #677578; height: 0.2px; width: 100%; ">
-        @if($review == "")
-            <p>Je schrijft nu een review voor <b>{{$for}}</b>. Bij Kluss willen we een betrouwbare omgeving; wees daarom eerlijk en correct in je beoordeling.</p>
-            <br>
-            <div class="review_form">
-                <form action="/review/{{$task->id}}" id="write-review" method="post">
-                    {{csrf_field()}}
-                    <input type="hidden" id="task_id" name="task_id" value="{{$task->id}}">
-                    <input type="hidden" id="maker_id" name="maker_id" value="{{$task->user_id}}">
-                    <input type="hidden" id="fixer_id" name="fixer_id" value="{{$task->accepted_applicant_id}}">
-                    {{-- <label for="score">Score:</label><input name="score" type="number" id="review_score" name="review_score" placeholder="Score tussen 1 en 5" min="1" max="5"> --}}
-
-                    <fieldset>
+                        <fieldset>
                       <span class="star-cb-group">
                         <input type="radio" id="rating-5" name="score" value="5"  /><label for="rating-5">5</label>
                         <input type="radio" id="rating-4" name="score" value="4" /><label for="rating-4">4</label>
                         <input type="radio" id="rating-3" name="score" value="3" /><label for="rating-3">3</label>
                         <input type="radio" id="rating-2" name="score" value="2" /><label for="rating-2">2</label>
                         <input type="radio" id="rating-1" name="score" value="1" checked="checked" /><label for="rating-1">1</label>
-                        {{-- <input type="radio" id="rating-0" name="score" value="0" class="star-cb-clear" /><label for="rating-0">0</label> --}}
+                          {{-- <input type="radio" id="rating-0" name="score" value="0" class="star-cb-clear" /><label for="rating-0">0</label> --}}
                       </span>
-                    </fieldset>
+                        </fieldset>
 
-                    <label for="reviewmsg">Boodschap:</label><textarea class="form-control" name="review_msg" id="review_msg" cols="30" rows="10"></textarea>
-                    <input type="submit" name="submit" form="write-review" value="Verzenden">
-                </form>
-            </div>
-        @else
-            <p>Je hebt al een review voor dit klusje geschreven. Hartelijk bedankt daarvoor.</p>
-        @endif
-        <br>
-        <br>
+                        <label class="reviewlabel" for="reviewmsg">Boodschap:</label><textarea class="review_txt"  name="review_msg" id="review_msg" cols="30" rows="10"></textarea>
+                        <input type="submit" name="submit" form="write-review" value="VERZENDEN" class="btn-sendreview">
+                    </form>
+                </div>
+            @else
+                <p>Je hebt al een review voor dit klusje geschreven. Hartelijk bedankt daarvoor. Klik <a href="/home">hier</a> om terug te gaan naar de homepage.</p>
+            @endif
+            <br>
+            <br>
 
+        </div>
     </div>
+
 
     <script>
         (function($) {

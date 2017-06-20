@@ -48,6 +48,15 @@
   width: 60%;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 25px;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  transition: 1s;
+}
+
+.staff_cta:hover {
+  color: #FFFFFA;
+  background-color: $darkWashington;
 }
 
 .faqtable {
@@ -65,6 +74,11 @@
 
 .answer {
   font-family: 'Lato', sans-serif;
+}
+
+.emaillink {
+  color: $washington;
+
 }
 
 @media only screen and(min-width: 768px){

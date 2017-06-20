@@ -80,7 +80,7 @@
                                 <span class="help-block">
                                     <strong>{{ $errors->first('kluss_image') }}</strong>
                                 </span>
-                            @endif    
+                            @endif
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@
                         <input type="hidden" name="longitude" id="kluss--lng" value="">
                     </div>
 
-                    <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="Voeg kluss toe">
+                    <input type="submit" name="submit" class="btn btn-success" id="klussAdd_submit" value="VOEG KLUSS TOE">
                 @endif
             </form>
         </div>
@@ -153,5 +153,5 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places&callback=initAutocomplete"
           async defer></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-        <script type="text/javascript" src="assets/js/app.js"></script>
+        <script type="text/javascript" src="/assets/js/app.js"></script>
 @endsection

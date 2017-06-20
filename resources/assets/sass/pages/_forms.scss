@@ -3,6 +3,90 @@
     background-image: url("/assets/img/wasserette.jpg");
     background-size: cover;
     background-position: center;
+    min-height: calc(100vh - 129px);
+}
+
+.form--message{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    font-size: 1.5em;
+    color: $washington;
+}
+
+.btn--link{
+    display: block;
+    text-align: center;
+}
+
+.centered{
+    width: 65%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2em;
+    margin-top: 1.5em;
+    span{
+        font-family: "Lato Regular";
+        display: block;
+        width: 160px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .btn--link{
+        display: block;
+        width: 100px !important;
+        color: $washington;
+
+    }
+}
+
+.form--reg button{
+    border-radius: 20px;
+}
+
+.terms-wrap{
+    font-family: "Lato Regular";
+    margin-bottom: 3em;
+    margin-top: -2em;
+    a{
+        color: $androidgreen;
+    }
+    .terms-div-box{
+        display: block;
+        width: 15px;
+        height: 15px;
+        border: 1px solid $darkLiver;
+        display: block;
+        float: left;
+    }
+    .terms-checked{
+        &::after{
+            content: "";
+            display: block;
+            left: 8px;
+            top: 0px;
+            width: 8px;
+            height: 15px;
+            border: solid $androidgreen;
+            border-width: 0 4px 4px 0;
+            transform: rotate(45deg);
+            margin-left: 0.4em;
+            margin-top: -.3em;
+        }
+    }
+    .terms-box{
+        display: none;
+    }
+    label{
+        margin-left: 2em;
+        cursor: pointer;
+        margin-top: -1.25em;
+    }
 }
 
 .logreg--heading h1{
@@ -16,7 +100,7 @@
 .logreg--form{
     display: block;
     background-color: #FFFFFA;
-
+    margin-bottom: 150px;
 }
 
 .logreg--field{
@@ -68,6 +152,17 @@
     transition: 1s;
 }
 
+.forgotpassword {
+    width: 170px;
+    margin-left: auto;
+    margin-right: auto;
+    color: $washington;
+}
+
+.forgotpassword:hover {
+    color: $darkWashington;
+}
+
 #email, #password, #password-confirm, #name{
     padding-left: 10px;
 }
@@ -93,16 +188,20 @@
     box-shadow: inset 0px 0px 0px 0px #FFFFFA;
     border: none;
     background-color: #FFFFFA;
-    border-bottom: 4px solid $washington;
+    /*border-bottom: 4px solid $washington;*/
+    border: 1px solid #2D2D2D;
     font-size: 1.2em;
-    border-radius: 0px;
+    border-radius: 25px;
+    -moz-border-radius: 25px;
+    -webkit-border-radius: 25px;
+    -o-border-radius: 25px;
     margin-bottom: 30px;
 }
 
-.form-control:focus {
-    transition: 1s;
-    border-bottom: 4px solid $androidgreen;
-}
+// .form-control:focus {
+//     transition: 1s;
+//     border-bottom: 4px solid $androidgreen;
+// }
 
 @media only screen and(min-width: 768px){
     .logreg--body {
@@ -110,10 +209,20 @@
 
     }
 
+    .terms-wrap label{
+        margin-left: 1em;
+    }
+
     .logreg--form {
         width: 60%;
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+}
+
+@media only screen and (min-width: 1024px){
+    .centered{
+        width: 265px;
     }
 }

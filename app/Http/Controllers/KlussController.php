@@ -15,6 +15,7 @@ use App\KlussCategories;
 use App\Notifications;
 use App\KlussFinished;
 use App\KlussPay;
+use App\UserReview;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
@@ -33,7 +34,7 @@ class KlussController extends Controller
         $task_history = Kluss::getUserHistory(\Auth::user()->id);
         $kluss_categories = KlussCategories::getCategories();
         $account_type = User::checkAccountType(\Auth::user()->id);
-        return view('kluss/add', compact('kluss_categories', 'account_type', 'task_history'))->with('title', 'Voeg een Kluss toe');
+        return view('kluss.new', compact('kluss_categories', 'account_type', 'task_history'));
     }
 
     public function add(Request $request){
@@ -123,7 +124,8 @@ class KlussController extends Controller
         $kluss_applicants = Kluss_applicant::getAllApplicants($id);
         $accepted_applicant = Kluss_applicant::getAcceptedApplicant($id);
         $paid = KlussPay::getPaidStatus($id);
-        return view('kluss.individual', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid'))->with('title', $kluss[0]->title);
+        $reviewScore = UserReview::getUserReviewScore($kluss[0]->user_id);
+        return view('kluss.single', compact('kluss', 'kluss_applicant', 'kluss_applicants', 'accepted_applicant', 'paid', 'reviewScore'));
     }
 
     public function acceptUser(Request $request){
@@ -361,7 +363,7 @@ class KlussController extends Controller
 
     public function processPayment($id){
         $pay = KlussPay::addPayment($id);
-        return redirect('/kluss/'.$id);
+        return redirect()->back();
     }
 
     public function blockKluss(Request $request, $id){
@@ -371,13 +373,13 @@ class KlussController extends Controller
     public function filterTasks(Request $request){
         preg_match_all('!\d+!', $request->prijs, $prijs);
         $tijd = $request->tijd;
-        $locatie = $request->locatie;
+        $categorie = $request->category;
         $lat = $request->lat;
         $lng = $request->lng;
         $account_type = User::where('id', \Auth::user()->id)->pluck('account_type');
         $klussjes = Kluss::getPublished();
         $cards = Kluss::paginatePublished();
-
+        $categories = KlussCategories::getCategories();
         if($account_type[0] == "normal"){
             $maxD = 2;
         }else{
@@ -398,10 +400,13 @@ class KlussController extends Controller
         if($tijd != "null"){
             $query->where('time', 'LIKE', $tijd);
         }
+        if($categorie != "null"){
+            $query->where('kluss_category', 'LIKE', $categorie);
+        }
         if($request->has('lat')){
             $query->whereRaw('(6371 * acos(cos(radians('. $lat .')) * cos(radians(latitude)) * cos(radians(longitude) - radians(' . $lng . ')) + sin(radians('. $lat .')) * sin(radians(latitude)))) <= '.$maxD.'');
         }
 
-        return view("home", ['filtered' => $query->paginate(12), 'klussjes' => $klussjes, 'cards' => $cards]);
+        return view("home", ['filtered' => $query->paginate(12), 'klussjes' => $klussjes, 'cards' => $cards, 'category' => $categories]);
     }
 }

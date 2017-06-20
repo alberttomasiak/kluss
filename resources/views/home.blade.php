@@ -3,7 +3,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places"></script>
 <script type="text/javascript" src="/assets/js/jquery-paginate.min.js"></script>
 <div class="main-content-wrap">
-    <div class="goldad">Zo te zien heb je nog geen Kluss Gold... Ontdek het <a href="/klussgold">hier</a>!</div>
+    @if(checkAccountType(\Auth::user()->id) != "gold")
+        <div class="goldad">Zo te zien heb je nog geen Kluss Gold... Ontdek het <a href="/klussgold">hier</a>!</div>
+    @endif
     <div class="">
         <h1>Klusjes in de buurt</h1>
         <!-- MAP MET KLUSSJES -->
@@ -24,11 +26,17 @@
                 <option value="3:30">3 uur 30 min.</option>
                 <option value="4:00">4 uur</option>
             </select>
-            <input id="autocomplete" name="locatie" placeholder="Adres:"
-                   onFocus="geolocate()" type="text"></input>
+            <select id="kluss_categorie" name="category">
+                <option value="null">Categorie</option>
+                @foreach($category as $cat)
+                    <option value="{{$cat->id}}">{{$cat->name}}</option>
+                @endforeach
+            </select>
+            {{-- <input id="autocomplete" name="locatie" placeholder="Adres:"
+                   onFocus="geolocate()" type="text"></input> --}}
             <input type="hidden" name="lat" id="kluss__lat" value="">
             <input type="hidden" name="lng" id="kluss__lng" value="">
-            <input type="submit" class="filter-btn" value="Zoek">
+            <input type="submit" class="filter-btn" value="ZOEK">
         </form>
         <div class="klussjes-wrap">
         @if(!isset($filtered))
@@ -80,7 +88,9 @@
         @endif
         </div>
     </div>
-    <div class="goldad">Wil je meer uit je Kluss-belevenis halen? Ontdek het <a href="/klussgold">hier</a>!</div>
+    @if(checkAccountType(\Auth::user()->id) != "gold")
+        <div class="goldad">Wil je meer uit je Kluss-belevenis halen? Ontdek het <a href="/klussgold">hier</a>!</div>
+    @endif
 </div>
 <script type="text/javascript">
   var map;
@@ -100,38 +110,38 @@
      postal_code: 'short_name'
    };
 
-   function initAutocomplete() {
-     autocomplete = new google.maps.places.Autocomplete(
-         /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
-         {types: ['geocode'],
-         componentRestrictions: {country: "be"}});
-     autocomplete.addListener('place_changed', fillInAddress);
-   }
+   // function initAutocomplete() {
+   //   autocomplete = new google.maps.places.Autocomplete(
+   //       /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+   //       {types: ['geocode'],
+   //       componentRestrictions: {country: "be"}});
+   //   autocomplete.addListener('place_changed', fillInAddress);
+   // }
+   //
+   // function fillInAddress() {
+   //   var place = autocomplete.getPlace();
+   //   //console.log(place.geometry.location.lat());
+   //   $('#kluss__lat').val(place.geometry.location.lat());
+   //   $('#kluss__lng').val(place.geometry.location.lng());
+   // }
 
-   function fillInAddress() {
-     var place = autocomplete.getPlace();
-     //console.log(place.geometry.location.lat());
-     $('#kluss__lat').val(place.geometry.location.lat());
-     $('#kluss__lng').val(place.geometry.location.lng());
-   }
+   // function geolocate() {
+   //   if (navigator.geolocation) {
+   //     navigator.geolocation.getCurrentPosition(function(position) {
+   //       var geolocation = {
+   //         lat: position.coords.latitude,
+   //         lng: position.coords.longitude
+   //       };
+   //       var circle = new google.maps.Circle({
+   //         center: geolocation,
+   //         radius: position.coords.accuracy
+   //       });
+   //       autocomplete.setBounds(circle.getBounds());
+   //     });
+   //   }
+   // }
 
-   function geolocate() {
-     if (navigator.geolocation) {
-       navigator.geolocation.getCurrentPosition(function(position) {
-         var geolocation = {
-           lat: position.coords.latitude,
-           lng: position.coords.longitude
-         };
-         var circle = new google.maps.Circle({
-           center: geolocation,
-           radius: position.coords.accuracy
-         });
-         autocomplete.setBounds(circle.getBounds());
-       });
-     }
-   }
-
-initAutocomplete();
+// initAutocomplete();
   function initGeolocation(){
     if( navigator.geolocation ){
        // Call getCurrentPosition with success and failure callbacks
@@ -142,11 +152,15 @@ initAutocomplete();
      var poslng = position.coords.longitude;
      var poslat = position.coords.latitude;
      load(poslat, poslng);
+     $('#kluss__lat').val(poslat);
+     $('#kluss__lng').val(poslng);
  }
  function fail(){
     // geolocation doesn't work with this browser / not a secure request
     // perform the load with the coordinates for Mechelen -> our HQ
     load(poslatDefault, poslngDefault);
+    $('#kluss__lat').val(poslatDefault);
+    $('#kluss__lng').val(poslngDefault);
  }
 
   function load(lat, lng) {

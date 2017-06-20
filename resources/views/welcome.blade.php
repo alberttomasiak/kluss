@@ -6,14 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="assets/css/app.css" rel="stylesheet">
+    <link rel="icon" id="favicon" type="image/png" href="/assets/img/favicon.ico" sizes="48x48">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC-2c16NAFhcBb9tR3jquHYKuKaebGPnn8&libraries=places"></script>
 </head>
 <body id="landing-body">
 
     <div class="landing_header">
-        <div class="landing_logo"><img src="/assets/img/logo-klusswit.png" alt="Logo kluss"></div>
+        <div class="landing_logo"><img src="/assets/img/logo-kluss.png" alt="Logo kluss"></div>
         <div class="landing_headerbtns">
-            <a href="/register" class="landing_headerbtn"><div class="landing_btngreen">Registreer</div></a>
-            <a href="/login" class="landing_headerbtn"><div class="landing_btnwhite">Log in</div></a>
+            <a href="/register" class="landing_headerbtn"><div class="landing_btngreen">REGISTREER</div></a>
+            <a href="/login" class="landing_headerbtn"><div class="landing_btnwhite">LOG IN</div></a>
         </div>
     </div>
 
@@ -25,11 +28,14 @@
                 <p class="intro_headtxt">
                     KLUSS is een betrouwbaar online platform dat je toelaat om klusjes in de buurt kunt aannemen en zo bijklussen om wat bij te verdienen.
                     <br><br>
-                    Zo brengen we mensen dichter bij elkaar, en lossen we elkaars problemen op! 
+                    Zo brengen we mensen dichter bij elkaar, en lossen we elkaars problemen op!
                     Voor de fanatieke klussers hebben we ook een speciaal premiumpakket waarmee je gemakkelijker klusjes vindt en meer kunt gaan klussen.
                 </p>
-                <div class="landing_map">
+                {{-- <div class="landing_map">
                     <img src="/assets/img/landingkaart.png" alt="mappie">
+                </div> --}}
+                <div class="map-wrapperino">
+                    <div id="map"></div>
                 </div>
             </div>
         </div>
@@ -57,11 +63,11 @@
                 <div class="landing_ctas">
                     <div class="landing_ctabox ctabox1">
                         <p class="landing_ctatitle">Ik wil bijklussen in de buurt!</p>
-                        <a href="/register"><div class="landing_ctabtn btngreen">Start!</div></a>
+                        <a href="/register"><div class="landing_ctabtn btngreen">START!</div></a>
                     </div>
                     <div class="landing_ctabox ctabox2">
                         <p class="landing_ctatitle ctatitle2">Ik zoek een klusser!</p>
-                        <a href="/register"><div class="landing_ctabtn btnwhite">Zoek!</div></a>
+                        <a href="/register"><div class="landing_ctabtn btnwhite">ZOEK!</div></a>
                     </div>
                 </div>
             </div>
@@ -85,16 +91,6 @@
             <p>Lange Ridderstraat 44, 2800 Mechelen</p>
         </div>
     </footer>
-
-    <!--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="assets/js/app.js"></script>
-    <script>
-        $(".landing_body").css("height", window.innerHeight-60 + "px");
-
-        window.onresize=function(){
-            $(".landing_body").css("height", window.innerHeight-60 + "px");
-        };
-    </script>-->
+    @include('partials.scripts.home')
 </body>
 </html>

@@ -7,13 +7,16 @@
                     <div class="logreg--logo"></div>
                     <div class="panel logreg--form">
                         <div class="logreg--body">
-                            <form class="form-horizontal" role="form" method="POST" action="{{ url('/aanmelden') }}">
-                                {{ csrf_field() }}
+                            <form class="form-horizontal form--reg" role="form" method="POST" action="{{ url('/aanmelden') }}">
+                                {!! csrf_field() !!}
                                 @if(session('ImBannedBro'))
-                                    <p>{{session('ImBannedBro')}}</p>
+                                    <p class="form--message">{{session('ImBannedBro')}}</p>
+                                @endif
+                                @if(session('activated'))
+                                    <p class="form--message">{{session('activated')}}</p>
                                 @endif
                                 @if(session('verified'))
-                                    <p>{{session('verified')}}</p>
+                                    <p class="form--message">{{session('verified')}}</p>
                                 @endif
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                     <!--<label for="email" class="col-md-4 control-label">E-Mail Adres</label>-->
@@ -59,13 +62,18 @@
                                 <div class="form-group">
                                     <div class="col-md-10 col-md-offset-1">
                                         <button type="submit" class="btn btn--form col-md-12">
-                                            Log in
+                                            LOG IN
                                         </button>
                                     </div>
                                 </div>
+                                <div class="centered">
+                                        <span>Heb je nog geen account?</span><a style="width: 170px; margin-left: auto; margin-right: auto;" class="btn--link" href="/registreren">
+                                            Registreren
+                                        </a>
+                                </div>
                                 <div class="form-group">
-                                    <div class="col-md-8 col-md-offset-3">
-                                        <a class="btn--link" href="{{ url('/password/reset') }}">
+                                    <div class="">
+                                        <a class="btn--link forgotpassword" href="{{ url('/password/reset') }}">
                                             Wachtwoord vergeten?
                                         </a>
                                     </div>

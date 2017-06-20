@@ -1,0 +1,251 @@
+.content--wrap{
+    display: block;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2em;
+    margin-bottom: 2em;
+    font-family: "Coolvetica";
+}
+
+.blockModal{
+    display: block;
+    width: 150px;
+    height: 55px;
+    background-color: $raspberry;
+    color: white;
+    text-decoration: none;
+    padding-top: 7px;
+    border-radius: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    &:hover, &:active, &:visited, &:focus{text-decoration: none; background-color: $darkRaspberry; color:white;}
+}
+
+.user--information{
+    display: block;
+    width: 100%;
+    background-color: $primaryWhite;
+    margin-bottom: 2em;
+    text-align: center;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    padding-bottom: 1.5em;
+    img{ display: block; width: 100%;}
+    .img--wrap{
+        display: block;
+        height: 350px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        overflow: hidden;
+    }
+    h1{ color: $darkLiver !important; margin-bottom: .5em;}
+    h1::first-letter{text-transform: uppercase;}
+    .btn-main{ display: block; width: 125px; height: 30px; margin-left: auto; margin-right: auto; padding-top: .25em; margin-top: 1.5em; text-transform: uppercase; border-radius: 15px; background-color: $washington; color: $primaryWhite;}
+    .btn-main:hover, .btn-main:active, .btn-main:focus, .btn-main:visited{ text-decoration: none;}
+    .btn-main:hover{ background-color: $darkWashington;}
+    p{margin-bottom: 1.5em; display: block; width: 85%; margin-left: auto; margin-right: auto; font-size: 1.2em;}
+    .star-ratings-sprite{ display: block; margin-left: auto; margin-right: auto;}
+    form{ position: relative; padding-bottom: 2em; width: 50%; display: block; margin-left: auto;
+    margin-right: auto; text-align: center;}
+    form input{
+        margin-top: 2.5em;
+        margin-bottom: 2em;
+        border: none;
+        color: #2e9c4e;
+        font-size: 1.4em;
+        background-color: transparent;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        padding-top: .5em;
+    }
+    form label{
+        display: block;
+        background-image: url(../img/chat.png);
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 50px;
+        height: 50px;
+        background-position: center;
+        position: absolute;
+        left: -1.5em;
+    }
+}
+
+.profile--tabs{
+    display: block;
+    width: 100%;
+    background-color: $primaryWhite;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    padding-left: 0;
+    padding-bottom: 1em;
+    padding-top: 1em;
+    li{ list-style-type: none; display: block; height: 45px; padding-top: 15px; margin-bottom: 1em;}
+    li a{ color: $darkLiver; display: block; width: 100%; height: 45px; padding-top: 7.5px; border-left: 5px solid transparent; padding-left: .5em; font-size: 1.4em;}
+    li a span{ color: $washington;}
+    li a.active{ border-left: 5px solid $washington;}
+    li a:active, li a:hover, li a:visited, li a:focus{text-decoration: none;}
+}
+
+.activity-tabs{
+    .activity, .review, .open-task{
+        display: block;
+        width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        margin-bottom: 1.5em;
+    }
+    .border-top-activity{ display: block; width: 100%; height: 1px; background-color: $androidgreen;}
+    #tab1, #tab2, #tab3{
+        display: block;
+        width: 100%;
+        margin-top: 2em;
+        margin-bottom: 2em;
+        padding-top: .5em;
+        padding-bottom: 1em;
+        background-color: $primaryWhite;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
+    }
+    .activity, .review{
+        h2{ color: $darkLiver !important; text-transform: uppercase; font-size: 1.4em; margin-bottom: .5em;}
+        p{ font-size: 1.2em; line-height: 1.4em; margin-bottom: 0; font-family: "Lato Light";}
+        .profile-data-maker{color: $washington; font-family: "Coolvetica"; margin-top: .25em;}
+        .activity-date{font-size: .8em; font-family: "Lato Regular"; position: absolute;right: 0; top: .1em;}
+    }
+    .review .star-ratings-sprite{
+        background: url(../img/rating-sterretje.png) repeat-x;
+        background-size: 30px;
+        font-size: 0;
+        height: 28px;
+        line-height: 0;
+        overflow: hidden;
+        text-indent: -999em;
+        width: 150px;
+        .star-ratings-sprite-rating{
+            background: url(../img/rating-sterretje.png) repeat-x;
+            background-size: 30px;
+            background-position: 0 100%;
+            float: left;
+            height: 28px;
+            display: block;
+        }
+    }
+    .open-task{
+        .task-information{ position: relative;}
+        h2::before{ content: ""; height: 0 !important;}
+        h2{ color: $darkLiver !important; text-transform: uppercase; font-size: 1.4em; width: 90%; margin-bottom: .5em;}
+        h2 span { color: $washington !important; }
+        .price{ display: block; width: auto; position: absolute; right: 0; top: 0;}
+        .task-description{font-size: 1em; font-family: "Lato Regular"; line-height: 1.5em;}
+        .fixer span{ color: $washington !important;}
+        img{display: block; width: 100%;}
+        .close-pay-task{
+            margin-top: 1em;
+            .left-side a, .right-side input{
+                display: block;
+                width: 135px;
+                margin-left: auto;
+                margin-right: auto;
+                color: white;
+                background-color: $washington;
+                padding-top: .15em;
+                height: 25px;
+                border-radius: 15px;
+                text-align: center;
+                margin-bottom: 2em;
+                margin-top: 1em;
+                border: none;
+                &:hover, &:active, &:visited, &:focus{
+                    text-decoration: none;
+                    background-color: $darkWashington;
+                }
+            }
+            .right-side input{
+                padding-bottom: .2em;
+                padding-top: 0;
+            }
+        }
+    }
+    #tab1, #tab2, #tab3{
+        .pagination{
+            width: 85%;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
+@media only screen and (min-width: 480px){
+    .user--information .img--wrap{
+        height: 425px;
+    }
+}
+
+@media only screen and (min-width: 768px){
+    .content--wrap{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .user--information{
+        width: 40%;
+        height: 100%;
+        padding-bottom: 3em;
+        .img--wrap{
+            height: 300px;
+        }
+    }
+    .tabs--content{
+        display: flex;
+        flex-direction: column;
+        width: 55%;
+    }
+    .profile--tabs{
+        width: 100%;
+    }
+    .activity-tabs{
+        width: 100%;
+    }
+
+}
+
+@media only screen and (min-width: 1024px){
+    .content--wrap{
+        margin-top: 3.5em;
+    }
+    .close-pay-task{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+    }
+    .left-side{
+        width: 49%;
+        position: relative;
+        p{width: 90%;}
+        &::after{
+            content: "";
+            display: block;
+            width: 1px;
+            height: 100%;
+            background-color: $androidgreen;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+    }
+    .user--information .img--wrap{
+        height: 400px;
+    }
+    .right-side{width: 48%;}
+}
+
+@media only screen and (min-width: 1365px){
+    .content--wrap{width: 75%;}
+    .user--information{width: 35%;}
+    .tabs--content{width: 60%;}
+}

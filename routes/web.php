@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\TestMail;
+use App\Kluss;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,10 @@ use App\Mail\TestMail;
 |
 */
 
-Route::get('/', function () { return view('welcome'); });
+Route::get('/', function () {
+    $klussjes = Kluss::getPublished();
+    return view('welcome', compact('klussjes'));
+});
 Auth::routes();
 Route::get('/login', function(){ return redirect('/aanmelden'); });
 Route::get('/aanmelden', function(){ return view('auth/login')->with('title', 'Aanmelden'); });
@@ -29,11 +33,6 @@ Route::get('/logout', function(){
     Auth::logout();
     return redirect('/');
 });
-
-// test routes --> to be deleted
-Route::get('/test', 'HomeController@taskReviews');
-// Route::post('/test', 'HomeController@test');
-// end test routes
 
 Route::group(['middleware' => ['auth']], function(){
     // home routes
@@ -51,14 +50,13 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/kluss/{id}/bewerken', 'KlussController@edit');
     Route::post('/kluss/{id}/sollicitant/{userid}/accepteren', 'KlussController@acceptUser');
     Route::post('/kluss/{id}/sollicitant/{userid}/weigeren', 'KlussController@refuseUser');
-    Route::get('/kluss/{id}/verwijderen', 'KlussController@delete');
+    Route::post('/kluss/{id}/verwijderen', 'KlussController@delete');
     Route::post('/kluss/{task_id}/{user_id}/finished', 'KlussController@markFinished');
     Route::get('/kluss/{id}/betalen', 'KlussController@paypalPage');
     Route::post('/kluss/{id}/betalen', 'KlussController@processPayment');
     Route::post('/kluss/{id}/rapporteren', 'KlussController@blockKluss');
     Route::get('/home/filter', 'KlussController@filterTasks');
     // profile routes
-    Route::get('/profiel/test/{id}', 'ProfielController@testIndex');
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
@@ -70,6 +68,8 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/meldingen', 'HomeController@notificationsIndex');
     // Settings
     Route::get('/settings', 'ProfielController@settingsIndex');
+    Route::post('/settings/gegevens', 'ProfielController@update');
+    Route::get('/gebruiker/{id}/deblokkeren', 'ProfielController@unblockUser');
     Route::get('/settings/persoonlijke_blocks', 'UserBlockController@index');
     // Gold
     Route::get('/klussgold', 'KlussGoldController@index');
@@ -79,6 +79,8 @@ Route::group(['middleware' => ['auth']], function(){
     // Reviews
     Route::get('/review/{task_id}', 'ReviewController@index')->middleware('reviewpermission');
     Route::post('/review/{task_id}', 'ReviewController@add');
+    // Contact
+    Route::get('/contact/send', 'contactController@sendContact');
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -120,6 +122,7 @@ Route::get('/terms', function () { return view('/terms'); });
 Route::get('/team', function () { return view('/team'); });
 Route::get('/FAQ', function () { return view('/FAQ'); });
 Route::get('/contact', function () { return view('/contact'); });
+<<<<<<< HEAD
 
 // Route::get('/community', function () {
 //     return view('/community');
@@ -162,4 +165,6 @@ Route::get('/klusje', function () {
 // Route::get('/userprofiel', function () {
 //     return view('/userprofiel');
 // });
+>>>>>>> development
+=======
 >>>>>>> development

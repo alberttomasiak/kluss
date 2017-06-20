@@ -32,6 +32,19 @@ class User extends Authenticatable
 
     private static $lijst = [];
 
+    public static function updateProfile($id, $name, $email, $bio, $pass, $file){
+        if($pass != null && $file != null){
+            return self::where('id', $id)->update(['name' => $name, 'email' => $email, 'bio' => $bio, 'password' => $pass, 'profile_pic' => $file]);
+        }elseif($pass != null && $file == null){
+            return self::where('id', $id)->update(['name' => $name, 'email' => $email, 'bio' => $bio, 'password' => $pass]);
+        }elseif($pass == null && $file != null){
+            return self::where('id', $id)->update(['name' => $name, 'email' => $email, 'bio' => $bio, 'profile_pic' => $file]);
+        }else{
+            return self::where('id', $id)->update(['name' => $name, 'email' => $email, 'bio' => $bio]);
+        }
+    }
+
+
     public static function sendVerificationMail($email){
         $code = User::getVerificationCode($email);
         $title = "Account verifiëren";

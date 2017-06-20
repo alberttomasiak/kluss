@@ -13,13 +13,13 @@
     <!-- Styles -->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
     <link href="/assets/css/app.css" rel="stylesheet">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
 
     <!-- Scripts -->
+    <?php $url = Request::url(); ?>
+    {{-- {{$url != $_SERVER['SERVER_NAME']+"/aanmelden" || $url != $_SERVER['SERVER_NAME']+"/registreren" ? 'yes' : 'no'}} --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
     <script src="//js.pusher.com/3.0/pusher.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script>
         window.Laravel = <?php echo json_encode([
             'csrfToken' => csrf_token(),
@@ -48,16 +48,27 @@
   });
 
   @if($AuthUser != null)
-      function notifyUser(data){
-          toastr.options.progressBar = true;
-          toastr.info(data);
-          checkStatus();
-      }
+      function notifyUser(data) {
+          var text = $.parseHTML(data);
+
+        if (Notification.permission !== "granted")
+        Notification.requestPermission();
+
+        var notification = new Notification('', {
+        icon: '/assets/img/logo-klussklein_720.png',
+        body: text[0].data,
+        });
+
+        checkStatus();
+
+        notification.onclick = function () {
+        window.open("/meldingen");
+        };
+    }
 
       function checkStatus(){
           var messages = "{{ checkMsgs(\Auth::user()->id) }}";
           var notifs = "{{ checkNtfs(\Auth::user()->id) }}";
-          console.log(messages + " " + notifs);
           if(messages > 0){
               $('.add-msg-here').addClass('new-msg');
           }

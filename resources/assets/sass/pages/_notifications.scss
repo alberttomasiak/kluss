@@ -1,6 +1,7 @@
 .notifications-wrap a{
     text-decoration: none;
     color: $washington;
+    text-transform: none !important;
 }
 .notification{
     padding-left: 1em;
@@ -12,6 +13,9 @@
         -webkit-transform: scale(.97);
         -moz-transform: scale(.97);
         transform: scale(.97);
+    }
+    &:hover, &:focus, &:active, &:visited{
+        text-decoration: none;
     }
     h6{
         font-size: 1.4em;
