@@ -123,3 +123,49 @@ Route::get('/terms', function () { return view('/terms'); });
 Route::get('/team', function () { return view('/team'); });
 Route::get('/FAQ', function () { return view('/FAQ'); });
 Route::get('/contact', function () { return view('/contact'); });
+<<<<<<< HEAD
+
+// Route::get('/community', function () {
+//     return view('/community');
+// });
+
+// Route::get('/landing', function () {
+//     return view('/landing');
+// });
+
+// Route::get('/plaatsklusje', function () {
+//     return view('/plaatsklusje');
+// });
+
+<<<<<<< HEAD
+Route::get('/FAQ', function () {
+    return view('/FAQ');
+});
+
+Route::get('/community', function () {
+    return view('/community');
+});
+
+Route::get('/landing', function () {
+    return view('/landing');
+});
+
+Route::get('/plaatsklusje', function () {
+    return view('/plaatsklusje');
+});
+
+Route::get('/userprofiel', function () {
+    return view('/userprofiel');
+});
+
+Route::get('/klusje', function () {
+    return view('/klusje');
+});
+
+=======
+// Route::get('/userprofiel', function () {
+//     return view('/userprofiel');
+// });
+>>>>>>> development
+=======
+>>>>>>> development
