@@ -32,7 +32,7 @@
 @else
 	<div class="header">
 		<div class="mobile-nav">
-			<a class="hamburger-logo" href="/home"><img src="/assets/img/K-logo.png" alt=""></a>
+			<a class="hamburger-logo" href="/"><img src="/assets/img/K-logo.png" alt=""></a>
 			<a class="post-btn-mobile-anon" href='/aanmelden'><p>Aanmelden</p></a>
 		</div>
 		<div class="header-nav">
