@@ -44,7 +44,7 @@
                         <div class="task--maker-details">
                             <div class="task--user-image" style="background-image: url('/assets{{$kl->profile_pic}}')"></div>
                             {{-- <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic"> --}}
-                            <p>{{$kl->userName}}</p>
+                            <a href="/profiel/{{$kl->userID}}/{{str_slug($kl->userName)}}">Profiel</a>
                         </div>
                         <p class="category--task">Categorie: {{klussCategory($kl->kluss_category)}}</p>
                         @if($kl->user_id == \Auth::user()->id)

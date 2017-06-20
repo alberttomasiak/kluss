@@ -143,10 +143,19 @@
     display: block;
     margin-top: 2em;
     text-align: center;
-    p{
+    a{
         font-family: "Coolvetica";
         font-size: 1.2em;
         margin-left: 0;
+        margin-left: auto;
+        margin-right: auto;
+        min-width: 80px;
+        padding-left: .5em;
+        padding-right: .5em;
+        text-decoration: none;
+        &:hover{
+            background-color: $darkWashington;
+        }
     }
 }
 
@@ -454,6 +463,9 @@
           margin-left: auto;
           margin-right: 5em;
           margin-top: 0;
+          a{
+              height: auto;
+          }
       }
       .task--main-info .category--task{
           width: 60%;
@@ -661,6 +673,14 @@
             min-width: 175px;
             left: 0;
             right: 0;
+        }
+    }
+    .wrapper-task-single .task--maker-details{
+        position: relative;
+        a{
+            position: relative;
+            right: 0;
+            top: .5em;
         }
     }
 }
