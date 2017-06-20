@@ -24,7 +24,7 @@
                                     <div class="klussgold-duration"><span>1</span> <p>maand</p></div>
                                     <div class="klussgold_pricing">€ 3.99/maand = € 3.99</div>
                                     <div><form action="/klussgold/bestellen/1" method="post">
-                                            {{ csrf_field() }}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
                                         </form></div>
                                 </div>
@@ -32,7 +32,7 @@
                                     <div class="klussgold-duration"><span>3</span> <p>maanden</p></div>
                                     <div class="klussgold_pricing">€ 3.99/maand = € 11.97</div>
                                     <div><form action="/klussgold/bestellen/3" method="post">
-                                            {{ csrf_field() }}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
                                         </form></div>
                                 </div>
@@ -40,7 +40,7 @@
                                     <div class="klussgold-duration"><span>6</span> <p>maanden</p></div>
                                     <div class="klussgold_pricing"><strike>€ 3.99</strike> € 2.99/maand = € 17.94</div>
                                     <div><form action="/klussgold/bestellen/6" method="post">
-                                            {{ csrf_field() }}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
                                         </form></div>
                                 </div>
@@ -48,7 +48,7 @@
                                     <div class="klussgold-duration"><span>12</span> <p>maanden</p></div>
                                     <div class="klussgold_pricing"><strike>€ 3.99</strike> € 2.99/maand = € 35.88</div>
                                     <div><form action="/klussgold/bestellen/12" method="post">
-                                            {{ csrf_field() }}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="btn-bestel" class="klussgold-bestel" value="Bestel">
                                         </form></div>
                                 </div>

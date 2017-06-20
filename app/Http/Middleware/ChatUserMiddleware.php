@@ -20,9 +20,7 @@ class ChatUserMiddleware
         $channel = $request->chatname;
         $match = Conversation::matchConversationName($channel);
         $current_user = Auth::user()->id;
-        //dd($match["user_one"] . " " . $match["user_two"]. " ". $current_user);
         $allowed_users = [$match["user_one"], $match["user_two"]];
         return in_array($current_user, $allowed_users) ? $next($request) : redirect()->back();
-        //return $next($request);
     }
 }

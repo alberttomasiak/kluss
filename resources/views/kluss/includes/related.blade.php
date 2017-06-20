@@ -10,19 +10,19 @@
                                   <img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture">
                                   <a class="applicant-name" href="/profiel/{{$sol->id}}/{{$sol->name}}">{{$sol->name}}</a>
                                   <form action="/chat/{{$sol->id}}" method="post">
-                                      {{csrf_field()}}
+                                      {!! csrf_field() !!}
                                       <input type="submit" name="chatstart" class="btn-contact" value="Contact">
                                   </form>
                                       {{-- Gebruiker accepteren --}}
                                       <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/accepteren" method="post">
-                                          {{csrf_field()}}
+                                          {!! csrf_field() !!}
                                           <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
                                           <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
                                           <input type="submit" name="" class="btn-accept" value="Accept">
                                       </form>
                                       {{-- Gebruiker weigeren --}}
                                       <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/weigeren" method="post">
-                                          {{csrf_field()}}
+                                          {!! csrf_field() !!}
                                           <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
                                           <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
                                           <input type="submit" name="" class="btn-deny" value="Weigeren">
@@ -48,13 +48,13 @@
             @if(didIPay($kl->id) == "")
                 <p>Je kan de andere gebruiker een review geven nadat het klusje afgesloten werd.</p>
                 <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
-                    {{csrf_field()}}
+                    {!! csrf_field() !!}
                     <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" disabled>
                 </form>
             @elseif(didIPay($kl->id) != "" && didIMark(\Auth::user()->id, $kl->id) == "")
                 <p>Je kan de andere gebruiker een review geven nadat het klusje afgesloten werd.</p>
                 <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
-                    {{csrf_field()}}
+                    {!! csrf_field() !!}
                     <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen">
                 </form>
             @elseif(didIPay($kl->id) != "" && didIMark(\Auth::user()->id, $kl->id) != "")
@@ -69,7 +69,7 @@
             @if(didIMark(\Auth::user()->id, $kl->id) == "")
                 <p>Voor dat het klusje afgesloten kan worden moet deze gemarkeerd worden als afgerond. Je kan dit doen door op de knop hieronder te klikken.</p>
                 <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
-                    {{csrf_field()}}
+                    {!! csrf_field() !!}
                     <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen">
                 </form>
             @else

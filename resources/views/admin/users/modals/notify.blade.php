@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <form class="notify--user-form" id="notify--user-form" action="/admin/notify/user/{{$id}}" method="post">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
             <div class="form-group">
                 <label for="notification_msg">Bericht:</label>
                 <textarea name="notification_msg" id="notification_msg" class="form-control" form="notify--user-form" rows="4" cols="80"></textarea>

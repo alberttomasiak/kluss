@@ -1,5 +1,4 @@
 <?php
-
 if(!function_exists("spillvalue")){
     function spillvalue($key){
         return \App\GlobalSettings::get($key);
@@ -45,19 +44,16 @@ if(!function_exists('checkNtfs')){
         return \App\Notifications::getUserUnreadNotifications($user_id);
     }
 }
-
 if(!function_exists('timeAgo')){
     function timeAgo($dateTime){
         return \App\Kluss::convertToTimeAgo($dateTime);
     }
 }
-
 if(!function_exists('taskTitle')){
     function taskTitle($id){
         return \App\Kluss::getSingleTitle($id);
     }
 }
-
 if(!function_exists('classActivePath')){
     function classActivePath($path){
         $path = explode('.', $path);
@@ -71,25 +67,21 @@ if(!function_exists('classActivePath')){
         return ' active';
     }
 }
-
 if(!function_exists('checkAccountType')){
     function checkAccountType($id){
         return \App\User::checkAccountType($id);
     }
 }
-
 if(!function_exists('didIPay')){
     function didIPay($id){
         return \App\KlussPay::getPaidStatus($id);
     }
 }
-
 if(!function_exists('klussCategory')){
     function klussCategory($id){
         return \App\KlussCategories::IDToName($id);
     }
 }
-
 if(!function_exists('getUserReviewRating')){
     function getUserReviewRating($id){
         return \App\UserReview::getUserReviewScore($id);

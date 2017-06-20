@@ -37,7 +37,7 @@
                                 @endforeach
                             </div>
                             <form class="" action="/chat/{{$conversationLeft->id}}" method="post">
-                                {{ csrf_field() }}
+                                {!! csrf_field() !!}
                                 <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
                             </form>
                         </div>
@@ -65,7 +65,7 @@
                                 @endforeach
                             </div>
                             <form class="" action="/chat/{{$conversationRight->id}}" method="post">
-                                {{ csrf_field() }}
+                                {!! csrf_field() !!}
                                 <input type="submit" name="chatstart" class="btn btn--form" value="Contacteer mij">
                             </form>
                         </div>

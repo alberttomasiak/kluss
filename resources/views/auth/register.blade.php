@@ -8,7 +8,7 @@
                     <div class="panel logreg--form">
                         <div class="logreg--body">
                             <form class="form-horizontal form--reg" role="form" method="POST" action="{{ url('/registreren') }}">
-                                {{ csrf_field() }}
+                                {!! csrf_field() !!}
                                 @if(session('verificationMail'))
                                     <p class="form--message">{{session('verificationMail')}}</p>
                                 @endif

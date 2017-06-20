@@ -11,7 +11,7 @@
             @else
                 <form action="/kluss/add" id="kluss--toevoegen" method="post" enctype="multipart/form-data">
                     <div class="kluss-left">
-                        {{csrf_field()}}
+                        {!! csrf_field() !!}
                         <div class="form-group{{$errors->has('title') ? ' has-error' : ''}}">
                             <input type="text" name="title" class="form-control kluss--title" value="" placeholder="Titel:">
                             @if ($errors->has('title'))

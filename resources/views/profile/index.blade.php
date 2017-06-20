@@ -11,7 +11,7 @@
                 <a href="/settings" class="btn-main">Pas aan</a>
             @else
                 <form class="" action="/chat/{{$user->id}}" method="post">
-                    {{csrf_field()}}
+                    {!! csrf_field() !!}
                     <input type="submit" id="start-chat" name="start-chat" value="Contacteer mij">
                 </form>
             @endif
@@ -97,13 +97,13 @@
                                     @if(didIPay($task->id) == "")
                                         <p>Je kan de andere gebruiker een review geven nadat het klusje afgesloten werd.</p>
                                         <form action="/kluss/{{$task->id}}/{{\Auth::user()->id}}/finished" method="post">
-                                            {{csrf_field()}}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" disabled>
                                         </form>
                                     @elseif(didIPay($task->id) != "" && didIMark(\Auth::user()->id, $task->id) == "")
                                         <p>Je kan de andere gebruiker een review geven nadat het klusje afgesloten werd.</p>
                                         <form action="/kluss/{{$task->id}}/{{\Auth::user()->id}}/finished" method="post">
-                                            {{csrf_field()}}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen">
                                         </form>
                                     @elseif(didIPay($task->id) != "" && didIMark(\Auth::user()->id, $task->id) != "")

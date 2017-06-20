@@ -18,7 +18,7 @@
       </div>
       <div class="modals-body">
           <form action="/kluss/{{$kl->id}}/rapporteren" id="kluss-{{$kl->id}}-rapporteren" method="post">
-              {{csrf_field()}}
+              {!! csrf_field() !!}
               <div class="radio-report-group">
                   <input type="radio" name="reason" id="reason-inappr" value="inappropriate"><label for="reason-inappr">Dit hoort niet thuis op de KLUSS website</label><br>
                   <input type="radio" name="reason" id="reason-spam" value="spam"><label for="reason-spam">Het is spam</label><br>
