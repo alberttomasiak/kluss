@@ -103,6 +103,14 @@ a:hover, a:focus, a:active, a:visited{
     }
 }
 
+// terms pagina
+    .tabs--settings .terms-tabs{
+        font-family: "Lato Light";
+        padding-top: 350px !important;
+    }
+
+// end terms
+
 
 // Viewports
 
@@ -114,6 +122,10 @@ a:hover, a:focus, a:active, a:visited{
 
 @media only screen and (min-width: 768px){
     .page-content{min-height: calc(100vh - 215px);}
+    .tabs--settings .terms-tabs{ padding-top: 0 !important;}
+    .tabs--settings .terms-tabs div{
+        min-height: 375px;
+    }
 }
 
 @media only screen and (min-width: 1024px){

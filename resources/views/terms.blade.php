@@ -3,13 +3,16 @@
     <div class="main-content-wrap">
             <h1 class="contentpage_pagetitle">Algemene Voorwaarden & Terms of Use</h1>
             <div class="tabs--settings">
-                <ul class="tabs settings-nav" data-tabgroup="tab-group">
-                    <li><a href="#tab1" data-tabID="1" class=" active"><span>Deel 1</span></a></li>
-                    <li><a href="#tab2" data-tabID="2" class""><span>Deel 2</span></a></li>
-                    <li><a href="#tab3" data-tabID="3" class""><span>Deel 3</span></a></li>
-                    <li><a href="#tab4" data-tabID="4" class""><span>Deel 4</span></a></li>
+                <ul class="tabs settings-nav terms-list" data-tabgroup="tab-group">
+                    <li><a href="#tab1" data-tabID="1" class=" active"><span>Algemene Voorwaarden</span></a></li>
+                    <li><a href="#tab2" data-tabID="2" class""><span>Privacy</span></a></li>
+                    <li><a href="#tab3" data-tabID="3" class""><span>Gebruik van applicaties</span></a></li>
+                    <li><a href="#tab4" data-tabID="4" class""><span>Probleemoplossing en contract</span></a></li>
+                    <li><a href="#tab5" data-tabID="5" class=""><span>Disclaimers</span></a></li>
+                    <li><a href="#tab6" data-tabID="6" class""><span>Beperking van aansprakelijkheid</span></a></li>
+                    <li><a href="#tab7" data-tabID="7" class""><span>Schadevergoeding</span></a></li>
                 </ul>
-                <section id="tab-group" class="settings-tabs tabgroup">
+                <section id="tab-group" class="settings-tabs terms-tabs tabgroup">
                     <div id="tab1">
                         <h3>Contractuele verhouding.</h3>
                         <br><br>
@@ -49,8 +52,7 @@
                         of anderszins dataminen van elk onderdeel van de Diensten of de activiteit en/of functionaliteit van een onderdeel van de Diensten niet onnodig verzwaren of belemmeren;
                         of (vi) niet pogen om onbevoegde toegang te verkrijgen tot of belemmeren van om een onderdeel van de Diensten en de gerelateerde systemen of netwerken.
                         <br><br>
-                    </div>
-                    <div id="tab2">
+
                         <h3>Diensten van derden en Inhoud.</h3>
                         <br><br>
                         De Diensten kunnen ter beschikking worden gesteld of geraadpleegd met betrekking tot diensten van derden en inhoud (inclusief reclame) waarover KLUSS geen controle heeft.
@@ -58,6 +60,7 @@
                         KLUSS deelt dergelijke diensten van derden en inhoud niet en in geen geval zal KLUSS verantwoordelijk zijn of aansprakelijk worden gesteld voor een van de producten
                         of diensten van dergelijke externe leveranciers.
                         <br><br>
+
                         <h3>Eigendom.</h3>
                         <br><br>
                         De diensten en alle rechten daarin zijn en blijven de eigendom van KLUSS of de eigendom van de licentiegevers van KLUSS.
@@ -66,6 +69,7 @@
                         of (ii) het gebruik of de verwijzing op wat voor manier dan ook naar de bedrijfsnamen, logo's, product -en dienstnamen, handelsmerken of dienstmerken van KLUSS
                         of haar licentiegevers.
                         <br><br>
+
                         <h3>Verstrekte Gebruikersinhoud.</h3>
                         <br><br>
                         KLUSS kan, naar eigen goeddunken, u van tijd tot tijd toestaan om tekstuele, audio-, en/of visuele inhoud en informatie,
@@ -92,8 +96,7 @@
                         KLUSS kan, maar zal hiertoe niet worden verplicht, gebruikersinhoud beoordelen, controleren of verwijderen, naar eigen goeddunken, op elk moment, om elke mogelijke reden,
                         zonder kennisgeving aan u.
                         <br><br>
-                    </div>
-                    <div id="tab3">
+
                         <h3>Netwerktoegang en Apparaten.</h3>
                         <br><br>
                         U bent verantwoordelijk voor het verkrijgen van toegang tot het gegevensnetwerk, noodzakelijk voor het gebruik van de Diensten.
@@ -103,8 +106,8 @@
                         en alle bijkomende updates hiervan. KLUSS garandeert niet dat de Diensten, of elk onderdeel hiervan, zullen werken op bepaalde hardware of apparaten.
                         Bovendien kunnen de Diensten onderhevig zijn aan storingen en vertragingen inherent aan het gebruik van het internet en elektronische communicatie.
                         <br><br>
-                        <h2>Privacy.</h2>
-                        <br><br>
+                    </div>
+                    <div id="tab2">
                         <h3>Privacygegevens</h3>
                         <br><br>
                         Om een optimaal gebruik te verzekeren, verzamelt KLUSS op regelmatige basis Gebruikersinhoud om te analyseren en de User Experience te verbeteren.
@@ -122,8 +125,8 @@
                         buitenstaande partijen. Indien er u toch informatie gevraagd wordt buiten de applicatie,
                         gelieve hier niet op in te gaan en dit zo snel mogelijk aan te geven via onze contactformulieren.
                         <br><br>
-                        <h2>Gebruik van de applicaties.</h2>
-                        <br><br>
+                    </div>
+                    <div id="tab3">
                         <h3>Gebruiksregels.</h3>
                         <br><br>
                         Om gebruik te kunnen maken van alle onderdelen van de Diensten, moet u zich registeren en een actieve persoonlijke Dienstenaccount hebben (“Account”).
@@ -138,6 +141,7 @@
                         Het bezitten van meerdere accounts voor dezelfde persoon, voor welke reden dan ook, is verboden en zal onverbiddelijk leiden tot een stopzetting van uw gebruik van
                         KLUSS op eender welke manier.
                         <br><br>
+
                         <h3>Gebruikersvereisten en Gedrag.</h3>
                         <br><br>
                         De Dienst is niet beschikbaar voor gebruik door personen onder de leeftijd van 18 jaar.
@@ -146,6 +150,7 @@
                         U gaat akkoord met alle toepasselijke wetten als u gebruikmaakt van de Diensten, en u mag alleen de Diensten voor legale doeleinden gebruiken.
                         U zult tijdens uw gebruik van de Diensten geen overlast, hinder, ongemak of eigendomsschade veroorzaken aan zowel de aanvrager van de klus of eender welke andere partij.
                         <br><br>
+
                         <h3>Gebruik van instant messaging.</h3>
                         <br><br>
                         Wanneer u gebruik maakt van de instant messaging en bijhorende features van KLUSS, stemt u automatisch toe zich te houden aan de bijhorende voorwaarden.
@@ -154,8 +159,7 @@
                         U stemt ermee in dat KLUSS uw gesprek (indien nodig geacht) kan bekijken en gebruiken voor onderzoeksdoeleinden en gaat ermee akkoord dat u in uw gesprekken geen hinderlijke,
                         storende, ongepaste, of discriminerende taal gebruikt. Een overtreding van deze regels, in welke vorm dan ook, kan leiden tot de deactivatie van uw account.
                         <br><br>
-                    </div>
-                    <div id="tab4">
+
                         <h3>Betalingen.</h3>
                         <br><br>
                         Wanneer u gebruik maakt van de betalingen via het platform of een premiumaccount aanschaft, stemt u automatisch toe zich te houden aan de bijhorende voorwaarden.
@@ -166,6 +170,7 @@
                         Deze betalingen volgen dus automatisch alle voorwaarden van PayPal, en wij zijn niet aansprakelijk voor enige ongelukken die gebeuren durende de transactie.
                         Indien er zich problemen voordoen, kan u altijd contact opnemen met de systeembeheerders.
                         <br><br>
+
                         <h3>Terminatie van het account.</h3>
                         <br><br>
                         U kan zelf uw Account, samen met de bijhorende Gebruikersinhoud, eender wanneer beëindigen via het e-mailadres helpdesk@KLUSS.com.
@@ -176,14 +181,16 @@
                         Een overtreding van eender welke overeenkomst kan resulteren in een schorsing of stopzetting van uw Account.
                         Bij een overtreding is KLUSS niet vereist om enige kosten terug te betalen en blijft u verantwoordelijk voor alle bedragen van uw Account.
                         <br><br>
+                    </div>
+                    <div id="tab4">
                         <h3>Probleemoplossing en contact.</h3>
                         <br><br>
                         Indien u problemen of klachten hebt met het gebruik van de applicaties, kunt u ten allen tijde contact opnemen met KLUSS.
                         U zult dan verdergeholpen worden door een medewerker van het KLUSS-team.
                         Bij het gebruik van de contactformulieren of -gegevens staat u toe dat uw gesprekken bewaard worden voor interne analyses.
                         <br><br>
-                        <h2>Disclaimers; Beperking van Aansprakelijkheid; Schadevergoeding.</h2>
-                        <br><br>
+                    </div>
+                    <div id="tab5">
                         <h3>DISCLAIMER.</h3>
                         <br><br>
                         DE DIENSTEN WORDEN VERSCHAFT “IN HUIDIGE STAAT” EN ”ZOALS BESCHIKBAAR”. KLUSS ONTKENT ALLE VERKLARINGEN EN GARANTIES, UITDRUKKELIJK, IMPLICIET OF STATUTAIR,
@@ -194,6 +201,8 @@
                         U GAAT ERMEE AKKOORD DAT HET GEHELE RISICO DAT VOORTKOMT UIT UW GEBRUIK VAN DE DIENSTEN, EN ELKE OPGEVRAAGDE DIENST OF PRODUCT MET BETREKKING HIERMEE,
                         VOLLEDIG VOOR UW REKENING IS, VOOR ZOVER MAXIMAAL VOLGENS DE WET IS TOEGESTAAN.
                         <br><br>
+                    </div>
+                    <div id="tab6">
                         <h3>BEPERKING VAN AANSPRAKELIJKHEID.</h3>
                         <br><br>
                         KLUSS IS NIET AANSPRAKELIJK VOOR INDIRECTE, INCIDENTELE, BIJZONDERE, EXEMPLAIRE, PUNITIEVE OF GEVOLGSCHADE,
@@ -213,6 +222,8 @@
                         DE BEPERKINGEN EN DE DISCLAIMER IN DEZE SECTIE ZIJN NIET BESTEMD ALS EEN BEPERKING VAN DE AANSPRAKELIJKHEID
                         OF UW RECHTEN ALS CONSUMENT DIE NIET KUNNEN WORDEN UITGESLOTEN DOOR DE TOEPASSELIJKE WETGEVING.
                         <br><br>
+                    </div>
+                    <div id="tab7">
                         <h3>Schadevergoeding.</h3>
                         <br><br>
                         U gaat akkoord om KLUSS en haar leiders, werknemers, partners en stakeholders te vrijwaren van elke en alle schadeclaims, eisen, verliezen, aansprakelijkheden en onkosten
