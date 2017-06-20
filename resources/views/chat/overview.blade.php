@@ -51,6 +51,19 @@
         margin-left: 1em;
     }
 
+    .user .avatar{
+        display: block;
+        width: 50px;
+        height: 50px;
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border-radius: 100%;
+        float: left;
+        margin-right: 1em;
+        margin-left: .5em;
+    }
+
     .user .author{
         display: block;
         margin-top: .5em;
@@ -68,8 +81,8 @@
             <h3 class="my-chat-title">Recente gesprekken</h3>
             @foreach($conversationsLeft as $conversationLeft)
                 <div class="user {{$conversationLeft->chatname == $firstConversation->chatname ? 'active-user' : ''}}">
-                    <div class="avatar">
-                        <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}">
+                    <div class="avatar" style="background-image: url('/assets{{$conversationLeft->profile_pic}}');">
+                        {{-- <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}"> --}}
                     </div>
                     <div class="text-display">
                         <div class="message-data">
@@ -82,10 +95,12 @@
                     </div>
                 </div>
             @endforeach
+
+
             @foreach($conversationsRight as $conversationRight)
                 <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active-user' : ''}}">
-                    <div class="avatar">
-                        <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}">
+                    <div class="avatar" style="background-image: url('/assets{{$conversationRight->profile_pic}}');">
+                        {{-- <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}"> --}}
                     </div>
                     <div class="text-display">
                         <div class="message-data">

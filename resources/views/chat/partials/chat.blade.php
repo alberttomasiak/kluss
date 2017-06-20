@@ -52,8 +52,8 @@
                 @foreach($messages as $message)
                     @if($message->user_id == \Auth::User()->id)
                     <div class="my-chat-message-mine">
-                        <div class="my-message-avatar">
-                            <img src="/assets{{$message->profile_pic}}" alt="">
+                        <div class="my-message-avatar" style="background-image: url('/assets{{$message->profile_pic}}')">
+                            {{-- <img src="/assets{{$message->profile_pic}}" alt=""> --}}
                         </div>
                         <div class="my-message-text-display-mine">
                             <div class="my-message-data-mine">
@@ -66,8 +66,8 @@
                     </div>
                     @else
                         <div class="my-chat-message-other">
-                            <div class="my-message-avatar">
-                                <img src="/assets{{$message->profile_pic}}" alt="">
+                            <div class="my-message-avatar" style="background-image: url('/assets{{$message->profile_pic}}')">
+                                {{-- <img src="/assets{{$message->profile_pic}}" alt=""> --}}
                             </div>
                             <div class="my-message-text-display-other">
                                 <div class="my-message-data-other">
