@@ -25,7 +25,7 @@
      <hr style="border-width: 1px; border-color: #8BC53F; width: 35%;">
 
     <p style="text-align:center; width: 100%;">
-        KLUSS is een betrouwbaar online platform dat je toelaat om klusjes in de buurt kunt aannemen en zo bijklussen om wat bij te verdienen.
+        KLUSS is een online platform dat je toelaat om klusjes in de buurt kunt aannemen en zo bijklussen om wat bij te verdienen.
 <br><br>
         Zo brengen we mensen dichter bij elkaar en lossen we elkaars problemen op.  Voor de fanatieke klussers hebben we ook een betalend Gold pakket waarmee je gemakkelijker klusjes vindt en meer kunt gaan klussen.
     </p>
