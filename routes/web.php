@@ -59,6 +59,7 @@ Route::group(['middleware' => ['auth']], function(){
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
+    Route::post('/account/verwijderen', 'ProfielController@deleteAccount');
     // Chat routes
     Route::get('/chat', 'ChatController@index');
     Route::post('/chat/message', 'ChatController@postMessage');

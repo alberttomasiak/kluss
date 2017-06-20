@@ -201,4 +201,9 @@ class User extends Authenticatable
     public static function getBlockedUsers(){
         return self::where('blocked', '=', '1')->paginate(5);
     }
+
+    // THE DANGERZONE
+    public static function deleteAccount($id){
+        return self::where('id', $id)->delete();
+    }
 }

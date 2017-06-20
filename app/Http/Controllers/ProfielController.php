@@ -105,8 +105,10 @@ class ProfielController extends Controller
         return redirect()->back()->with('unblocked', 'Deze gebruiker werd gedeblokkeerd.');
     }
 
-    public function destroy($id)
+    public function deleteAccount(Request $request)
     {
-        //
+        $userID = $request->userID;
+        $delete = User::deleteAccount($userID);
+        return redirect('/');
     }
 }

@@ -6,6 +6,7 @@
             <ul class="tabs settings-nav" data-tabgroup="tab-group">
                 <li><a href="#tab1" data-tabID="1" class=" active"><span>Persoonlijke informatie</span></a></li>
                 <li><a href="#tab2" data-tabID="2" class""><span>Geblockte gebruikers</span></a></li>
+                <li><a href="#tab3" data-tabID="3"class=""><span>Account verwijderen</span></a></li>
             </ul>
             <section id="tab-group" class="settings-tabs tabgroup">
                 <div id="tab1">
@@ -109,6 +110,12 @@
                             </div>
                         @endforeach
                     @endif
+                </div>
+                <div id="tab3" style="min-height: 200px;">
+                    <h3>Account verwijderen</h3>
+                    <p>Je staat op het punt om uw account te verwijderen. Eens dit gebeurt wordt al uw data permanent verwijdert.</p>
+                    <a href="#profiel-verwijderen" data-toggle="modal" role="button" class="delete-acc">Account verwijderen</a>
+                    @include('settings.modals.delete')
                 </div>
             </section>
         </div>

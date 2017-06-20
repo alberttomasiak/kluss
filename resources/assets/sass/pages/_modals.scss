@@ -85,7 +85,9 @@
 
 .modals-btn {
   background-color: $raspberry;
-  width: 50%;
+  width: auto;
+  padding-left: .75em;
+  padding-right: .75em;
   color: white;
   display: block;
   margin-left: auto;
@@ -95,6 +97,7 @@
   border: none;
   border-radius: 100px;
   padding: 1%;
+  // float: right;
 }
 
 @media only screen and(min-width: 768px){
