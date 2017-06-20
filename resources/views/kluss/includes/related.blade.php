@@ -7,12 +7,14 @@
                         <h3>Sollicitanten</h3>
                           @foreach($kluss_applicants as $s => $sol)
                               <div class="applicant {{$s != 0 ? 'first-app' : ''}}">
-                                  <img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture">
-                                  <a class="applicant-name" href="/profiel/{{$sol->id}}/{{$sol->name}}">{{$sol->name}}</a>
-                                  <form action="/chat/{{$sol->id}}" method="post">
-                                      {!! csrf_field() !!}
-                                      <input type="submit" name="chatstart" class="btn-contact" value="Contact">
-                                  </form>
+                                  <div class="applicant-image" style="background-image: url('/assets{{$sol->profile_pic}}')"></div>
+                                  {{-- <img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture"> --}}
+                                  <a class="applicant-name" href="/profiel/{{$sol->id}}/{{str_slug($sol->name)}}">{{$sol->name}}</a>
+                                  <div class="button-push">
+                                      <form action="/chat/{{$sol->id}}" method="post">
+                                          {!! csrf_field() !!}
+                                          <input type="submit" name="chatstart" class="btn-contact" value="Contact">
+                                      </form>
                                       {{-- Gebruiker accepteren --}}
                                       <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/accepteren" method="post">
                                           {!! csrf_field() !!}
@@ -28,6 +30,7 @@
                                           <input type="submit" name="" class="btn-deny" value="Weigeren">
                                           {{-- <a href="" role="button" class="btn btn-danger">Weigeren</a> --}}
                                       </form>
+                                  </div>
                               </div>
                         @endforeach
                     {!! $kluss_applicants->appends(Request::except('sollicitanten'))->render() !!}

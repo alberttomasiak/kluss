@@ -83,7 +83,8 @@
                                     <div class="star-ratings-sprite"><span style="width:calc({{$reviewScore}} * 20%)" class="star-ratings-sprite-rating"></span></div>
                                 </div>
                                 <div class="contact--owner">
-                                    <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic">
+                                    <div class="task--user-image" style="background-image: url('/assets{{$kl->profile_pic}}');"></div>
+                                    {{-- <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic"> --}}
                                     <form action="/chat/{{$kl->userID}}" method="post">
                                         {!! csrf_field() !!}
                                         <label for="start--chat"></label>

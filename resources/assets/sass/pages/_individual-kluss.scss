@@ -240,13 +240,18 @@
 .applicants .applicant{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    img{
+    padding-bottom: 1em;
+    .applicant-image{
         display: block;
         width: 50px;
         height: 50px;
-        border-radius: 50px;
+        border-radius: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin-bottom: .5em;
     }
     .applicant-name{
         background-color: transparent !important;
@@ -270,6 +275,12 @@
     }
     .btn-deny{
         background-color: $raspberry;
+    }
+    form input{
+        min-width: 50px !important;
+        width: 75px !important;
+        padding-left: 0;
+        padding-right: 0;
     }
 }
     p, input{ margin-left: 1em; }
@@ -334,10 +345,7 @@
         margin-right: auto;
     }
     .contact--owner{
-        img{
-            margin-top: 3em;
-            margin-bottom: 1em;
-        }
+        margin-top: 3em;
         form{
             position: relative;
             display: block;
@@ -432,6 +440,12 @@
             }
         }
     }
+    .wrapper-task-single .applicants .applicant{
+        form input{
+            width: 100px !important;
+            margin-right: 1em;
+        }
+    }
 }
 
 @media only screen and (min-width: 768px){
@@ -476,7 +490,8 @@
           h2{ font-size: 2em; margin-top: 1em; &::before{ margin-bottom: 1em;}}
       }
       .for--related{
-          height: 150px;
+          min-height: 150px;
+          padding-bottom: 3em;
           .left-side{
               width: 50%;
               border-right: 1px solid $washington;
@@ -573,6 +588,22 @@
                 margin-left: 0;
             }
         }
+        .applicants .applicant .applicant-name{
+            width: auto;
+        }
+        .applicants .applicant .button-push{
+            display: flex;
+            flex-direction: row;
+            width: 350px;
+            margin-left: auto;
+            padding-top: .5em;
+            form input{
+                width: 100px !important;
+            }
+            .btn-deny{
+                margin-right: 0;
+            }
+        }
     }
 }
 
@@ -647,9 +678,9 @@
             font-size: 2.4em;
         }
         .for--related{
-            height: 200px;
+            min-height: 200px;
             .left-side a{
-                margin-top: 1em;
+                margin-top: 2em;
                 left: 0;
             }
             .right-side{
@@ -675,6 +706,7 @@
             right: 0;
         }
     }
+
     .wrapper-task-single .task--maker-details{
         position: relative;
         a{
