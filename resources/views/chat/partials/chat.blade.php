@@ -105,9 +105,7 @@
 
 <script id="chat_message_template" type="text/template">
     <div class="my-chat-message-mine">
-        <div class="my-message-avatar">
-            <img src="">
-        </div>
+        <div class="my-message-avatar"></div>
         <div class="my-message-text-display-mine">
             <div class="my-message-data-mine">
                 <span class="author"></span>
@@ -120,9 +118,7 @@
 </script>
 <script id="chat_message_other_template" type="text/template">
     <div class="my-chat-message-other">
-        <div class="my-message-avatar">
-            <img src="">
-        </div>
+        <div class="my-message-avatar"></div>
         <div class="my-message-text-display-other">
             <div class="my-message-data-other">
                 <span class="author"></span>
@@ -185,7 +181,7 @@
         el.find('.my-message-body-mine').html(data.text);
         el.find('.my-message-body-other').html(data.text);
         el.find('.author').text(data.username);
-        el.find('.my-message-avatar img').attr('src', '/assets'+data.avatar);
+        el.find('.my-message-avatar').css('background-image', "url('/assets"+data.avatar);
 
         // Utility to build nicely formatted time
         el.find('.timestamp').text(strftime('%d/%m/%y %H:%M:%S', new Date(data.timestamp)));

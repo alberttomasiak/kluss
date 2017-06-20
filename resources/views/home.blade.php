@@ -264,7 +264,7 @@ initGeolocation();
 // }
 function appendMarker(data){
     addMarker(data);
-    $('.klussjes-wrap').append('<div class="col s12 m6 card-wrap"><div class="card"><div class="card-image"><div class="card-image-wrap"><img src="/assets'+data.kluss_image+'" class="card--image" alt="Klussje"> </div> <span class="card-title">@if('data.image' == "assets/img/klussjes/geen-image.png")<h4 class="card--title-black">'+data.title+'</h4>@else<h4>'+data.title+'</h4>@endif</span></div><div class="card-content"><p class="card--description">'+data.description.substring(0, 120)+'...</p><p><b>'+data.address.replace(/\d+/g, "")+'</b></p><p class="card--price"><b>'+data.price+' credits</b></p></div><div class="card-action"><a href="/kluss/'+data.id+'">Ga naar de kluss</a></div></div></div>');
+    // $('.klussjes-wrap').append('<div class="col s12 m6 card-wrap"><div class="card"><div class="card-image"><div class="card-image-wrap"><img src="/assets'+data.kluss_image+'" class="card--image" alt="Klussje"> </div> <span class="card-title">@if('data.image' == "assets/img/klussjes/geen-image.png")<h4 class="card--title-black">'+data.title+'</h4>@else<h4>'+data.title+'</h4>@endif</span></div><div class="card-content"><p class="card--description">'+data.description.substring(0, 120)+'...</p><p><b>'+data.address.replace(/\d+/g, "")+'</b></p><p class="card--price"><b>'+data.price+' credits</b></p></div><div class="card-action"><a href="/kluss/'+data.id+'">Ga naar de kluss</a></div></div></div>');
 }
 function deleteMarker(data){
     markers[data.taskID].setMap(null);
