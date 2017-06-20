@@ -71,7 +71,7 @@ class KlussGoldController extends Controller
         $notificationChannel = User::getUserNotificationsChannel($user);
         $message = "Uw betaling voor KLUSS Gold werd geaccepteerd!";
         $this->pusher->trigger($notificationChannel, "new-notification", $message);
-        $fullMessage = "Uw betaling voor KLUSS Gold werd geaccepterd. Uw subscriptie verloopt op: ".substr($end_date, 0, 10);".";
+        $fullMessage = "Uw betaling voor KLUSS Gold werd geaccepteerd. Uw subscriptie verloopt op: ".substr($end_date, 0, 10);".";
         $notification = Notifications::createNotification($user, $user, $fullMessage, null, $notificationChannel, "global", null);
         // Fourth step, send an email to the user with the same information as the notification
         $userMail = User::getUserMail($user);

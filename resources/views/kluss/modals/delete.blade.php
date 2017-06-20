@@ -13,7 +13,7 @@
       </div>
       <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Annuleren</button>
-        <button type="submit" form="kluss-{{$kl->id}}-rapporteren" class="btn btn-danger">Verwijderen</button>
+        <button type="submit" form="kluss-{{$kl->id}}-verwijderen" class="btn btn-danger">Verwijderen</button>
         </form>
       </div>
     </div>

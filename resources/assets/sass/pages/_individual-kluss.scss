@@ -39,7 +39,7 @@
 }
 
 .task--details{
-    background-color: $primaryWhite;
+    background-color: #ffffff;
     display: block;
     width: 90%;
     margin-left: auto;
@@ -157,6 +157,10 @@
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 1em;
+        height: 100px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
 }
 
 .owner--btns{
@@ -603,7 +607,7 @@
             width: 27%;
         }
         .tabs--task .task--tabs{
-            width: 77%;
+            width: 79%;
         }
         .task--main-info{
             position: relative;

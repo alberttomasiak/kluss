@@ -54,9 +54,7 @@
   padding-bottom: 10px;
   display: flex;
   .my-message-avatar {
-    img {
-      display: none;
-    }
+    display: none;
   }
 }
 
@@ -72,8 +70,13 @@
   width: 8%;
 }
 
-.my-message-avatar img {
-  width: 100%;
+.my-message-avatar {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 60px;
+    height: 60px;
+    margin-top: .5em;
   border-radius: 100%;
 }
 
