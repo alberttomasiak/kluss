@@ -41,7 +41,7 @@
         display: block;
         width: 100px !important;
         color: $washington;
-        
+
     }
 }
 
@@ -198,10 +198,10 @@
     margin-bottom: 30px;
 }
 
-.form-control:focus {
-    transition: 1s;
-    border-bottom: 4px solid $androidgreen;
-}
+// .form-control:focus {
+//     transition: 1s;
+//     border-bottom: 4px solid $androidgreen;
+// }
 
 @media only screen and(min-width: 768px){
     .logreg--body {
