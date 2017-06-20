@@ -31,6 +31,15 @@
     box-shadow: 0 2px 3px rgba(0, 0, 0, .16);
     padding-bottom: 1.5em;
     img{ display: block; width: 100%;}
+    .img--wrap{
+        display: block;
+        height: 350px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        width: 100%;
+        overflow: hidden;
+    }
     h1{ color: $darkLiver !important; margin-bottom: .5em;}
     h1::first-letter{text-transform: uppercase;}
     .btn-main{ display: block; width: 125px; height: 30px; margin-left: auto; margin-right: auto; padding-top: .25em; margin-top: 1.5em; text-transform: uppercase; border-radius: 15px; background-color: $washington; color: $primaryWhite;}
@@ -170,6 +179,12 @@
     }
 }
 
+@media only screen and (min-width: 480px){
+    .user--information .img--wrap{
+        height: 425px;
+    }
+}
+
 @media only screen and (min-width: 768px){
     .content--wrap{
         display: flex;
@@ -180,6 +195,9 @@
         width: 40%;
         height: 100%;
         padding-bottom: 3em;
+        .img--wrap{
+            height: 300px;
+        }
     }
     .tabs--content{
         display: flex;
@@ -192,6 +210,7 @@
     .activity-tabs{
         width: 100%;
     }
+
 }
 
 @media only screen and (min-width: 1024px){
@@ -218,6 +237,9 @@
             right: 0;
             top: 0;
         }
+    }
+    .user--information .img--wrap{
+        height: 400px;
     }
     .right-side{width: 48%;}
 }

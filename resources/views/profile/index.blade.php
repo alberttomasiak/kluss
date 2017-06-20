@@ -3,7 +3,9 @@
     <div class="content--wrap">
     @foreach($userInfo as $user)
         <div class="user--information">
-            <img src="/assets{{$user->profile_pic}}" alt="{{$user->name}}'s profile picture">
+            <div class="img--wrap" style="background-image: url('/assets{{$user->profile_pic}}')">
+                {{-- <img src="/assets{{$user->profile_pic}}" alt="{{$user->name}}'s profile picture"> --}}
+            </div>
             <h1>{{$user->name}}</h1>
             <p>{{$user->bio}}</p>
             <div class="star-ratings-sprite"><span style="width:calc({{$reviewScore}} * 20%)" class="star-ratings-sprite-rating"></span></div>
