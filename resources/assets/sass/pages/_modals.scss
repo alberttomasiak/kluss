@@ -66,6 +66,18 @@
   padding: 1%;
 }
 
+.btn-modalcancel{
+  background-color: $raspberry;
+  width: 25%;
+  color: white;
+  display: block;
+  font-family: 'Coolvetica', sans-serif;
+  font-size: 1.4em;
+  border: none;
+  border-radius: 100px;
+  padding: 1%;
+}
+
 .modals-textbox {
   border: 2px dashed $washington;
   resize: none;
