@@ -7,7 +7,7 @@
         <h3 class="modal-title">Klusje "{{$kl->title}}" verwijderen</h3>
       <div class="modal-body">
           <form action="/kluss/{{$kl->id}}/verwijderen" id="kluss-{{$kl->id}}-verwijderen" method="post">
-              {{csrf_field()}}
+              {!! csrf_field() !!}
               <p>Ben je zeker dat je het klusje wil verwijderen?</p>
               <input type="hidden" name="blocker_id" id="blocker_id" value="{{\Auth::user()->id}}">
       </div>

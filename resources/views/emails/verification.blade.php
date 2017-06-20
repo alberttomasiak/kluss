@@ -37,7 +37,7 @@
             <div class="mail-body">
                 <h2>{{$title}}</h2>
                 <p>{{$body}}</p>
-                <a href="http://kluss.dev/{{$btnSource}}">{{$btnTitle}}</a>
+                <a href="http://kluss.be/{{$btnSource}}">{{$btnTitle}}</a>
             </div>
             <footer>
                 <p>&copy; KLUSS</p>

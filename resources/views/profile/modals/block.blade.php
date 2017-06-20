@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <form class="report-user-form" id="report-user-form" action="/profiel/{{$user->id}}/rapporteren" method="post">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
             <input type="hidden" name="blocked_id" value="{{$user->id}}">
             <input type="hidden" name="blocker_id" value="{{\Auth::user()->id}}">
             <p>Reden voor rapportering:</p>

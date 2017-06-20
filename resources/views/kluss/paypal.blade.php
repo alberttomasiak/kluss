@@ -76,7 +76,7 @@
             @if($paid == "")
                 <p>Je staat op het punt om het klusje "{{$task[0]->title}}" af te betalen. Dit is nodig om het klusje te markeren als afgewerkt en de andere gebruiker te kunnen betalen.</p>
                 <form class="" action="/kluss/{{$task[0]->id}}/betalen" method="post">
-                    {{csrf_field()}}
+                    {!! csrf_field() !!}
                     <input type="submit" name="payment" value="Betaling bevestigen">
                 </form>
             @else

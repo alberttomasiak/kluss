@@ -34,11 +34,6 @@ Route::get('/logout', function(){
     return redirect('/');
 });
 
-// test routes --> to be deleted
-Route::get('/test', 'HomeController@shittest');
-// Route::post('/test', 'HomeController@test');
-// end test routes
-
 Route::group(['middleware' => ['auth']], function(){
     // home routes
     Route::get('/home', 'HomeController@index');
@@ -46,11 +41,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::post('/getTasks', 'HomeController@getTasks');
     Route::post('/calculateDistance', 'KlussController@calculateUserDistance');
     // kluss routes
-    // Route::get('/kluss/new', 'KlussController@newIndex');
     Route::get('/kluss_toevoegen', 'KlussController@index');
     Route::post('/kluss/add', 'KlussController@add');
     Route::get('/kluss/{id}', 'KlussController@singleKluss')->middleware('taskChecker');
-    // Route::get('/kluss/test/{id}', 'KlussController@single')->middleware('taskChecker');
     // kluss solliciteren / bewerken routes
     Route::get('/kluss/{id}/bewerken', 'KlussController@update');
     Route::get('/kluss/{id}/solliciteren', 'KlussController@apply');
@@ -65,7 +58,6 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/home/filter', 'KlussController@filterTasks');
     // profile routes
     Route::get('/profiel/{id}/{name}', 'ProfielController@index');
-    // Route::get('/profiel/{id}/{name}', 'ProfielController@index');
     Route::post('/profiel/{id}/rapporteren', 'UserBlockController@blockUser');
     // Chat routes
     Route::get('/chat', 'ChatController@index');
@@ -130,19 +122,3 @@ Route::get('/terms', function () { return view('/terms'); });
 Route::get('/team', function () { return view('/team'); });
 Route::get('/FAQ', function () { return view('/FAQ'); });
 Route::get('/contact', function () { return view('/contact'); });
-
-// Route::get('/community', function () {
-//     return view('/community');
-// });
-
-// Route::get('/landing', function () {
-//     return view('/landing');
-// });
-
-// Route::get('/plaatsklusje', function () {
-//     return view('/plaatsklusje');
-// });
-
-// Route::get('/userprofiel', function () {
-//     return view('/userprofiel');
-// });

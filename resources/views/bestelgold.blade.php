@@ -8,7 +8,7 @@
             <p class="contentpage_paragraph">Bent u zeker?</p>
             <div class="order--form">
                 <form action="/bestel/{{\Auth::user()->id}}/{{$duration}}" id="purchaseGold" name="purchaseGold" method="post">
-                    {{csrf_field()}}
+                    {!! csrf_field() !!}
                     <input type="submit" form="purchaseGold" name="purchase--btn" value="Ja, bevestig mijn betaling" class="purchasegold--btn">
                 </form>
                 <a href="/klussgold" class="refusegoldlink">Nee, annuleer mijn bestelling</a>

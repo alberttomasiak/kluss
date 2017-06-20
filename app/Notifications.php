@@ -19,8 +19,6 @@ class Notifications extends Model
     public static function createNotification($about_user, $for_user, $message, $url, $channel, $type, $kluss_id){
         $date = Carbon::now()->toDateTimeString();
         $data = ['about_user' => $about_user, 'for_user' => $for_user, 'message' => $message, 'url' => $url, 'date' => $date, 'channel' => $channel, 'type' => $type, 'kluss_id' => $kluss_id];
-        // $pusher = App::make('pusher');
-        // $pusher->trigger($channel, "full-notification", $data);
         return self::insert(['about_user' => $about_user, 'for_user' => $for_user, 'message' => $message, 'url' => $url, 'date' => $date, 'channel' => $channel, 'type' => $type, 'kluss_id' => $kluss_id]);
     }
 

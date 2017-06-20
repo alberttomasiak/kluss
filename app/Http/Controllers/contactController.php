@@ -24,7 +24,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class contactController extends Controller
 {
-    //Input::get('name');
     public function sendContact(Request $request){
         $name_company = Input::get('auteur');
         $category = Input::get('contact_categorie');

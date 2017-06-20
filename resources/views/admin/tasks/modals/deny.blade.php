@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <form class="denyTask" id="denyTask-{{$appr->id}}" action="/admin/klusje/{{$appr->id}}/afwijzen" method="post">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
             <input type="hidden" name="taskID" id="taskID" value="{{$appr->id}}">
             <div class="form-group">
                 <label for="denyReason">Reden voor afwijzing:</label>

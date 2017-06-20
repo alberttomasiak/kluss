@@ -5,7 +5,7 @@
     <section class="login--form">
         <img src="/assets/img/logo-kluss.png" alt="Kluss logo">
         <form class="" action="{{ url('/admin/login') }}" method="post">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
             @if (session('not_admin'))
                 <div class="not_admin">
                     {{ session('not_admin') }}

@@ -211,7 +211,7 @@
                                 <div class="applicant--btn-tab">
                                     @if($kl->user_id == \Auth::user()->id)
                                         <form action="/chat/{{$accepted_applicant->id}}" method="post">
-                                            {{csrf_field()}}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
                                         </form>
                                     @endif
@@ -221,7 +221,7 @@
                         <div class="selected--applicant-close">
                             @if(\Auth::user()->id == $kl->user_id || \Auth::user()->id == $kl->accepted_applicant_id)
                                 <form action="/kluss/{{$kl->id}}/{{\Auth::user()->id}}/finished" method="post">
-                                    {{csrf_field()}}
+                                    {!! csrf_field() !!}
                                     @if(\Auth::user()->id == $kl->user_id)
                                         <input type="submit" name="finishtask" class="btn-finish" value="Kluss beëindigen" {{didIMark(\Auth::user()->id, $kl->id) == "" && $paid != "" ? '' : 'disabled'}}>
                                     @else
@@ -259,20 +259,20 @@
                                         <th scope="row"><img class="applicant-image" src="/assets{{$sol->profile_pic}}" alt="{{$sol->name}}'s profile picture"></th>
                                         <td><a href="/profiel/{{$sol->id}}/{{$sol->name}}">{{$sol->name}}</a></td>
                                         <td><form action="/chat/{{$sol->id}}" method="post">
-                                            {{csrf_field()}}
+                                            {!! csrf_field() !!}
                                             <input type="submit" name="chatstart" class="btn btn-info" value="Contact">
                                         </form></td>
                                         <td>
                                             {{-- Gebruiker accepteren --}}
                                             <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/accepteren" method="post">
-                                                {{csrf_field()}}
+                                                {!! csrf_field() !!}
                                                 <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
                                                 <input type="submit" name="" class="btn btn-success" value="Accepteren">
                                             </form>
                                             {{-- Gebruiker weigeren --}}
                                             <form action="/kluss/{{$kl->id}}/sollicitant/{{$sol->id}}/weigeren" method="post">
-                                                {{csrf_field()}}
+                                                {!! csrf_field() !!}
                                                 <input type="hidden" name="kluss_id" id="kluss_id" value="{{$kl->id}}">
                                                 <input type="hidden" name="user_id" id="user_id" value="{{$sol->id}}">
                                                 <input type="submit" name="" class="btn btn-danger" value="Weigeren">

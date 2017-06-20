@@ -59,7 +59,7 @@
                             <h2>Over dit klusje</h2>
                             <p>{{$kl->description}}</p>
                             <form action="/chat/{{$kl->userID}}" method="post">
-                                {{csrf_field()}}
+                                {!! csrf_field() !!}
                                 <input type="submit" name="start--chat" value="Contacteer {{$kl->userName}}">
                             </form>
                             @include('kluss.includes.related')
@@ -84,7 +84,7 @@
                                 <div class="contact--owner">
                                     <img src="/assets{{$kl->profile_pic}}" class="task--user-image" alt="{{$kl->userName}}'s profile pic">
                                     <form action="/chat/{{$kl->userID}}" method="post">
-                                        {{csrf_field()}}
+                                        {!! csrf_field() !!}
                                         <label for="start--chat"></label>
                                         <input type="submit" id="start--chat" name="start--chat" value="Contacteer {{$kl->userName}}">
                                     </form>

@@ -12,7 +12,7 @@
                 <br>
                 <div class="review_form">
                     <form action="/review/{{$task->id}}" id="write-review" method="post" class="reviewform">
-                        {{csrf_field()}}
+                        {!! csrf_field() !!}
                         <input type="hidden" id="task_id" name="task_id" value="{{$task->id}}">
                         <input type="hidden" id="maker_id" name="maker_id" value="{{$task->user_id}}">
                         <input type="hidden" id="fixer_id" name="fixer_id" value="{{$task->accepted_applicant_id}}">

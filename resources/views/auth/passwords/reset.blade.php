@@ -4,7 +4,7 @@
     <div class="main-content-wrap error-page">
         <h1>Wachtwoord opnieuw instellen</h1>
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/password/reset') }}">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
 
             <input type="hidden" name="token" value="{{ $token }}">
 

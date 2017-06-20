@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@kluss.be',
-            'password' => bcrypt('klussadmin'),
+            'password' => bcrypt('Bn0WuoNbVpCQAWvA2#$7'),
             'account_type' => 'admin',
             'activated' => '1',
             'verified' => '1',
@@ -33,7 +33,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Chat',
             'email' => 'chat@kluss.be',
-            'password' => bcrypt('T95158I54wvp'),
+            'password' => bcrypt('27p6mp9a2BOrAvSQ@enA'),
             'account_type' => 'admin',
             'verified' => '1',
             'blocked' => '0',
@@ -45,7 +45,7 @@ class UserTableSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'DJ Khaled',
             'email' => 'tomasiakalbert@gmail.com',
-            'password' => bcrypt('ISecretlyLove50Cent'),
+            'password' => bcrypt('f03#FGLtKWFopS6A%!x2'),
             'account_type' => 'admin',
             'bio' => 'Watch your back, but more importantly when you get out the shower, dry your back. It’s a cold world out there. Bless up! Another one!',
             'profile_pic' => '/img/dj-khaledicious.png',

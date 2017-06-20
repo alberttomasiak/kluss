@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <form class="edit-setting" id="edit-setting-{{$setting->id}}" action="/admin/setting/{{$setting->id}}/edit" method="post">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
             <input type="hidden" name="settingID" id="settingID" value="{{$setting->id}}">
             <div class="form-group">
                 <label for="settingKey">Naam setting (geen spaties)</label>

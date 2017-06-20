@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         <form class="add--setting-form" id="add--setting-form" action="/admin/setting/add" method="post">
-            {{ csrf_field() }}
+            {!! csrf_field() !!}
             <div class="form-group">
                 <label for="settingKey">Naam setting (geen spaties)</label>
                 <input type="text" name="settingKey" id="settingKey" class="form-control" placeholder="Naam setting" value="">
