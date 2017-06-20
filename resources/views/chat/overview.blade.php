@@ -81,9 +81,11 @@
             <h3 class="my-chat-title">Recente gesprekken</h3>
             @foreach($conversationsLeft as $conversationLeft)
                 <div class="user {{$conversationLeft->chatname == $firstConversation->chatname ? 'active-user' : ''}}">
-                    <div class="avatar" style="background-image: url('/assets{{$conversationLeft->profile_pic}}');">
-                        {{-- <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}"> --}}
-                    </div>
+                    <a href="/profiel/{{$conversationLeft->user_one == \Auth::user()->id ? $conversationLeft->user_two : $conversationLeft->user_one}}/{{str_slug($conversationLeft->name)}}">
+                        <div class="avatar" style="background-image: url('/assets{{$conversationLeft->profile_pic}}');">
+                            {{-- <img src="/assets{{$conversationLeft->profile_pic}}" class="img-circle" alt="{{$conversationLeft->name}}"> --}}
+                        </div>
+                    </a>
                     <div class="text-display">
                         <div class="message-data">
                             <span class="author my-chat-chatname">{{$conversationLeft->name}}</span>
@@ -99,9 +101,11 @@
 
             @foreach($conversationsRight as $conversationRight)
                 <div class="user {{$conversationRight->chatname == $firstConversation->chatname ? 'active-user' : ''}}">
-                    <div class="avatar" style="background-image: url('/assets{{$conversationRight->profile_pic}}');">
-                        {{-- <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}"> --}}
-                    </div>
+                    <a href="/profiel/{{$conversationRight->user_one == \Auth::user()->id ? $conversationRight->user_two : $conversationRight->user_one}}/{{str_slug($conversationRight->name)}}">
+                        <div class="avatar" style="background-image: url('/assets{{$conversationRight->profile_pic}}');">
+                            {{-- <img src="/assets{{$conversationRight->profile_pic}}" class="img-circle" alt="{{$conversationRight->name}}"> --}}
+                        </div>
+                    </a>
                     <div class="text-display">
                         <div class="message-data">
                             <span class="author">{{$conversationRight->name}}</span>

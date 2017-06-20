@@ -66,9 +66,9 @@
                     </div>
                     @else
                         <div class="my-chat-message-other">
-                            <div class="my-message-avatar" style="background-image: url('/assets{{$message->profile_pic}}')">
+                            <a href="/profiel/{{$message->user_id}}/{{str_slug($message->name)}}"><div class="my-message-avatar" style="background-image: url('/assets{{$message->profile_pic}}')">
                                 {{-- <img src="/assets{{$message->profile_pic}}" alt=""> --}}
-                            </div>
+                            </div></a>
                             <div class="my-message-text-display-other">
                                 <div class="my-message-data-other">
                                     <span class="author">{{$message->name}}</span>

@@ -1,5 +1,10 @@
 @extends('layouts.app')
 @section('content')
+    <script type="text/javascript">
+    $('#kluss--toevoegen')[0].ondragover = function(e) {
+        e.preventDefault();
+    };
+    </script>
     <div class="main-content-wrap">
         <div>
             <h1>Plaats een klussje op de kaart</h1>

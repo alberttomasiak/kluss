@@ -113,6 +113,12 @@
     }
 }
 
+.button-push{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
 .task--main-info{
     h1{
         font-size: 1.6em;
@@ -714,5 +720,13 @@
             right: 0;
             top: .5em;
         }
+    }
+    .wrapper-task-single .applicants .applicant{
+        position: relative;
+    }
+    .wrapper-task-single .applicants .applicant .applicant-name{
+        right: 0 !important;
+        top: 0 !important;
+        left: 3.5em;
     }
 }

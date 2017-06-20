@@ -172,7 +172,7 @@
           mapTypeControl: false,
           scaleControl: false,
           streetViewControl: false,
-          disableDefaultUI: true,
+          disableDefaultUI: false,
           draggable: true,
           minZoom: 13,
           maxZoom:16,

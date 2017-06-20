@@ -27,7 +27,7 @@
     <ul class="tabs profile--tabs" data-tabgroup="tab-group">
         <?php $url = Request::url()?>
         <li><a href="#tab1" data-tabID="1" class="{{Request::fullUrl() == $url || Request::get('activiteiten') ? 'active' : ''}}"><span>{{$activityCounter}}x</span> geklusst</a></li>
-        <li><a href="#tab2" data-tabID="2" class="{{Request::get('reviews') ? 'active' : ''}}"><span>{{$reviewCount}}</span> {{$reviewCount > 1 ? 'reviews' : 'review'}}</a></li>
+        <li><a href="#tab2" data-tabID="2" class="{{Request::get('reviews') ? 'active' : ''}}"><span>{{$reviewCount}}</span> {{$reviewCount < 1 || $reviewCount > 1 ? 'reviews' : 'review'}}</a></li>
         <li><a href="#tab3" data-tabID="3" class="{{Request::get('klusjes') ? 'active' : ''}}"><span>{{$openTaskCounter}}</span> openstaande klusjes</a></li>
     </ul>
     <section id="tab-group" class="activity-tabs tabgroup">
