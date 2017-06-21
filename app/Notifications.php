@@ -29,7 +29,7 @@ class Notifications extends Model
     }
 
     public static function getUserNotifications($user_id){
-        return self::join('users', 'user_notifications.for_user', '=', 'users.id')
+        return self::join('users', 'user_notifications.about_user', '=', 'users.id')
                     ->select('user_notifications.*', 'users.name', 'users.profile_pic')
                     ->where('user_notifications.for_user', $user_id)
                     ->orderBy('user_notifications.date', 'desc')
